@@ -179,6 +179,34 @@
                 justify-content: flex-end;
             }
 
+            .alert {
+                border-radius: 16px;
+                padding: 16px 20px;
+                font-size: 0.95rem;
+                font-weight: 500;
+            }
+
+            .alert-success {
+                background: rgba(46, 171, 115, 0.12);
+                color: #1b7c4b;
+                border: 1px solid rgba(46, 171, 115, 0.28);
+            }
+
+            .error-messages {
+                display: grid;
+                gap: 6px;
+                background: rgba(196, 31, 58, 0.08);
+                color: #a31f33;
+                border: 1px solid rgba(196, 31, 58, 0.2);
+                border-radius: 16px;
+                padding: 14px 18px;
+                font-size: 0.92rem;
+            }
+
+            .error-messages strong {
+                font-weight: 600;
+            }
+
             button[type="submit"] {
                 font: inherit;
                 font-weight: 600;
@@ -243,34 +271,85 @@
             </header>
 
             <main>
-                <form action="#" method="post">
+                @if (session('status'))
+                    <div class="alert alert-success" role="status">{{ session('status') }}</div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="error-messages" role="alert">
+                        <strong>Terjadi kesalahan pada data yang dikirim:</strong>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form action="{{ route('pendaftaran.lomba.store') }}" method="post">
+                    @csrf
                     <div class="field-group">
                         <label for="nama">1. Nama Lengkap</label>
-                        <input id="nama" name="nama" type="text" placeholder="Tuliskan nama lengkap Anda" required>
+                        <input
+                            id="nama"
+                            name="nama"
+                            type="text"
+                            placeholder="Tuliskan nama lengkap Anda"
+                            value="{{ old('nama') }}"
+                            required
+                        >
                     </div>
 
                     <div class="field-group">
                         <label for="nim">2. NIM</label>
-                        <input id="nim" name="nim" type="text" placeholder="Masukkan NIM aktif" required>
+                        <input
+                            id="nim"
+                            name="nim"
+                            type="text"
+                            placeholder="Masukkan NIM aktif"
+                            value="{{ old('nim') }}"
+                            required
+                        >
                     </div>
 
                     <fieldset class="field-group">
                         <legend>3. Program Studi</legend>
                         <div class="options">
                             <label class="option-item">
-                                <input type="radio" name="program_studi" value="Teknik Industri" required>
+                                <input
+                                    type="radio"
+                                    name="program_studi"
+                                    value="Teknik Industri"
+                                    @checked(old('program_studi') === 'Teknik Industri')
+                                    required
+                                >
                                 <span>Teknik Industri</span>
                             </label>
                             <label class="option-item">
-                                <input type="radio" name="program_studi" value="Teknik Informatika">
+                                <input
+                                    type="radio"
+                                    name="program_studi"
+                                    value="Teknik Informatika"
+                                    @checked(old('program_studi') === 'Teknik Informatika')
+                                >
                                 <span>Teknik Informatika</span>
                             </label>
                             <label class="option-item">
-                                <input type="radio" name="program_studi" value="Desain Produk">
+                                <input
+                                    type="radio"
+                                    name="program_studi"
+                                    value="Desain Produk"
+                                    @checked(old('program_studi') === 'Desain Produk')
+                                >
                                 <span>Desain Produk</span>
                             </label>
                             <label class="option-item">
-                                <input type="radio" name="program_studi" value="Lainnya">
+                                <input
+                                    type="radio"
+                                    name="program_studi"
+                                    value="Lainnya"
+                                    @checked(old('program_studi') === 'Lainnya')
+                                >
                                 <span>Lainnya</span>
                             </label>
                         </div>
@@ -278,26 +357,49 @@
 
                     <div class="field-group">
                         <label for="whatsapp">4. Nomor WhatsApp</label>
-                        <input id="whatsapp" name="whatsapp" type="text" placeholder="Contoh: 0812-3456-7890" required>
+                        <input
+                            id="whatsapp"
+                            name="whatsapp"
+                            type="text"
+                            placeholder="Contoh: 0812-3456-7890"
+                            value="{{ old('whatsapp') }}"
+                            required
+                        >
                     </div>
 
                     <fieldset class="field-group">
                         <legend>5. Pilihan Peran</legend>
                         <div class="options">
                             <label class="option-item">
-                                <input type="radio" name="pilihan_peran" value="Ketua" required>
+                                <input
+                                    type="radio"
+                                    name="pilihan_peran"
+                                    value="Ketua"
+                                    @checked(old('pilihan_peran') === 'Ketua')
+                                    required
+                                >
                                 <span>
                                     Ketua &mdash; memimpin koordinasi, membawa ide utama, serta menjaga orisinalitas konsep.
                                 </span>
                             </label>
                             <label class="option-item">
-                                <input type="radio" name="pilihan_peran" value="Hacker">
+                                <input
+                                    type="radio"
+                                    name="pilihan_peran"
+                                    value="Hacker"
+                                    @checked(old('pilihan_peran') === 'Hacker')
+                                >
                                 <span>
                                     Hacker &mdash; memastikan pengembangan solusi secara teknis dan sesuai kebutuhan lapangan.
                                 </span>
                             </label>
                             <label class="option-item">
-                                <input type="radio" name="pilihan_peran" value="Hipster">
+                                <input
+                                    type="radio"
+                                    name="pilihan_peran"
+                                    value="Hipster"
+                                    @checked(old('pilihan_peran') === 'Hipster')
+                                >
                                 <span>
                                     Hipster &mdash; merancang pengalaman, visual, dan komunikasi produk agar mudah dipahami masyarakat.
                                 </span>
@@ -307,22 +409,42 @@
 
                     <div class="field-group">
                         <label for="motivasi">6. Motivasi Partisipasi Lomba</label>
-                        <textarea id="motivasi" name="motivasi" placeholder="Ceritakan motivasi dan harapan Anda mengikuti Innovillage"></textarea>
+                        <textarea
+                            id="motivasi"
+                            name="motivasi"
+                            placeholder="Ceritakan motivasi dan harapan Anda mengikuti Innovillage"
+                        >{{ old('motivasi') }}</textarea>
                     </div>
 
                     <fieldset class="field-group">
                         <legend>7. Apakah sudah mempunyai tim?</legend>
                         <div class="options">
                             <label class="option-item">
-                                <input type="radio" name="status_tim" value="Sudah" required>
+                                <input
+                                    type="radio"
+                                    name="status_tim"
+                                    value="Sudah"
+                                    @checked(old('status_tim') === 'Sudah')
+                                    required
+                                >
                                 <span>Sudah</span>
                             </label>
                             <label class="option-item">
-                                <input type="radio" name="status_tim" value="Belum">
+                                <input
+                                    type="radio"
+                                    name="status_tim"
+                                    value="Belum"
+                                    @checked(old('status_tim') === 'Belum')
+                                >
                                 <span>Belum</span>
                             </label>
                             <label class="option-item">
-                                <input type="radio" name="status_tim" value="Belum namun siap mencari anggota">
+                                <input
+                                    type="radio"
+                                    name="status_tim"
+                                    value="Belum namun siap mencari anggota"
+                                    @checked(old('status_tim') === 'Belum namun siap mencari anggota')
+                                >
                                 <span>Belum, tetapi siap mencari 2 teman tim</span>
                             </label>
                         </div>

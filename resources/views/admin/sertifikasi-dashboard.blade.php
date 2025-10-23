@@ -490,94 +490,32 @@
                                 <th>NIM</th>
                                 <th>Prodi</th>
                                 <th>No Wa</th>
-                                <th>Peran</th>
-                                <th>Keterangan Kelompok</th>
+                                <th>Program Sertifikasi</th>
+                                <th>Status Sertifikasi</th>
                                 <th class="select-column" aria-label="Pilih">
                                     <button type="button" class="clear-all-button">Clear All</button>
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Fefe Riki Fufi Fufu</td>
-                                <td>1238073047</td>
-                                <td>SI</td>
-                                <td>08543892455</td>
-                                <td>Hacker</td>
-                                <td><span class="badge">Ada</span></td>
-                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Pipot Selbor</td>
-                                <td>1238073048</td>
-                                <td>RPL</td>
-                                <td>5332445525</td>
-                                <td>Hipster</td>
-                                <td><span class="badge">Ada</span></td>
-                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Pipot Selbor</td>
-                                <td>1238073049</td>
-                                <td>RPL</td>
-                                <td>5332445525</td>
-                                <td>Hipster</td>
-                                <td><span class="badge">Ada</span></td>
-                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Mie Ayam Gedongan</td>
-                                <td>1238073050</td>
-                                <td>TT</td>
-                                <td>5332445525</td>
-                                <td>Hustler</td>
-                                <td><span class="badge">Ada</span></td>
-                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Mie Ayam Gedongan</td>
-                                <td>1238073051</td>
-                                <td>TT</td>
-                                <td>5332445525</td>
-                                <td>Hustler</td>
-                                <td><span class="badge">Ada</span></td>
-                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Hason Susanto</td>
-                                <td>1238073052</td>
-                                <td>SI</td>
-                                <td>0832445525</td>
-                                <td>Hacker</td>
-                                <td><span class="badge">Ada</span></td>
-                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>Hason Susanto</td>
-                                <td>1238073053</td>
-                                <td>SI</td>
-                                <td>0832445525</td>
-                                <td>Hacker</td>
-                                <td><span class="badge">Ada</span></td>
-                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>Hason Susanto</td>
-                                <td>1238073054</td>
-                                <td>SI</td>
-                                <td>0832445525</td>
-                                <td>Hacker</td>
-                                <td><span class="badge">Ada</span></td>
-                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
-                            </tr>
+                            @forelse ($registrations as $registration)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $registration->nama }}</td>
+                                    <td>{{ $registration->nim }}</td>
+                                    <td>{{ $registration->program_studi }}</td>
+                                    <td>{{ $registration->whatsapp }}</td>
+                                    <td>{{ $registration->program_sertifikasi }}</td>
+                                    <td>
+                                        <span class="badge">{{ $registration->status_sertifikasi }}</span>
+                                    </td>
+                                    <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="8">Belum ada data pendaftaran sertifikasi.</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

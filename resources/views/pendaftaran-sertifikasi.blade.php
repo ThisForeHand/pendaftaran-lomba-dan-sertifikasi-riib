@@ -194,6 +194,34 @@
                 justify-content: flex-end;
             }
 
+            .alert {
+                border-radius: 16px;
+                padding: 16px 20px;
+                font-size: 0.95rem;
+                font-weight: 500;
+            }
+
+            .alert-success {
+                background: rgba(46, 171, 115, 0.12);
+                color: #1b7c4b;
+                border: 1px solid rgba(46, 171, 115, 0.28);
+            }
+
+            .error-messages {
+                display: grid;
+                gap: 6px;
+                background: rgba(196, 31, 58, 0.08);
+                color: #a31f33;
+                border: 1px solid rgba(196, 31, 58, 0.2);
+                border-radius: 16px;
+                padding: 14px 18px;
+                font-size: 0.92rem;
+            }
+
+            .error-messages strong {
+                font-weight: 600;
+            }
+
             button[type="submit"] {
                 font: inherit;
                 font-weight: 600;
@@ -264,34 +292,85 @@
             </header>
 
             <main>
-                <form action="#" method="post">
+                @if (session('status'))
+                    <div class="alert alert-success" role="status">{{ session('status') }}</div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="error-messages" role="alert">
+                        <strong>Terjadi kesalahan pada data yang dikirim:</strong>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form action="{{ route('pendaftaran.sertifikasi.store') }}" method="post">
+                    @csrf
                     <div class="field-group">
                         <label for="nama">1. Nama Lengkap</label>
-                        <input id="nama" name="nama" type="text" placeholder="Tuliskan nama lengkap Anda" required>
+                        <input
+                            id="nama"
+                            name="nama"
+                            type="text"
+                            placeholder="Tuliskan nama lengkap Anda"
+                            value="{{ old('nama') }}"
+                            required
+                        >
                     </div>
 
                     <div class="field-group">
                         <label for="nim">2. NIM</label>
-                        <input id="nim" name="nim" type="text" placeholder="Masukkan NIM aktif" required>
+                        <input
+                            id="nim"
+                            name="nim"
+                            type="text"
+                            placeholder="Masukkan NIM aktif"
+                            value="{{ old('nim') }}"
+                            required
+                        >
                     </div>
 
                     <fieldset class="field-group">
                         <legend>3. Program Studi</legend>
                         <div class="options">
                             <label class="option-item">
-                                <input type="radio" name="program_studi" value="Teknik Industri" required>
+                                <input
+                                    type="radio"
+                                    name="program_studi"
+                                    value="Teknik Industri"
+                                    @checked(old('program_studi') === 'Teknik Industri')
+                                    required
+                                >
                                 <span>Teknik Industri</span>
                             </label>
                             <label class="option-item">
-                                <input type="radio" name="program_studi" value="Teknik Informatika">
+                                <input
+                                    type="radio"
+                                    name="program_studi"
+                                    value="Teknik Informatika"
+                                    @checked(old('program_studi') === 'Teknik Informatika')
+                                >
                                 <span>Teknik Informatika</span>
                             </label>
                             <label class="option-item">
-                                <input type="radio" name="program_studi" value="Teknik Elektro">
+                                <input
+                                    type="radio"
+                                    name="program_studi"
+                                    value="Teknik Elektro"
+                                    @checked(old('program_studi') === 'Teknik Elektro')
+                                >
                                 <span>Teknik Elektro</span>
                             </label>
                             <label class="option-item">
-                                <input type="radio" name="program_studi" value="Lainnya">
+                                <input
+                                    type="radio"
+                                    name="program_studi"
+                                    value="Lainnya"
+                                    @checked(old('program_studi') === 'Lainnya')
+                                >
                                 <span>Lainnya</span>
                             </label>
                         </div>
@@ -299,28 +378,51 @@
 
                     <div class="field-group">
                         <label for="whatsapp">4. Nomor WhatsApp</label>
-                        <input id="whatsapp" name="whatsapp" type="text" placeholder="Contoh: 0812-3456-7890" required>
+                        <input
+                            id="whatsapp"
+                            name="whatsapp"
+                            type="text"
+                            placeholder="Contoh: 0812-3456-7890"
+                            value="{{ old('whatsapp') }}"
+                            required
+                        >
                     </div>
 
                     <fieldset class="field-group">
                         <legend>5. Program Sertifikasi yang Dipilih</legend>
                         <div class="options">
                             <label class="option-item">
-                                <input type="radio" name="program_sertifikasi" value="Digital Marketing Strategy" required>
+                                <input
+                                    type="radio"
+                                    name="program_sertifikasi"
+                                    value="Digital Marketing Strategy"
+                                    @checked(old('program_sertifikasi') === 'Digital Marketing Strategy')
+                                    required
+                                >
                                 <span>
                                     Digital Marketing Strategy &mdash; fokus pada penyusunan kampanye digital lintas kanal
                                     serta optimasi konten.
                                 </span>
                             </label>
                             <label class="option-item">
-                                <input type="radio" name="program_sertifikasi" value="Data Analytics Fundamentals">
+                                <input
+                                    type="radio"
+                                    name="program_sertifikasi"
+                                    value="Data Analytics Fundamentals"
+                                    @checked(old('program_sertifikasi') === 'Data Analytics Fundamentals')
+                                >
                                 <span>
                                     Data Analytics Fundamentals &mdash; penekanan pada pengolahan, analisis, dan
                                     visualisasi data bisnis.
                                 </span>
                             </label>
                             <label class="option-item">
-                                <input type="radio" name="program_sertifikasi" value="Project Management Associate">
+                                <input
+                                    type="radio"
+                                    name="program_sertifikasi"
+                                    value="Project Management Associate"
+                                    @checked(old('program_sertifikasi') === 'Project Management Associate')
+                                >
                                 <span>
                                     Project Management Associate &mdash; menekankan penerapan metodologi manajemen proyek
                                     adaptif dan kolaboratif.
@@ -331,22 +433,42 @@
 
                     <div class="field-group">
                         <label for="motivasi">6. Motivasi Mengikuti Sertifikasi</label>
-                        <textarea id="motivasi" name="motivasi" placeholder="Ceritakan motivasi dan harapan Anda mengikuti sertifikasi ini"></textarea>
+                        <textarea
+                            id="motivasi"
+                            name="motivasi"
+                            placeholder="Ceritakan motivasi dan harapan Anda mengikuti sertifikasi ini"
+                        >{{ old('motivasi') }}</textarea>
                     </div>
 
                     <fieldset class="field-group">
                         <legend>7. Status Kepemilikan Sertifikasi Sebelumnya</legend>
                         <div class="options">
                             <label class="option-item">
-                                <input type="radio" name="status_sertifikasi" value="Belum pernah" required>
+                                <input
+                                    type="radio"
+                                    name="status_sertifikasi"
+                                    value="Belum pernah"
+                                    @checked(old('status_sertifikasi') === 'Belum pernah')
+                                    required
+                                >
                                 <span>Belum pernah memiliki sertifikasi profesional sebelumnya</span>
                             </label>
                             <label class="option-item">
-                                <input type="radio" name="status_sertifikasi" value="Upgrade level">
+                                <input
+                                    type="radio"
+                                    name="status_sertifikasi"
+                                    value="Upgrade level"
+                                    @checked(old('status_sertifikasi') === 'Upgrade level')
+                                >
                                 <span>Sudah memiliki sertifikasi dasar dan ingin meningkatkan level</span>
                             </label>
                             <label class="option-item">
-                                <input type="radio" name="status_sertifikasi" value="Perpanjangan">
+                                <input
+                                    type="radio"
+                                    name="status_sertifikasi"
+                                    value="Perpanjangan"
+                                    @checked(old('status_sertifikasi') === 'Perpanjangan')
+                                >
                                 <span>Sedang proses perpanjangan atau re-sertifikasi program serupa</span>
                             </label>
                         </div>
