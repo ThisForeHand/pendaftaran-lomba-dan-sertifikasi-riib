@@ -7,6 +7,7 @@ use App\Models\SertifikasiRegistration;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,14 +16,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::query()->updateOrCreate(
-            ['username' => 'admin123'],
-            [
-                'name' => 'Admin',
-                'email' => 'admin@example.com',
-                'password' => Hash::make('password123'),
-            ]
-        );
+        $hasUsernameColumn = Schema::hasColumn('users', 'username');
+
+        $lookup = $hasUsernameColumn
+            ? ['username' => 'admin123']
+            : ['email' => 'admin@example.com'];
+
+        $defaults = [
+            'name' => 'Admin',
+            'email' => 'admin@example.com',
+            'password' => Hash::make('password123'),
+        ];
+
+        if ($hasUsernameColumn) {
+            $defaults['username'] = 'admin123';
+        }
+
+        User::query()->updateOrCreate($lookup, $defaults);
 
         LombaRegistration::factory()->count(5)->create();
         SertifikasiRegistration::factory()->count(5)->create();

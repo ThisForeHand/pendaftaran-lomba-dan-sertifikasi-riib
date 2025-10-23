@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\View\View;
 
 class AdminAuthController extends Controller
@@ -27,15 +28,34 @@ class AdminAuthController extends Controller
             'password' => ['required', 'string'],
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+        $identifier = $credentials['username'];
+        $password = $credentials['password'];
 
-            return redirect()->intended(route('admin.lomba'));
+        $attemptColumns = [];
+
+        if (Schema::hasColumn('users', 'username')) {
+            $attemptColumns[] = 'username';
+        }
+
+        if (Schema::hasColumn('users', 'email')) {
+            $attemptColumns[] = 'email';
+        }
+
+        foreach (array_unique($attemptColumns) as $column) {
+            if ($column === 'email' && ! filter_var($identifier, FILTER_VALIDATE_EMAIL) && in_array('username', $attemptColumns, true)) {
+                continue;
+            }
+
+            if (Auth::attempt([$column => $identifier, 'password' => $password])) {
+                $request->session()->regenerate();
+
+                return redirect()->intended(route('admin.lomba'));
+            }
         }
 
         return back()
             ->withErrors([
-                'username' => 'Kombinasi username dan kata sandi tidak cocok.',
+                'username' => 'Kredensial tidak cocok. Pastikan username atau email dan kata sandi benar.',
             ])
             ->onlyInput('username');
     }

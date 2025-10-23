@@ -193,12 +193,12 @@
                 @csrf
 
                 <label>
-                    Username
+                    Username atau Email
                     <input
                         type="text"
                         name="username"
                         value="{{ old('username') }}"
-                        placeholder="Masukkan username anda"
+                        placeholder="Masukkan username atau email anda"
                         autocomplete="username"
                         required
                     />
