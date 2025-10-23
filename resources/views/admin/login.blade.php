@@ -183,7 +183,7 @@
 
             <h1>Masuk sebagai Admin</h1>
 
-            <form action="#" method="POST">
+            <form action="{{ route('admin.lomba') }}" method="GET">
                 <label>
                     Email
                     <input type="email" name="email" placeholder="Masukkan email anda" required />
