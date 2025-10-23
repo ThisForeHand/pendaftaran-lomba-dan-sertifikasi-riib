@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         $defaults = [
             'name' => 'Admin',
             'email' => 'admin@example.com',
-            'password' => Hash::make('password123'),
+            'password' => Hash::make('admin123'),
         ];
 
         if ($hasUsernameColumn) {
