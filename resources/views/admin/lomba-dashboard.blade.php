@@ -243,29 +243,49 @@
 
             .footer-actions {
                 display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: 12px;
-                padding-top: 12px;
+                justify-content: flex-end;
+                padding-top: 20px;
+                margin-top: 8px;
+                border-top: 1px solid rgba(47, 76, 178, 0.12);
             }
 
             .logout {
                 display: inline-flex;
                 align-items: center;
-                gap: 10px;
-                padding: 12px 20px;
-                border-radius: 14px;
+                gap: 12px;
+                padding: 12px 22px;
+                border-radius: 16px;
                 text-decoration: none;
-                color: #dc3545;
+                color: #153a8a;
                 font-weight: 600;
-                border: 1px solid rgba(220, 53, 69, 0.28);
-                background: rgba(220, 53, 69, 0.1);
-                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                background: linear-gradient(135deg, rgba(224, 233, 255, 0.85) 0%, rgba(239, 245, 255, 0.85) 100%);
+                border: 1px solid rgba(28, 74, 177, 0.2);
+                box-shadow: 0 14px 30px rgba(33, 62, 157, 0.14);
+                transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
             }
 
             .logout:hover {
                 transform: translateY(-1px);
-                box-shadow: 0 12px 24px rgba(220, 53, 69, 0.18);
+                box-shadow: 0 16px 36px rgba(33, 62, 157, 0.2);
+                background: linear-gradient(135deg, rgba(210, 226, 255, 0.95) 0%, rgba(226, 237, 255, 0.95) 100%);
+            }
+
+            .logout-icon {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 36px;
+                height: 36px;
+                border-radius: 12px;
+                background: #ffffff;
+                border: 1px solid rgba(28, 74, 177, 0.14);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+                color: #153a8a;
+            }
+
+            .logout-icon svg {
+                width: 20px;
+                height: 20px;
             }
 
             @media (max-width: 768px) {
@@ -282,12 +302,9 @@
                 }
 
                 .footer-actions {
-                    flex-direction: column;
-                    gap: 16px;
-                    align-items: stretch;
+                    justify-content: center;
                 }
 
-                .button,
                 .logout {
                     width: 100%;
                     justify-content: center;
@@ -319,10 +336,6 @@
                     <div class="card-title">
                         <h2>Pendaftaran Lomba</h2>
                         <span>Daftar peserta dan rincian kelompok</span>
-                    </div>
-                    <div class="card-actions">
-                        <button type="button" class="button primary">Unduh</button>
-                        <button type="button" class="button danger">Hapus</button>
                     </div>
                 </div>
 
@@ -417,11 +430,16 @@
                 </div>
 
                 <div class="footer-actions">
-                    <a href="{{ route('admin.login') }}" class="logout">Keluar</a>
-                    <div class="card-actions">
-                        <button type="button" class="button primary">Unduh</button>
-                        <button type="button" class="button danger">Hapus</button>
-                    </div>
+                    <a href="{{ route('admin.login') }}" class="logout">
+                        <span class="logout-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="3.75" y="4.75" width="12.5" height="14.5" rx="2.75" stroke="currentColor" stroke-width="1.5" />
+                                <path d="M12.5 12h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M17.25 8.75L19.75 12l-2.5 3.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                        Keluar
+                    </a>
                 </div>
             </section>
         </div>
