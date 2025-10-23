@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Dashboard Admin - Pendaftaran Lomba</title>
+        <title>Dashboard Admin - Pendaftaran Sertifikasi</title>
 
         <link rel="preconnect" href="https://fonts.bunny.net" />
         <link
@@ -377,14 +377,14 @@
             </header>
 
             <nav>
-                <a href="{{ route('admin.lomba') }}" class="nav-link active">Pendaftaran Lomba</a>
-                <a href="{{ route('admin.sertifikasi') }}" class="nav-link">Pendaftaran Sertifikasi</a>
+                <a href="{{ route('admin.lomba') }}" class="nav-link">Pendaftaran Lomba</a>
+                <a href="{{ route('admin.sertifikasi') }}" class="nav-link active">Pendaftaran Sertifikasi</a>
             </nav>
 
             <section class="card">
                 <div class="card-header">
                     <div class="card-title">
-                        <h2>Pendaftaran Lomba</h2>
+                        <h2>Pendaftaran Sertifikasi</h2>
                         <span>Daftar peserta dan rincian kelompok</span>
                     </div>
                 </div>
