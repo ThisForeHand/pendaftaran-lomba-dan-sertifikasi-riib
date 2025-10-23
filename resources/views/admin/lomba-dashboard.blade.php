@@ -38,11 +38,21 @@
                 gap: clamp(24px, 4vw, 32px);
             }
 
+            .dashboard-header-card {
+                background: #ffffff;
+                border-radius: 28px;
+                padding: clamp(24px, 4vw, 36px);
+                box-shadow: 0 20px 60px rgba(33, 62, 157, 0.12);
+                border: 1px solid rgba(51, 86, 189, 0.14);
+                display: grid;
+                gap: clamp(16px, 3vw, 28px);
+            }
+
             header {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                gap: 16px;
+                gap: clamp(16px, 3vw, 24px);
                 flex-wrap: wrap;
             }
 
@@ -66,61 +76,77 @@
             .admin-info {
                 display: flex;
                 align-items: center;
-                gap: 12px;
-                padding: 10px 16px;
-                background: #ffffff;
+                gap: 14px;
+                padding: 12px 18px 12px 12px;
+                background: #f6f7fe;
                 border-radius: 999px;
-                border: 1px solid rgba(51, 86, 189, 0.15);
-                box-shadow: 0 10px 25px rgba(37, 70, 171, 0.08);
+                border: 1px solid rgba(51, 86, 189, 0.12);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
             }
 
             .admin-avatar {
-                width: 40px;
-                height: 40px;
-                border-radius: 999px;
-                background: linear-gradient(180deg, rgba(61, 102, 221, 0.18) 0%, rgba(61, 102, 221, 0.05) 100%);
+                width: clamp(48px, 6vw, 56px);
+                height: clamp(48px, 6vw, 56px);
+                border-radius: 50%;
+                background: linear-gradient(160deg, rgba(30, 75, 169, 0.16) 0%, rgba(79, 116, 208, 0.08) 100%);
+                border: 1px solid rgba(30, 75, 169, 0.18);
                 display: grid;
                 place-items: center;
-                font-size: 20px;
+                font-size: clamp(1.4rem, 3vw, 1.8rem);
+                color: #1e2a52;
             }
 
             .admin-name {
                 font-weight: 600;
                 color: #1e2a52;
+                font-size: 1rem;
             }
 
             nav {
-                background: #ffffff;
-                border-radius: 20px;
-                padding: 8px;
                 display: flex;
-                gap: 12px;
-                box-shadow: 0 12px 30px rgba(37, 70, 171, 0.08);
-                border: 1px solid rgba(52, 86, 188, 0.12);
+                gap: 16px;
+                flex-wrap: wrap;
             }
 
             .nav-link {
                 display: inline-flex;
                 align-items: center;
-                justify-content: center;
-                gap: 10px;
-                font-size: 0.98rem;
-                font-weight: 600;
-                padding: 12px clamp(18px, 5vw, 32px);
-                border-radius: 14px;
+                gap: 14px;
+                padding: clamp(12px, 2.8vw, 16px) clamp(18px, 4vw, 28px);
+                border-radius: 18px;
                 text-decoration: none;
-                color: #3c4c7e;
-                transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+                background: #f4f6ff;
+                border: 1px solid rgba(52, 86, 188, 0.12);
+                color: #1e2a52;
+                font-size: 1rem;
+                font-weight: 600;
+                min-width: clamp(220px, 30vw, 260px);
+                transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
             }
 
             .nav-link.active {
                 background: linear-gradient(130deg, #1e4ba9 0%, #123184 100%);
                 color: #ffffff;
-                box-shadow: 0 14px 28px rgba(30, 75, 169, 0.32);
+                box-shadow: 0 16px 32px rgba(30, 75, 169, 0.28);
+                border-color: transparent;
             }
 
             .nav-link:not(.active):hover {
-                background: rgba(30, 75, 169, 0.12);
+                background: rgba(30, 75, 169, 0.1);
+                border-color: rgba(30, 75, 169, 0.2);
+            }
+
+            .nav-icon {
+                width: 44px;
+                height: 44px;
+                border-radius: 14px;
+                background: rgba(30, 75, 169, 0.14);
+                border: 1px dashed rgba(30, 75, 169, 0.24);
+            }
+
+            .nav-link.active .nav-icon {
+                background: rgba(255, 255, 255, 0.16);
+                border-color: rgba(255, 255, 255, 0.4);
             }
 
             .card {
@@ -371,6 +397,15 @@
                     flex-direction: column;
                 }
 
+                .nav-link {
+                    width: 100%;
+                    justify-content: flex-start;
+                }
+
+                .nav-icon {
+                    flex-shrink: 0;
+                }
+
                 table {
                     min-width: unset;
                 }
@@ -403,21 +438,29 @@
     </head>
     <body>
         <div class="page">
-            <header>
-                <div class="title-group">
-                    <span>Dashboard Admin</span>
-                    <h1>Halo Selamat Datang Admin</h1>
-                </div>
-                <div class="admin-info">
-                    <div class="admin-avatar">👩🏻‍💼</div>
-                    <span class="admin-name">Admin</span>
-                </div>
-            </header>
+            <div class="dashboard-header-card">
+                <header>
+                    <div class="title-group">
+                        <span>Dashboard Admin</span>
+                        <h1>Halo Selamat Datang Admin</h1>
+                    </div>
+                    <div class="admin-info">
+                        <div class="admin-avatar"></div>
+                        <span class="admin-name">Admin</span>
+                    </div>
+                </header>
 
-            <nav>
-                <a href="{{ route('admin.lomba') }}" class="nav-link active">Pendaftaran Lomba</a>
-                <a href="{{ route('admin.sertifikasi') }}" class="nav-link">Pendaftaran Sertifikasi</a>
-            </nav>
+                <nav>
+                    <a href="{{ route('admin.lomba') }}" class="nav-link active">
+                        <span class="nav-icon"></span>
+                        <span>Pendaftaran Lomba</span>
+                    </a>
+                    <a href="{{ route('admin.sertifikasi') }}" class="nav-link">
+                        <span class="nav-icon"></span>
+                        <span>Pendaftaran Sertifikasi</span>
+                    </a>
+                </nav>
+            </div>
 
             <section class="card">
                 <div class="card-header">
