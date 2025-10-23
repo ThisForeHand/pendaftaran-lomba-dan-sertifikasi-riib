@@ -241,6 +241,44 @@
                 font-weight: 600;
             }
 
+            .select-column,
+            .select-cell {
+                display: none;
+                width: 48px;
+                text-align: center;
+            }
+
+            .select-cell input[type='checkbox'] {
+                width: 18px;
+                height: 18px;
+                cursor: pointer;
+            }
+
+            .clear-all-button {
+                display: none;
+                margin-left: 12px;
+                padding: 6px 14px;
+                border-radius: 999px;
+                border: none;
+                background: rgba(196, 31, 58, 0.12);
+                color: #c41f3a;
+                font-weight: 600;
+                font-size: 0.8rem;
+                cursor: pointer;
+                transition: background 0.2s ease, transform 0.2s ease;
+            }
+
+            .clear-all-button:hover {
+                background: rgba(196, 31, 58, 0.18);
+                transform: translateY(-1px);
+            }
+
+            body.selection-mode .select-column,
+            body.selection-mode .select-cell,
+            body.selection-mode .clear-all-button {
+                display: table-cell;
+            }
+
             .footer-actions {
                 display: flex;
                 justify-content: space-between;
@@ -393,17 +431,19 @@
                     <table>
                         <thead>
                             <tr>
+                                <th class="select-column" aria-label="Pilih"></th>
                                 <th>No</th>
                                 <th>Nama</th>
                                 <th>NIM</th>
                                 <th>Prodi</th>
                                 <th>No Wa</th>
                                 <th>Peran</th>
-                                <th>Keterangan Kelompok</th>
+                                <th>Keterangan Kelompok <button type="button" class="clear-all-button">Clear All</button></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
+                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                                 <td>1</td>
                                 <td>Fefe Riki Fufi Fufu</td>
                                 <td>1238073047</td>
@@ -413,6 +453,7 @@
                                 <td><span class="badge">Ada</span></td>
                             </tr>
                             <tr>
+                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                                 <td>2</td>
                                 <td>Pipot Selbor</td>
                                 <td>1238073048</td>
@@ -422,6 +463,7 @@
                                 <td><span class="badge">Ada</span></td>
                             </tr>
                             <tr>
+                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                                 <td>3</td>
                                 <td>Pipot Selbor</td>
                                 <td>1238073049</td>
@@ -431,6 +473,7 @@
                                 <td><span class="badge">Ada</span></td>
                             </tr>
                             <tr>
+                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                                 <td>4</td>
                                 <td>Mie Ayam Gedongan</td>
                                 <td>1238073050</td>
@@ -440,6 +483,7 @@
                                 <td><span class="badge">Ada</span></td>
                             </tr>
                             <tr>
+                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                                 <td>5</td>
                                 <td>Mie Ayam Gedongan</td>
                                 <td>1238073051</td>
@@ -449,6 +493,7 @@
                                 <td><span class="badge">Ada</span></td>
                             </tr>
                             <tr>
+                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                                 <td>6</td>
                                 <td>Hason Susanto</td>
                                 <td>1238073052</td>
@@ -458,6 +503,7 @@
                                 <td><span class="badge">Ada</span></td>
                             </tr>
                             <tr>
+                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                                 <td>7</td>
                                 <td>Hason Susanto</td>
                                 <td>1238073053</td>
@@ -467,6 +513,7 @@
                                 <td><span class="badge">Ada</span></td>
                             </tr>
                             <tr>
+                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                                 <td>8</td>
                                 <td>Hason Susanto</td>
                                 <td>1238073054</td>
@@ -499,5 +546,33 @@
                 </div>
             </section>
         </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const deleteButton = document.querySelector('.action-button.delete');
+                const clearAllButton = document.querySelector('.clear-all-button');
+                const rowCheckboxes = document.querySelectorAll('.row-checkbox');
+
+                if (deleteButton) {
+                    deleteButton.addEventListener('click', function (event) {
+                        event.preventDefault();
+                        document.body.classList.toggle('selection-mode');
+
+                        if (!document.body.classList.contains('selection-mode')) {
+                            rowCheckboxes.forEach((checkbox) => {
+                                checkbox.checked = false;
+                            });
+                        }
+                    });
+                }
+
+                if (clearAllButton) {
+                    clearAllButton.addEventListener('click', function () {
+                        rowCheckboxes.forEach((checkbox) => {
+                            checkbox.checked = false;
+                        });
+                    });
+                }
+            });
+        </script>
     </body>
 </html>
