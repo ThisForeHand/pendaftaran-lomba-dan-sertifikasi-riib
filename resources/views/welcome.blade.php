@@ -83,7 +83,7 @@
                 font-size: clamp(1.28rem, 2.6vw, 1.58rem);
                 font-weight: 600;
                 color: #2968f6;
-                text-decoration: none;
+                text-decoration: underline;
                 transition: color 0.2s ease, text-decoration-color 0.2s ease;
                 text-decoration-thickness: 2px;
                 text-underline-offset: 6px;
@@ -92,7 +92,6 @@
             .card-link:hover,
             .card-link:focus {
                 color: #174be4;
-                text-decoration: underline;
             }
 
             .link-block p {
@@ -160,91 +159,6 @@
                 font-size: 0.95rem;
             }
 
-            .forms-wrapper {
-                display: grid;
-                gap: clamp(32px, 6vw, 56px);
-                padding: 0 clamp(32px, 6vw, 80px) clamp(48px, 7vw, 72px);
-                background: rgba(245, 249, 255, 0.55);
-                border-top: 1px solid rgba(93, 123, 214, 0.12);
-            }
-
-            .form-section {
-                background: #ffffff;
-                border: 1px solid rgba(93, 123, 214, 0.18);
-                border-radius: 22px;
-                padding: clamp(28px, 4vw, 40px);
-                box-shadow: 0 16px 40px rgba(19, 36, 82, 0.06);
-            }
-
-            .form-section h2 {
-                margin: 0 0 20px;
-                font-size: clamp(1.4rem, 3vw, 1.7rem);
-                color: #173166;
-            }
-
-            form {
-                display: grid;
-                gap: 18px;
-            }
-
-            .form-grid {
-                display: grid;
-                gap: 18px;
-                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            }
-
-            label {
-                display: grid;
-                gap: 8px;
-                font-size: 0.95rem;
-                color: #2c3f6b;
-                font-weight: 500;
-            }
-
-            input,
-            select,
-            textarea {
-                width: 100%;
-                border-radius: 12px;
-                border: 1px solid rgba(93, 123, 214, 0.3);
-                padding: 12px 14px;
-                font-family: inherit;
-                font-size: 0.95rem;
-                transition: border-color 0.2s ease, box-shadow 0.2s ease;
-            }
-
-            input:focus,
-            select:focus,
-            textarea:focus {
-                border-color: #2968f6;
-                outline: none;
-                box-shadow: 0 0 0 4px rgba(41, 104, 246, 0.15);
-            }
-
-            textarea {
-                min-height: 120px;
-                resize: vertical;
-            }
-
-            button {
-                justify-self: start;
-                padding: 12px 24px;
-                border-radius: 14px;
-                border: none;
-                background: linear-gradient(135deg, #2968f6 0%, #1e54d7 100%);
-                color: #ffffff;
-                font-size: 0.98rem;
-                font-weight: 600;
-                cursor: pointer;
-                transition: transform 0.2s ease, box-shadow 0.2s ease;
-            }
-
-            button:hover,
-            button:focus {
-                transform: translateY(-1px);
-                box-shadow: 0 14px 30px rgba(41, 104, 246, 0.25);
-            }
-
             footer {
                 text-align: center;
                 padding: 0 24px 40px;
@@ -265,9 +179,6 @@
                     padding: 28px 20px 36px;
                 }
 
-                .forms-wrapper {
-                    padding: 0 20px 36px;
-                }
             }
         </style>
     </head>
@@ -314,100 +225,6 @@
                     </div>
                 </div>
             </main>
-
-            <div class="forms-wrapper">
-                <section class="form-section" id="form-lomba">
-                    <h2>Form Pendaftaran Lomba</h2>
-                    <form action="#" method="post">
-                        <div class="form-grid">
-                            <label>
-                                Nama Lengkap
-                                <input type="text" name="nama_lomba" placeholder="Masukkan nama lengkap" required />
-                            </label>
-                            <label>
-                                Email Kampus
-                                <input type="email" name="email_lomba" placeholder="nama@kampus.ac.id" required />
-                            </label>
-                            <label>
-                                Program Studi
-                                <input type="text" name="prodi_lomba" placeholder="Contoh: Teknik Informatika" required />
-                            </label>
-                            <label>
-                                Nomor WhatsApp
-                                <input type="tel" name="wa_lomba" placeholder="08xxxxxxxxxx" required />
-                            </label>
-                        </div>
-                        <label>
-                            Pilihan Lomba
-                            <select name="pilihan_lomba" required>
-                                <option value="" disabled selected>Pilih salah satu</option>
-                                <option>UI/UX Competition</option>
-                                <option>Business Plan Challenge</option>
-                                <option>IoT Innovation Contest</option>
-                                <option>Data Science Championship</option>
-                            </select>
-                        </label>
-                        <label>
-                            Link Portofolio / Proposal
-                            <input type="url" name="portofolio_lomba" placeholder="https://" />
-                        </label>
-                        <label>
-                            Catatan Tambahan
-                            <textarea name="catatan_lomba" placeholder="Informasi tambahan terkait peserta"></textarea>
-                        </label>
-                        <button type="submit">Kirim Pendaftaran Lomba</button>
-                    </form>
-                </section>
-
-                <section class="form-section" id="form-sertifikasi">
-                    <h2>Form Pendaftaran Sertifikasi</h2>
-                    <form action="#" method="post">
-                        <div class="form-grid">
-                            <label>
-                                Nama Lengkap
-                                <input type="text" name="nama_sertifikasi" placeholder="Masukkan nama lengkap" required />
-                            </label>
-                            <label>
-                                Email Kampus
-                                <input type="email" name="email_sertifikasi" placeholder="nama@kampus.ac.id" required />
-                            </label>
-                            <label>
-                                Program Studi
-                                <input type="text" name="prodi_sertifikasi" placeholder="Contoh: Sistem Informasi" required />
-                            </label>
-                            <label>
-                                Nomor WhatsApp
-                                <input type="tel" name="wa_sertifikasi" placeholder="08xxxxxxxxxx" required />
-                            </label>
-                        </div>
-                        <label>
-                            Pilihan Sertifikasi
-                            <select name="pilihan_sertifikasi" required>
-                                <option value="" disabled selected>Pilih salah satu</option>
-                                <option>Junior Network Administrator</option>
-                                <option>Cloud Practitioner</option>
-                                <option>Project Management Associate</option>
-                                <option>Data Analyst Associate</option>
-                            </select>
-                        </label>
-                        <label>
-                            Jadwal Sertifikasi
-                            <select name="jadwal_sertifikasi" required>
-                                <option value="" disabled selected>Pilih jadwal</option>
-                                <option>Gelombang 1 - Maret</option>
-                                <option>Gelombang 2 - Mei</option>
-                                <option>Gelombang 3 - Agustus</option>
-                                <option>Gelombang 4 - Oktober</option>
-                            </select>
-                        </label>
-                        <label>
-                            Catatan Tambahan
-                            <textarea name="catatan_sertifikasi" placeholder="Tuliskan kebutuhan khusus atau pertanyaan"></textarea>
-                        </label>
-                        <button type="submit">Kirim Pendaftaran Sertifikasi</button>
-                    </form>
-                </section>
-            </div>
 
             <footer>
                 &copy; {{ date('Y') }} Program Kompetisi &amp; Sertifikasi
