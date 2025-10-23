@@ -431,19 +431,20 @@
                     <table>
                         <thead>
                             <tr>
-                                <th class="select-column" aria-label="Pilih"></th>
                                 <th>No</th>
                                 <th>Nama</th>
                                 <th>NIM</th>
                                 <th>Prodi</th>
                                 <th>No Wa</th>
                                 <th>Peran</th>
-                                <th>Keterangan Kelompok <button type="button" class="clear-all-button">Clear All</button></th>
+                                <th>Keterangan Kelompok</th>
+                                <th class="select-column" aria-label="Pilih">
+                                    <button type="button" class="clear-all-button">Clear All</button>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                                 <td>1</td>
                                 <td>Fefe Riki Fufi Fufu</td>
                                 <td>1238073047</td>
@@ -451,9 +452,9 @@
                                 <td>08543892455</td>
                                 <td>Hacker</td>
                                 <td><span class="badge">Ada</span></td>
+                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                             </tr>
                             <tr>
-                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                                 <td>2</td>
                                 <td>Pipot Selbor</td>
                                 <td>1238073048</td>
@@ -461,9 +462,9 @@
                                 <td>5332445525</td>
                                 <td>Hipster</td>
                                 <td><span class="badge">Ada</span></td>
+                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                             </tr>
                             <tr>
-                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                                 <td>3</td>
                                 <td>Pipot Selbor</td>
                                 <td>1238073049</td>
@@ -471,9 +472,9 @@
                                 <td>5332445525</td>
                                 <td>Hipster</td>
                                 <td><span class="badge">Ada</span></td>
+                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                             </tr>
                             <tr>
-                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                                 <td>4</td>
                                 <td>Mie Ayam Gedongan</td>
                                 <td>1238073050</td>
@@ -481,9 +482,9 @@
                                 <td>5332445525</td>
                                 <td>Hustler</td>
                                 <td><span class="badge">Ada</span></td>
+                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                             </tr>
                             <tr>
-                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                                 <td>5</td>
                                 <td>Mie Ayam Gedongan</td>
                                 <td>1238073051</td>
@@ -491,9 +492,9 @@
                                 <td>5332445525</td>
                                 <td>Hustler</td>
                                 <td><span class="badge">Ada</span></td>
+                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                             </tr>
                             <tr>
-                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                                 <td>6</td>
                                 <td>Hason Susanto</td>
                                 <td>1238073052</td>
@@ -501,9 +502,9 @@
                                 <td>0832445525</td>
                                 <td>Hacker</td>
                                 <td><span class="badge">Ada</span></td>
+                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                             </tr>
                             <tr>
-                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                                 <td>7</td>
                                 <td>Hason Susanto</td>
                                 <td>1238073053</td>
@@ -511,9 +512,9 @@
                                 <td>0832445525</td>
                                 <td>Hacker</td>
                                 <td><span class="badge">Ada</span></td>
+                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                             </tr>
                             <tr>
-                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                                 <td>8</td>
                                 <td>Hason Susanto</td>
                                 <td>1238073054</td>
@@ -521,6 +522,7 @@
                                 <td>0832445525</td>
                                 <td>Hacker</td>
                                 <td><span class="badge">Ada</span></td>
+                                <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                             </tr>
                         </tbody>
                     </table>
