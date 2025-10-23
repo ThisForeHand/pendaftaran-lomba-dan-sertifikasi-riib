@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SertifikasiRegistration;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\View\View;
 
 class SertifikasiRegistrationController extends Controller
@@ -44,10 +45,15 @@ class SertifikasiRegistrationController extends Controller
      */
     public function index(): View
     {
-        $registrations = SertifikasiRegistration::latest()->get();
+        $tableExists = Schema::hasTable('sertifikasi_registrations');
+
+        $registrations = $tableExists
+            ? SertifikasiRegistration::latest()->get()
+            : collect();
 
         return view('admin.sertifikasi-dashboard', [
             'registrations' => $registrations,
+            'tableExists' => $tableExists,
         ]);
     }
 }

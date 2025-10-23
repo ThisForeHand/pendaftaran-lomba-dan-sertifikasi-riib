@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\LombaRegistration;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\View\View;
 
 class LombaRegistrationController extends Controller
@@ -44,10 +45,15 @@ class LombaRegistrationController extends Controller
      */
     public function index(): View
     {
-        $registrations = LombaRegistration::latest()->get();
+        $tableExists = Schema::hasTable('lomba_registrations');
+
+        $registrations = $tableExists
+            ? LombaRegistration::latest()->get()
+            : collect();
 
         return view('admin.lomba-dashboard', [
             'registrations' => $registrations,
+            'tableExists' => $tableExists,
         ]);
     }
 }
