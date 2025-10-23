@@ -195,7 +195,7 @@
             <main class="main-card">
                 <div class="link-row">
                     <div class="link-block">
-                        <a class="card-link" href="#form-lomba">Pendaftaran Lomba</a>
+                        <a class="card-link" href="{{ route('pendaftaran.lomba') }}">Pendaftaran Lomba</a>
                         <p>
                             Daftarkan diri Anda untuk ikut kompetisi. Terbuka untuk mahasiswa aktif dari seluruh
                             perguruan tinggi.
