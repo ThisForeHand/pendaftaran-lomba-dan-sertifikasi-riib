@@ -87,11 +87,17 @@
                 color: #1f2a44;
             }
 
+            .input-error {
+                color: #b91c1c;
+                font-size: 0.85rem;
+                font-weight: 500;
+            }
+
             .input-wrapper {
                 position: relative;
             }
 
-            input[type="email"],
+            input[type="text"],
             input[type="password"] {
                 width: 100%;
                 border-radius: 16px;
@@ -104,7 +110,7 @@
                 transition: border 0.2s ease, box-shadow 0.2s ease;
             }
 
-            input[type="email"]:focus,
+            input[type="text"]:focus,
             input[type="password"]:focus {
                 outline: none;
                 border-color: #4360e0;
@@ -183,11 +189,24 @@
 
             <h1>Masuk sebagai Admin</h1>
 
-            <form action="{{ route('admin.lomba') }}" method="GET">
+            <form action="{{ route('admin.login.store') }}" method="POST">
+                @csrf
+
                 <label>
-                    Email
-                    <input type="email" name="email" placeholder="Masukkan email anda" required />
+                    Username
+                    <input
+                        type="text"
+                        name="username"
+                        value="{{ old('username') }}"
+                        placeholder="Masukkan username anda"
+                        autocomplete="username"
+                        required
+                    />
                 </label>
+
+                @error('username')
+                    <span class="input-error">{{ $message }}</span>
+                @enderror
 
                 <label>
                     Kata Sandi
@@ -196,6 +215,7 @@
                             type="password"
                             name="password"
                             placeholder="Masukkan kata sandi anda"
+                            autocomplete="current-password"
                             required
                         />
                         <button type="button" class="toggle-password" aria-label="Lihat kata sandi">
@@ -203,6 +223,10 @@
                         </button>
                     </div>
                 </label>
+
+                @error('password')
+                    <span class="input-error">{{ $message }}</span>
+                @enderror
 
                 <button type="submit" class="primary-button">Masuk</button>
             </form>

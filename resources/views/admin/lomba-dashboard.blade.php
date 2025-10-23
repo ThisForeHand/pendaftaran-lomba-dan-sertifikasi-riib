@@ -331,6 +331,10 @@
                 display: flex;
             }
 
+            .logout-form {
+                margin: 0;
+            }
+
             .footer-actions-right {
                 display: flex;
                 gap: 12px;
@@ -345,6 +349,9 @@
                 text-decoration: none;
                 color: #153a8a;
                 font-weight: 600;
+                font-family: inherit;
+                font-size: 1rem;
+                cursor: pointer;
                 background: linear-gradient(135deg, rgba(224, 233, 255, 0.85) 0%, rgba(239, 245, 255, 0.85) 100%);
                 border: 1px solid rgba(28, 74, 177, 0.2);
                 box-shadow: 0 14px 30px rgba(33, 62, 157, 0.14);
@@ -455,17 +462,20 @@
         @php
             $registrations = $registrations ?? collect();
             $tableExists = $tableExists ?? true;
+            $admin = auth()->user();
+            $adminName = $admin?->name ?: ($admin?->username ?? 'Admin');
+            $adminInitial = strtoupper(substr($adminName, 0, 1) ?: 'A');
         @endphp
         <div class="page">
             <div class="dashboard-header-card">
                 <header>
                     <div class="title-group">
                         <span>Dashboard Admin</span>
-                        <h1>Halo Selamat Datang Admin</h1>
+                        <h1>Halo, {{ $adminName }}</h1>
                     </div>
                     <div class="admin-info">
-                        <div class="admin-avatar"></div>
-                        <span class="admin-name">Admin</span>
+                        <div class="admin-avatar">{{ $adminInitial }}</div>
+                        <span class="admin-name">{{ $adminName }}</span>
                     </div>
                 </header>
             </div>
@@ -532,16 +542,19 @@
 
                 <div class="footer-actions">
                     <div class="footer-actions-left">
-                        <a href="{{ route('admin.login') }}" class="logout">
-                            <span class="logout-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="3.75" y="4.75" width="12.5" height="14.5" rx="2.75" stroke="currentColor" stroke-width="1.5" />
-                                    <path d="M12.5 12h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M17.25 8.75L19.75 12l-2.5 3.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </span>
-                            Keluar
-                        </a>
+                        <form action="{{ route('admin.logout') }}" method="POST" class="logout-form">
+                            @csrf
+                            <button type="submit" class="logout">
+                                <span class="logout-icon" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="3.75" y="4.75" width="12.5" height="14.5" rx="2.75" stroke="currentColor" stroke-width="1.5" />
+                                        <path d="M12.5 12h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M17.25 8.75L19.75 12l-2.5 3.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                                Keluar
+                            </button>
+                        </form>
                     </div>
                     <div class="footer-actions-right">
                         <a href="#" class="action-button download">Unduh</a>
