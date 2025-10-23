@@ -1,14 +1,19 @@
 <?php
 
+use App\Http\Controllers\LombaRegistrationController;
+use App\Http\Controllers\SertifikasiRegistrationController;
 use Illuminate\Support\Facades\Route;
-
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('/pendaftaran-lomba', 'pendaftaran-lomba')->name('pendaftaran.lomba');
-Route::view('/pendaftaran-sertifikasi', 'pendaftaran-sertifikasi')->name('pendaftaran.sertifikasi');
+Route::get('/pendaftaran-lomba', [LombaRegistrationController::class, 'create'])->name('pendaftaran.lomba');
+Route::post('/pendaftaran-lomba', [LombaRegistrationController::class, 'store'])->name('pendaftaran.lomba.store');
+
+Route::get('/pendaftaran-sertifikasi', [SertifikasiRegistrationController::class, 'create'])->name('pendaftaran.sertifikasi');
+Route::post('/pendaftaran-sertifikasi', [SertifikasiRegistrationController::class, 'store'])->name('pendaftaran.sertifikasi.store');
+
 Route::view('/admin/login', 'admin.login')->name('admin.login');
-Route::view('/admin/lomba', 'admin.lomba-dashboard')->name('admin.lomba');
-Route::view('/admin/sertifikasi', 'admin.sertifikasi-dashboard')->name('admin.sertifikasi');
+Route::get('/admin/lomba', [LombaRegistrationController::class, 'index'])->name('admin.lomba');
+Route::get('/admin/sertifikasi', [SertifikasiRegistrationController::class, 'index'])->name('admin.sertifikasi');
