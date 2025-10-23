@@ -476,8 +476,8 @@
 
                 <div class="card-navigation">
                     <nav class="dashboard-tabs" aria-label="Navigasi halaman pendaftaran">
-                        <a href="{{ route('admin.lomba') }}" class="nav-link active">Pendaftaran Lomba</a>
-                        <a href="{{ route('admin.sertifikasi') }}" class="nav-link">Pendaftaran Sertifikasi</a>
+                        <a href="{{ route('admin.lomba') }}" class="nav-link active">Data Lomba</a>
+                        <a href="{{ route('admin.sertifikasi') }}" class="nav-link">Data Sertifikasi</a>
                     </nav>
                 </div>
 
