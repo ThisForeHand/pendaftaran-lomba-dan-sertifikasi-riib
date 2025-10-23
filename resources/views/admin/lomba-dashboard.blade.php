@@ -243,10 +243,21 @@
 
             .footer-actions {
                 display: flex;
-                justify-content: flex-end;
+                justify-content: space-between;
+                align-items: center;
+                gap: 16px;
                 padding-top: 20px;
                 margin-top: 8px;
                 border-top: 1px solid rgba(47, 76, 178, 0.12);
+            }
+
+            .footer-actions-left {
+                display: flex;
+            }
+
+            .footer-actions-right {
+                display: flex;
+                gap: 12px;
             }
 
             .logout {
@@ -288,6 +299,35 @@
                 height: 20px;
             }
 
+            .action-button {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 112px;
+                padding: 12px 28px;
+                border-radius: 14px;
+                font-weight: 600;
+                font-size: 0.96rem;
+                text-decoration: none;
+                color: #ffffff;
+                box-shadow: 0 14px 30px rgba(33, 62, 157, 0.08);
+                transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+            }
+
+            .action-button.download {
+                background: #08275e;
+            }
+
+            .action-button.delete {
+                background: #c41f3a;
+            }
+
+            .action-button:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 16px 34px rgba(33, 62, 157, 0.16);
+                filter: brightness(1.02);
+            }
+
             @media (max-width: 768px) {
                 nav {
                     flex-direction: column;
@@ -302,10 +342,20 @@
                 }
 
                 .footer-actions {
+                    flex-direction: column;
+                    align-items: stretch;
+                }
+
+                .footer-actions-left {
                     justify-content: center;
                 }
 
-                .logout {
+                .footer-actions-right {
+                    flex-direction: column;
+                }
+
+                .logout,
+                .action-button {
                     width: 100%;
                     justify-content: center;
                     text-align: center;
@@ -430,16 +480,22 @@
                 </div>
 
                 <div class="footer-actions">
-                    <a href="{{ route('admin.login') }}" class="logout">
-                        <span class="logout-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="3.75" y="4.75" width="12.5" height="14.5" rx="2.75" stroke="currentColor" stroke-width="1.5" />
-                                <path d="M12.5 12h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M17.25 8.75L19.75 12l-2.5 3.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </span>
-                        Keluar
-                    </a>
+                    <div class="footer-actions-left">
+                        <a href="{{ route('admin.login') }}" class="logout">
+                            <span class="logout-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="3.75" y="4.75" width="12.5" height="14.5" rx="2.75" stroke="currentColor" stroke-width="1.5" />
+                                    <path d="M12.5 12h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M17.25 8.75L19.75 12l-2.5 3.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </span>
+                            Keluar
+                        </a>
+                    </div>
+                    <div class="footer-actions-right">
+                        <a href="#" class="action-button download">Unduh</a>
+                        <a href="#" class="action-button delete">Hapus</a>
+                    </div>
                 </div>
             </section>
         </div>
