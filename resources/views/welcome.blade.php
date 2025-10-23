@@ -25,154 +25,136 @@
                 justify-content: center;
                 align-items: flex-start;
                 font-family: "Instrument Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-                background: #f4f6fb;
-                color: #1f2a44;
-                padding: 40px 20px;
+                background: #f2f6ff;
+                color: #1c2a4a;
+                padding: 56px 20px;
             }
 
             .page-wrapper {
-                width: min(1100px, 100%);
+                width: min(1120px, 100%);
                 background: #ffffff;
-                border-radius: 20px;
-                box-shadow: 0 15px 40px rgba(31, 42, 68, 0.12);
+                border-radius: 24px;
+                border: 1px solid rgba(93, 123, 214, 0.2);
+                box-shadow: 0 25px 60px rgba(28, 42, 74, 0.1);
                 overflow: hidden;
             }
 
             header {
-                padding: 40px clamp(24px, 5vw, 48px) 24px;
-                background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+                padding: clamp(36px, 5vw, 48px) clamp(32px, 6vw, 72px) clamp(12px, 3vw, 24px);
+                text-align: center;
+                border-bottom: 1px solid rgba(93, 123, 214, 0.12);
+                background: linear-gradient(180deg, rgba(226, 233, 255, 0.65) 0%, rgba(255, 255, 255, 0) 100%);
             }
 
             header h1 {
-                margin: 0 0 12px;
-                font-size: clamp(1.8rem, 3vw, 2.4rem);
+                margin: 0 0 16px;
+                font-size: clamp(2rem, 4vw, 2.6rem);
                 font-weight: 600;
-                color: #1b2559;
+                color: #132452;
             }
 
             header p {
-                margin: 0;
+                margin: 0 auto;
                 max-width: 720px;
                 font-size: 1rem;
-                line-height: 1.5;
-                color: #52608b;
+                line-height: 1.6;
+                color: #4c5d88;
             }
 
             .sections {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: clamp(24px, 3vw, 40px);
-                padding: 24px clamp(24px, 5vw, 48px) 48px;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: clamp(24px, 4vw, 40px);
+                padding: clamp(28px, 5vw, 48px) clamp(32px, 6vw, 72px) clamp(40px, 6vw, 64px);
             }
 
             .card {
                 display: flex;
                 flex-direction: column;
-                gap: 20px;
-                padding: clamp(20px, 3vw, 28px);
-                border-radius: 18px;
-                border: 1px solid rgba(93, 107, 152, 0.15);
-                background: linear-gradient(180deg, #ffffff 0%, #f8f9ff 100%);
-                box-shadow: 0 8px 24px rgba(31, 42, 68, 0.08);
+                gap: 28px;
+                padding: clamp(24px, 4vw, 32px);
+                border-radius: 20px;
+                border: 1px solid rgba(93, 123, 214, 0.24);
+                background: #ffffff;
+                box-shadow: 0 12px 30px rgba(19, 36, 82, 0.08);
             }
 
-            .card h2 {
+            .card-header {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .card-header h2 {
                 margin: 0;
-                font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+                font-size: clamp(1.3rem, 2.4vw, 1.7rem);
                 font-weight: 600;
-                color: #1b2559;
+                color: #173166;
             }
 
-            .card p {
+            .card-header p {
                 margin: 0;
-                color: #4a5781;
+                color: #4b5c82;
                 line-height: 1.6;
             }
 
-            .timeline {
-                display: grid;
+            .card-section {
+                display: flex;
+                flex-direction: column;
                 gap: 16px;
             }
 
-            .timeline-step {
-                display: grid;
-                grid-template-columns: auto 1fr;
-                gap: 16px;
-                align-items: start;
-            }
-
-            .timeline-step .number {
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                display: grid;
-                place-items: center;
-                font-weight: 600;
-                color: #fff;
-                background: linear-gradient(135deg, #667eea, #764ba2);
-                box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
-            }
-
-            .timeline-step .content {
-                padding-top: 4px;
-            }
-
-            .timeline-step .title {
-                margin: 0 0 4px;
-                font-size: 1.05rem;
-                color: #1f2a44;
-                font-weight: 600;
-            }
-
-            .timeline-step .description {
+            .card-section h3 {
                 margin: 0;
-                color: #5a678e;
-                font-size: 0.95rem;
-                line-height: 1.5;
+                font-size: 1.05rem;
+                font-weight: 600;
+                color: #1f2f55;
             }
 
-            .image-placeholder {
-                width: 100%;
-                aspect-ratio: 4 / 3;
-                border-radius: 16px;
-                border: 2px dashed rgba(102, 126, 234, 0.3);
+            .image-frame {
+                border: 1px solid rgba(93, 123, 214, 0.25);
+                border-radius: 18px;
                 background: repeating-linear-gradient(
                     135deg,
-                    rgba(102, 126, 234, 0.12),
-                    rgba(102, 126, 234, 0.12) 16px,
-                    rgba(118, 75, 162, 0.12) 16px,
-                    rgba(118, 75, 162, 0.12) 32px
+                    rgba(226, 233, 255, 0.7) 0px,
+                    rgba(226, 233, 255, 0.7) 22px,
+                    rgba(255, 255, 255, 0.9) 22px,
+                    rgba(255, 255, 255, 0.9) 44px
                 );
+                min-height: 360px;
                 display: grid;
                 place-items: center;
-                color: rgba(31, 42, 68, 0.5);
+                color: rgba(19, 36, 82, 0.45);
                 font-weight: 500;
                 text-align: center;
-                padding: 20px;
+                padding: 24px;
                 font-size: 0.95rem;
             }
 
-            .card footer {
-                margin-top: auto;
+            footer {
+                text-align: center;
+                padding: 0 24px 36px;
+                color: #7585ad;
                 font-size: 0.85rem;
-                color: #6b79a8;
+                border-top: 1px solid rgba(93, 123, 214, 0.12);
+                background: rgba(245, 249, 255, 0.65);
             }
 
             @media (max-width: 720px) {
                 body {
-                    padding: 24px 16px;
+                    padding: 32px 16px;
                 }
 
                 header {
-                    padding: 32px 24px 16px;
+                    padding: 32px 20px 12px;
                 }
 
                 .sections {
-                    padding: 16px 24px 32px;
+                    padding: 24px 20px 32px;
                 }
 
                 .card {
-                    padding: 20px;
+                    padding: 24px 20px;
                 }
             }
         </style>
@@ -182,67 +164,31 @@
             <header>
                 <h1>Pendaftaran Kompetisi &amp; Sertifikasi</h1>
                 <p>
-                    Daftarkan diri Anda untuk mengikuti berbagai kompetisi dan program sertifikasi.
-                    Halaman ini menampilkan alur pendaftaran yang jelas sehingga memudahkan Anda
-                    mempersiapkan dokumen dan tahapan yang diperlukan.
+                    Daftarkan diri Anda ke berbagai ajang lomba dan program sertifikasi. Ikuti alur
+                    pendaftaran yang sudah kami susun agar setiap tahapan dapat dipersiapkan dengan mudah.
                 </p>
             </header>
 
             <div class="sections">
                 <section class="card" aria-labelledby="lomba-heading">
-                    <div>
+                    <div class="card-header">
                         <h2 id="lomba-heading">Pendaftaran Lomba</h2>
                         <p>
-                            Daftarkan diri Anda untuk ikut kompetisi. Terbuka untuk mahasiswa aktif dari
-                            seluruh perguruan tinggi.
+                            Daftarkan diri Anda untuk ikut kompetisi. Terbuka untuk mahasiswa aktif dari seluruh
+                            perguruan tinggi.
                         </p>
                     </div>
 
-                    <div class="timeline" aria-label="Alur Lomba">
-                        <div class="timeline-step">
-                            <div class="number">1</div>
-                            <div class="content">
-                                <p class="title">Pendaftaran Online</p>
-                                <p class="description">Lengkapi formulir pendaftaran dan unggah dokumen pendukung.</p>
-                            </div>
+                    <div class="card-section">
+                        <h3>Alur Lomba</h3>
+                        <div class="image-frame" role="img" aria-label="Area kosong untuk gambar infografis lomba">
+                            Area gambar infografis lomba
                         </div>
-                        <div class="timeline-step">
-                            <div class="number">2</div>
-                            <div class="content">
-                                <p class="title">Seleksi Administrasi</p>
-                                <p class="description">Panitia melakukan verifikasi kelengkapan dan kesesuaian berkas.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-step">
-                            <div class="number">3</div>
-                            <div class="content">
-                                <p class="title">Pengumuman Finalis</p>
-                                <p class="description">Peserta yang lolos seleksi diundang untuk mengikuti babak final.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-step">
-                            <div class="number">4</div>
-                            <div class="content">
-                                <p class="title">Presentasi &amp; Penilaian</p>
-                                <p class="description">Finalis mempresentasikan karya di hadapan dewan juri.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-step">
-                            <div class="number">5</div>
-                            <div class="content">
-                                <p class="title">Pengumuman Pemenang</p>
-                                <p class="description">Daftar juara diumumkan secara resmi pada acara penutupan.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="image-placeholder" aria-hidden="true">
-                        Area gambar infografis lomba
                     </div>
                 </section>
 
                 <section class="card" aria-labelledby="sertifikasi-heading">
-                    <div>
+                    <div class="card-header">
                         <h2 id="sertifikasi-heading">Pendaftaran Sertifikasi</h2>
                         <p>
                             Ikuti jadwal sertifikasi terbaru. Tersedia beberapa gelombang setiap semester dengan
@@ -250,51 +196,16 @@
                         </p>
                     </div>
 
-                    <div class="timeline" aria-label="Alur Sertifikasi">
-                        <div class="timeline-step">
-                            <div class="number">1</div>
-                            <div class="content">
-                                <p class="title">Registrasi Akun</p>
-                                <p class="description">Buat akun peserta dan pilih program sertifikasi yang diminati.</p>
-                            </div>
+                    <div class="card-section">
+                        <h3>Alur Sertifikasi</h3>
+                        <div class="image-frame" role="img" aria-label="Area kosong untuk gambar infografis sertifikasi">
+                            Area gambar infografis sertifikasi
                         </div>
-                        <div class="timeline-step">
-                            <div class="number">2</div>
-                            <div class="content">
-                                <p class="title">Pembayaran Biaya</p>
-                                <p class="description">Lakukan pembayaran biaya sertifikasi sesuai instruksi yang berlaku.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-step">
-                            <div class="number">3</div>
-                            <div class="content">
-                                <p class="title">Pelatihan Persiapan</p>
-                                <p class="description">Ikuti sesi pembekalan daring atau luring yang telah dijadwalkan.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-step">
-                            <div class="number">4</div>
-                            <div class="content">
-                                <p class="title">Uji Kompetensi</p>
-                                <p class="description">Kerjakan asesmen kompetensi sesuai standar lembaga sertifikasi.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-step">
-                            <div class="number">5</div>
-                            <div class="content">
-                                <p class="title">Penerbitan Sertifikat</p>
-                                <p class="description">Sertifikat digital dan fisik dikirimkan kepada peserta yang lulus.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="image-placeholder" aria-hidden="true">
-                        Area gambar infografis sertifikasi
                     </div>
                 </section>
             </div>
 
-            <footer style="text-align: center; padding: 0 24px 32px; color: #7a88b9; font-size: 0.85rem;">
+            <footer>
                 &copy; {{ date('Y') }} Program Kompetisi &amp; Sertifikasi
             </footer>
         </div>
