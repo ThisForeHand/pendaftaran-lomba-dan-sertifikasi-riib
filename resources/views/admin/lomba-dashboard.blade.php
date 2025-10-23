@@ -109,82 +109,56 @@
 
             .dashboard-tabs {
                 display: inline-flex;
-                gap: clamp(12px, 2vw, 18px);
-                padding: clamp(10px, 2vw, 14px);
-                background: rgba(244, 248, 255, 0.92);
-                border-radius: 24px;
-                border: 1px solid rgba(51, 86, 189, 0.18);
-                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75), 0 22px 48px rgba(33, 62, 157, 0.12);
-                backdrop-filter: blur(18px);
-                align-items: center;
+                gap: clamp(16px, 3vw, 32px);
+                padding: 0;
+                background: transparent;
+                border: none;
+                box-shadow: none;
             }
 
             .dashboard-tabs .nav-link {
+                position: relative;
                 display: inline-flex;
                 align-items: center;
-                gap: clamp(12px, 2.2vw, 18px);
-                padding: clamp(10px, 1.8vw, 14px) clamp(18px, 3vw, 26px);
-                border-radius: 999px;
-                text-decoration: none;
-                border: 1px solid rgba(30, 75, 169, 0.24);
-                background: rgba(255, 255, 255, 0.92);
-                color: #1d2f63;
+                padding: 0 0 6px;
                 font-size: 1rem;
                 font-weight: 600;
-                min-width: clamp(220px, 28vw, 260px);
-                box-shadow: 0 14px 26px rgba(31, 77, 177, 0.16);
-                transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+                color: #4b5a86;
+                text-decoration: none;
+                border: none;
+                border-radius: 0;
+                background: transparent;
+                min-width: auto;
+                box-shadow: none;
+                transition: color 0.2s ease;
+            }
+
+            .dashboard-tabs .nav-link::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 3px;
+                border-radius: 999px;
+                background: transparent;
+                transition: background 0.2s ease;
             }
 
             .dashboard-tabs .nav-link:hover {
-                transform: translateY(-1px);
-                box-shadow: 0 18px 32px rgba(31, 77, 177, 0.22);
+                color: #1f4db1;
+            }
+
+            .dashboard-tabs .nav-link:hover::after {
+                background: rgba(31, 77, 177, 0.6);
             }
 
             .dashboard-tabs .nav-link.active {
-                background: linear-gradient(135deg, #1e4ba9 0%, #123184 100%);
-                border-color: transparent;
-                color: #ffffff;
-                box-shadow: 0 22px 40px rgba(30, 75, 169, 0.32);
+                color: #1f4db1;
             }
 
-            .dashboard-tabs .nav-link:not(.active):hover {
-                background: rgba(255, 255, 255, 0.98);
-            }
-
-            .nav-icon {
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                width: 46px;
-                height: 46px;
-                border-radius: 14px;
-                background: linear-gradient(135deg, rgba(30, 75, 169, 0.12) 0%, rgba(30, 75, 169, 0.04) 100%);
-                border: 1px solid rgba(30, 75, 169, 0.28);
-                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
-            }
-
-            .nav-icon svg {
-                width: 22px;
-                height: 22px;
-                color: currentColor;
-            }
-
-            .dashboard-tabs .nav-link.active .nav-icon {
-                background: rgba(255, 255, 255, 0.22);
-                border-color: rgba(255, 255, 255, 0.42);
-                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
-            }
-
-            .nav-label {
-                display: inline-flex;
-                flex-direction: column;
-                gap: 4px;
-                line-height: 1.15;
-            }
-
-            .nav-label span {
-                display: inline-block;
+            .dashboard-tabs .nav-link.active::after {
+                background: #1f4db1;
             }
 
             .card {
@@ -438,15 +412,13 @@
                 .dashboard-tabs {
                     flex-direction: column;
                     width: 100%;
+                    align-items: center;
                 }
 
                 .dashboard-tabs .nav-link {
-                    width: 100%;
-                    justify-content: flex-start;
-                }
-
-                .nav-icon {
-                    flex-shrink: 0;
+                    width: auto;
+                    justify-content: center;
+                    text-align: center;
                 }
 
                 table {
@@ -504,34 +476,8 @@
 
                 <div class="card-navigation">
                     <nav class="dashboard-tabs" aria-label="Navigasi halaman pendaftaran">
-                        <a href="{{ route('admin.lomba') }}" class="nav-link active">
-                            <span class="nav-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M8 21h8" />
-                                    <path d="M9 17c.5 1.5 1.5 4 3 4s2.5-2.5 3-4" />
-                                    <path d="M5 4h14" />
-                                    <path d="M6 4v5.5a2.5 2.5 0 0 1-5 0V4z" />
-                                    <path d="M18 4v5.5a2.5 2.5 0 0 0 5 0V4z" />
-                                </svg>
-                            </span>
-                            <span class="nav-label">
-                                <span>Pendaftaran</span>
-                                <span>Lomba</span>
-                            </span>
-                        </a>
-                        <a href="{{ route('admin.sertifikasi') }}" class="nav-link">
-                            <span class="nav-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="8" r="5" />
-                                    <path d="M8.5 14h7" />
-                                    <path d="M6 21l1.5-3 1.5 3 1.5-3 1.5 3 1.5-3 1.5 3" />
-                                </svg>
-                            </span>
-                            <span class="nav-label">
-                                <span>Pendaftaran</span>
-                                <span>Sertifikasi</span>
-                            </span>
-                        </a>
+                        <a href="{{ route('admin.lomba') }}" class="nav-link active">Pendaftaran Lomba</a>
+                        <a href="{{ route('admin.sertifikasi') }}" class="nav-link">Pendaftaran Sertifikasi</a>
                     </nav>
                 </div>
 
