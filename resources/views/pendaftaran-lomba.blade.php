@@ -45,6 +45,34 @@
                 border-bottom: 1px solid rgba(82, 112, 204, 0.12);
             }
 
+            .back-link {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                margin-bottom: clamp(20px, 4vw, 28px);
+                font-size: 0.98rem;
+                font-weight: 600;
+                color: #2e4eb8;
+                text-decoration: none;
+                background: rgba(236, 243, 255, 0.7);
+                border-radius: 999px;
+                padding: 10px 18px;
+                transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+            }
+
+            .back-link svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .back-link:hover,
+            .back-link:focus {
+                transform: translateY(-1px);
+                box-shadow: 0 10px 24px rgba(46, 110, 248, 0.18);
+                background: rgba(219, 233, 255, 0.9);
+                outline: none;
+            }
+
             header p.eyebrow {
                 font-size: 0.92rem;
                 letter-spacing: 0.12em;
@@ -195,6 +223,12 @@
     <body>
         <div class="page-container">
             <header>
+                <a class="back-link" href="{{ url('/') }}">
+                    <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                        <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                    <span>Kembali ke Halaman Utama</span>
+                </a>
                 <p class="eyebrow">Formulir Pendaftaran</p>
                 <h1>Pendaftaran Persiapan Peserta Lomba Innovillage 2025</h1>
                 <p class="lead">
