@@ -9,3 +9,4 @@ Route::get('/', function () {
 
 Route::view('/pendaftaran-lomba', 'pendaftaran-lomba')->name('pendaftaran.lomba');
 Route::view('/pendaftaran-sertifikasi', 'pendaftaran-sertifikasi')->name('pendaftaran.sertifikasi');
+Route::view('/admin/login', 'admin.login')->name('admin.login');
