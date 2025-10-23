@@ -452,6 +452,10 @@
         </style>
     </head>
     <body>
+        @php
+            $registrations = $registrations ?? collect();
+            $tableExists = $tableExists ?? true;
+        @endphp
         <div class="page">
             <div class="dashboard-header-card">
                 <header>
@@ -498,24 +502,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($registrations as $registration)
+                            @if (! $tableExists)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $registration->nama }}</td>
-                                    <td>{{ $registration->nim }}</td>
-                                    <td>{{ $registration->program_studi }}</td>
-                                    <td>{{ $registration->whatsapp }}</td>
-                                    <td>{{ $registration->pilihan_peran }}</td>
-                                    <td>
-                                        <span class="badge">{{ $registration->status_tim }}</span>
-                                    </td>
-                                    <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
+                                    <td colspan="8">Tabel pendaftaran lomba belum tersedia. Jalankan migrasi database terlebih dahulu.</td>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="8">Belum ada data pendaftaran lomba.</td>
-                                </tr>
-                            @endforelse
+                            @else
+                                @forelse ($registrations as $registration)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $registration->nama }}</td>
+                                        <td>{{ $registration->nim }}</td>
+                                        <td>{{ $registration->program_studi }}</td>
+                                        <td>{{ $registration->whatsapp }}</td>
+                                        <td>{{ $registration->pilihan_peran }}</td>
+                                        <td>
+                                            <span class="badge">{{ $registration->status_tim }}</span>
+                                        </td>
+                                        <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="8">Belum ada data pendaftaran lomba.</td>
+                                    </tr>
+                                @endforelse
+                            @endif
                         </tbody>
                     </table>
                 </div>
