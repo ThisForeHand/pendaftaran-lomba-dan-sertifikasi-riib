@@ -102,51 +102,89 @@
                 font-size: 1rem;
             }
 
-            nav {
+            .card-navigation {
                 display: flex;
-                gap: 16px;
-                flex-wrap: wrap;
+                justify-content: flex-start;
             }
 
-            .nav-link {
+            .dashboard-tabs {
+                display: inline-flex;
+                gap: clamp(12px, 2vw, 18px);
+                padding: clamp(10px, 2vw, 14px);
+                background: rgba(244, 248, 255, 0.92);
+                border-radius: 24px;
+                border: 1px solid rgba(51, 86, 189, 0.18);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75), 0 22px 48px rgba(33, 62, 157, 0.12);
+                backdrop-filter: blur(18px);
+                align-items: center;
+            }
+
+            .dashboard-tabs .nav-link {
                 display: inline-flex;
                 align-items: center;
-                gap: 14px;
-                padding: clamp(12px, 2.8vw, 16px) clamp(18px, 4vw, 28px);
-                border-radius: 18px;
+                gap: clamp(12px, 2.2vw, 18px);
+                padding: clamp(10px, 1.8vw, 14px) clamp(18px, 3vw, 26px);
+                border-radius: 999px;
                 text-decoration: none;
-                background: #f4f6ff;
-                border: 1px solid rgba(52, 86, 188, 0.12);
-                color: #1e2a52;
+                border: 1px solid rgba(30, 75, 169, 0.24);
+                background: rgba(255, 255, 255, 0.92);
+                color: #1d2f63;
                 font-size: 1rem;
                 font-weight: 600;
-                min-width: clamp(220px, 30vw, 260px);
-                transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+                min-width: clamp(220px, 28vw, 260px);
+                box-shadow: 0 14px 26px rgba(31, 77, 177, 0.16);
+                transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
             }
 
-            .nav-link.active {
-                background: linear-gradient(130deg, #1e4ba9 0%, #123184 100%);
-                color: #ffffff;
-                box-shadow: 0 16px 32px rgba(30, 75, 169, 0.28);
+            .dashboard-tabs .nav-link:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 18px 32px rgba(31, 77, 177, 0.22);
+            }
+
+            .dashboard-tabs .nav-link.active {
+                background: linear-gradient(135deg, #1e4ba9 0%, #123184 100%);
                 border-color: transparent;
+                color: #ffffff;
+                box-shadow: 0 22px 40px rgba(30, 75, 169, 0.32);
             }
 
-            .nav-link:not(.active):hover {
-                background: rgba(30, 75, 169, 0.1);
-                border-color: rgba(30, 75, 169, 0.2);
+            .dashboard-tabs .nav-link:not(.active):hover {
+                background: rgba(255, 255, 255, 0.98);
             }
 
             .nav-icon {
-                width: 44px;
-                height: 44px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 46px;
+                height: 46px;
                 border-radius: 14px;
-                background: rgba(30, 75, 169, 0.14);
-                border: 1px dashed rgba(30, 75, 169, 0.24);
+                background: linear-gradient(135deg, rgba(30, 75, 169, 0.12) 0%, rgba(30, 75, 169, 0.04) 100%);
+                border: 1px solid rgba(30, 75, 169, 0.28);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
             }
 
-            .nav-link.active .nav-icon {
-                background: rgba(255, 255, 255, 0.16);
-                border-color: rgba(255, 255, 255, 0.4);
+            .nav-icon svg {
+                width: 22px;
+                height: 22px;
+                color: currentColor;
+            }
+
+            .dashboard-tabs .nav-link.active .nav-icon {
+                background: rgba(255, 255, 255, 0.22);
+                border-color: rgba(255, 255, 255, 0.42);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            }
+
+            .nav-label {
+                display: inline-flex;
+                flex-direction: column;
+                gap: 4px;
+                line-height: 1.15;
+            }
+
+            .nav-label span {
+                display: inline-block;
             }
 
             .card {
@@ -161,7 +199,7 @@
 
             .card-header {
                 display: flex;
-                align-items: center;
+                align-items: flex-start;
                 justify-content: space-between;
                 flex-wrap: wrap;
                 gap: 16px;
@@ -393,11 +431,16 @@
             }
 
             @media (max-width: 768px) {
-                nav {
-                    flex-direction: column;
+                .card-navigation {
+                    justify-content: center;
                 }
 
-                .nav-link {
+                .dashboard-tabs {
+                    flex-direction: column;
+                    width: 100%;
+                }
+
+                .dashboard-tabs .nav-link {
                     width: 100%;
                     justify-content: flex-start;
                 }
@@ -449,17 +492,6 @@
                         <span class="admin-name">Admin</span>
                     </div>
                 </header>
-
-                <nav>
-                    <a href="{{ route('admin.lomba') }}" class="nav-link active">
-                        <span class="nav-icon"></span>
-                        <span>Pendaftaran Lomba</span>
-                    </a>
-                    <a href="{{ route('admin.sertifikasi') }}" class="nav-link">
-                        <span class="nav-icon"></span>
-                        <span>Pendaftaran Sertifikasi</span>
-                    </a>
-                </nav>
             </div>
 
             <section class="card">
@@ -468,6 +500,39 @@
                         <h2>Pendaftaran Lomba</h2>
                         <span>Daftar peserta dan rincian kelompok</span>
                     </div>
+                </div>
+
+                <div class="card-navigation">
+                    <nav class="dashboard-tabs" aria-label="Navigasi halaman pendaftaran">
+                        <a href="{{ route('admin.lomba') }}" class="nav-link active">
+                            <span class="nav-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M8 21h8" />
+                                    <path d="M9 17c.5 1.5 1.5 4 3 4s2.5-2.5 3-4" />
+                                    <path d="M5 4h14" />
+                                    <path d="M6 4v5.5a2.5 2.5 0 0 1-5 0V4z" />
+                                    <path d="M18 4v5.5a2.5 2.5 0 0 0 5 0V4z" />
+                                </svg>
+                            </span>
+                            <span class="nav-label">
+                                <span>Pendaftaran</span>
+                                <span>Lomba</span>
+                            </span>
+                        </a>
+                        <a href="{{ route('admin.sertifikasi') }}" class="nav-link">
+                            <span class="nav-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="8" r="5" />
+                                    <path d="M8.5 14h7" />
+                                    <path d="M6 21l1.5-3 1.5 3 1.5-3 1.5 3 1.5-3 1.5 3" />
+                                </svg>
+                            </span>
+                            <span class="nav-label">
+                                <span>Pendaftaran</span>
+                                <span>Sertifikasi</span>
+                            </span>
+                        </a>
+                    </nav>
                 </div>
 
                 <div class="table-container">
