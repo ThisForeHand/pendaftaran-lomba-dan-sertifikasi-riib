@@ -204,8 +204,7 @@
                     <div class="link-block">
                         <a class="card-link" href="{{ route('pendaftaran.sertifikasi') }}">Pendaftaran Sertifikasi</a>
                         <p>
-                            Ikuti jadwal sertifikasi terbaru. Tersedia beberapa gelombang setiap semester dengan
-                            kuota terbatas.
+                            Ikuti jadwal sertifikasi terbaru. Program sertifikasi khusus dosen untuk menguatkan kompetensi, portofolio, dan jenjang karier Anda.
                         </p>
                     </div>
                 </div>
