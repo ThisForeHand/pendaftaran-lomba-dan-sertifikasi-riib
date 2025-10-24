@@ -329,57 +329,24 @@
 
             .footer-actions-left {
                 display: flex;
+                align-items: center;
             }
 
-            .logout-form {
-                margin: 0;
+            .action-info {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                padding: 12px 22px;
+                border-radius: 16px;
+                background: rgba(224, 233, 255, 0.6);
+                color: #1e4ba9;
+                font-weight: 600;
+                font-size: 0.95rem;
             }
 
             .footer-actions-right {
                 display: flex;
                 gap: 12px;
-            }
-
-            .logout {
-                display: inline-flex;
-                align-items: center;
-                gap: 12px;
-                padding: 12px 22px;
-                border-radius: 16px;
-                text-decoration: none;
-                color: #153a8a;
-                font-weight: 600;
-                font-family: inherit;
-                font-size: 1rem;
-                cursor: pointer;
-                background: linear-gradient(135deg, rgba(224, 233, 255, 0.85) 0%, rgba(239, 245, 255, 0.85) 100%);
-                border: 1px solid rgba(28, 74, 177, 0.2);
-                box-shadow: 0 14px 30px rgba(33, 62, 157, 0.14);
-                transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-            }
-
-            .logout:hover {
-                transform: translateY(-1px);
-                box-shadow: 0 16px 36px rgba(33, 62, 157, 0.2);
-                background: linear-gradient(135deg, rgba(210, 226, 255, 0.95) 0%, rgba(226, 237, 255, 0.95) 100%);
-            }
-
-            .logout-icon {
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                width: 36px;
-                height: 36px;
-                border-radius: 12px;
-                background: #ffffff;
-                border: 1px solid rgba(28, 74, 177, 0.14);
-                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
-                color: #153a8a;
-            }
-
-            .logout-icon svg {
-                width: 20px;
-                height: 20px;
             }
 
             .action-button {
@@ -449,7 +416,7 @@
                     flex-direction: column;
                 }
 
-                .logout,
+                .action-info,
                 .action-button {
                     width: 100%;
                     justify-content: center;
@@ -462,8 +429,7 @@
         @php
             $registrations = $registrations ?? collect();
             $tableExists = $tableExists ?? true;
-            $admin = auth()->user();
-            $adminName = $admin?->name ?: ($admin?->username ?? 'Admin');
+            $adminName = 'Admin';
             $adminInitial = strtoupper(substr($adminName, 0, 1) ?: 'A');
         @endphp
         <div class="page">
@@ -542,19 +508,7 @@
 
                 <div class="footer-actions">
                     <div class="footer-actions-left">
-                        <form action="{{ route('admin.logout') }}" method="POST" class="logout-form">
-                            @csrf
-                            <button type="submit" class="logout">
-                                <span class="logout-icon" aria-hidden="true">
-                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect x="3.75" y="4.75" width="12.5" height="14.5" rx="2.75" stroke="currentColor" stroke-width="1.5" />
-                                        <path d="M12.5 12h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M17.25 8.75L19.75 12l-2.5 3.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </span>
-                                Keluar
-                            </button>
-                        </form>
+                        <span class="action-info">Login tidak diperlukan untuk melihat data.</span>
                     </div>
                     <div class="footer-actions-right">
                         <a href="#" class="action-button download">Unduh</a>

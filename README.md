@@ -7,21 +7,6 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Default Admin Credentials
-
-After installing dependencies, configuring your `.env`, and running `php artisan migrate --seed`, the application will provision
-an admin account using the environment-driven defaults below:
-
-| Variable | Default |
-| --- | --- |
-| `ADMIN_NAME` | `Admin` |
-| `ADMIN_USERNAME` | `admin123` |
-| `ADMIN_EMAIL` | `admin@example.com` |
-| `ADMIN_PASSWORD` | `password` |
-
-Update these values in your `.env` as needed and rerun `php artisan db:seed` (or `php artisan migrate:fresh --seed`) to apply the
-changes to the stored admin account.
-
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
