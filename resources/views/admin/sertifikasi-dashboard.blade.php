@@ -462,7 +462,7 @@
                 </div>
 
                 <div class="table-container">
-                    <table>
+                    <table data-empty-text="Belum ada data pendaftaran sertifikasi.">
                         <thead>
                             <tr>
                                 <th>No</th>
@@ -497,7 +497,7 @@
                                         <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                                     </tr>
                                 @empty
-                                    <tr>
+                                    <tr class="empty-state">
                                         <td colspan="8">Belum ada data pendaftaran sertifikasi.</td>
                                     </tr>
                                 @endforelse
@@ -521,28 +521,127 @@
             document.addEventListener('DOMContentLoaded', function () {
                 const deleteButton = document.querySelector('.action-button.delete');
                 const clearAllButton = document.querySelector('.clear-all-button');
-                const rowCheckboxes = document.querySelectorAll('.row-checkbox');
+                const tableBody = document.querySelector('table tbody');
+                const tableElement = document.querySelector('table');
+
+                const getRowCheckboxes = () => Array.from(document.querySelectorAll('.row-checkbox'));
+
+                const exitSelectionMode = () => {
+                    document.body.classList.remove('selection-mode');
+                    getRowCheckboxes().forEach((checkbox) => {
+                        checkbox.checked = false;
+                    });
+                };
+
+                const ensureEmptyState = () => {
+                    if (!tableBody || !tableElement) {
+                        return;
+                    }
+
+                    const emptyText = tableElement.dataset.emptyText || 'Belum ada data.';
+                    const existingEmptyRow = tableBody.querySelector('.empty-state');
+                    const hasDataRows = tableBody.querySelector('.row-checkbox');
+
+                    if (!hasDataRows && !existingEmptyRow) {
+                        const emptyRow = document.createElement('tr');
+                        emptyRow.classList.add('empty-state');
+
+                        const emptyCell = document.createElement('td');
+                        emptyCell.colSpan = 8;
+                        emptyCell.textContent = emptyText;
+
+                        emptyRow.appendChild(emptyCell);
+                        tableBody.appendChild(emptyRow);
+                    } else if (hasDataRows && existingEmptyRow) {
+                        existingEmptyRow.remove();
+                    }
+                };
+
+                const updateRowNumbers = () => {
+                    const dataRows = getRowCheckboxes()
+                        .map((checkbox) => checkbox.closest('tr'))
+                        .filter((row) => row && row.isConnected);
+
+                    dataRows.forEach((row, index) => {
+                        const numberCell = row.querySelector('td');
+
+                        if (numberCell) {
+                            numberCell.textContent = index + 1;
+                        }
+                    });
+                };
 
                 if (deleteButton) {
                     deleteButton.addEventListener('click', function (event) {
                         event.preventDefault();
-                        document.body.classList.toggle('selection-mode');
 
-                        if (!document.body.classList.contains('selection-mode')) {
-                            rowCheckboxes.forEach((checkbox) => {
-                                checkbox.checked = false;
-                            });
+                        const isSelectionMode = document.body.classList.contains('selection-mode');
+                        const checkboxes = getRowCheckboxes();
+
+                        if (!isSelectionMode) {
+                            if (checkboxes.length === 0) {
+                                return;
+                            }
+
+                            document.body.classList.add('selection-mode');
+                            return;
                         }
+
+                        const selectedCheckboxes = checkboxes.filter((checkbox) => checkbox.checked);
+
+                        if (selectedCheckboxes.length === 0) {
+                            exitSelectionMode();
+                            return;
+                        }
+
+                        const confirmed = window.confirm('Apakah Anda yakin ingin menghapus data yang dipilih?');
+
+                        if (!confirmed) {
+                            return;
+                        }
+
+                        selectedCheckboxes.forEach((checkbox) => {
+                            const row = checkbox.closest('tr');
+
+                            if (row) {
+                                row.remove();
+                            }
+                        });
+
+                        exitSelectionMode();
+                        ensureEmptyState();
+                        updateRowNumbers();
                     });
                 }
 
                 if (clearAllButton) {
                     clearAllButton.addEventListener('click', function () {
-                        rowCheckboxes.forEach((checkbox) => {
-                            checkbox.checked = false;
+                        const checkboxes = getRowCheckboxes();
+
+                        if (checkboxes.length === 0) {
+                            return;
+                        }
+
+                        const confirmed = window.confirm('Apakah Anda yakin ingin menghapus semua data?');
+
+                        if (!confirmed) {
+                            return;
+                        }
+
+                        checkboxes.forEach((checkbox) => {
+                            const row = checkbox.closest('tr');
+
+                            if (row) {
+                                row.remove();
+                            }
                         });
+
+                        exitSelectionMode();
+                        ensureEmptyState();
                     });
                 }
+
+                ensureEmptyState();
             });
         </script>
     </body>
