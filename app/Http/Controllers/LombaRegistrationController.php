@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\LombaRegistration;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
@@ -23,6 +24,20 @@ class LombaRegistrationController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        if (! Schema::hasTable('lomba_registrations')) {
+            Schema::create('lomba_registrations', function (Blueprint $table) {
+                $table->id();
+                $table->string('nama');
+                $table->string('nim');
+                $table->string('program_studi');
+                $table->string('whatsapp');
+                $table->string('pilihan_peran');
+                $table->text('motivasi')->nullable();
+                $table->string('status_tim');
+                $table->timestamps();
+            });
+        }
+
         $validated = $request->validate([
             'nama' => ['required', 'string', 'max:255'],
             'nim' => ['required', 'string', 'max:255'],
