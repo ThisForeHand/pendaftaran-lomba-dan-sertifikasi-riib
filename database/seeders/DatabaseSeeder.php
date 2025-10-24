@@ -6,7 +6,6 @@ use App\Models\LombaRegistration;
 use App\Models\SertifikasiRegistration;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
@@ -18,18 +17,23 @@ class DatabaseSeeder extends Seeder
     {
         $hasUsernameColumn = Schema::hasColumn('users', 'username');
 
+        $adminUsername = config('admin.username');
+        $adminEmail = config('admin.email');
+        $adminPassword = config('admin.password');
+        $adminName = config('admin.name');
+
         $lookup = $hasUsernameColumn
-            ? ['username' => 'admin123']
-            : ['email' => 'admin@example.com'];
+            ? ['username' => $adminUsername]
+            : ['email' => $adminEmail];
 
         $defaults = [
-            'name' => 'Admin',
-            'email' => 'admin@example.com',
-            'password' => Hash::make('admin123'),
+            'name' => $adminName,
+            'email' => $adminEmail,
+            'password' => $adminPassword,
         ];
 
         if ($hasUsernameColumn) {
-            $defaults['username'] = 'admin123';
+            $defaults['username'] = $adminUsername;
         }
 
         User::query()->updateOrCreate($lookup, $defaults);
