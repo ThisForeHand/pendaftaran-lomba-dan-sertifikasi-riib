@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Masuk Admin - Pendaftaran Kompetisi & Sertifikasi</title>
+        <title>Masuk Akun - Pendaftaran Kompetisi & Sertifikasi</title>
 
         <link rel="preconnect" href="https://fonts.bunny.net" />
         <link
@@ -216,33 +216,33 @@
                     </svg>
                 </div>
                 <div>
-            <h1>Masuk Sistem</h1>
-            <p class="subtitle">
-                Gunakan kredensial admin atau dosen untuk mengakses dashboard yang sesuai.
-            </p>
-        </div>
-    </header>
+                    <h1>Masuk Akun</h1>
+                    <p class="subtitle">
+                        Gunakan kredensial admin atau dosen untuk mengakses dashboard yang sesuai.
+                    </p>
+                </div>
+            </header>
 
-    <form action="{{ route('admin.login.attempt') }}" method="post" novalidate>
-        @csrf
-        <div class="input-field">
-            <label for="email">Email</label>
-            <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Masukkan email anda"
-                autocomplete="username"
-                value="{{ old('email') }}"
-            />
-            @error('email')
-                <p style="margin: 0; color: #c0392b; font-size: 0.9rem;">{{ $message }}</p>
-            @enderror
-        </div>
+            <form action="{{ route('login.attempt') }}" method="post" novalidate>
+                @csrf
+                <div class="input-field">
+                    <label for="email">Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Masukkan email anda"
+                        autocomplete="username"
+                        value="{{ old('email') }}"
+                    />
+                    @error('email')
+                        <p style="margin: 0; color: #c0392b; font-size: 0.9rem;">{{ $message }}</p>
+                    @enderror
+                </div>
 
-        <div class="input-field">
-            <label for="password">Kata Sandi</label>
-            <div class="password-field">
+                <div class="input-field">
+                    <label for="password">Kata Sandi</label>
+                    <div class="password-field">
                         <input
                             type="password"
                             id="password"
@@ -258,12 +258,12 @@
                             </svg>
                         </button>
                     </div>
-            @error('password')
-                <p style="margin: 0; color: #c0392b; font-size: 0.9rem;">{{ $message }}</p>
-            @enderror
-        </div>
+                    @error('password')
+                        <p style="margin: 0; color: #c0392b; font-size: 0.9rem;">{{ $message }}</p>
+                    @enderror
+                </div>
 
-        <button type="submit">Masuk</button>
+                <button type="submit">Masuk</button>
             </form>
 
             <p class="help-text">
