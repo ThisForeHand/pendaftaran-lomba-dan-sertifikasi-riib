@@ -216,26 +216,33 @@
                     </svg>
                 </div>
                 <div>
-                    <h1>Masuk Admin</h1>
-                    <p class="subtitle">Masukkan kredensial admin untuk melanjutkan ke dashboard.</p>
-                </div>
-            </header>
+            <h1>Masuk Sistem</h1>
+            <p class="subtitle">
+                Gunakan kredensial admin atau dosen untuk mengakses dashboard yang sesuai.
+            </p>
+        </div>
+    </header>
 
-            <form action="#" method="post" novalidate>
-                <div class="input-field">
-                    <label for="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="Masukkan email anda"
-                        autocomplete="username"
-                    />
-                </div>
+    <form action="{{ route('admin.login.attempt') }}" method="post" novalidate>
+        @csrf
+        <div class="input-field">
+            <label for="email">Email</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Masukkan email anda"
+                autocomplete="username"
+                value="{{ old('email') }}"
+            />
+            @error('email')
+                <p style="margin: 0; color: #c0392b; font-size: 0.9rem;">{{ $message }}</p>
+            @enderror
+        </div>
 
-                <div class="input-field">
-                    <label for="password">Kata Sandi</label>
-                    <div class="password-field">
+        <div class="input-field">
+            <label for="password">Kata Sandi</label>
+            <div class="password-field">
                         <input
                             type="password"
                             id="password"
@@ -251,9 +258,12 @@
                             </svg>
                         </button>
                     </div>
-                </div>
+            @error('password')
+                <p style="margin: 0; color: #c0392b; font-size: 0.9rem;">{{ $message }}</p>
+            @enderror
+        </div>
 
-                <button type="submit">Masuk</button>
+        <button type="submit">Masuk</button>
             </form>
 
             <p class="help-text">

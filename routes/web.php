@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\LombaRegistrationController;
 use App\Http\Controllers\SertifikasiRegistrationController;
 use Illuminate\Support\Facades\Route;
@@ -14,7 +15,15 @@ Route::post('/pendaftaran-lomba', [LombaRegistrationController::class, 'store'])
 Route::get('/pendaftaran-sertifikasi', [SertifikasiRegistrationController::class, 'create'])->name('pendaftaran.sertifikasi');
 Route::post('/pendaftaran-sertifikasi', [SertifikasiRegistrationController::class, 'store'])->name('pendaftaran.sertifikasi.store');
 
-Route::view('/admin/login', 'admin.login')->name('admin.login');
-Route::get('/admin/lomba', [LombaRegistrationController::class, 'index'])->name('admin.lomba');
-Route::get('/admin/sertifikasi', [SertifikasiRegistrationController::class, 'index'])->name('admin.sertifikasi');
-Route::get('/dosen/lomba', [LombaRegistrationController::class, 'lecturerDashboard'])->name('dosen.lomba');
+Route::get('/admin/login', [LoginController::class, 'show'])->name('admin.login');
+Route::post('/admin/login', [LoginController::class, 'login'])->name('admin.login.attempt');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::middleware('auth:admin')->group(function () {
+    Route::get('/admin/lomba', [LombaRegistrationController::class, 'index'])->name('admin.lomba');
+    Route::get('/admin/sertifikasi', [SertifikasiRegistrationController::class, 'index'])->name('admin.sertifikasi');
+});
+
+Route::middleware('auth:lecturer')->group(function () {
+    Route::get('/dosen/lomba', [LombaRegistrationController::class, 'lecturerDashboard'])->name('dosen.lomba');
+});

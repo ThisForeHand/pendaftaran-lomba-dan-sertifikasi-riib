@@ -6,6 +6,7 @@ use App\Models\LombaRegistration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\View\View;
 
@@ -83,11 +84,15 @@ class LombaRegistrationController extends Controller
             ? LombaRegistration::latest()->get()
             : collect();
 
-        $lecturerAccount = [
-            'name' => 'Dosen Pembimbing',
-            'email' => 'dosen@example.com',
-            'phone' => '081234567890',
-        ];
+        $lecturer = Auth::guard('lecturer')->user();
+
+        $lecturerAccount = $lecturer
+            ? [
+                'name' => $lecturer->name,
+                'email' => $lecturer->email,
+                'phone' => $lecturer->phone,
+            ]
+            : null;
 
         return view('dosen.lomba-dashboard', [
             'registrations' => $registrations,
