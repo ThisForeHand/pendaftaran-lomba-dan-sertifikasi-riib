@@ -17,3 +17,4 @@ Route::post('/pendaftaran-sertifikasi', [SertifikasiRegistrationController::clas
 Route::view('/admin/login', 'admin.login')->name('admin.login');
 Route::get('/admin/lomba', [LombaRegistrationController::class, 'index'])->name('admin.lomba');
 Route::get('/admin/sertifikasi', [SertifikasiRegistrationController::class, 'index'])->name('admin.sertifikasi');
+Route::get('/dosen/lomba', [LombaRegistrationController::class, 'lecturerDashboard'])->name('dosen.lomba');

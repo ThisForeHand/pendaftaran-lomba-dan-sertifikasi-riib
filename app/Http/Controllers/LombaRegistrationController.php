@@ -71,4 +71,28 @@ class LombaRegistrationController extends Controller
             'tableExists' => $tableExists,
         ]);
     }
+
+    /**
+     * Display a simplified dashboard for lecturers.
+     */
+    public function lecturerDashboard(): View
+    {
+        $tableExists = Schema::hasTable('lomba_registrations');
+
+        $registrations = $tableExists
+            ? LombaRegistration::latest()->get()
+            : collect();
+
+        $lecturerAccount = [
+            'name' => 'Dosen Pembimbing',
+            'email' => 'dosen@example.com',
+            'phone' => '081234567890',
+        ];
+
+        return view('dosen.lomba-dashboard', [
+            'registrations' => $registrations,
+            'tableExists' => $tableExists,
+            'lecturerAccount' => $lecturerAccount,
+        ]);
+    }
 }
