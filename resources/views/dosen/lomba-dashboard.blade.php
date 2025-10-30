@@ -171,6 +171,14 @@
                 gap: clamp(18px, 3vw, 24px);
             }
 
+            .dashboard-section {
+                display: none;
+            }
+
+            .dashboard-section.is-active {
+                display: grid;
+            }
+
             .card-header {
                 display: flex;
                 align-items: flex-start;
@@ -371,7 +379,7 @@
                 </div>
             </div>
 
-            <section id="data-lomba" class="card" aria-labelledby="title-data-lomba">
+            <section id="data-lomba" class="card dashboard-section is-active" aria-labelledby="title-data-lomba">
                 <div class="card-header">
                     <div class="card-title" id="title-data-lomba">
                         <span>Monitoring Peserta</span>
@@ -428,7 +436,7 @@
                 </div>
             </section>
 
-            <section id="pengaturan-akun" class="card" aria-labelledby="title-pengaturan-akun">
+            <section id="pengaturan-akun" class="card dashboard-section" aria-labelledby="title-pengaturan-akun">
                 <div class="card-header">
                     <div class="card-title" id="title-pengaturan-akun">
                         <span>Pengaturan Akun</span>
@@ -477,6 +485,25 @@
         <script>
             document.addEventListener('DOMContentLoaded', () => {
                 const navLinks = Array.from(document.querySelectorAll('.dashboard-tabs .nav-link'));
+                const sections = Array.from(document.querySelectorAll('.dashboard-section'));
+
+                const setActiveSection = (targetId) => {
+                    if (!targetId) {
+                        sections.forEach((section, index) => {
+                            section.classList.toggle('is-active', index === 0);
+                        });
+                        return;
+                    }
+
+                    sections.forEach((section) => {
+                        const sectionId = `#${section.id}`;
+                        if (sectionId === targetId) {
+                            section.classList.add('is-active');
+                        } else {
+                            section.classList.remove('is-active');
+                        }
+                    });
+                };
 
                 navLinks.forEach((link) => {
                     link.addEventListener('click', (event) => {
@@ -488,14 +515,12 @@
                             navLinks.forEach((item) => item.classList.remove('active'));
                             link.classList.add('active');
 
-                            const targetElement = document.querySelector(targetId);
-
-                            if (targetElement) {
-                                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                            }
+                            setActiveSection(targetId);
                         }
                     });
                 });
+
+                setActiveSection(document.querySelector('.dashboard-tabs .nav-link.active')?.getAttribute('href'));
             });
         </script>
     </body>
