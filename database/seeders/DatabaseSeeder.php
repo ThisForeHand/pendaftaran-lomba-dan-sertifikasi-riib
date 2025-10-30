@@ -28,6 +28,15 @@ class DatabaseSeeder extends Seeder
             ],
         );
 
+        Admin::query()->firstOrCreate(
+            ['username' => 'test123'],
+            [
+                'name' => 'Admin Test',
+                'email' => 'test123@gmail.com',
+                'password' => Hash::make('password'),
+            ],
+        );
+
         Dosen::query()->firstOrCreate(
             ['username' => 'dosen'],
             [
@@ -35,6 +44,16 @@ class DatabaseSeeder extends Seeder
                 'email' => 'dosen@example.com',
                 'phone' => '081234567890',
                 'password' => Hash::make('dosen123'),
+            ],
+        );
+
+        Dosen::query()->firstOrCreate(
+            ['username' => 'test123'],
+            [
+                'name' => 'Dosen Test',
+                'email' => 'test123@gmail.com',
+                'phone' => '081234567890',
+                'password' => Hash::make('password'),
             ],
         );
     }
