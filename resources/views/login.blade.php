@@ -226,16 +226,16 @@
             <form action="{{ route('login.attempt') }}" method="post" novalidate>
                 @csrf
                 <div class="input-field">
-                    <label for="email">Email</label>
+                    <label for="username">Username</label>
                     <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="Masukkan email anda"
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Masukkan username anda"
                         autocomplete="username"
-                        value="{{ old('email') }}"
+                        value="{{ old('username') }}"
                     />
-                    @error('email')
+                    @error('username')
                         <p style="margin: 0; color: #c0392b; font-size: 0.9rem;">{{ $message }}</p>
                     @enderror
                 </div>

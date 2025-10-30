@@ -17,6 +17,7 @@ class Dosen extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
         'phone',

@@ -20,17 +20,19 @@ class DatabaseSeeder extends Seeder
         SertifikasiRegistration::factory()->count(5)->create();
 
         Admin::query()->firstOrCreate(
-            ['email' => 'admin@example.com'],
+            ['username' => 'admin'],
             [
                 'name' => 'Administrator',
+                'email' => 'admin@example.com',
                 'password' => Hash::make('admin123'),
             ],
         );
 
         Dosen::query()->firstOrCreate(
-            ['email' => 'dosen@example.com'],
+            ['username' => 'dosen'],
             [
                 'name' => 'Dosen Pembimbing',
+                'email' => 'dosen@example.com',
                 'phone' => '081234567890',
                 'password' => Hash::make('dosen123'),
             ],

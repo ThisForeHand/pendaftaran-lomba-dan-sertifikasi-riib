@@ -26,20 +26,25 @@ class LoginController extends Controller
     public function login(Request $request): RedirectResponse
     {
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
+            'username' => ['required', 'string'],
             'password' => ['required', 'string'],
         ]);
 
-        $throttleKey = strtolower($credentials['email']) . '|' . $request->ip();
+        $throttleKey = strtolower($credentials['username']) . '|' . $request->ip();
 
         if (RateLimiter::tooManyAttempts($throttleKey, 5)) {
             throw ValidationException::withMessages([
-                'email' => __('Terlalu banyak percobaan login. Silakan coba lagi nanti.'),
+                'username' => __('Terlalu banyak percobaan login. Silakan coba lagi nanti.'),
             ])->status(429);
         }
 
         foreach (['admin' => route('admin.lomba'), 'lecturer' => route('dosen.lomba')] as $guard => $redirectRoute) {
-            if (Auth::guard($guard)->attempt($credentials, $request->boolean('remember'))) {
+            if (
+                Auth::guard($guard)->attempt([
+                    'username' => $credentials['username'],
+                    'password' => $credentials['password'],
+                ], $request->boolean('remember'))
+            ) {
                 $request->session()->regenerate();
                 RateLimiter::clear($throttleKey);
 
@@ -50,7 +55,7 @@ class LoginController extends Controller
         RateLimiter::hit($throttleKey, 60);
 
         throw ValidationException::withMessages([
-            'email' => __('Kredensial tidak ditemukan pada akun admin maupun dosen.'),
+            'username' => __('Kredensial tidak ditemukan pada akun admin maupun dosen.'),
         ]);
     }
 
