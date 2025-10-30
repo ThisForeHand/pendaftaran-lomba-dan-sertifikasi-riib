@@ -98,6 +98,7 @@
                 color: #24345a;
             }
 
+            input[type="text"],
             input[type="email"],
             input[type="password"] {
                 width: 100%;
@@ -111,6 +112,7 @@
                 transition: border 0.2s ease, box-shadow 0.2s ease;
             }
 
+            input[type="text"]:focus,
             input[type="email"]:focus,
             input[type="password"]:focus {
                 outline: none;
