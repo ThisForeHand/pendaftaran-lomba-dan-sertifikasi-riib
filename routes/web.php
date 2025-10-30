@@ -15,8 +15,8 @@ Route::post('/pendaftaran-lomba', [LombaRegistrationController::class, 'store'])
 Route::get('/pendaftaran-sertifikasi', [SertifikasiRegistrationController::class, 'create'])->name('pendaftaran.sertifikasi');
 Route::post('/pendaftaran-sertifikasi', [SertifikasiRegistrationController::class, 'store'])->name('pendaftaran.sertifikasi.store');
 
-Route::get('/admin/login', [LoginController::class, 'show'])->name('admin.login');
-Route::post('/admin/login', [LoginController::class, 'login'])->name('admin.login.attempt');
+Route::get('/login', [LoginController::class, 'show'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login.attempt');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware('auth:admin')->group(function () {

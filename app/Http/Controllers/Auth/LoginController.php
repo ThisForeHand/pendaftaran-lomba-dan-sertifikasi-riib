@@ -17,7 +17,7 @@ class LoginController extends Controller
      */
     public function show(): View
     {
-        return view('admin.login');
+        return view('login');
     }
 
     /**
@@ -68,6 +68,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('admin.login');
+        return redirect()->route('login');
     }
 }
