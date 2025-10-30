@@ -19,23 +19,30 @@ class DatabaseSeeder extends Seeder
         LombaRegistration::factory()->count(5)->create();
         SertifikasiRegistration::factory()->count(5)->create();
 
-        Admin::query()->firstOrCreate(
-            ['username' => 'admin'],
-            [
-                'name' => 'Administrator',
-                'email' => 'admin@example.com',
-                'password' => Hash::make('admin123'),
-            ],
-        );
+        $adminDefaults = config('accounts.admin');
+        $lecturerDefaults = config('accounts.lecturer');
 
-        Dosen::query()->firstOrCreate(
-            ['username' => 'dosen'],
-            [
-                'name' => 'Dosen Pembimbing',
-                'email' => 'dosen@example.com',
-                'phone' => '081234567890',
-                'password' => Hash::make('dosen123'),
-            ],
-        );
+        if (! empty($adminDefaults)) {
+            Admin::query()->firstOrCreate(
+                ['username' => $adminDefaults['username']],
+                [
+                    'name' => $adminDefaults['name'],
+                    'email' => $adminDefaults['email'],
+                    'password' => Hash::make($adminDefaults['password']),
+                ],
+            );
+        }
+
+        if (! empty($lecturerDefaults)) {
+            Dosen::query()->firstOrCreate(
+                ['username' => $lecturerDefaults['username']],
+                [
+                    'name' => $lecturerDefaults['name'],
+                    'email' => $lecturerDefaults['email'],
+                    'phone' => $lecturerDefaults['phone'],
+                    'password' => Hash::make($lecturerDefaults['password']),
+                ],
+            );
+        }
     }
 }
