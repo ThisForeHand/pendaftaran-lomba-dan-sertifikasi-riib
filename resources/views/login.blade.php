@@ -87,6 +87,13 @@
                 gap: 20px;
             }
 
+            fieldset {
+                border: 0;
+                margin: 0;
+                padding: 0;
+                min-inline-size: 0;
+            }
+
             .input-field {
                 display: grid;
                 gap: 10px;
@@ -178,6 +185,46 @@
                 transform: translateY(0);
             }
 
+            .role-selector {
+                display: grid;
+                gap: 12px;
+            }
+
+            .role-selector legend {
+                font-weight: 600;
+                font-size: 0.95rem;
+                color: #24345a;
+            }
+
+            .role-options {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .role-option {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 10px 14px;
+                border-radius: 12px;
+                border: 1px solid rgba(76, 98, 144, 0.22);
+                background: #f7f8fb;
+                cursor: pointer;
+                transition: border 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+            }
+
+            .role-option input {
+                accent-color: #1e4ba9;
+            }
+
+            .role-option:hover,
+            .role-option:focus-within {
+                border-color: rgba(30, 75, 169, 0.6);
+                box-shadow: 0 0 0 4px rgba(30, 75, 169, 0.15);
+                background: #ffffff;
+            }
+
             .help-text {
                 margin: 0;
                 text-align: center;
@@ -241,6 +288,33 @@
                         <p style="margin: 0; color: #c0392b; font-size: 0.9rem;">{{ $message }}</p>
                     @enderror
                 </div>
+
+                <fieldset class="role-selector">
+                    <legend>Pilih Jenis Akun</legend>
+                    <div class="role-options">
+                        <label class="role-option">
+                            <input
+                                type="radio"
+                                name="role"
+                                value="admin"
+                                {{ old('role', 'admin') === 'admin' ? 'checked' : '' }}
+                            />
+                            <span>Admin</span>
+                        </label>
+                        <label class="role-option">
+                            <input
+                                type="radio"
+                                name="role"
+                                value="lecturer"
+                                {{ old('role') === 'lecturer' ? 'checked' : '' }}
+                            />
+                            <span>Dosen</span>
+                        </label>
+                    </div>
+                    @error('role')
+                        <p style="margin: 0; color: #c0392b; font-size: 0.9rem;">{{ $message }}</p>
+                    @enderror
+                </fieldset>
 
                 <div class="input-field">
                     <label for="password">Kata Sandi</label>
