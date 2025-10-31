@@ -79,19 +79,38 @@
                 gap: 10px;
             }
 
-            .card-link {
+            .card-title {
                 font-size: clamp(1.28rem, 2.6vw, 1.58rem);
                 font-weight: 600;
                 color: #2968f6;
                 text-decoration: underline;
-                transition: color 0.2s ease, text-decoration-color 0.2s ease;
                 text-decoration-thickness: 2px;
                 text-underline-offset: 6px;
             }
 
-            .card-link:hover,
-            .card-link:focus {
-                color: #174be4;
+            .card-button {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                border: none;
+                background: linear-gradient(135deg, #3068ff 0%, #1f49e0 100%);
+                color: #ffffff;
+                font-weight: 600;
+                font-size: 0.95rem;
+                padding: 10px 20px;
+                border-radius: 999px;
+                text-decoration: none;
+                box-shadow: 0 12px 24px rgba(41, 104, 246, 0.22);
+                transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+                width: fit-content;
+            }
+
+            .card-button:hover,
+            .card-button:focus {
+                transform: translateY(-2px);
+                box-shadow: 0 14px 28px rgba(31, 73, 224, 0.26);
+                background: linear-gradient(135deg, #2a5cea 0%, #1a3fba 100%);
             }
 
             .link-block p {
@@ -195,17 +214,19 @@
             <main class="main-card">
                 <div class="link-row">
                     <div class="link-block">
-                        <a class="card-link" href="{{ route('pendaftaran.lomba') }}">Pendaftaran Lomba</a>
+                        <div class="card-title">Pendaftaran Lomba</div>
                         <p>
                             Daftarkan diri Anda untuk ikut kompetisi. Terbuka untuk mahasiswa aktif dari seluruh
                             perguruan tinggi.
                         </p>
+                        <a class="card-button" href="{{ route('pendaftaran.lomba') }}">Daftar</a>
                     </div>
                     <div class="link-block">
-                        <a class="card-link" href="{{ route('pendaftaran.sertifikasi') }}">Pendaftaran Sertifikasi</a>
+                        <div class="card-title">Pendaftaran Sertifikasi</div>
                         <p>
                             Ikuti jadwal sertifikasi terbaru. Program sertifikasi khusus dosen untuk menguatkan kompetensi, portofolio, dan jenjang karier Anda.
                         </p>
+                        <a class="card-button" href="{{ route('pendaftaran.sertifikasi') }}">Daftar</a>
                     </div>
                 </div>
 
