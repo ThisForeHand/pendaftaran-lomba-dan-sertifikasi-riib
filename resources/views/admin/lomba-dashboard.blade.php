@@ -38,11 +38,14 @@
                 gap: clamp(24px, 4vw, 32px);
             }
 
+            .logout-wrapper {
+                display: flex;
+                justify-content: flex-end;
+                margin-top: clamp(24px, 4vw, 32px);
+            }
+
             .logout-form {
-                position: fixed;
-                left: clamp(16px, 4vw, 32px);
-                bottom: clamp(16px, 4vw, 32px);
-                z-index: 10;
+                margin: 0;
             }
 
             .logout-button {
@@ -550,6 +553,13 @@
                     </table>
                 </div>
 
+                <div class="logout-wrapper">
+                    <form method="POST" action="{{ route('logout') }}" class="logout-form">
+                        @csrf
+                        <button type="submit" class="logout-button">Keluar</button>
+                    </form>
+                </div>
+
                 <div class="footer-actions">
                     <div class="footer-actions-left">
                         <span class="action-info">Login tidak diperlukan untuk melihat data.</span>
@@ -561,10 +571,6 @@
                 </div>
             </section>
         </div>
-        <form method="POST" action="{{ route('logout') }}" class="logout-form">
-            @csrf
-            <button type="submit" class="logout-button">Keluar</button>
-        </form>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 const deleteButton = document.querySelector('.action-button.delete');
