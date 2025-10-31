@@ -34,12 +34,13 @@ class LoginController extends Controller
     {
         $this->prepareAuthenticationStorage();
 
-        $credentials = $request->validate([
+        $validated = $request->validate([
             'username' => ['required', 'string'],
             'password' => ['required', 'string'],
+            'role' => ['required', 'in:admin,lecturer'],
         ]);
 
-        $throttleKey = strtolower($credentials['username']) . '|' . $request->ip();
+        $throttleKey = strtolower($validated['username']) . '|' . $validated['role'] . '|' . $request->ip();
 
         if (RateLimiter::tooManyAttempts($throttleKey, 5)) {
             throw ValidationException::withMessages([
@@ -47,24 +48,28 @@ class LoginController extends Controller
             ])->status(429);
         }
 
-        foreach (['admin' => route('admin.lomba'), 'lecturer' => route('dosen.lomba')] as $guard => $redirectRoute) {
-            if (
-                Auth::guard($guard)->attempt([
-                    'username' => $credentials['username'],
-                    'password' => $credentials['password'],
-                ], $request->boolean('remember'))
-            ) {
-                $request->session()->regenerate();
-                RateLimiter::clear($throttleKey);
+        $guard = $validated['role'];
+        $credentials = [
+            'username' => $validated['username'],
+            'password' => $validated['password'],
+        ];
 
-                return redirect()->intended($redirectRoute);
-            }
+        $redirectRoute = $guard === 'admin' ? route('admin.lomba') : route('dosen.lomba');
+
+        if (Auth::guard($guard)->attempt($credentials, $request->boolean('remember'))) {
+            $request->session()->regenerate();
+            RateLimiter::clear($throttleKey);
+
+            return redirect()->intended($redirectRoute);
         }
 
         RateLimiter::hit($throttleKey, 60);
 
         throw ValidationException::withMessages([
-            'username' => __('Kredensial tidak ditemukan pada akun admin maupun dosen.'),
+            'username' => __(
+                'Kredensial tidak sesuai dengan akun :role yang dipilih.',
+                ['role' => $guard === 'admin' ? 'admin' : 'dosen']
+            ),
         ]);
     }
 
