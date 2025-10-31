@@ -38,11 +38,14 @@
                 gap: clamp(24px, 4vw, 32px);
             }
 
+            .logout-wrapper {
+                display: flex;
+                justify-content: flex-end;
+                margin-top: clamp(24px, 4vw, 32px);
+            }
+
             .logout-form {
-                position: fixed;
-                left: clamp(16px, 4vw, 32px);
-                bottom: clamp(16px, 4vw, 32px);
-                z-index: 10;
+                margin: 0;
             }
 
             .logout-button {
@@ -478,6 +481,13 @@
                         </tbody>
                     </table>
                 </div>
+
+                <div class="logout-wrapper">
+                    <form method="POST" action="{{ route('logout') }}" class="logout-form">
+                        @csrf
+                        <button type="submit" class="logout-button">Keluar</button>
+                    </form>
+                </div>
             </section>
 
             <section id="pengaturan-akun" class="card dashboard-section" aria-labelledby="title-pengaturan-akun">
@@ -526,10 +536,6 @@
                 </form>
             </section>
         </div>
-        <form method="POST" action="{{ route('logout') }}" class="logout-form">
-            @csrf
-            <button type="submit" class="logout-button">Keluar</button>
-        </form>
         <script>
             document.addEventListener('DOMContentLoaded', () => {
                 const navLinks = Array.from(document.querySelectorAll('.dashboard-tabs .nav-link'));
