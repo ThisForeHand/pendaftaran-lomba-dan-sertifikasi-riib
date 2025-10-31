@@ -40,8 +40,8 @@
 
             .logout-wrapper {
                 display: flex;
-                justify-content: flex-end;
-                margin-top: clamp(24px, 4vw, 32px);
+                justify-content: flex-start;
+                margin-top: clamp(16px, 3vw, 24px);
             }
 
             .logout-form {
@@ -551,13 +551,13 @@
                             @endif
                         </tbody>
                     </table>
-                </div>
 
-                <div class="logout-wrapper">
-                    <form method="POST" action="{{ route('logout') }}" class="logout-form">
-                        @csrf
-                        <button type="submit" class="logout-button">Keluar</button>
-                    </form>
+                    <div class="logout-wrapper">
+                        <form method="POST" action="{{ route('logout') }}" class="logout-form">
+                            @csrf
+                            <button type="submit" class="logout-button">Keluar</button>
+                        </form>
+                    </div>
                 </div>
 
                 <div class="footer-actions">
