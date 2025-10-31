@@ -38,6 +38,32 @@
                 gap: clamp(24px, 4vw, 32px);
             }
 
+            .logout-form {
+                position: fixed;
+                left: clamp(16px, 4vw, 32px);
+                bottom: clamp(16px, 4vw, 32px);
+                z-index: 10;
+            }
+
+            .logout-button {
+                border: none;
+                border-radius: 999px;
+                padding: 12px 28px;
+                background: #c41f3a;
+                color: #ffffff;
+                font-size: 0.96rem;
+                font-weight: 600;
+                cursor: pointer;
+                box-shadow: 0 14px 26px rgba(196, 31, 58, 0.2);
+                transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+            }
+
+            .logout-button:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 16px 34px rgba(196, 31, 58, 0.28);
+                filter: brightness(1.02);
+            }
+
             .dashboard-header-card {
                 background: #ffffff;
                 border-radius: 28px;
@@ -517,6 +543,10 @@
                 </div>
             </section>
         </div>
+        <form method="POST" action="{{ route('logout') }}" class="logout-form">
+            @csrf
+            <button type="submit" class="logout-button">Keluar</button>
+        </form>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 const deleteButton = document.querySelector('.action-button.delete');
