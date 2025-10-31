@@ -37,10 +37,28 @@ class LoginController extends Controller
         $validated = $request->validate([
             'username' => ['required', 'string'],
             'password' => ['required', 'string'],
-            'role' => ['required', 'in:admin,lecturer'],
         ]);
 
-        $throttleKey = strtolower($validated['username']) . '|' . $validated['role'] . '|' . $request->ip();
+        $guardCandidates = [];
+
+        if (Admin::query()->where('username', $validated['username'])->exists()) {
+            $guardCandidates['admin'] = route('admin.lomba');
+        }
+
+        if (Dosen::query()->where('username', $validated['username'])->exists()) {
+            $guardCandidates['lecturer'] = route('dosen.lomba');
+        }
+
+        if (empty($guardCandidates)) {
+            $guardCandidates = [
+                'admin' => route('admin.lomba'),
+                'lecturer' => route('dosen.lomba'),
+            ];
+        }
+
+        $throttleKey = strtolower($validated['username'])
+            . '|' . implode(',', array_keys($guardCandidates))
+            . '|' . $request->ip();
 
         if (RateLimiter::tooManyAttempts($throttleKey, 5)) {
             throw ValidationException::withMessages([
@@ -48,28 +66,24 @@ class LoginController extends Controller
             ])->status(429);
         }
 
-        $guard = $validated['role'];
         $credentials = [
             'username' => $validated['username'],
             'password' => $validated['password'],
         ];
 
-        $redirectRoute = $guard === 'admin' ? route('admin.lomba') : route('dosen.lomba');
+        foreach ($guardCandidates as $guard => $redirectRoute) {
+            if (Auth::guard($guard)->attempt($credentials, $request->boolean('remember'))) {
+                $request->session()->regenerate();
+                RateLimiter::clear($throttleKey);
 
-        if (Auth::guard($guard)->attempt($credentials, $request->boolean('remember'))) {
-            $request->session()->regenerate();
-            RateLimiter::clear($throttleKey);
-
-            return redirect()->intended($redirectRoute);
+                return redirect()->intended($redirectRoute);
+            }
         }
 
         RateLimiter::hit($throttleKey, 60);
 
         throw ValidationException::withMessages([
-            'username' => __(
-                'Kredensial tidak sesuai dengan akun :role yang dipilih.',
-                ['role' => $guard === 'admin' ? 'admin' : 'dosen']
-            ),
+            'username' => __('Kredensial tidak sesuai dengan akun yang terdaftar.'),
         ]);
     }
 
