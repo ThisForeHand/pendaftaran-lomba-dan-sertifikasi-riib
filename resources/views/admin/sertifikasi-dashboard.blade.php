@@ -46,22 +46,40 @@
             }
 
             .logout-button {
-                border: none;
-                border-radius: 999px;
-                padding: 12px 28px;
-                background: #c41f3a;
-                color: #ffffff;
-                font-size: 0.96rem;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                border: 1.5px solid #1d4ed8;
+                border-radius: 14px;
+                padding: 10px 18px;
+                background: #ffffff;
+                color: #1d4ed8;
+                font-size: 0.94rem;
                 font-weight: 600;
                 cursor: pointer;
-                box-shadow: 0 14px 26px rgba(196, 31, 58, 0.2);
-                transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+                box-shadow: 0 10px 30px rgba(29, 78, 216, 0.12);
+                transition: background-color 0.2s ease, box-shadow 0.2s ease,
+                    transform 0.2s ease;
+            }
+
+            .logout-button::before {
+                content: "";
+                width: 16px;
+                height: 16px;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'%3E%3Cpath stroke='%231d4ed8' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8' d='M9 5H5.4C4.075 5 3 6.12 3 7.5v9c0 1.38 1.075 2.5 2.4 2.5H9m7-4 4-4m0 0-4-4m4 4H9'/%3E%3C/svg%3E");
+                background-size: contain;
+                background-repeat: no-repeat;
             }
 
             .logout-button:hover {
+                background: #eef3ff;
+                box-shadow: 0 12px 34px rgba(29, 78, 216, 0.16);
                 transform: translateY(-1px);
-                box-shadow: 0 16px 34px rgba(196, 31, 58, 0.28);
-                filter: brightness(1.02);
+            }
+
+            .logout-button:focus-visible {
+                outline: 3px solid rgba(29, 78, 216, 0.25);
+                outline-offset: 3px;
             }
 
             .dashboard-header-card {
