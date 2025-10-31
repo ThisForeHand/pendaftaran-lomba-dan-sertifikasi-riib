@@ -552,17 +552,14 @@
                         </tbody>
                     </table>
 
-                    <div class="logout-wrapper">
-                        <form method="POST" action="{{ route('logout') }}" class="logout-form">
-                            @csrf
-                            <button type="submit" class="logout-button">Keluar</button>
-                        </form>
-                    </div>
                 </div>
 
                 <div class="footer-actions">
                     <div class="footer-actions-left">
-                        <span class="action-info">Login tidak diperlukan untuk melihat data.</span>
+                        <form method="POST" action="{{ route('logout') }}" class="logout-form">
+                            @csrf
+                            <button type="submit" class="logout-button">Keluar</button>
+                        </form>
                     </div>
                     <div class="footer-actions-right">
                         <a href="#" class="action-button download">Unduh</a>
