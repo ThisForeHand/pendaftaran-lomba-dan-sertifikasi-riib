@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\LombaRegistration;
+use App\Models\SertifikasiRegistration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -61,15 +62,23 @@ class LombaRegistrationController extends Controller
      */
     public function index(): View
     {
-        $tableExists = Schema::hasTable('lomba_registrations');
+        $lombaTableExists = Schema::hasTable('lomba_registrations');
+        $sertifikasiTableExists = Schema::hasTable('sertifikasi_registrations');
 
-        $registrations = $tableExists
+        $lombaRegistrations = $lombaTableExists
             ? LombaRegistration::latest()->get()
             : collect();
 
-        return view('admin.lomba-dashboard', [
-            'registrations' => $registrations,
-            'tableExists' => $tableExists,
+        $sertifikasiRegistrations = $sertifikasiTableExists
+            ? SertifikasiRegistration::latest()->get()
+            : collect();
+
+        return view('admin.dashboard', [
+            'activeTab' => 'lomba',
+            'lombaRegistrations' => $lombaRegistrations,
+            'lombaTableExists' => $lombaTableExists,
+            'sertifikasiRegistrations' => $sertifikasiRegistrations,
+            'sertifikasiTableExists' => $sertifikasiTableExists,
         ]);
     }
 
