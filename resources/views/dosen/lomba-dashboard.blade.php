@@ -38,10 +38,19 @@
                 gap: clamp(24px, 4vw, 32px);
             }
 
-            .logout-wrapper {
+            .footer-actions {
                 display: flex;
-                justify-content: flex-start;
-                margin-top: clamp(16px, 3vw, 24px);
+                justify-content: space-between;
+                align-items: center;
+                gap: 16px;
+                padding-top: 20px;
+                margin-top: 8px;
+                border-top: 1px solid rgba(47, 76, 178, 0.12);
+            }
+
+            .footer-actions-left {
+                display: flex;
+                align-items: center;
             }
 
             .logout-form {
@@ -386,6 +395,15 @@
                     overflow-x: auto;
                 }
 
+                .footer-actions {
+                    flex-direction: column;
+                    align-items: stretch;
+                }
+
+                .footer-actions-left {
+                    justify-content: center;
+                }
+
                 .form-grid {
                     grid-template-columns: 1fr;
                 }
@@ -481,11 +499,13 @@
                         </tbody>
                     </table>
 
-                    <div class="logout-wrapper">
-                        <form method="POST" action="{{ route('logout') }}" class="logout-form">
-                            @csrf
-                            <button type="submit" class="logout-button">Keluar</button>
-                        </form>
+                    <div class="footer-actions">
+                        <div class="footer-actions-left">
+                            <form method="POST" action="{{ route('logout') }}" class="logout-form">
+                                @csrf
+                                <button type="submit" class="logout-button">Keluar</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </section>
