@@ -134,6 +134,26 @@
                 cursor: pointer;
             }
 
+            .dashboard-tabs .nav-link-action {
+                padding: 10px 22px;
+                border-radius: 999px;
+                background: linear-gradient(135deg, #1f4db1, #355ed8);
+                color: #ffffff;
+                box-shadow: 0 16px 36px rgba(33, 62, 157, 0.18);
+                transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+            }
+
+            .dashboard-tabs .nav-link-action::after {
+                display: none;
+            }
+
+            .dashboard-tabs .nav-link-action:hover {
+                color: #ffffff;
+                transform: translateY(-1px);
+                box-shadow: 0 20px 44px rgba(33, 62, 157, 0.24);
+                filter: brightness(1.02);
+            }
+
             .dashboard-tabs .nav-link::after {
                 content: "";
                 position: absolute;
@@ -483,6 +503,12 @@
                         >
                             Data Sertifikasi
                         </button>
+                        <a
+                            class="nav-link nav-link-action"
+                            href="{{ route('admin.dosen.create') }}"
+                        >
+                            Buat Akun Dosen
+                        </a>
                     </nav>
                 </div>
             </div>

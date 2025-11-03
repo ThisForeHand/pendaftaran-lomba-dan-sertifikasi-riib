@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminLecturerController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\LombaRegistrationController;
 use App\Http\Controllers\SertifikasiRegistrationController;
@@ -22,6 +23,8 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/lomba', [LombaRegistrationController::class, 'index'])->name('admin.lomba');
     Route::get('/admin/sertifikasi', [SertifikasiRegistrationController::class, 'index'])->name('admin.sertifikasi');
+    Route::get('/admin/dosen/create', [AdminLecturerController::class, 'create'])->name('admin.dosen.create');
+    Route::post('/admin/dosen', [AdminLecturerController::class, 'store'])->name('admin.dosen.store');
 });
 
 Route::middleware('auth:lecturer')->group(function () {
