@@ -26,4 +26,5 @@ Route::middleware('auth:admin')->group(function () {
 
 Route::middleware('auth:lecturer')->group(function () {
     Route::get('/dosen/lomba', [LombaRegistrationController::class, 'lecturerDashboard'])->name('dosen.lomba');
+    Route::get('/dosen/lomba/download', [LombaRegistrationController::class, 'downloadLecturerRegistrations'])->name('dosen.lomba.download');
 });

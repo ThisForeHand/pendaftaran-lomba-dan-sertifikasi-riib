@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class LombaRegistrationController extends Controller
 {
@@ -108,5 +109,46 @@ class LombaRegistrationController extends Controller
             'tableExists' => $tableExists,
             'lecturerAccount' => $lecturerAccount,
         ]);
+    }
+
+    public function downloadLecturerRegistrations(): StreamedResponse
+    {
+        $tableExists = Schema::hasTable('lomba_registrations');
+
+        $registrations = $tableExists
+            ? LombaRegistration::latest()->get()
+            : collect();
+
+        $headers = [
+            'No',
+            'Nama',
+            'NIM',
+            'Program Studi',
+            'No. WhatsApp',
+            'Peran Tim',
+            'Status Tim',
+            'Tanggal Pendaftaran',
+        ];
+
+        return response()->streamDownload(function () use ($registrations, $headers) {
+            $handle = fopen('php://output', 'w');
+
+            fputcsv($handle, $headers);
+
+            foreach ($registrations as $index => $registration) {
+                fputcsv($handle, [
+                    $index + 1,
+                    $registration->nama,
+                    $registration->nim,
+                    $registration->program_studi,
+                    $registration->whatsapp,
+                    $registration->pilihan_peran,
+                    $registration->status_tim,
+                    $registration->created_at ? $registration->created_at->format('Y-m-d H:i:s') : '',
+                ]);
+            }
+
+            fclose($handle);
+        }, 'data-pendaftaran-lomba.csv');
     }
 }
