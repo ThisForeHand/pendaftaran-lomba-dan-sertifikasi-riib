@@ -5,9 +5,8 @@ use App\Http\Controllers\LombaRegistrationController;
 use App\Http\Controllers\SertifikasiRegistrationController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'welcome-lomba')->name('welcome.lomba');
+Route::view('/portal-sertifikasi', 'welcome-sertifikasi')->name('welcome.sertifikasi');
 
 Route::get('/pendaftaran-lomba', [LombaRegistrationController::class, 'create'])->name('pendaftaran.lomba');
 Route::post('/pendaftaran-lomba', [LombaRegistrationController::class, 'store'])->name('pendaftaran.lomba.store');
