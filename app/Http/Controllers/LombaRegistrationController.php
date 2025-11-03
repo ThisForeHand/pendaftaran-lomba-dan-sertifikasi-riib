@@ -146,24 +146,39 @@ class LombaRegistrationController extends Controller
         ];
 
         return response()->streamDownload(function () use ($registrations, $headers) {
-            $handle = fopen('php://output', 'w');
+            $escape = static fn ($value) => htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
 
-            fputcsv($handle, $headers);
+            echo '<table border="1">';
+            echo '<thead><tr>';
 
-            foreach ($registrations as $index => $registration) {
-                fputcsv($handle, [
-                    $index + 1,
-                    $registration->nama,
-                    $registration->nim,
-                    $registration->program_studi,
-                    $registration->whatsapp,
-                    $registration->pilihan_peran,
-                    $registration->status_tim,
-                    $registration->created_at ? $registration->created_at->format('Y-m-d H:i:s') : '',
-                ]);
+            foreach ($headers as $header) {
+                echo '<th>' . $escape($header) . '</th>';
             }
 
-            fclose($handle);
-        }, 'data-pendaftaran-lomba.csv');
+            echo '</tr></thead>';
+            echo '<tbody>';
+
+            foreach ($registrations as $index => $registration) {
+                $formattedDate = $registration->created_at
+                    ? $registration->created_at->format('Y-m-d H:i:s')
+                    : '';
+
+                echo '<tr>';
+                echo '<td>' . $escape($index + 1) . '</td>';
+                echo '<td>' . $escape($registration->nama) . '</td>';
+                echo '<td>' . $escape($registration->nim) . '</td>';
+                echo '<td>' . $escape($registration->program_studi) . '</td>';
+                echo '<td>' . $escape($registration->whatsapp) . '</td>';
+                echo '<td>' . $escape($registration->pilihan_peran) . '</td>';
+                echo '<td>' . $escape($registration->status_tim) . '</td>';
+                echo '<td>' . $escape($formattedDate) . '</td>';
+                echo '</tr>';
+            }
+
+            echo '</tbody>';
+            echo '</table>';
+        }, 'data-pendaftaran-lomba.xls', [
+            'Content-Type' => 'application/vnd.ms-excel; charset=UTF-8',
+        ]);
     }
 }
