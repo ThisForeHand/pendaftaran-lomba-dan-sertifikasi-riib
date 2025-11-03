@@ -53,7 +53,7 @@ class SertifikasiRegistrationController extends Controller
 
         return redirect()
             ->route('pendaftaran.sertifikasi')
-            ->with('status', 'Terima kasih! Data pendaftaran sertifikasi berhasil dikirim. Akan dihubungi untuk informasi lebih lanjutnya.');
+            ->with('status', 'Terima kasih! Data pendaftaran sertifikasi Anda telah kami terima. Kami akan segera menghubungi Anda untuk informasi selanjutnya.');
     }
 
     /**
