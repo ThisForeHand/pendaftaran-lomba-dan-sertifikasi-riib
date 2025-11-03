@@ -135,6 +135,22 @@
                 outline-offset: 3px;
             }
 
+            .status-message {
+                padding: 14px 18px;
+                border-radius: 18px;
+                border: 1px solid rgba(37, 99, 235, 0.18);
+                background: #f8fafc;
+                color: #1e2a52;
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+
+            .status-message.warning {
+                border-color: rgba(249, 115, 22, 0.35);
+                background: #fff7ed;
+                color: #b45309;
+            }
+
             .dashboard-header-card {
                 background: #ffffff;
                 border-radius: 28px;
@@ -197,6 +213,13 @@
                 font-weight: 600;
                 color: #1e2a52;
                 font-size: 1rem;
+            }
+
+            .admin-subtitle {
+                margin-top: 4px;
+                color: #4b5a86;
+                font-size: 0.9rem;
+                font-weight: 500;
             }
 
             .card-navigation {
@@ -454,13 +477,15 @@
     <body>
         @php
             $registrations = $registrations ?? collect();
-            $tableExists = $tableExists ?? true;
-            $account = $lecturerAccount ?? [
-                'name' => 'Dosen Pembimbing',
-                'email' => 'dosen@example.com',
-                'phone' => '081234567890',
+            $tableExists = $tableExists ?? false;
+            $account = [
+                'name' => $lecturerAccount['name'] ?? 'Dosen Pembimbing',
+                'email' => $lecturerAccount['email'] ?? 'dosen@example.com',
+                'phone' => $lecturerAccount['phone'] ?? '081234567890',
+                'program_studi' => $lecturerAccount['program_studi'] ?? null,
             ];
             $lecturerInitial = strtoupper(substr($account['name'] ?? 'D', 0, 1));
+            $hasProgramStudi = ! empty($account['program_studi']);
         @endphp
         <div class="page">
             <div class="dashboard-header-card">
@@ -474,6 +499,13 @@
                         <div>
                             <div class="admin-name">{{ $account['name'] }}</div>
                             <small style="color: #4b5a86; font-weight: 500">Akun pribadi dosen</small>
+                            <div class="admin-subtitle">
+                                @if ($hasProgramStudi)
+                                    Program Studi: {{ $account['program_studi'] }}
+                                @else
+                                    Program Studi belum ditetapkan
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </header>
@@ -496,6 +528,12 @@
                         Silakan hubungi admin apabila menemukan data yang perlu diperbarui.
                     </p>
                 </div>
+                @if (! $hasProgramStudi)
+                    <div class="status-message warning">
+                        Akun dosen Anda belum memiliki program studi yang terdaftar. Silakan hubungi admin
+                        untuk memperbarui informasi prodi sebelum mengakses data mahasiswa.
+                    </div>
+                @endif
                 <div class="table-container">
                     <table data-empty-text="Belum ada data pendaftaran lomba.">
                         <thead>
@@ -530,7 +568,11 @@
                                 <tr class="empty-state">
                                     <td colspan="8">
                                         @if (! $tableExists)
-                                            Tabel penyimpanan data belum tersedia.
+                                            Tabel pendaftaran lomba belum tersedia. Silakan hubungi admin untuk menjalankan
+                                            migrasi database terlebih dahulu.
+                                        @elseif (! $hasProgramStudi)
+                                            Akun dosen Anda belum memiliki program studi yang terdaftar. Silakan hubungi admin
+                                            untuk memperbarui informasi prodi.
                                         @else
                                             Belum ada data pendaftaran lomba.
                                         @endif

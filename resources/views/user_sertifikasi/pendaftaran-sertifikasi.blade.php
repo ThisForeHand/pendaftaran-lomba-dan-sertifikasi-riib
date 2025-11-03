@@ -364,15 +364,6 @@
                                 >
                                 <span>Teknik Elektro</span>
                             </label>
-                            <label class="option-item">
-                                <input
-                                    type="radio"
-                                    name="program_studi"
-                                    value="Lainnya"
-                                    @checked(old('program_studi') === 'Lainnya')
-                                >
-                                <span>Lainnya</span>
-                            </label>
                         </div>
                     </fieldset>
 

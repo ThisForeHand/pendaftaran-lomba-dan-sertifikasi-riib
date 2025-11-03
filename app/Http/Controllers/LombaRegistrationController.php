@@ -88,19 +88,25 @@ class LombaRegistrationController extends Controller
      */
     public function lecturerDashboard(): View
     {
+        $lecturer = Auth::guard('lecturer')->user();
+
         $tableExists = Schema::hasTable('lomba_registrations');
 
-        $registrations = $tableExists
-            ? LombaRegistration::latest()->get()
-            : collect();
+        $registrations = collect();
 
-        $lecturer = Auth::guard('lecturer')->user();
+        if ($tableExists && $lecturer && filled($lecturer->program_studi)) {
+            $registrations = LombaRegistration::query()
+                ->where('program_studi', $lecturer->program_studi)
+                ->latest()
+                ->get();
+        }
 
         $lecturerAccount = $lecturer
             ? [
                 'name' => $lecturer->name,
                 'email' => $lecturer->email,
                 'phone' => $lecturer->phone,
+                'program_studi' => $lecturer->program_studi,
             ]
             : null;
 
@@ -113,10 +119,19 @@ class LombaRegistrationController extends Controller
 
     public function downloadLecturerRegistrations(): StreamedResponse
     {
+        $lecturer = Auth::guard('lecturer')->user();
+
+        if (! $lecturer || blank($lecturer->program_studi)) {
+            abort(403, 'Akun dosen belum memiliki informasi program studi.');
+        }
+
         $tableExists = Schema::hasTable('lomba_registrations');
 
         $registrations = $tableExists
-            ? LombaRegistration::latest()->get()
+            ? LombaRegistration::query()
+                ->where('program_studi', $lecturer->program_studi)
+                ->latest()
+                ->get()
             : collect();
 
         $headers = [

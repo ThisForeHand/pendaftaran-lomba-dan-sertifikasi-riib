@@ -14,5 +14,6 @@ return [
         'email' => env('DOSEN_EMAIL', 'dosen@example.com'),
         'password' => env('DOSEN_PASSWORD', 'dosen123'),
         'phone' => env('DOSEN_PHONE'),
+        'program_studi' => env('DOSEN_PROGRAM_STUDI'),
     ],
 ];

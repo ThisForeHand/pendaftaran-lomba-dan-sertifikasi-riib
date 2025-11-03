@@ -21,6 +21,7 @@ class Dosen extends Authenticatable
         'email',
         'password',
         'phone',
+        'program_studi',
     ];
 
     /**
