@@ -24,7 +24,7 @@
         >
             @include('admin.menus.lomba', ['activeTab' => $currentTab])
             @include('admin.menus.sertifikasi', ['activeTab' => $currentTab])
-            @include('admin.menus.dosen')
+            @include('admin.menus.dosen', ['activeTab' => $currentTab])
         </nav>
     </div>
 </div>
