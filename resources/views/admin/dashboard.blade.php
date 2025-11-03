@@ -438,60 +438,16 @@
             $sertifikasiRegistrations = $sertifikasiRegistrations ?? collect();
             $lombaTableExists = $lombaTableExists ?? true;
             $sertifikasiTableExists = $sertifikasiTableExists ?? true;
-            $adminName = 'Admin';
-            $adminInitial = strtoupper(substr($adminName, 0, 1) ?: 'A');
+            $adminName = $adminName ?? 'Admin';
+            $adminInitial = $adminInitial ?? (strtoupper(substr($adminName, 0, 1) ?: 'A'));
         @endphp
 
         <div class="page">
-            <div class="dashboard-header-card">
-                <header>
-                    <div class="title-group">
-                        <span>Dashboard Admin</span>
-                        <h1>Halo, {{ $adminName }}</h1>
-                    </div>
-                    <div class="admin-info">
-                        <div class="admin-avatar">{{ $adminInitial }}</div>
-                        <span class="admin-name">{{ $adminName }}</span>
-                    </div>
-                </header>
-
-                <div class="card-navigation">
-                    <nav
-                        class="dashboard-tabs"
-                        role="tablist"
-                        aria-label="Navigasi data pendaftaran"
-                    >
-                        <button
-                            type="button"
-                            class="nav-link {{ ($activeTab ?? 'lomba') === 'lomba' ? 'active' : '' }}"
-                            data-tab="lomba"
-                            id="tab-lomba"
-                            role="tab"
-                            aria-controls="panel-lomba"
-                            aria-selected="{{ ($activeTab ?? 'lomba') === 'lomba' ? 'true' : 'false' }}"
-                        >
-                            Data Lomba
-                        </button>
-                        <button
-                            type="button"
-                            class="nav-link {{ ($activeTab ?? 'lomba') === 'sertifikasi' ? 'active' : '' }}"
-                            data-tab="sertifikasi"
-                            id="tab-sertifikasi"
-                            role="tab"
-                            aria-controls="panel-sertifikasi"
-                            aria-selected="{{ ($activeTab ?? 'lomba') === 'sertifikasi' ? 'true' : 'false' }}"
-                        >
-                            Data Sertifikasi
-                        </button>
-                        <a
-                            class="nav-link"
-                            href="{{ route('admin.dosen.create') }}"
-                        >
-                            Buat Akun Dosen
-                        </a>
-                    </nav>
-                </div>
-            </div>
+            @include('admin.partials.topbar', [
+                'adminName' => $adminName,
+                'adminInitial' => $adminInitial,
+                'activeTab' => $activeTab ?? 'lomba',
+            ])
 
             <section
                 class="card tab-panel {{ ($activeTab ?? 'lomba') === 'lomba' ? 'active' : '' }}"
