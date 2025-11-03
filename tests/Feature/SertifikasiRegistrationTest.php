@@ -33,7 +33,7 @@ class SertifikasiRegistrationTest extends TestCase
 
         $response
             ->assertRedirect(route('pendaftaran.sertifikasi'))
-            ->assertSessionHas('status', 'Terima kasih! Data pendaftaran sertifikasi berhasil dikirim.');
+            ->assertSessionHas('status', 'Terima kasih! Data pendaftaran sertifikasi berhasil dikirim. Akan dihubungi untuk informasi lebih lanjutnya.');
 
         $this->assertDatabaseHas('sertifikasi_registrations', $payload);
     }

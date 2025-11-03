@@ -33,7 +33,7 @@ class LombaRegistrationTest extends TestCase
 
         $response
             ->assertRedirect(route('pendaftaran.lomba'))
-            ->assertSessionHas('status', 'Terima kasih! Data pendaftaran lomba berhasil dikirim.');
+            ->assertSessionHas('status', 'Terima kasih! Data pendaftaran lomba berhasil dikirim. Akan dihubungi untuk informasi lebih lanjutnya.');
 
         $this->assertDatabaseHas('lomba_registrations', $payload);
     }
