@@ -218,8 +218,7 @@
                     <p>
                         Ikuti jadwal sertifikasi terbaru khusus dosen dan tenaga pendidik. Pastikan data dan dokumen yang dibutuhkan sudah lengkap.
                     </p>
-                    <a class="card-button" href="{{ route('pendaftaran.sertifikasi') }}">Masuk ke Formulir</a>
-                    <a class="secondary-link" href="{{ route('welcome.lomba') }}">Ingin ikut lomba? Buka halaman kompetisi →</a>
+                    <a class="secondary-link" href="{{ route('portal.lomba') }}">portal-lomba →</a>
                 </div>
 
                 <div class="flow-grid">

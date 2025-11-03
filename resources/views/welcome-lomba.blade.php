@@ -219,8 +219,7 @@
                     <p>
                         Daftarkan diri Anda untuk ikut kompetisi. Terbuka untuk mahasiswa aktif dari seluruh perguruan tinggi.
                     </p>
-                    <a class="card-button" href="{{ route('pendaftaran.lomba') }}">Masuk ke Formulir</a>
-                    <a class="secondary-link" href="{{ route('welcome.sertifikasi') }}">Butuh sertifikasi? Kunjungi halaman sertifikasi →</a>
+                    <a class="secondary-link" href="{{ route('portal.sertifikasi') }}">portal-sertifikasi →</a>
                 </div>
 
                 <div class="flow-grid">
