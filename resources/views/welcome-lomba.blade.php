@@ -26,7 +26,7 @@
                 align-items: flex-start;
                 font-family: "Instrument Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
                 background: linear-gradient(180deg, #f3f7ff 0%, #f9fbff 48%, #ffffff 100%);
-                color: #1c2a4a;
+                color: #000000;
                 padding: clamp(40px, 6vw, 72px) clamp(16px, 6vw, 40px);
             }
 
@@ -50,7 +50,7 @@
                 margin: 0 0 14px;
                 font-size: clamp(2rem, 4.5vw, 2.7rem);
                 font-weight: 600;
-                color: #132452;
+                color: #000000;
                 letter-spacing: -0.02em;
             }
 
@@ -59,7 +59,7 @@
                 max-width: 720px;
                 font-size: clamp(1rem, 2vw, 1.05rem);
                 line-height: 1.65;
-                color: #4c5d88;
+                color: #000000;
             }
 
             .main-card {
@@ -76,7 +76,7 @@
             .card-title {
                 font-size: clamp(1.4rem, 2.8vw, 1.68rem);
                 font-weight: 600;
-                color: #2968f6;
+                color: #000000;
                 text-decoration: underline;
                 text-decoration-thickness: 2px;
                 text-underline-offset: 6px;
@@ -108,7 +108,7 @@
             }
 
             .secondary-link {
-                color: #40507b;
+                color: #000000;
                 font-weight: 600;
                 text-decoration: none;
                 display: inline-flex;
@@ -118,7 +118,7 @@
 
             .secondary-link:hover,
             .secondary-link:focus {
-                color: #1d3fb0;
+                color: #000000;
                 text-decoration: underline;
             }
 
@@ -158,7 +158,7 @@
                 margin: 0;
                 font-size: 1.08rem;
                 font-weight: 600;
-                color: #1f2f55;
+                color: #000000;
             }
 
             .image-frame {
@@ -174,7 +174,7 @@
                 min-height: 360px;
                 display: grid;
                 place-items: center;
-                color: rgba(19, 36, 82, 0.45);
+                color: rgba(0, 0, 0, 0.45);
                 font-weight: 500;
                 text-align: center;
                 padding: 24px;
@@ -184,7 +184,7 @@
             footer {
                 text-align: center;
                 padding: 0 24px 40px;
-                color: #7585ad;
+                color: #000000;
                 font-size: 0.85rem;
             }
 
