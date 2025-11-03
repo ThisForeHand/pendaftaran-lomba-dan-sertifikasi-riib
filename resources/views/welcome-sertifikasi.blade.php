@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Pendaftaran Kompetisi & Sertifikasi</title>
+        <title>Portal Pendaftaran Sertifikasi</title>
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
@@ -25,32 +25,32 @@
                 justify-content: center;
                 align-items: flex-start;
                 font-family: "Instrument Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-                background: linear-gradient(180deg, #f3f7ff 0%, #f9fbff 48%, #ffffff 100%);
+                background: linear-gradient(180deg, #f6f2ff 0%, #fbf9ff 48%, #ffffff 100%);
                 color: #1c2a4a;
                 padding: clamp(40px, 6vw, 72px) clamp(16px, 6vw, 40px);
             }
 
             .page-wrapper {
-                width: min(1160px, 100%);
+                width: min(960px, 100%);
                 background: #ffffff;
                 border-radius: 28px;
-                border: 1px solid rgba(93, 123, 214, 0.18);
-                box-shadow: 0 30px 70px rgba(28, 42, 74, 0.08);
+                border: 1px solid rgba(139, 112, 214, 0.18);
+                box-shadow: 0 30px 70px rgba(38, 30, 74, 0.08);
                 overflow: hidden;
             }
 
             header {
                 padding: clamp(40px, 6vw, 56px) clamp(32px, 6vw, 80px) clamp(24px, 4vw, 32px);
                 text-align: center;
-                background: linear-gradient(180deg, rgba(226, 233, 255, 0.65) 0%, rgba(255, 255, 255, 0) 100%);
-                border-bottom: 1px solid rgba(93, 123, 214, 0.12);
+                background: linear-gradient(180deg, rgba(234, 226, 255, 0.65) 0%, rgba(255, 255, 255, 0) 100%);
+                border-bottom: 1px solid rgba(139, 112, 214, 0.12);
             }
 
             header h1 {
                 margin: 0 0 14px;
                 font-size: clamp(2rem, 4.5vw, 2.7rem);
                 font-weight: 600;
-                color: #132452;
+                color: #2c1a5e;
                 letter-spacing: -0.02em;
             }
 
@@ -59,7 +59,7 @@
                 max-width: 720px;
                 font-size: clamp(1rem, 2vw, 1.05rem);
                 line-height: 1.65;
-                color: #4c5d88;
+                color: #5a4d86;
             }
 
             .main-card {
@@ -68,21 +68,15 @@
                 gap: clamp(32px, 6vw, 60px);
             }
 
-            .link-row {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-                gap: clamp(24px, 4vw, 48px);
-            }
-
             .link-block {
                 display: grid;
-                gap: 10px;
+                gap: 16px;
             }
 
             .card-title {
-                font-size: clamp(1.28rem, 2.6vw, 1.58rem);
+                font-size: clamp(1.4rem, 2.8vw, 1.68rem);
                 font-weight: 600;
-                color: #2968f6;
+                color: #7b3df6;
                 text-decoration: underline;
                 text-decoration-thickness: 2px;
                 text-underline-offset: 6px;
@@ -94,14 +88,14 @@
                 justify-content: center;
                 gap: 8px;
                 border: none;
-                background: linear-gradient(135deg, #3068ff 0%, #1f49e0 100%);
+                background: linear-gradient(135deg, #7c3ffd 0%, #5a28e0 100%);
                 color: #ffffff;
                 font-weight: 600;
                 font-size: 0.95rem;
-                padding: 10px 20px;
+                padding: 12px 26px;
                 border-radius: 999px;
                 text-decoration: none;
-                box-shadow: 0 12px 24px rgba(41, 104, 246, 0.22);
+                box-shadow: 0 12px 24px rgba(123, 61, 246, 0.22);
                 transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
                 width: fit-content;
             }
@@ -109,14 +103,23 @@
             .card-button:hover,
             .card-button:focus {
                 transform: translateY(-2px);
-                box-shadow: 0 14px 28px rgba(31, 73, 224, 0.26);
-                background: linear-gradient(135deg, #2a5cea 0%, #1a3fba 100%);
+                box-shadow: 0 14px 28px rgba(90, 40, 224, 0.26);
+                background: linear-gradient(135deg, #6d32eb 0%, #4a20c4 100%);
             }
 
-            .link-block p {
-                margin: 0;
-                color: #4b5c82;
-                line-height: 1.6;
+            .secondary-link {
+                color: #4a3b7a;
+                font-weight: 600;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .secondary-link:hover,
+            .secondary-link:focus {
+                color: #2e1f80;
+                text-decoration: underline;
             }
 
             .flow-grid {
@@ -134,7 +137,7 @@
                 bottom: 0;
                 left: 50%;
                 width: 1px;
-                background: rgba(93, 123, 214, 0.18);
+                background: rgba(139, 112, 214, 0.18);
                 transform: translateX(-50%);
             }
 
@@ -155,23 +158,23 @@
                 margin: 0;
                 font-size: 1.08rem;
                 font-weight: 600;
-                color: #1f2f55;
+                color: #2f2262;
             }
 
             .image-frame {
-                border: 1px solid rgba(93, 123, 214, 0.25);
+                border: 1px solid rgba(139, 112, 214, 0.25);
                 border-radius: 20px;
                 background: repeating-linear-gradient(
                     135deg,
-                    rgba(226, 233, 255, 0.7) 0px,
-                    rgba(226, 233, 255, 0.7) 22px,
+                    rgba(234, 226, 255, 0.7) 0px,
+                    rgba(234, 226, 255, 0.7) 22px,
                     rgba(255, 255, 255, 0.9) 22px,
                     rgba(255, 255, 255, 0.9) 44px
                 );
                 min-height: 360px;
                 display: grid;
                 place-items: center;
-                color: rgba(19, 36, 82, 0.45);
+                color: rgba(47, 34, 98, 0.45);
                 font-weight: 500;
                 text-align: center;
                 padding: 24px;
@@ -181,7 +184,7 @@
             footer {
                 text-align: center;
                 padding: 0 24px 40px;
-                color: #7585ad;
+                color: #8a7fb0;
                 font-size: 0.85rem;
             }
 
@@ -197,48 +200,31 @@
                 .main-card {
                     padding: 28px 20px 36px;
                 }
-
             }
         </style>
     </head>
     <body>
         <div class="page-wrapper">
             <header>
-                <h1>Pendaftaran Kompetisi &amp; Sertifikasi</h1>
+                <h1>Portal Pendaftaran Sertifikasi</h1>
                 <p>
-                    Daftarkan diri Anda ke berbagai ajang lomba dan program sertifikasi. Ikuti alur
-                    pendaftaran yang sudah kami susun agar setiap tahapan dapat dipersiapkan dengan mudah.
+                    Dapatkan sertifikasi profesional untuk menguatkan kompetensi, portofolio, dan jenjang karier Anda.
                 </p>
             </header>
 
             <main class="main-card">
-                <div class="link-row">
-                    <div class="link-block">
-                        <div class="card-title">Pendaftaran Lomba</div>
-                        <p>
-                            Daftarkan diri Anda untuk ikut kompetisi. Terbuka untuk mahasiswa aktif dari seluruh
-                            perguruan tinggi.
-                        </p>
-                        <a class="card-button" href="{{ route('pendaftaran.lomba') }}">Daftar</a>
-                    </div>
-                    <div class="link-block">
-                        <div class="card-title">Pendaftaran Sertifikasi</div>
-                        <p>
-                            Ikuti jadwal sertifikasi terbaru. Program sertifikasi khusus dosen untuk menguatkan kompetensi, portofolio, dan jenjang karier Anda.
-                        </p>
-                        <a class="card-button" href="{{ route('pendaftaran.sertifikasi') }}">Daftar</a>
-                    </div>
+                <div class="link-block">
+                    <div class="card-title">Pendaftaran Sertifikasi</div>
+                    <p>
+                        Ikuti jadwal sertifikasi terbaru khusus dosen dan tenaga pendidik. Pastikan data dan dokumen yang dibutuhkan sudah lengkap.
+                    </p>
+                    <a class="card-button" href="{{ route('pendaftaran.sertifikasi') }}">Masuk ke Formulir</a>
+                    <a class="secondary-link" href="{{ route('welcome.lomba') }}">Ingin ikut lomba? Buka halaman kompetisi →</a>
                 </div>
 
                 <div class="flow-grid">
                     <div class="flow-card">
-                        <h3>Alur Lomba</h3>
-                        <div class="image-frame" role="img" aria-label="Area kosong untuk gambar infografis lomba">
-                            Area gambar infografis lomba
-                        </div>
-                    </div>
-                    <div class="flow-card">
-                        <h3>Alur Sertifikasi</h3>
+                        <h3>Alur Pendaftaran Sertifikasi</h3>
                         <div class="image-frame" role="img" aria-label="Area kosong untuk gambar infografis sertifikasi">
                             Area gambar infografis sertifikasi
                         </div>
