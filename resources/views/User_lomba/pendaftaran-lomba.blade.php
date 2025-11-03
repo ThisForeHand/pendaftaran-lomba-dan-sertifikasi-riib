@@ -338,19 +338,10 @@
                                 <input
                                     type="radio"
                                     name="program_studi"
-                                    value="Desain Produk"
-                                    @checked(old('program_studi') === 'Desain Produk')
+                                    value="Teknik Elektro"
+                                    @checked(old('program_studi') === 'Teknik Elektro')
                                 >
-                                <span>Desain Produk</span>
-                            </label>
-                            <label class="option-item">
-                                <input
-                                    type="radio"
-                                    name="program_studi"
-                                    value="Lainnya"
-                                    @checked(old('program_studi') === 'Lainnya')
-                                >
-                                <span>Lainnya</span>
+                                <span>Teknik Elektro</span>
                             </label>
                         </div>
                     </fieldset>

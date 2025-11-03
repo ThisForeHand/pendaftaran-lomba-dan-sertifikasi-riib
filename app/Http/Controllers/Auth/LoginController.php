@@ -129,10 +129,15 @@ class LoginController extends Controller
                 $table->string('username')->unique();
                 $table->string('email')->unique();
                 $table->string('phone')->nullable();
+                $table->string('program_studi')->nullable();
                 $table->timestamp('email_verified_at')->nullable();
                 $table->string('password');
                 $table->rememberToken();
                 $table->timestamps();
+            });
+        } elseif (! Schema::hasColumn('dosens', 'program_studi')) {
+            Schema::table('dosens', function (Blueprint $table) {
+                $table->string('program_studi')->nullable()->after('phone');
             });
         }
 
@@ -171,15 +176,25 @@ class LoginController extends Controller
         $lecturerConfig = config('accounts.lecturer');
 
         if (! empty($lecturerConfig)) {
-            Dosen::query()->firstOrCreate(
+            $dosen = Dosen::query()->firstOrCreate(
                 ['username' => $lecturerConfig['username']],
                 [
                     'name' => $lecturerConfig['name'],
                     'email' => $lecturerConfig['email'],
                     'phone' => $lecturerConfig['phone'],
+                    'program_studi' => $lecturerConfig['program_studi'] ?? null,
                     'password' => Hash::make($lecturerConfig['password']),
                 ],
             );
+
+            if (
+                isset($lecturerConfig['program_studi'])
+                && $dosen->program_studi !== $lecturerConfig['program_studi']
+            ) {
+                $dosen->forceFill([
+                    'program_studi' => $lecturerConfig['program_studi'],
+                ])->save();
+            }
         }
     }
 }
