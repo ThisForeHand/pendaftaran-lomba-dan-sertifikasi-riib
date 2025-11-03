@@ -54,7 +54,7 @@ class LombaRegistrationController extends Controller
 
         return redirect()
             ->route('pendaftaran.lomba')
-            ->with('status', 'Terima kasih! Data pendaftaran lomba berhasil dikirim.');
+            ->with('status', 'Terima kasih! Data pendaftaran lomba berhasil dikirim. Akan dihubungi untuk informasi lebih lanjutnya.');
     }
 
     /**
