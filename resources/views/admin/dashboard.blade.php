@@ -561,7 +561,7 @@
                         </form>
                     </div>
                     <div class="footer-actions-right">
-                        <a href="#" class="action-button download">Unduh</a>
+                        <a href="{{ route('admin.lomba.download') }}" class="action-button download">Unduh</a>
                         <a href="#" class="action-button delete">Hapus</a>
                     </div>
                 </div>
@@ -635,7 +635,7 @@
                         </form>
                     </div>
                     <div class="footer-actions-right">
-                        <a href="#" class="action-button download">Unduh</a>
+                        <a href="{{ route('admin.sertifikasi.download') }}" class="action-button download">Unduh</a>
                         <a href="#" class="action-button delete">Hapus</a>
                     </div>
                 </div>

@@ -22,6 +22,62 @@ class LombaRegistrationController extends Controller
         return view('User_lomba.pendaftaran-lomba');
     }
 
+    public function downloadAdminRegistrations(): StreamedResponse
+    {
+        $tableExists = Schema::hasTable('lomba_registrations');
+
+        $registrations = $tableExists
+            ? LombaRegistration::query()->latest()->get()
+            : collect();
+
+        $headers = [
+            'No',
+            'Nama',
+            'NIM',
+            'Program Studi',
+            'No. WhatsApp',
+            'Peran Tim',
+            'Status Tim',
+            'Tanggal Pendaftaran',
+        ];
+
+        return response()->streamDownload(function () use ($registrations, $headers) {
+            $escape = static fn ($value) => htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
+
+            echo '<table border="1">';
+            echo '<thead><tr>';
+
+            foreach ($headers as $header) {
+                echo '<th>' . $escape($header) . '</th>';
+            }
+
+            echo '</tr></thead>';
+            echo '<tbody>';
+
+            foreach ($registrations as $index => $registration) {
+                $formattedDate = $registration->created_at
+                    ? $registration->created_at->format('Y-m-d H:i:s')
+                    : '';
+
+                echo '<tr>';
+                echo '<td>' . $escape($index + 1) . '</td>';
+                echo '<td>' . $escape($registration->nama) . '</td>';
+                echo '<td>' . $escape($registration->nim) . '</td>';
+                echo '<td>' . $escape($registration->program_studi) . '</td>';
+                echo '<td>' . $escape($registration->whatsapp) . '</td>';
+                echo '<td>' . $escape($registration->pilihan_peran) . '</td>';
+                echo '<td>' . $escape($registration->status_tim) . '</td>';
+                echo '<td>' . $escape($formattedDate) . '</td>';
+                echo '</tr>';
+            }
+
+            echo '</tbody>';
+            echo '</table>';
+        }, 'data-pendaftaran-lomba.xls', [
+            'Content-Type' => 'application/vnd.ms-excel; charset=UTF-8',
+        ]);
+    }
+
     /**
      * Store a new registration in storage.
      */
