@@ -18,7 +18,7 @@ class LombaRegistrationController extends Controller
      */
     public function create(): View
     {
-        return view('pendaftaran-lomba');
+        return view('User_lomba.pendaftaran-lomba');
     }
 
     /**

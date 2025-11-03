@@ -17,7 +17,7 @@ class SertifikasiRegistrationController extends Controller
      */
     public function create(): View
     {
-        return view('pendaftaran-sertifikasi');
+        return view('user_sertifikasi.pendaftaran-sertifikasi');
     }
 
     /**
