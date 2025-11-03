@@ -25,31 +25,156 @@
             body {
                 margin: 0;
                 min-height: 100vh;
-                padding: clamp(24px, 4vw, 48px) clamp(16px, 4vw, 32px);
                 background: #f4f5fb;
                 font-family: "Instrument Sans", system-ui, -apple-system, BlinkMacSystemFont,
                     "Segoe UI", sans-serif;
                 color: #16203b;
+                display: grid;
             }
 
             .page {
-                width: min(960px, 100%);
+                width: min(1200px, 100%);
                 margin: 0 auto;
+                padding: clamp(24px, 4vw, 48px) clamp(16px, 4vw, 32px) 56px;
                 display: grid;
                 gap: clamp(24px, 4vw, 32px);
+            }
+
+            .dashboard-header-card {
+                background: #ffffff;
+                border-radius: 28px;
+                padding: clamp(24px, 4vw, 36px);
+                box-shadow: 0 20px 60px rgba(33, 62, 157, 0.12);
+                border: 1px solid rgba(51, 86, 189, 0.14);
+                display: grid;
+                gap: clamp(16px, 3vw, 28px);
+            }
+
+            .dashboard-header-card header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: clamp(16px, 3vw, 24px);
+                flex-wrap: wrap;
+            }
+
+            .dashboard-header-card .title-group {
+                display: grid;
+                gap: 6px;
+            }
+
+            .dashboard-header-card .title-group span {
+                font-size: 1rem;
+                color: #4b5a86;
+            }
+
+            .dashboard-header-card .title-group h1 {
+                margin: 0;
+                font-size: clamp(1.6rem, 3vw, 2rem);
+                font-weight: 600;
+                color: #16203b;
+            }
+
+            .admin-info {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                padding: 12px 18px 12px 12px;
+                background: #f6f7fe;
+                border-radius: 999px;
+                border: 1px solid rgba(51, 86, 189, 0.12);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            }
+
+            .admin-avatar {
+                width: clamp(48px, 6vw, 56px);
+                height: clamp(48px, 6vw, 56px);
+                border-radius: 50%;
+                background: linear-gradient(160deg, rgba(30, 75, 169, 0.16) 0%, rgba(79, 116, 208, 0.08) 100%);
+                border: 1px solid rgba(30, 75, 169, 0.18);
+                display: grid;
+                place-items: center;
+                font-size: clamp(1.4rem, 3vw, 1.8rem);
+                color: #1e2a52;
+            }
+
+            .admin-name {
+                font-weight: 600;
+                color: #1e2a52;
+                font-size: 1rem;
+            }
+
+            .card-navigation {
+                display: flex;
+                justify-content: flex-start;
+            }
+
+            .dashboard-tabs {
+                display: inline-flex;
+                gap: clamp(16px, 3vw, 32px);
+                padding: 0;
+                background: transparent;
+                border: none;
+                box-shadow: none;
+            }
+
+            .dashboard-tabs .nav-link {
+                position: relative;
+                display: inline-flex;
+                align-items: center;
+                padding: 0 0 6px;
+                font-size: 1rem;
+                font-weight: 600;
+                color: #4b5a86;
+                text-decoration: none;
+                border: none;
+                border-radius: 0;
+                background: transparent;
+                min-width: auto;
+                box-shadow: none;
+                transition: color 0.2s ease;
+                cursor: pointer;
+            }
+
+            .dashboard-tabs .nav-link::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 3px;
+                border-radius: 999px;
+                background: transparent;
+                transition: background 0.2s ease;
+            }
+
+            .dashboard-tabs .nav-link:hover {
+                color: #1f4db1;
+            }
+
+            .dashboard-tabs .nav-link:hover::after {
+                background: rgba(31, 77, 177, 0.6);
+            }
+
+            .dashboard-tabs .nav-link.active {
+                color: #1f4db1;
+            }
+
+            .dashboard-tabs .nav-link.active::after {
+                background: #1f4db1;
             }
 
             .card {
                 background: #ffffff;
-                border-radius: 28px;
+                border-radius: 26px;
                 padding: clamp(24px, 4vw, 40px);
-                box-shadow: 0 24px 60px rgba(33, 62, 157, 0.12);
+                box-shadow: 0 20px 60px rgba(33, 62, 157, 0.12);
                 border: 1px solid rgba(51, 86, 189, 0.14);
                 display: grid;
-                gap: clamp(24px, 4vw, 32px);
+                gap: clamp(20px, 3vw, 28px);
             }
 
-            header {
+            .card-header {
                 display: flex;
                 flex-wrap: wrap;
                 align-items: center;
@@ -57,30 +182,30 @@
                 gap: clamp(16px, 3vw, 24px);
             }
 
-            .header-title {
+            .card-title {
                 display: grid;
                 gap: 6px;
             }
 
-            .header-title span {
+            .card-title span {
                 font-size: 0.95rem;
                 color: #4b5a86;
             }
 
-            .header-title h1 {
+            .card-title h1 {
                 margin: 0;
                 font-size: clamp(1.6rem, 3vw, 2rem);
                 font-weight: 600;
                 color: #16203b;
             }
 
-            .header-actions {
+            .card-actions {
                 display: inline-flex;
                 gap: 12px;
                 flex-wrap: wrap;
             }
 
-            .header-button {
+            .card-action-button {
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
@@ -95,14 +220,14 @@
                     color 0.2s ease, border 0.2s ease;
             }
 
-            .header-button.secondary {
+            .card-action-button.secondary {
                 background: #ffffff;
                 color: #1f4db1;
                 border-color: rgba(31, 77, 177, 0.4);
                 box-shadow: 0 14px 30px rgba(33, 62, 157, 0.08);
             }
 
-            .header-button.secondary:hover {
+            .card-action-button.secondary:hover {
                 background: #eef3ff;
                 transform: translateY(-1px);
                 box-shadow: 0 16px 34px rgba(33, 62, 157, 0.16);
@@ -229,15 +354,26 @@
         </style>
     </head>
     <body>
-        <main class="page">
-            <div class="card">
-                <header>
-                    <div class="header-title">
+        @php
+            $displayAdminName = $adminName ?? 'Admin';
+            $displayAdminInitial = $adminInitial ?? (strtoupper(substr($displayAdminName, 0, 1) ?: 'A'));
+        @endphp
+
+        <div class="page">
+            @include('admin.partials.topbar', [
+                'adminName' => $displayAdminName,
+                'adminInitial' => $displayAdminInitial,
+                'activeTab' => 'dosen',
+            ])
+
+            <section class="card">
+                <header class="card-header">
+                    <div class="card-title">
                         <span>Manajemen Akun</span>
                         <h1>Buat Akun Dosen</h1>
                     </div>
-                    <div class="header-actions">
-                        <a class="header-button secondary" href="{{ route('admin.lomba') }}">
+                    <div class="card-actions">
+                        <a class="card-action-button secondary" href="{{ route('admin.lomba') }}">
                             &larr; Kembali ke Dashboard
                         </a>
                     </div>
@@ -334,7 +470,7 @@
                                     required
                                     autocomplete="new-password"
                                 />
-                                <p class="form-help">Minimal 8 karakter dan gunakan kombinasi huruf & angka.</p>
+                                <p class="form-help">Minimal 8 karakter dan gunakan kombinasi huruf &amp; angka.</p>
                             </div>
                             <div class="form-field">
                                 <label for="password_confirmation">Konfirmasi Kata Sandi</label>
@@ -351,7 +487,7 @@
 
                     <button type="submit">Simpan &amp; Buat Akun</button>
                 </form>
-            </div>
-        </main>
+            </section>
+        </div>
     </body>
 </html>
