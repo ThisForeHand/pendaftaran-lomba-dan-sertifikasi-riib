@@ -53,6 +53,12 @@
                 align-items: center;
             }
 
+            .footer-actions-right {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
             .logout-form {
                 margin: 0;
             }
@@ -87,6 +93,41 @@
                 background: #eef3ff;
                 box-shadow: 0 12px 34px rgba(29, 78, 216, 0.16);
                 transform: translateY(-1px);
+            }
+
+            .download-button {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                border-radius: 14px;
+                padding: 10px 18px;
+                background: #1f4db1;
+                color: #ffffff;
+                font-size: 0.94rem;
+                font-weight: 600;
+                text-decoration: none;
+                box-shadow: 0 14px 28px rgba(31, 77, 177, 0.22);
+                transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+            }
+
+            .download-button::before {
+                content: "";
+                width: 16px;
+                height: 16px;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'%3E%3Cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.8' d='M12 3v12m0 0 4-4m-4 4-4-4m4 4v3m6 0H6'/%3E%3C/svg%3E");
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+
+            .download-button:hover {
+                background: #1a3f94;
+                box-shadow: 0 16px 32px rgba(31, 77, 177, 0.28);
+                transform: translateY(-1px);
+            }
+
+            .download-button:focus-visible {
+                outline: 3px solid rgba(31, 77, 177, 0.35);
+                outline-offset: 3px;
             }
 
             .logout-button:focus-visible {
@@ -506,6 +547,9 @@
                             @csrf
                             <button type="submit" class="logout-button">Keluar</button>
                         </form>
+                    </div>
+                    <div class="footer-actions-right">
+                        <a href="{{ route('dosen.lomba.download') }}" class="download-button">Unduh Data</a>
                     </div>
                 </div>
             </section>
