@@ -218,7 +218,9 @@
                     <p>
                         Ikuti jadwal sertifikasi terbaru khusus dosen dan tenaga pendidik. Pastikan data dan dokumen yang dibutuhkan sudah lengkap.
                     </p>
-                    <a class="secondary-link" href="{{ route('portal.lomba') }}">portal-lomba →</a>
+                    <a class="card-button" href="{{ route('pendaftaran.sertifikasi') }}">
+                        Daftar Sertifikasi
+                    </a>
                 </div>
 
                 <div class="flow-grid">
