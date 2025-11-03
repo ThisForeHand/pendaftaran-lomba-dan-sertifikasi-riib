@@ -591,7 +591,7 @@
                         </form>
                     </div>
                     <div class="footer-actions-right">
-                        <a href="{{ route('dosen.lomba.download') }}" class="download-button">Unduh Data</a>
+                        <a href="{{ route('dosen.lomba.download') }}" class="download-button">Unduh</a>
                     </div>
                 </div>
             </section>
