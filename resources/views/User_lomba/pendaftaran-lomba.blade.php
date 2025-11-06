@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Pendaftaran Persiapan Lomba Innovillage 2025</title>
+        <title>Pendaftaran Persiapan Lomba Mahasiswa</title>
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
@@ -258,15 +258,15 @@
                     <span>Kembali ke Halaman Utama</span>
                 </a>
                 <p class="eyebrow">Formulir Pendaftaran</p>
-                <h1>Pendaftaran Persiapan Peserta Lomba Innovillage 2025</h1>
+                <h1>Pendaftaran Persiapan Peserta Semua Lomba</h1>
                 <p class="lead">
                     Mohon lengkapi informasi di bawah ini agar kami dapat memetakan kebutuhan pendampingan
-                    dan menyesuaikan timeline persiapan tim Anda menuju Innovillage 2025.
+                    dan menyesuaikan timeline persiapan tim Anda menuju berbagai ajang lomba yang diikuti.
                 </p>
                 <ul>
                     <li>Pastikan data yang Anda isikan sudah benar dan mudah dihubungi.</li>
                     <li>Bersiaplah untuk mengikuti sesi briefing teknis setelah formulir ini kami terima.</li>
-                    <li>Formulir ini ditujukan bagi mahasiswa aktif dengan ketertarikan mengikuti Innovillage.</li>
+                    <li>Formulir ini ditujukan bagi mahasiswa aktif dengan ketertarikan mengikuti berbagai lomba dan kompetisi.</li>
                 </ul>
             </header>
 
@@ -403,7 +403,7 @@
                         <textarea
                             id="motivasi"
                             name="motivasi"
-                            placeholder="Ceritakan motivasi dan harapan Anda mengikuti Innovillage"
+                            placeholder="Ceritakan motivasi dan harapan Anda mengikuti lomba yang dituju"
                         >{{ old('motivasi') }}</textarea>
                     </div>
 
