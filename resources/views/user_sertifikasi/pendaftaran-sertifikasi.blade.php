@@ -266,7 +266,7 @@
     <body>
         <div class="page-container">
             <header>
-                <a class="back-link" href="{{ url('/') }}">
+                <a class="back-link" href="{{ route('portal.sertifikasi') }}">
                     <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
                         <path d="M15 18l-6-6 6-6" />
                     </svg>
