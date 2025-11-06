@@ -8,7 +8,7 @@
     <div class="card-header">
         <div class="card-title">
             <h2>Pendaftaran Sertifikasi</h2>
-            <span>Daftar peserta dan rincian kelompok</span>
+            <span>Daftar peserta</span>
         </div>
     </div>
 
