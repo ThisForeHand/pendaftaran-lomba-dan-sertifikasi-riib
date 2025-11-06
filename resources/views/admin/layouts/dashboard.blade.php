@@ -376,6 +376,125 @@
                 outline-offset: 3px;
             }
 
+            form {
+                display: grid;
+                gap: 20px;
+            }
+
+            fieldset {
+                border: 0;
+                margin: 0;
+                padding: 0;
+                min-inline-size: 0;
+                display: grid;
+                gap: 18px;
+            }
+
+            .form-row {
+                display: grid;
+                gap: 18px;
+            }
+
+            @media (min-width: 720px) {
+                .form-row.two-columns {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+            }
+
+            label {
+                font-weight: 600;
+                font-size: 0.95rem;
+                color: #24345a;
+            }
+
+            input[type='text'],
+            input[type='email'],
+            input[type='password'] {
+                width: 100%;
+                border-radius: 14px;
+                border: 1px solid rgba(76, 98, 144, 0.22);
+                padding: 14px 16px;
+                font-size: 1rem;
+                font-family: inherit;
+                color: #1f2a44;
+                background: #f7f8fb;
+                transition: border 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+            }
+
+            input[type='text']:focus,
+            input[type='email']:focus,
+            input[type='password']:focus {
+                outline: none;
+                border-color: rgba(30, 75, 169, 0.6);
+                box-shadow: 0 0 0 4px rgba(30, 75, 169, 0.15);
+                background: #ffffff;
+            }
+
+            .form-field {
+                display: grid;
+                gap: 10px;
+            }
+
+            .form-help {
+                margin: 0;
+                font-size: 0.9rem;
+                color: #4b5a86;
+            }
+
+            .status-message,
+            .error-message {
+                padding: 14px 18px;
+                border-radius: 16px;
+                font-size: 0.95rem;
+                font-weight: 500;
+            }
+
+            .status-message {
+                background: rgba(34, 197, 94, 0.12);
+                color: #15803d;
+                border: 1px solid rgba(21, 128, 61, 0.2);
+            }
+
+            .error-message {
+                background: rgba(220, 38, 38, 0.12);
+                color: #b91c1c;
+                border: 1px solid rgba(185, 28, 28, 0.2);
+            }
+
+            ul.error-list {
+                margin: 0;
+                padding-left: 20px;
+                display: grid;
+                gap: 6px;
+            }
+
+            button[type='submit'] {
+                border: 0;
+                border-radius: 16px;
+                background: linear-gradient(135deg, #1f4db1, #355ed8);
+                color: #ffffff;
+                font-weight: 600;
+                padding: 16px 22px;
+                font-size: 1rem;
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                box-shadow: 0 18px 40px rgba(33, 62, 157, 0.18);
+                transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+            }
+
+            button[type='submit']:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 20px 46px rgba(33, 62, 157, 0.24);
+                filter: brightness(1.02);
+            }
+
+            button[type='submit']:active {
+                transform: translateY(0);
+            }
+
             @media (max-width: 768px) {
                 .card-navigation {
                     justify-content: center;
