@@ -466,7 +466,13 @@
             document.addEventListener('DOMContentLoaded', function () {
                 const tabButtons = Array.from(document.querySelectorAll('[data-tab]'));
                 const panels = Array.from(document.querySelectorAll('.tab-panel'));
-                const selectionControllers = new Map();
+
+                const resetPanelSelection = (panel) => {
+                    panel.classList.remove('selection-mode');
+                    panel.querySelectorAll('.row-checkbox').forEach((checkbox) => {
+                        checkbox.checked = false;
+                    });
+                };
 
                 const setActiveTab = (target) => {
                     tabButtons.forEach((button) => {
@@ -479,12 +485,8 @@
                         const isActive = panel.dataset.panel === target;
                         panel.classList.toggle('active', isActive);
                         panel.hidden = !isActive;
-
                         if (!isActive) {
-                            const controller = selectionControllers.get(panel);
-                            if (controller) {
-                                controller.exitSelectionMode();
-                            }
+                            resetPanelSelection(panel);
                         }
                     });
                 };
@@ -611,9 +613,6 @@
 
                     ensureEmptyState();
 
-                    selectionControllers.set(panel, {
-                        exitSelectionMode,
-                    });
                 };
 
                 panels.forEach((panel) => initPanel(panel));
