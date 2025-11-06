@@ -4,11 +4,6 @@
             <span>Manajemen Akun</span>
             <h1>Buat Akun Dosen</h1>
         </div>
-        <div class="card-actions">
-            <a class="card-action-button secondary" href="{{ route('admin.lomba') }}">
-                &larr; Kembali ke Dashboard
-            </a>
-        </div>
     </header>
 
     @if (session('status'))

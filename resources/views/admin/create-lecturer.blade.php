@@ -364,6 +364,7 @@
                 'adminName' => $displayAdminName,
                 'adminInitial' => $displayAdminInitial,
                 'activeTab' => 'dosen',
+                'navigationMode' => 'links',
             ])
 
             @include('admin.sections.buat-akun-dosen')
