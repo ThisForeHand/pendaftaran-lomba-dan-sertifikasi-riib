@@ -226,10 +226,6 @@
                 </div>
                 <div>
                     <h1>Masuk Akun</h1>
-                    <p class="subtitle">
-                        Masukkan username dan kata sandi akun admin atau dosen, sistem akan
-                        mengarahkan Anda ke dashboard yang sesuai secara otomatis.
-                    </p>
                 </div>
             </header>
 
