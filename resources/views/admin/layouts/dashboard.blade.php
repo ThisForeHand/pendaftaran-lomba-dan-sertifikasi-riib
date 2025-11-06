@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Dashboard Admin - Pendaftaran</title>
+        <title>@yield('title', 'Dashboard Admin - Pendaftaran')</title>
 
         <link rel="preconnect" href="https://fonts.bunny.net" />
         <link
@@ -248,28 +248,20 @@
                 font-weight: 600;
             }
 
-            .tab-panel {
-                display: none;
-            }
-
-            .tab-panel.active {
-                display: grid;
-            }
-
-            .tab-panel .select-column,
-            .tab-panel .select-cell {
+            .data-panel .select-column,
+            .data-panel .select-cell {
                 display: none;
                 width: 48px;
                 text-align: center;
             }
 
-            .tab-panel .select-cell input[type='checkbox'] {
+            .data-panel .select-cell input[type='checkbox'] {
                 width: 18px;
                 height: 18px;
                 cursor: pointer;
             }
 
-            .tab-panel .clear-all-button {
+            .data-panel .clear-all-button {
                 display: none;
                 margin-left: 12px;
                 padding: 6px 14px;
@@ -283,18 +275,18 @@
                 transition: background 0.2s ease, transform 0.2s ease;
             }
 
-            .tab-panel .clear-all-button:hover {
+            .data-panel .clear-all-button:hover {
                 background: rgba(196, 31, 58, 0.18);
                 transform: translateY(-1px);
             }
 
-            .tab-panel.selection-mode .select-column,
-            .tab-panel.selection-mode .select-cell,
-            .tab-panel.selection-mode .clear-all-button {
+            .data-panel.selection-mode .select-column,
+            .data-panel.selection-mode .select-cell,
+            .data-panel.selection-mode .clear-all-button {
                 display: table-cell;
             }
 
-            .tab-panel.selection-mode .clear-all-button {
+            .data-panel.selection-mode .clear-all-button {
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
@@ -432,66 +424,27 @@
             }
         </style>
     </head>
-    <body data-initial-tab="{{ $activeTab ?? 'lomba' }}">
+    <body>
         @php
-            $lombaRegistrations = $lombaRegistrations ?? collect();
-            $sertifikasiRegistrations = $sertifikasiRegistrations ?? collect();
-            $lombaTableExists = $lombaTableExists ?? true;
-            $sertifikasiTableExists = $sertifikasiTableExists ?? true;
             $adminName = $adminName ?? 'Admin';
             $adminInitial = $adminInitial ?? (strtoupper(substr($adminName, 0, 1) ?: 'A'));
+            $activeTab = $activeTab ?? 'lomba';
         @endphp
 
         <div class="page">
             @include('admin.partials.topbar', [
                 'adminName' => $adminName,
                 'adminInitial' => $adminInitial,
-                'activeTab' => $activeTab ?? 'lomba',
+                'activeTab' => $activeTab,
+                'navigationMode' => $navigationMode ?? 'links',
             ])
 
-            @include('admin.sections.data-lomba', [
-                'activeTab' => $activeTab ?? 'lomba',
-                'tableExists' => $lombaTableExists,
-                'registrations' => $lombaRegistrations,
-            ])
-
-            @include('admin.sections.data-sertifikasi', [
-                'activeTab' => $activeTab ?? 'lomba',
-                'tableExists' => $sertifikasiTableExists,
-                'registrations' => $sertifikasiRegistrations,
-            ])
+            @yield('content')
         </div>
 
         <script>
             document.addEventListener('DOMContentLoaded', function () {
-                const tabButtons = Array.from(document.querySelectorAll('[data-tab]'));
-                const panels = Array.from(document.querySelectorAll('.tab-panel'));
-
-                const resetPanelSelection = (panel) => {
-                    panel.classList.remove('selection-mode');
-                    panel.querySelectorAll('.row-checkbox').forEach((checkbox) => {
-                        checkbox.checked = false;
-                    });
-                };
-
-                const setActiveTab = (target) => {
-                    tabButtons.forEach((button) => {
-                        const isActive = button.dataset.tab === target;
-                        button.classList.toggle('active', isActive);
-                        button.setAttribute('aria-selected', isActive ? 'true' : 'false');
-                    });
-
-                    panels.forEach((panel) => {
-                        const isActive = panel.dataset.panel === target;
-                        panel.classList.toggle('active', isActive);
-                        panel.hidden = !isActive;
-                        if (!isActive) {
-                            resetPanelSelection(panel);
-                        }
-                    });
-                };
-
-                const initPanel = (panel) => {
+                document.querySelectorAll('.data-panel').forEach((panel) => {
                     const deleteButton = panel.querySelector('.action-button.delete');
                     const clearAllButton = panel.querySelector('.clear-all-button');
                     const tableBody = panel.querySelector('tbody');
@@ -612,19 +565,7 @@
                     }
 
                     ensureEmptyState();
-
-                };
-
-                panels.forEach((panel) => initPanel(panel));
-
-                tabButtons.forEach((button) => {
-                    button.addEventListener('click', () => {
-                        setActiveTab(button.dataset.tab);
-                    });
                 });
-
-                const initialTab = document.body.dataset.initialTab || 'lomba';
-                setActiveTab(initialTab);
             });
         </script>
     </body>

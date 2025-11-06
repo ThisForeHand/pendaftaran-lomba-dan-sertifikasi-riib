@@ -1,18 +1,10 @@
 @php
-    $activeTab = $activeTab ?? 'lomba';
-    $isActive = $activeTab === 'lomba';
     $tableExists = $tableExists ?? true;
     $registrations = $registrations ?? collect();
+    $panelId = $panelId ?? 'panel-lomba';
 @endphp
 
-<section
-    class="card tab-panel {{ $isActive ? 'active' : '' }}"
-    id="panel-lomba"
-    data-panel="lomba"
-    role="tabpanel"
-    aria-labelledby="tab-lomba"
-    @if (! $isActive) hidden @endif
->
+<section class="card data-panel" id="{{ $panelId }}">
     <div class="card-header">
         <div class="card-title">
             <h2>Pendaftaran Lomba</h2>
