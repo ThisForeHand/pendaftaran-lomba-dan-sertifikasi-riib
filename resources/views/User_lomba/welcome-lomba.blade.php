@@ -166,19 +166,19 @@
                 border-radius: 20px;
                 background: repeating-linear-gradient(
                     135deg,
-                    rgba(226, 233, 255, 0.7) 0px,
-                    rgba(226, 233, 255, 0.7) 22px,
-                    rgba(255, 255, 255, 0.9) 22px,
-                    rgba(255, 255, 255, 0.9) 44px
+                    rgba(226, 233, 255, 0.45) 0px,
+                    rgba(226, 233, 255, 0.45) 22px,
+                    rgba(255, 255, 255, 0.92) 22px,
+                    rgba(255, 255, 255, 0.92) 44px
                 );
-                min-height: 360px;
-                display: grid;
-                place-items: center;
-                color: rgba(0, 0, 0, 0.45);
-                font-weight: 500;
-                text-align: center;
-                padding: 24px;
-                font-size: 0.95rem;
+                display: block;
+                padding: clamp(18px, 3vw, 28px);
+            }
+
+            .image-frame img {
+                width: 100%;
+                height: auto;
+                display: block;
             }
 
             footer {
@@ -227,8 +227,12 @@
                 <div class="flow-grid">
                     <div class="flow-card">
                         <h3>Alur Pendaftaran Lomba</h3>
-                        <div class="image-frame" role="img" aria-label="Area kosong untuk gambar infografis lomba">
-                            Area gambar infografis lomba
+                        <div class="image-frame">
+                            <img
+                                src="{{ asset('images/alur-pendaftaran-lomba.svg') }}"
+                                alt="Infografis alur pendaftaran lomba"
+                                loading="lazy"
+                            >
                         </div>
                     </div>
                 </div>
