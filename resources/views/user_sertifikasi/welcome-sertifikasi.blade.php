@@ -123,33 +123,15 @@
             }
 
             .flow-grid {
-                position: relative;
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
                 gap: clamp(24px, 5vw, 48px);
                 padding-top: clamp(16px, 3vw, 28px);
             }
 
-            .flow-grid::before {
-                content: "";
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                left: 50%;
-                width: 1px;
-                background: rgba(139, 112, 214, 0.18);
-                transform: translateX(-50%);
-            }
-
-            @media (max-width: 860px) {
-                .flow-grid::before {
-                    display: none;
-                }
-            }
-
             .flow-card {
                 display: grid;
-                gap: 18px;
+                gap: clamp(20px, 4vw, 32px);
                 position: relative;
                 z-index: 1;
             }
@@ -161,24 +143,50 @@
                 color: #000000;
             }
 
-            .image-frame {
-                border: 1px solid rgba(139, 112, 214, 0.25);
-                border-radius: 20px;
-                background: repeating-linear-gradient(
-                    135deg,
-                    rgba(234, 226, 255, 0.7) 0px,
-                    rgba(234, 226, 255, 0.7) 22px,
-                    rgba(255, 255, 255, 0.9) 22px,
-                    rgba(255, 255, 255, 0.9) 44px
-                );
-                min-height: 360px;
+            .flow-diagram {
+                margin: 0;
+                padding: clamp(12px, 2vw, 18px);
+                background: rgba(124, 63, 253, 0.08);
+                border-radius: clamp(24px, 4vw, 32px);
+                border: 1px solid rgba(124, 63, 253, 0.18);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
                 display: grid;
-                place-items: center;
-                color: rgba(0, 0, 0, 0.45);
-                font-weight: 500;
-                text-align: center;
-                padding: 24px;
-                font-size: 0.95rem;
+                gap: clamp(12px, 2vw, 18px);
+            }
+
+            .flow-diagram a {
+                position: relative;
+                display: inline-block;
+                border-radius: clamp(20px, 4vw, 28px);
+                overflow: hidden;
+                outline: none;
+            }
+
+            .flow-diagram a:focus-visible {
+                box-shadow: 0 0 0 4px rgba(124, 63, 253, 0.32);
+            }
+
+            .flow-diagram img {
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+
+            .flow-diagram figcaption {
+                font-size: clamp(0.9rem, 1.8vw, 1rem);
+                color: rgba(0, 0, 0, 0.78);
+            }
+
+            .visually-hidden {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border: 0;
             }
 
             footer {
@@ -199,6 +207,10 @@
 
                 .main-card {
                     padding: 28px 20px 36px;
+                }
+
+                .flow-diagram {
+                    padding: clamp(16px, 6vw, 24px);
                 }
             }
         </style>
@@ -226,9 +238,19 @@
                 <div class="flow-grid">
                     <div class="flow-card">
                         <h3>Alur Pendaftaran Sertifikasi</h3>
-                        <div class="image-frame" role="img" aria-label="Area kosong untuk gambar infografis sertifikasi">
-                            Area gambar infografis sertifikasi
-                        </div>
+                        <figure class="flow-diagram">
+                            <a href="https://www.youtube.com/" target="_blank" rel="noopener" title="Buka panduan alur pendaftaran">
+                                <img
+                                    src="{{ asset('images/alur-pendaftaran-sertifikasi.svg') }}"
+                                    alt="Diagram alur pendaftaran sertifikasi"
+                                    loading="lazy"
+                                />
+                                <span class="visually-hidden">Klik bagian tautan pada gambar untuk membuka panduan video</span>
+                            </a>
+                            <figcaption>
+                                Klik bagian tautan pada gambar untuk membuka panduan (sementara diarahkan ke YouTube).
+                            </figcaption>
+                        </figure>
                     </div>
                 </div>
             </main>
