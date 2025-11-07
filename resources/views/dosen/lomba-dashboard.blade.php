@@ -379,6 +379,18 @@
                 font-weight: 600;
             }
 
+            .contact-link {
+                color: #1f4db1;
+                font-weight: 600;
+                text-decoration: none;
+                overflow-wrap: anywhere;
+            }
+
+            .contact-link:hover,
+            .contact-link:focus-visible {
+                text-decoration: underline;
+            }
+
             .account-form {
                 display: grid;
                 gap: 18px;
@@ -555,7 +567,9 @@
                                     <td>{{ $registration->nama }}</td>
                                     <td>{{ $registration->nim }}</td>
                                     <td>{{ $registration->program_studi }}</td>
-                                    <td>{{ $registration->whatsapp }}</td>
+                                    <td>
+                                        <x-contact-link :value="$registration->whatsapp" />
+                                    </td>
                                     <td>{{ $registration->pilihan_peran }}</td>
                                     <td>
                                         <span class="badge" style="background: rgba(46, 171, 115, 0.12); color: #208f59">

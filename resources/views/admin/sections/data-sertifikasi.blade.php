@@ -42,7 +42,9 @@
                             <td>{{ $registration->nama }}</td>
                             <td>{{ $registration->nim }}</td>
                             <td>{{ $registration->program_studi }}</td>
-                            <td>{{ $registration->whatsapp }}</td>
+                            <td>
+                                <x-contact-link :value="$registration->whatsapp" />
+                            </td>
                             <td>{{ $registration->program_sertifikasi }}</td>
                             <td>
                                 <span class="badge">{{ $registration->status_sertifikasi }}</span>
