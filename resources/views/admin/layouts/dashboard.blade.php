@@ -248,6 +248,18 @@
                 font-weight: 600;
             }
 
+            .contact-link {
+                color: #1f4db1;
+                font-weight: 600;
+                text-decoration: none;
+                overflow-wrap: anywhere;
+            }
+
+            .contact-link:hover,
+            .contact-link:focus-visible {
+                text-decoration: underline;
+            }
+
             .data-panel .select-column,
             .data-panel .select-cell {
                 display: none;
