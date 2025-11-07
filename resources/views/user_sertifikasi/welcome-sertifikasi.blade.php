@@ -145,36 +145,145 @@
 
             .flow-diagram {
                 margin: 0;
-                padding: clamp(12px, 2vw, 18px);
+                padding: clamp(18px, 3vw, 28px);
                 background: rgba(124, 63, 253, 0.08);
                 border-radius: clamp(24px, 4vw, 32px);
                 border: 1px solid rgba(124, 63, 253, 0.18);
                 box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
                 display: grid;
-                gap: clamp(12px, 2vw, 18px);
+                gap: clamp(18px, 3vw, 28px);
             }
 
-            .flow-diagram a {
+            .timeline {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: grid;
+                gap: clamp(18px, 3vw, 28px);
+            }
+
+            .timeline-step {
                 position: relative;
-                display: inline-block;
-                border-radius: clamp(20px, 4vw, 28px);
-                overflow: hidden;
+                display: flex;
+                align-items: flex-start;
+                gap: clamp(16px, 3vw, 28px);
+                padding: clamp(18px, 3vw, 26px);
+                border-radius: clamp(20px, 3vw, 28px);
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.9) 100%);
+                border: 1px solid rgba(124, 63, 253, 0.18);
+                box-shadow: 0 18px 38px rgba(67, 44, 117, 0.12);
+                text-decoration: none;
+                color: inherit;
+                transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+            }
+
+            .timeline-step:hover,
+            .timeline-step:focus-visible {
+                transform: translateY(-3px);
+                box-shadow: 0 22px 44px rgba(58, 32, 115, 0.16);
+                border-color: rgba(124, 63, 253, 0.32);
+            }
+
+            .timeline-step:focus-visible {
                 outline: none;
+                box-shadow: 0 0 0 4px rgba(124, 63, 253, 0.24), 0 22px 44px rgba(58, 32, 115, 0.16);
             }
 
-            .flow-diagram a:focus-visible {
-                box-shadow: 0 0 0 4px rgba(124, 63, 253, 0.32);
+            .step-badge {
+                flex-shrink: 0;
+                width: clamp(56px, 6vw, 72px);
+                aspect-ratio: 1 / 1;
+                border-radius: 50%;
+                display: grid;
+                place-items: center;
+                color: #ffffff;
+                font-size: clamp(1.35rem, 3.2vw, 1.6rem);
+                font-weight: 700;
+                position: relative;
+                background: linear-gradient(135deg, #ef4444 0%, #f97316 38%, #facc15 100%);
+                box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.35), 0 16px 32px rgba(249, 115, 22, 0.24);
             }
 
-            .flow-diagram img {
-                display: block;
-                width: 100%;
-                height: auto;
+            .step-badge::after {
+                content: "";
+                position: absolute;
+                inset: -12%;
+                border-radius: 50%;
+                background: linear-gradient(135deg, rgba(239, 68, 68, 0.16) 0%, rgba(124, 58, 237, 0.14) 52%, rgba(14, 165, 233, 0.16) 100%);
+                z-index: -1;
             }
 
-            .flow-diagram figcaption {
-                font-size: clamp(0.9rem, 1.8vw, 1rem);
-                color: rgba(0, 0, 0, 0.78);
+            .timeline li:nth-child(2) .step-badge {
+                background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 48%, #4338ca 100%);
+                box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.35), 0 16px 32px rgba(37, 99, 235, 0.26);
+            }
+
+            .timeline li:nth-child(3) .step-badge {
+                background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 50%, #312e81 100%);
+                box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.32), 0 16px 32px rgba(91, 33, 182, 0.26);
+            }
+
+            .step-content {
+                display: grid;
+                gap: clamp(6px, 1.8vw, 12px);
+            }
+
+            .step-heading {
+                margin: 0;
+                font-size: clamp(1.05rem, 2.2vw, 1.22rem);
+                font-weight: 600;
+                color: #0f172a;
+            }
+
+            .step-subtitle {
+                margin: 0;
+                font-size: clamp(0.92rem, 1.8vw, 1rem);
+                font-weight: 500;
+                color: rgba(15, 23, 42, 0.74);
+            }
+
+            .step-list {
+                margin: 0;
+                padding-left: 1.2em;
+                display: grid;
+                gap: 6px;
+                font-size: clamp(0.9rem, 1.8vw, 0.98rem);
+                color: rgba(15, 23, 42, 0.78);
+            }
+
+            .step-list li::marker {
+                color: rgba(124, 63, 253, 0.85);
+            }
+
+            .step-meta {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                margin-top: clamp(6px, 1.4vw, 10px);
+                font-size: clamp(0.82rem, 1.6vw, 0.92rem);
+                font-weight: 600;
+                color: rgba(124, 58, 237, 0.9);
+            }
+
+            .support-box {
+                padding: clamp(18px, 3vw, 24px);
+                border-radius: clamp(18px, 3vw, 24px);
+                background: rgba(14, 165, 233, 0.08);
+                border: 1px solid rgba(14, 165, 233, 0.28);
+                display: grid;
+                gap: 6px;
+            }
+
+            .support-box strong {
+                font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+                font-weight: 600;
+                color: #0f172a;
+            }
+
+            .support-box p {
+                margin: 0;
+                font-size: clamp(0.88rem, 1.6vw, 0.96rem);
+                color: rgba(15, 23, 42, 0.78);
             }
 
             .visually-hidden {
@@ -238,19 +347,77 @@
                 <div class="flow-grid">
                     <div class="flow-card">
                         <h3>Alur Pendaftaran Sertifikasi</h3>
-                        <figure class="flow-diagram">
-                            <a href="https://www.youtube.com/" target="_blank" rel="noopener" title="Buka panduan alur pendaftaran">
-                                <img
-                                    src="{{ asset('images/alur-pendaftaran-sertifikasi.svg') }}"
-                                    alt="Diagram alur pendaftaran sertifikasi"
-                                    loading="lazy"
-                                />
-                                <span class="visually-hidden">Klik bagian tautan pada gambar untuk membuka panduan video</span>
-                            </a>
-                            <figcaption>
-                                Klik bagian tautan pada gambar untuk membuka panduan (sementara diarahkan ke YouTube).
-                            </figcaption>
-                        </figure>
+                        <div class="flow-diagram">
+                            <ol class="timeline" role="list">
+                                <li>
+                                    <a
+                                        class="timeline-step"
+                                        href="https://simampu.poltekkes-smg.ac.id/"
+                                        target="_blank"
+                                        rel="noopener"
+                                        title="Buka portal resmi untuk membaca panduan"
+                                    >
+                                        <span class="step-badge">1</span>
+                                        <span class="step-content">
+                                            <span class="step-heading">Persiapkan Akun &amp; Panduan</span>
+                                            <span class="step-subtitle">Mulai dengan memahami ketentuan pendaftaran.</span>
+                                            <ul class="step-list">
+                                                <li>Unduh dan baca panduan peserta terbaru dari portal resmi.</li>
+                                                <li>Kunjungi <strong>simampu.poltekkes-smg.ac.id</strong> untuk memastikan jadwal.</li>
+                                                <li>Klik tombol <strong>Pendaftaran</strong> untuk masuk ke layanan.</li>
+                                            </ul>
+                                            <span class="step-meta">➡️ Panduan &amp; Portal SIMAMPU</span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        class="timeline-step"
+                                        href="{{ route('pendaftaran.sertifikasi') }}"
+                                        title="Masuk ke formulir pendaftaran sertifikasi"
+                                    >
+                                        <span class="step-badge">2</span>
+                                        <span class="step-content">
+                                            <span class="step-heading">Lengkapi Formulir Online</span>
+                                            <span class="step-subtitle">Isi data dan unggah berkas sesuai ketentuan.</span>
+                                            <ul class="step-list">
+                                                <li>Masukkan NIK, program studi, dan IPK semester terakhir.</li>
+                                                <li>Unggah pas foto formal (JPG/JPEG) maksimal 300 KB.</li>
+                                                <li>Pastikan seluruh isian tersimpan, lalu tekan <strong>Kirim</strong>.</li>
+                                            </ul>
+                                            <span class="step-meta">➡️ Formulir Digital Sertifikasi</span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        class="timeline-step"
+                                        href="mailto:sertifikasi@poltekkes-smg.ac.id"
+                                        title="Kirim bukti pembayaran atau tanya konfirmasi"
+                                    >
+                                        <span class="step-badge">3</span>
+                                        <span class="step-content">
+                                            <span class="step-heading">Konfirmasi &amp; Pembayaran</span>
+                                            <span class="step-subtitle">Finalisasi pendaftaran sesuai tagihan.</span>
+                                            <ul class="step-list">
+                                                <li>Catat nomor booking dan virtual account yang tampil.</li>
+                                                <li>Lakukan pembayaran biaya sertifikasi sesuai batas waktu.</li>
+                                                <li>Kirim bukti bayar untuk diverifikasi oleh panitia.</li>
+                                            </ul>
+                                            <span class="step-meta">➡️ Kirim konfirmasi ke panitia</span>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ol>
+
+                            <div class="support-box">
+                                <strong>Hanya bila diperlukan</strong>
+                                <p>
+                                    Masih kesulitan? Hubungi helpdesk melalui email di atas atau WhatsApp resmi panitia untuk
+                                    mendapatkan bantuan teknis pendaftaran.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </main>
