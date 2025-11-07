@@ -162,21 +162,43 @@
             }
 
             .image-frame {
-                border: 1px solid rgba(93, 123, 214, 0.25);
-                border-radius: 20px;
-                background: repeating-linear-gradient(
-                    135deg,
-                    rgba(226, 233, 255, 0.45) 0px,
-                    rgba(226, 233, 255, 0.45) 22px,
-                    rgba(255, 255, 255, 0.92) 22px,
-                    rgba(255, 255, 255, 0.92) 44px
-                );
-                display: block;
-                padding: clamp(18px, 3vw, 28px);
+                border: 1px solid rgba(93, 123, 214, 0.2);
+                border-radius: 22px;
+                background: linear-gradient(140deg, rgba(226, 233, 255, 0.6) 0%, rgba(255, 255, 255, 0.9) 100%);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: clamp(20px, 3.5vw, 32px);
+                box-shadow: 0 24px 48px rgba(28, 42, 74, 0.08);
             }
 
-            .image-frame img {
+            .image-link {
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 width: 100%;
+                max-width: 720px;
+                padding: clamp(14px, 3vw, 24px);
+                background: #ffffff;
+                border-radius: 18px;
+                box-shadow: 0 18px 40px rgba(41, 104, 246, 0.08);
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                text-decoration: none;
+            }
+
+            .image-link:hover,
+            .image-link:focus {
+                transform: translateY(-3px);
+                box-shadow: 0 22px 48px rgba(31, 73, 224, 0.14);
+            }
+
+            .image-link:focus {
+                outline: 3px solid rgba(48, 104, 255, 0.35);
+                outline-offset: 6px;
+            }
+
+            .image-link img {
+                width: min(680px, 100%);
                 height: auto;
                 display: block;
             }
@@ -228,11 +250,18 @@
                     <div class="flow-card">
                         <h3>Alur Pendaftaran Lomba</h3>
                         <div class="image-frame">
-                            <img
-                                src="{{ asset('images/alur-pendaftaran-lomba.svg') }}"
-                                alt="Infografis alur pendaftaran lomba"
-                                loading="lazy"
+                            <a
+                                class="image-link"
+                                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                                target="_blank"
+                                rel="noopener"
                             >
+                                <img
+                                    src="{{ asset('images/alur-pendaftaran-lomba.svg') }}"
+                                    alt="Infografis alur pendaftaran lomba"
+                                    loading="lazy"
+                                >
+                            </a>
                         </div>
                     </div>
                 </div>
