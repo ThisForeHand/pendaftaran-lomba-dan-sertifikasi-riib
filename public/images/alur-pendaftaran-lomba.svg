@@ -1,0 +1,67 @@
+<svg width="800" height="900" viewBox="0 0 800 900" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="card-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f4f1ff" />
+      <stop offset="100%" stop-color="#ffffff" />
+    </linearGradient>
+    <filter id="card-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#cfc8ff" flood-opacity="0.6" />
+    </filter>
+  </defs>
+
+  <rect x="0" y="0" width="800" height="900" fill="#f2f5ff" />
+
+  <g transform="translate(60, 60)">
+    <rect width="680" height="780" rx="32" fill="url(#card-bg)" filter="url(#card-shadow)" />
+    <text x="60" y="110" font-family="'Poppins', sans-serif" font-weight="700" font-size="40" fill="#2e2672">Alur Pendaftaran Lomba</text>
+    <text x="60" y="160" font-family="'Poppins', sans-serif" font-weight="500" font-size="22" fill="#5c5a76">SMA/SMK Negeri Tahun 2023 DIY</text>
+
+    <g transform="translate(60, 210)">
+      <circle cx="60" cy="60" r="60" fill="#f0294d" />
+      <text x="60" y="78" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="42" font-weight="700" fill="#ffffff">1</text>
+      <rect x="140" y="-10" width="430" height="140" rx="24" fill="#ffffff" stroke="#f0294d" stroke-width="4" />
+      <text x="160" y="36" font-family="'Poppins', sans-serif" font-weight="700" font-size="26" fill="#f0294d">Pengumuman Lomba</text>
+      <text x="160" y="70" font-family="'Poppins', sans-serif" font-size="18" fill="#3d3d66">Periode: 1 - 15 Mei 2023</text>
+      <text x="160" y="102" font-family="'Poppins', sans-serif" font-size="18" fill="#3d3d66">Detail teknis dan jadwal publikasi.</text>
+      <a xlink:href="https://example.com/pengumuman" target="_blank">
+        <text x="160" y="126" font-family="'Poppins', sans-serif" font-size="18" fill="#2e2672" text-decoration="underline">Buka portal pengumuman</text>
+      </a>
+    </g>
+
+    <g transform="translate(60, 380)">
+      <circle cx="60" cy="60" r="60" fill="#fb7033" />
+      <text x="60" y="78" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="42" font-weight="700" fill="#ffffff">2</text>
+      <rect x="140" y="-10" width="430" height="140" rx="24" fill="#ffffff" stroke="#fb7033" stroke-width="4" />
+      <text x="160" y="36" font-family="'Poppins', sans-serif" font-weight="700" font-size="26" fill="#fb7033">Registrasi Akun</text>
+      <text x="160" y="70" font-family="'Poppins', sans-serif" font-size="18" fill="#3d3d66">Periode: 5 - 20 Mei 2023</text>
+      <text x="160" y="102" font-family="'Poppins', sans-serif" font-size="18" fill="#3d3d66">Buat akun sekolah dan lengkapi profil.</text>
+      <a xlink:href="https://example.com/registrasi" target="_blank">
+        <text x="160" y="126" font-family="'Poppins', sans-serif" font-size="18" fill="#2e2672" text-decoration="underline">Daftar melalui portal registrasi</text>
+      </a>
+    </g>
+
+    <g transform="translate(60, 550)">
+      <circle cx="60" cy="60" r="60" fill="#f1bd29" />
+      <text x="60" y="78" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="42" font-weight="700" fill="#ffffff">3</text>
+      <rect x="140" y="-10" width="430" height="140" rx="24" fill="#ffffff" stroke="#f1bd29" stroke-width="4" />
+      <text x="160" y="36" font-family="'Poppins', sans-serif" font-weight="700" font-size="26" fill="#f1bd29">Unggah Dokumen</text>
+      <text x="160" y="70" font-family="'Poppins', sans-serif" font-size="18" fill="#3d3d66">Periode: 10 - 25 Mei 2023</text>
+      <text x="160" y="102" font-family="'Poppins', sans-serif" font-size="18" fill="#3d3d66">Upload berkas persyaratan lomba.</text>
+      <a xlink:href="https://example.com/dokumen" target="_blank">
+        <text x="160" y="126" font-family="'Poppins', sans-serif" font-size="18" fill="#2e2672" text-decoration="underline">Unggah berkas sekarang</text>
+      </a>
+    </g>
+
+    <g transform="translate(60, 720)">
+      <circle cx="60" cy="60" r="60" fill="#28a6ff" />
+      <text x="60" y="78" text-anchor="middle" font-family="'Poppins', sans-serif" font-size="42" font-weight="700" fill="#ffffff">4</text>
+      <rect x="140" y="-10" width="430" height="140" rx="24" fill="#ffffff" stroke="#28a6ff" stroke-width="4" />
+      <text x="160" y="36" font-family="'Poppins', sans-serif" font-weight="700" font-size="26" fill="#28a6ff">Verifikasi &amp; Pengumuman</text>
+      <text x="160" y="70" font-family="'Poppins', sans-serif" font-size="18" fill="#3d3d66">Periode: 26 Mei - 5 Juni 2023</text>
+      <text x="160" y="102" font-family="'Poppins', sans-serif" font-size="18" fill="#3d3d66">Validasi data dan hasil akhir.</text>
+      <a xlink:href="https://example.com/pengumuman-akhir" target="_blank">
+        <text x="160" y="126" font-family="'Poppins', sans-serif" font-size="18" fill="#2e2672" text-decoration="underline">Lihat hasil verifikasi</text>
+      </a>
+    </g>
+  </g>
+</svg>
