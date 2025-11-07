@@ -77,14 +77,26 @@
 
             <div class="form-field">
                 <label for="program_studi">Program Studi</label>
-                <input
-                    type="text"
-                    id="program_studi"
-                    name="program_studi"
-                    value="{{ old('program_studi') }}"
-                    placeholder="Opsional"
-                    autocomplete="organization-title"
-                />
+                @php($selectedProgram = old('program_studi'))
+                @if (! empty($studyPrograms ?? []))
+                    <select id="program_studi" name="program_studi">
+                        <option value="" @selected(blank($selectedProgram))>Pilih Program Studi (Opsional)</option>
+                        @foreach ($studyPrograms as $program)
+                            <option value="{{ $program }}" @selected($selectedProgram === $program)>
+                                {{ $program }}
+                            </option>
+                        @endforeach
+                    </select>
+                @else
+                    <input
+                        type="text"
+                        id="program_studi"
+                        name="program_studi"
+                        value="{{ $selectedProgram }}"
+                        placeholder="Opsional"
+                        autocomplete="organization-title"
+                    />
+                @endif
             </div>
 
             <div class="form-row two-columns">
