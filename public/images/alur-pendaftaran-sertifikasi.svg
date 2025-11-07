@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="640" viewBox="0 0 1080 640" role="img" aria-labelledby="title desc">
+  <title id="title">Alur pendaftaran sertifikasi</title>
+  <desc id="desc">Lima tahap pendaftaran sertifikasi mulai dari registrasi akun hingga penerbitan sertifikat.</desc>
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f4f0ff" />
+      <stop offset="100%" stop-color="#ffffff" />
+    </linearGradient>
+    <linearGradient id="card-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7453ff" />
+      <stop offset="100%" stop-color="#5a2de0" />
+    </linearGradient>
+    <filter id="card-shadow" x="-20%" y="-40%" width="140%" height="200%" filterUnits="objectBoundingBox">
+      <feOffset in="SourceAlpha" dy="12" result="shadowOffset" />
+      <feGaussianBlur in="shadowOffset" stdDeviation="18" result="shadowBlur" />
+      <feColorMatrix in="shadowBlur" type="matrix" values="0 0 0 0 0.35  0 0 0 0 0.28  0 0 0 0 0.73  0 0 0 0.22 0" result="shadow" />
+      <feMerge>
+        <feMergeNode in="shadow" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <style type="text/css"><![CDATA[
+      .step-card {
+        fill: #ffffff;
+        stroke: rgba(116, 83, 255, 0.25);
+        stroke-width: 1.5;
+        rx: 28;
+        ry: 28;
+      }
+      .step-number {
+        fill: url(#card-gradient);
+        stroke: none;
+      }
+      .step-number text {
+        font-family: 'Instrument Sans', 'Inter', 'Segoe UI', sans-serif;
+        font-size: 32px;
+        font-weight: 600;
+        fill: #ffffff;
+      }
+      .step-title {
+        font-family: 'Instrument Sans', 'Inter', 'Segoe UI', sans-serif;
+        font-size: 24px;
+        font-weight: 600;
+        fill: #2d1b67;
+      }
+      .step-desc {
+        font-family: 'Instrument Sans', 'Inter', 'Segoe UI', sans-serif;
+        font-size: 18px;
+        line-height: 1.5;
+        fill: #3f2a82;
+      }
+      .connector {
+        stroke: rgba(116, 83, 255, 0.35);
+        stroke-width: 2.5;
+        stroke-dasharray: 4 8;
+        fill: none;
+      }
+      .background {
+        fill: url(#bg-gradient);
+      }
+    ]]></style>
+  </defs>
+  <rect class="background" x="0" y="0" width="1080" height="640" rx="48" ry="48" />
+  <g filter="url(#card-shadow)">
+    <rect class="step-card" x="80" y="72" width="440" height="120" />
+    <rect class="step-card" x="560" y="72" width="440" height="120" />
+    <rect class="step-card" x="80" y="248" width="440" height="120" />
+    <rect class="step-card" x="560" y="248" width="440" height="120" />
+    <rect class="step-card" x="80" y="424" width="920" height="120" />
+  </g>
+  <g class="step-number">
+    <rect x="100" y="92" width="64" height="64" rx="20" ry="20" />
+    <rect x="580" y="92" width="64" height="64" rx="20" ry="20" />
+    <rect x="100" y="268" width="64" height="64" rx="20" ry="20" />
+    <rect x="580" y="268" width="64" height="64" rx="20" ry="20" />
+    <rect x="100" y="444" width="64" height="64" rx="20" ry="20" />
+    <text x="132" y="136" text-anchor="middle">1</text>
+    <text x="612" y="136" text-anchor="middle">2</text>
+    <text x="132" y="312" text-anchor="middle">3</text>
+    <text x="612" y="312" text-anchor="middle">4</text>
+    <text x="132" y="488" text-anchor="middle">5</text>
+  </g>
+  <g>
+    <text class="step-title" x="188" y="130">Registrasi Akun</text>
+    <text class="step-desc" x="188" y="164">Masuk ke portal sertifikasi dan buat akun
+      baru menggunakan email institusi resmi.</text>
+
+    <text class="step-title" x="668" y="130">Lengkapi Profil</text>
+    <text class="step-desc" x="668" y="164">Isi data pribadi, jabatan fungsional, dan
+      unggah foto diri sesuai ketentuan.</text>
+
+    <text class="step-title" x="188" y="306">Unggah Dokumen</text>
+    <text class="step-desc" x="188" y="340">Sertakan SK terakhir, riwayat pendidikan,
+      serta bukti pelatihan pendukung.</text>
+
+    <text class="step-title" x="668" y="306">Verifikasi &amp; Pembayaran</text>
+    <text class="step-desc" x="668" y="340">Tim LPMPP memvalidasi berkas dan mengirim
+      tagihan biaya sertifikasi bila diperlukan.</text>
+
+    <text class="step-title" x="188" y="482">Pelaksanaan &amp; Sertifikat</text>
+    <text class="step-desc" x="188" y="516">Ikuti asesmen kompetensi. Hasil dinyatakan
+      lulus akan diterbitkan sertifikat resmi.</text>
+  </g>
+  <path class="connector" d="M532 132 H560" />
+  <path class="connector" d="M520 308 H560" />
+  <path class="connector" d="M520 484 H560" />
+  <circle cx="546" cy="132" r="6" fill="#7453ff" />
+  <circle cx="546" cy="308" r="6" fill="#7453ff" />
+  <circle cx="546" cy="484" r="6" fill="#7453ff" />
+</svg>
