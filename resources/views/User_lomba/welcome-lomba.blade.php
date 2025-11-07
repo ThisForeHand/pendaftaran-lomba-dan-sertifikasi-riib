@@ -143,113 +143,50 @@
                 color: #000000;
             }
 
-            .flow-visual {
-                position: relative;
-                display: grid;
-                grid-template-columns: auto 1fr;
-                align-items: center;
-                gap: clamp(28px, 6vw, 52px);
-                padding: clamp(26px, 5vw, 40px);
-                background: linear-gradient(135deg, #cbe96a 0%, #a6da3a 100%);
-                border-radius: clamp(32px, 6vw, 48px);
-                box-shadow: 0 24px 48px rgba(108, 156, 25, 0.22);
-                overflow: hidden;
-            }
-
-            .flow-visual::before {
-                content: "";
-                position: absolute;
-                inset: 10%;
-                border-radius: 48px;
-                border: 1px solid rgba(255, 255, 255, 0.35);
-                pointer-events: none;
-            }
-
-            .flow-circle {
-                position: relative;
-                width: clamp(96px, 16vw, 138px);
-                aspect-ratio: 1;
-                border-radius: 50%;
-                display: grid;
-                place-items: center;
-                font-weight: 700;
-                font-size: clamp(2rem, 5vw, 2.8rem);
-                color: #ffffff;
-                background: radial-gradient(circle at 30% 30%, #6ec8ff 0%, #1e79f5 55%, #0f4ec1 100%);
-                box-shadow: 0 20px 36px rgba(13, 80, 180, 0.45);
-                isolation: isolate;
-            }
-
-            .flow-circle::before {
-                content: "";
-                position: absolute;
-                inset: -12px;
-                border-radius: inherit;
-                border: 4px solid rgba(255, 255, 255, 0.65);
-                opacity: 0.75;
-                z-index: -1;
-            }
-
-            .flow-circle::after {
-                content: "";
-                position: absolute;
-                inset: -24px;
-                border-radius: inherit;
-                background: radial-gradient(circle, rgba(14, 54, 140, 0.26) 0%, rgba(14, 54, 140, 0) 70%);
-                z-index: -2;
-            }
-
-            .flow-info {
-                position: relative;
-                background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.12) 0%, rgba(23, 18, 32, 0.92) 68%, rgba(16, 12, 26, 0.94) 100%);
-                border-radius: clamp(28px, 6vw, 48px);
-                padding: clamp(26px, 5vw, 48px) clamp(28px, 5vw, 56px);
-                box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
-                color: #f5f6ff;
-            }
-
-            .flow-info::before {
-                content: "";
-                position: absolute;
-                inset: 12px;
-                border-radius: inherit;
-                border: 1px solid rgba(255, 255, 255, 0.12);
-                pointer-events: none;
-                opacity: 0.6;
-            }
-
-            .flow-subtitle {
-                margin: 0 0 clamp(14px, 2vw, 20px);
-                font-size: clamp(1rem, 2.2vw, 1.18rem);
-                font-weight: 600;
-                letter-spacing: 0.01em;
-            }
-
-            .flow-info-list {
+            .flow-diagram {
                 margin: 0;
-                padding: 0;
-                list-style: none;
+                padding: clamp(12px, 2vw, 18px);
+                background: rgba(10, 87, 108, 0.06);
+                border-radius: clamp(24px, 4vw, 32px);
+                border: 1px solid rgba(9, 122, 149, 0.18);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
                 display: grid;
                 gap: clamp(12px, 2vw, 18px);
-                position: relative;
-                z-index: 1;
             }
 
-            .flow-info-list li {
+            .flow-diagram a {
                 position: relative;
-                padding-left: 22px;
-                font-size: clamp(0.95rem, 2.2vw, 1.05rem);
-                line-height: 1.6;
-                color: rgba(243, 246, 255, 0.92);
+                display: inline-block;
+                border-radius: clamp(20px, 4vw, 28px);
+                overflow: hidden;
+                outline: none;
             }
 
-            .flow-info-list li::before {
-                content: "-";
+            .flow-diagram a:focus-visible {
+                box-shadow: 0 0 0 4px rgba(32, 79, 255, 0.35);
+            }
+
+            .flow-diagram img {
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+
+            .flow-diagram figcaption {
+                font-size: clamp(0.9rem, 1.8vw, 1rem);
+                color: rgba(0, 0, 0, 0.78);
+            }
+
+            .visually-hidden {
                 position: absolute;
-                left: 0;
-                top: 0;
-                color: #7ddcff;
-                font-weight: 600;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border: 0;
             }
 
             @media (max-width: 720px) {
@@ -265,18 +202,8 @@
                     padding: 28px 20px 36px;
                 }
 
-                .flow-visual {
-                    grid-template-columns: 1fr;
-                    text-align: center;
-                }
-
-                .flow-circle {
-                    margin: 0 auto;
-                }
-
-                .flow-info {
-                    text-align: left;
-                    padding: clamp(24px, 6vw, 36px);
+                .flow-diagram {
+                    padding: clamp(16px, 6vw, 24px);
                 }
             }
 
@@ -326,17 +253,17 @@
                 <div class="flow-grid">
                     <div class="flow-card">
                         <h3>Alur Pendaftaran Lomba</h3>
-                        <div class="flow-visual" role="group" aria-label="Langkah kedua pendaftaran lomba">
-                            <div class="flow-circle" aria-hidden="true">2</div>
-                            <div class="flow-info">
-                                <p class="flow-subtitle">Lengkapi seluruh informasi sebelum mengirim pendaftaran.</p>
-                                <ul class="flow-info-list">
-                                    <li>Melengkapi NIK, program studi, Indeks Prestasi Semester, dan data yang diminta oleh sistem.</li>
-                                    <li>Upload pas foto format JPG/JPEG dengan ukuran kurang dari 300 KB.</li>
-                                    <li>Klik tombol <strong>Kirim</strong> untuk menyelesaikan proses pendaftaran.</li>
-                                </ul>
-                            </div>
-                        </div>
+                        <figure class="flow-diagram">
+                            <a href="https://www.youtube.com/" target="_blank" rel="noopener" title="Buka panduan alur pendaftaran">
+                                <img
+                                    src="{{ asset('images/alur-pendaftaran-lomba.svg') }}"
+                                    alt="Diagram alur pendaftaran lomba"
+                                    loading="lazy"
+                                />
+                                <span class="visually-hidden">Klik bagian tautan pada gambar untuk membuka panduan video</span>
+                            </a>
+                            <figcaption>Klik bagian tautan pada gambar untuk membuka panduan (sementara diarahkan ke YouTube).</figcaption>
+                        </figure>
                     </div>
                 </div>
             </main>
