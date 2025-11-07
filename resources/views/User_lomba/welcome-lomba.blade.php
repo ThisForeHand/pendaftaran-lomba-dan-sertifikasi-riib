@@ -123,28 +123,10 @@
             }
 
             .flow-grid {
-                position: relative;
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
                 gap: clamp(24px, 5vw, 48px);
                 padding-top: clamp(16px, 3vw, 28px);
-            }
-
-            .flow-grid::before {
-                content: "";
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                left: 50%;
-                width: 1px;
-                background: rgba(93, 123, 214, 0.18);
-                transform: translateX(-50%);
-            }
-
-            @media (max-width: 860px) {
-                .flow-grid::before {
-                    display: none;
-                }
             }
 
             .flow-card {
@@ -161,46 +143,116 @@
                 color: #000000;
             }
 
-            .image-frame {
-                border: 1px solid rgba(93, 123, 214, 0.2);
-                border-radius: 22px;
-                background: linear-gradient(140deg, rgba(226, 233, 255, 0.6) 0%, rgba(255, 255, 255, 0.9) 100%);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                padding: clamp(20px, 3.5vw, 32px);
-                box-shadow: 0 24px 48px rgba(28, 42, 74, 0.08);
+            .flow-steps {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: grid;
+                gap: clamp(16px, 3vw, 24px);
             }
 
-            .image-link {
+            .step-item {
+                --accent: #1f49e0;
+                position: relative;
+                display: grid;
+                grid-template-columns: auto 1fr;
+                gap: clamp(16px, 3vw, 24px);
+                padding: clamp(18px, 3vw, 26px) clamp(18px, 3vw, 28px);
+                border-radius: 24px;
+                border: 1px solid rgba(93, 123, 214, 0.22);
+                background: linear-gradient(135deg, rgba(231, 237, 255, 0.72) 0%, rgba(255, 255, 255, 0.95) 100%);
+                box-shadow: 0 18px 40px rgba(28, 42, 74, 0.08);
+            }
+
+            .step-item::after {
+                content: "";
+                position: absolute;
+                left: 44px;
+                top: calc(100% - 12px);
+                width: 2px;
+                height: clamp(20px, 4vw, 36px);
+                background: linear-gradient(180deg, rgba(93, 123, 214, 0.28) 0%, rgba(93, 123, 214, 0) 100%);
+                border-radius: 999px;
+            }
+
+            .step-item:last-child::after {
+                display: none;
+            }
+
+            .step-number {
+                width: clamp(52px, 8vw, 64px);
+                aspect-ratio: 1;
+                border-radius: 50%;
                 display: flex;
-                justify-content: center;
                 align-items: center;
-                width: 100%;
-                max-width: 720px;
-                padding: clamp(14px, 3vw, 24px);
-                background: #ffffff;
-                border-radius: 18px;
-                box-shadow: 0 18px 40px rgba(41, 104, 246, 0.08);
-                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                justify-content: center;
+                font-weight: 700;
+                font-size: clamp(1.4rem, 3.6vw, 1.8rem);
+                color: #ffffff;
+                background: linear-gradient(135deg, var(--accent) 0%, rgba(0, 0, 0, 0.15) 100%);
+                box-shadow: 0 16px 34px rgba(28, 42, 74, 0.14);
+            }
+
+            .step-content {
+                display: grid;
+                gap: 8px;
+            }
+
+            .step-title {
+                margin: 0;
+                font-size: clamp(1.05rem, 2.5vw, 1.28rem);
+                font-weight: 600;
+                color: var(--accent);
+            }
+
+            .step-period {
+                margin: 0;
+                font-size: 0.95rem;
+                font-weight: 600;
+                color: rgba(28, 42, 74, 0.7);
+            }
+
+            .step-description {
+                margin: 0;
+                font-size: 0.95rem;
+                line-height: 1.6;
+                color: rgba(28, 42, 74, 0.82);
+            }
+
+            .step-link {
+                width: fit-content;
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                font-size: 0.92rem;
+                font-weight: 600;
+                color: var(--accent);
                 text-decoration: none;
+                padding-bottom: 2px;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+                transition: color 0.2s ease, border-color 0.2s ease;
             }
 
-            .image-link:hover,
-            .image-link:focus {
-                transform: translateY(-3px);
-                box-shadow: 0 22px 48px rgba(31, 73, 224, 0.14);
+            .step-link:hover,
+            .step-link:focus {
+                color: #1a3fba;
+                border-color: currentColor;
             }
 
-            .image-link:focus {
-                outline: 3px solid rgba(48, 104, 255, 0.35);
-                outline-offset: 6px;
-            }
+            @media (max-width: 640px) {
+                .step-item {
+                    grid-template-columns: minmax(48px, 1fr);
+                    justify-items: flex-start;
+                }
 
-            .image-link img {
-                width: min(680px, 100%);
-                height: auto;
-                display: block;
+                .step-item::after {
+                    left: 32px;
+                }
+
+                .step-number {
+                    width: 48px;
+                    font-size: 1.35rem;
+                }
             }
 
             footer {
@@ -249,20 +301,52 @@
                 <div class="flow-grid">
                     <div class="flow-card">
                         <h3>Alur Pendaftaran Lomba</h3>
-                        <div class="image-frame">
-                            <a
-                                class="image-link"
-                                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-                                target="_blank"
-                                rel="noopener"
-                            >
-                                <img
-                                    src="{{ asset('images/alur-pendaftaran-lomba.svg') }}"
-                                    alt="Infografis alur pendaftaran lomba"
-                                    loading="lazy"
-                                >
-                            </a>
-                        </div>
+                        <ol class="flow-steps">
+                            <li class="step-item" style="--accent: #f0294d;">
+                                <span class="step-number">1</span>
+                                <div class="step-content">
+                                    <h4 class="step-title">Pengumuman Lomba</h4>
+                                    <p class="step-period">Periode: 1 - 15 Mei 2023</p>
+                                    <p class="step-description">Detail teknis dan jadwal publikasi.</p>
+                                    <a class="step-link" href="https://example.com/pengumuman" target="_blank" rel="noopener">
+                                        Buka portal pengumuman
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="step-item" style="--accent: #fb7033;">
+                                <span class="step-number">2</span>
+                                <div class="step-content">
+                                    <h4 class="step-title">Registrasi Akun</h4>
+                                    <p class="step-period">Periode: 5 - 20 Mei 2023</p>
+                                    <p class="step-description">Buat akun sekolah dan lengkapi profil.</p>
+                                    <a class="step-link" href="https://example.com/registrasi" target="_blank" rel="noopener">
+                                        Daftar melalui portal registrasi
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="step-item" style="--accent: #f1bd29;">
+                                <span class="step-number">3</span>
+                                <div class="step-content">
+                                    <h4 class="step-title">Unggah Dokumen</h4>
+                                    <p class="step-period">Periode: 10 - 25 Mei 2023</p>
+                                    <p class="step-description">Upload berkas persyaratan lomba.</p>
+                                    <a class="step-link" href="https://example.com/dokumen" target="_blank" rel="noopener">
+                                        Unggah berkas sekarang
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="step-item" style="--accent: #28a6ff;">
+                                <span class="step-number">4</span>
+                                <div class="step-content">
+                                    <h4 class="step-title">Verifikasi &amp; Pengumuman</h4>
+                                    <p class="step-period">Periode: 26 Mei - 5 Juni 2023</p>
+                                    <p class="step-description">Validasi data dan hasil akhir.</p>
+                                    <a class="step-link" href="https://example.com/pengumuman-akhir" target="_blank" rel="noopener">
+                                        Lihat hasil verifikasi
+                                    </a>
+                                </div>
+                            </li>
+                        </ol>
                     </div>
                 </div>
             </main>
