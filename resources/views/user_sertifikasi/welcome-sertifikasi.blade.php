@@ -172,19 +172,17 @@
                 background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.9) 100%);
                 border: 1px solid rgba(124, 63, 253, 0.18);
                 box-shadow: 0 18px 38px rgba(67, 44, 117, 0.12);
-                text-decoration: none;
-                color: inherit;
                 transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
             }
 
             .timeline-step:hover,
-            .timeline-step:focus-visible {
+            .timeline-step:focus-within {
                 transform: translateY(-3px);
                 box-shadow: 0 22px 44px rgba(58, 32, 115, 0.16);
                 border-color: rgba(124, 63, 253, 0.32);
             }
 
-            .timeline-step:focus-visible {
+            .timeline-step:focus-within {
                 outline: none;
                 box-shadow: 0 0 0 4px rgba(124, 63, 253, 0.24), 0 22px 44px rgba(58, 32, 115, 0.16);
             }
@@ -263,6 +261,33 @@
                 font-size: clamp(0.82rem, 1.6vw, 0.92rem);
                 font-weight: 600;
                 color: rgba(124, 58, 237, 0.9);
+            }
+
+            .step-link {
+                color: inherit;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: baseline;
+                gap: 6px;
+                cursor: pointer;
+            }
+
+            .step-heading.step-link {
+                display: inline-block;
+                gap: 0;
+            }
+
+            .step-meta.step-link {
+                align-items: center;
+            }
+
+            .step-link:hover,
+            .step-link:focus-visible {
+                text-decoration: underline;
+            }
+
+            .step-link:focus-visible {
+                outline: none;
             }
 
             .support-box {
@@ -350,63 +375,89 @@
                         <div class="flow-diagram">
                             <ol class="timeline" role="list">
                                 <li>
-                                    <a
-                                        class="timeline-step"
-                                        href="https://simampu.poltekkes-smg.ac.id/"
-                                        target="_blank"
-                                        rel="noopener"
-                                        title="Buka portal resmi untuk membaca panduan"
-                                    >
+                                    <div class="timeline-step">
                                         <span class="step-badge">1</span>
-                                        <span class="step-content">
-                                            <span class="step-heading">Persiapkan Akun &amp; Panduan</span>
+                                        <div class="step-content">
+                                            <a
+                                                class="step-heading step-link"
+                                                href="https://simampu.poltekkes-smg.ac.id/"
+                                                target="_blank"
+                                                rel="noopener"
+                                                title="Buka portal resmi untuk membaca panduan"
+                                            >
+                                                Persiapkan Akun &amp; Panduan
+                                            </a>
                                             <span class="step-subtitle">Mulai dengan memahami ketentuan pendaftaran.</span>
                                             <ul class="step-list">
                                                 <li>Unduh dan baca panduan peserta terbaru dari portal resmi.</li>
                                                 <li>Kunjungi <strong>simampu.poltekkes-smg.ac.id</strong> untuk memastikan jadwal.</li>
                                                 <li>Klik tombol <strong>Pendaftaran</strong> untuk masuk ke layanan.</li>
                                             </ul>
-                                            <span class="step-meta">➡️ Panduan &amp; Portal SIMAMPU</span>
-                                        </span>
-                                    </a>
+                                            <a
+                                                class="step-meta step-link"
+                                                href="https://simampu.poltekkes-smg.ac.id/"
+                                                target="_blank"
+                                                rel="noopener"
+                                                title="Buka portal resmi untuk membaca panduan"
+                                            >
+                                                ➡️ Panduan &amp; Portal SIMAMPU
+                                            </a>
+                                        </div>
+                                    </div>
                                 </li>
                                 <li>
-                                    <a
-                                        class="timeline-step"
-                                        href="{{ route('pendaftaran.sertifikasi') }}"
-                                        title="Masuk ke formulir pendaftaran sertifikasi"
-                                    >
+                                    <div class="timeline-step">
                                         <span class="step-badge">2</span>
-                                        <span class="step-content">
-                                            <span class="step-heading">Lengkapi Formulir Online</span>
+                                        <div class="step-content">
+                                            <a
+                                                class="step-heading step-link"
+                                                href="{{ route('pendaftaran.sertifikasi') }}"
+                                                title="Masuk ke formulir pendaftaran sertifikasi"
+                                            >
+                                                Lengkapi Formulir Online
+                                            </a>
                                             <span class="step-subtitle">Isi data dan unggah berkas sesuai ketentuan.</span>
                                             <ul class="step-list">
                                                 <li>Masukkan NIK, program studi, dan IPK semester terakhir.</li>
                                                 <li>Unggah pas foto formal (JPG/JPEG) maksimal 300 KB.</li>
                                                 <li>Pastikan seluruh isian tersimpan, lalu tekan <strong>Kirim</strong>.</li>
                                             </ul>
-                                            <span class="step-meta">➡️ Formulir Digital Sertifikasi</span>
-                                        </span>
-                                    </a>
+                                            <a
+                                                class="step-meta step-link"
+                                                href="{{ route('pendaftaran.sertifikasi') }}"
+                                                title="Masuk ke formulir pendaftaran sertifikasi"
+                                            >
+                                                ➡️ Formulir Digital Sertifikasi
+                                            </a>
+                                        </div>
+                                    </div>
                                 </li>
                                 <li>
-                                    <a
-                                        class="timeline-step"
-                                        href="mailto:sertifikasi@poltekkes-smg.ac.id"
-                                        title="Kirim bukti pembayaran atau tanya konfirmasi"
-                                    >
+                                    <div class="timeline-step">
                                         <span class="step-badge">3</span>
-                                        <span class="step-content">
-                                            <span class="step-heading">Konfirmasi &amp; Pembayaran</span>
+                                        <div class="step-content">
+                                            <a
+                                                class="step-heading step-link"
+                                                href="mailto:sertifikasi@poltekkes-smg.ac.id"
+                                                title="Kirim bukti pembayaran atau tanya konfirmasi"
+                                            >
+                                                Konfirmasi &amp; Pembayaran
+                                            </a>
                                             <span class="step-subtitle">Finalisasi pendaftaran sesuai tagihan.</span>
                                             <ul class="step-list">
                                                 <li>Catat nomor booking dan virtual account yang tampil.</li>
                                                 <li>Lakukan pembayaran biaya sertifikasi sesuai batas waktu.</li>
                                                 <li>Kirim bukti bayar untuk diverifikasi oleh panitia.</li>
                                             </ul>
-                                            <span class="step-meta">➡️ Kirim konfirmasi ke panitia</span>
-                                        </span>
-                                    </a>
+                                            <a
+                                                class="step-meta step-link"
+                                                href="mailto:sertifikasi@poltekkes-smg.ac.id"
+                                                title="Kirim bukti pembayaran atau tanya konfirmasi"
+                                            >
+                                                ➡️ Kirim konfirmasi ke panitia
+                                            </a>
+                                        </div>
+                                    </div>
                                 </li>
                             </ol>
 
