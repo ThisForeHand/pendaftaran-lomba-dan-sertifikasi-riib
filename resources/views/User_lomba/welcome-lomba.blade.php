@@ -131,7 +131,7 @@
 
             .flow-card {
                 display: grid;
-                gap: 18px;
+                gap: clamp(20px, 4vw, 32px);
                 position: relative;
                 z-index: 1;
             }
@@ -143,115 +143,140 @@
                 color: #000000;
             }
 
-            .flow-steps {
-                list-style: none;
-                margin: 0;
-                padding: 0;
-                display: grid;
-                gap: clamp(16px, 3vw, 24px);
-            }
-
-            .step-item {
-                --accent: #1f49e0;
+            .flow-visual {
                 position: relative;
                 display: grid;
                 grid-template-columns: auto 1fr;
-                gap: clamp(16px, 3vw, 24px);
-                padding: clamp(18px, 3vw, 26px) clamp(18px, 3vw, 28px);
-                border-radius: 24px;
-                border: 1px solid rgba(93, 123, 214, 0.22);
-                background: linear-gradient(135deg, rgba(231, 237, 255, 0.72) 0%, rgba(255, 255, 255, 0.95) 100%);
-                box-shadow: 0 18px 40px rgba(28, 42, 74, 0.08);
+                align-items: center;
+                gap: clamp(28px, 6vw, 52px);
+                padding: clamp(26px, 5vw, 40px);
+                background: linear-gradient(135deg, #cbe96a 0%, #a6da3a 100%);
+                border-radius: clamp(32px, 6vw, 48px);
+                box-shadow: 0 24px 48px rgba(108, 156, 25, 0.22);
+                overflow: hidden;
             }
 
-            .step-item::after {
+            .flow-visual::before {
                 content: "";
                 position: absolute;
-                left: 44px;
-                top: calc(100% - 12px);
-                width: 2px;
-                height: clamp(20px, 4vw, 36px);
-                background: linear-gradient(180deg, rgba(93, 123, 214, 0.28) 0%, rgba(93, 123, 214, 0) 100%);
-                border-radius: 999px;
+                inset: 10%;
+                border-radius: 48px;
+                border: 1px solid rgba(255, 255, 255, 0.35);
+                pointer-events: none;
             }
 
-            .step-item:last-child::after {
-                display: none;
-            }
-
-            .step-number {
-                width: clamp(52px, 8vw, 64px);
+            .flow-circle {
+                position: relative;
+                width: clamp(96px, 16vw, 138px);
                 aspect-ratio: 1;
                 border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-weight: 700;
-                font-size: clamp(1.4rem, 3.6vw, 1.8rem);
-                color: #ffffff;
-                background: linear-gradient(135deg, var(--accent) 0%, rgba(0, 0, 0, 0.15) 100%);
-                box-shadow: 0 16px 34px rgba(28, 42, 74, 0.14);
-            }
-
-            .step-content {
                 display: grid;
-                gap: 8px;
+                place-items: center;
+                font-weight: 700;
+                font-size: clamp(2rem, 5vw, 2.8rem);
+                color: #ffffff;
+                background: radial-gradient(circle at 30% 30%, #6ec8ff 0%, #1e79f5 55%, #0f4ec1 100%);
+                box-shadow: 0 20px 36px rgba(13, 80, 180, 0.45);
+                isolation: isolate;
             }
 
-            .step-title {
-                margin: 0;
-                font-size: clamp(1.05rem, 2.5vw, 1.28rem);
+            .flow-circle::before {
+                content: "";
+                position: absolute;
+                inset: -12px;
+                border-radius: inherit;
+                border: 4px solid rgba(255, 255, 255, 0.65);
+                opacity: 0.75;
+                z-index: -1;
+            }
+
+            .flow-circle::after {
+                content: "";
+                position: absolute;
+                inset: -24px;
+                border-radius: inherit;
+                background: radial-gradient(circle, rgba(14, 54, 140, 0.26) 0%, rgba(14, 54, 140, 0) 70%);
+                z-index: -2;
+            }
+
+            .flow-info {
+                position: relative;
+                background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.12) 0%, rgba(23, 18, 32, 0.92) 68%, rgba(16, 12, 26, 0.94) 100%);
+                border-radius: clamp(28px, 6vw, 48px);
+                padding: clamp(26px, 5vw, 48px) clamp(28px, 5vw, 56px);
+                box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+                color: #f5f6ff;
+            }
+
+            .flow-info::before {
+                content: "";
+                position: absolute;
+                inset: 12px;
+                border-radius: inherit;
+                border: 1px solid rgba(255, 255, 255, 0.12);
+                pointer-events: none;
+                opacity: 0.6;
+            }
+
+            .flow-subtitle {
+                margin: 0 0 clamp(14px, 2vw, 20px);
+                font-size: clamp(1rem, 2.2vw, 1.18rem);
                 font-weight: 600;
-                color: var(--accent);
+                letter-spacing: 0.01em;
             }
 
-            .step-period {
+            .flow-info-list {
                 margin: 0;
-                font-size: 0.95rem;
-                font-weight: 600;
-                color: rgba(28, 42, 74, 0.7);
+                padding: 0;
+                list-style: none;
+                display: grid;
+                gap: clamp(12px, 2vw, 18px);
+                position: relative;
+                z-index: 1;
             }
 
-            .step-description {
-                margin: 0;
-                font-size: 0.95rem;
+            .flow-info-list li {
+                position: relative;
+                padding-left: 22px;
+                font-size: clamp(0.95rem, 2.2vw, 1.05rem);
                 line-height: 1.6;
-                color: rgba(28, 42, 74, 0.82);
+                color: rgba(243, 246, 255, 0.92);
             }
 
-            .step-link {
-                width: fit-content;
-                display: inline-flex;
-                align-items: center;
-                gap: 6px;
-                font-size: 0.92rem;
+            .flow-info-list li::before {
+                content: "-";
+                position: absolute;
+                left: 0;
+                top: 0;
+                color: #7ddcff;
                 font-weight: 600;
-                color: var(--accent);
-                text-decoration: none;
-                padding-bottom: 2px;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-                transition: color 0.2s ease, border-color 0.2s ease;
             }
 
-            .step-link:hover,
-            .step-link:focus {
-                color: #1a3fba;
-                border-color: currentColor;
-            }
-
-            @media (max-width: 640px) {
-                .step-item {
-                    grid-template-columns: minmax(48px, 1fr);
-                    justify-items: flex-start;
+            @media (max-width: 720px) {
+                body {
+                    padding: 32px 16px;
                 }
 
-                .step-item::after {
-                    left: 32px;
+                header {
+                    padding: 32px 20px 18px;
                 }
 
-                .step-number {
-                    width: 48px;
-                    font-size: 1.35rem;
+                .main-card {
+                    padding: 28px 20px 36px;
+                }
+
+                .flow-visual {
+                    grid-template-columns: 1fr;
+                    text-align: center;
+                }
+
+                .flow-circle {
+                    margin: 0 auto;
+                }
+
+                .flow-info {
+                    text-align: left;
+                    padding: clamp(24px, 6vw, 36px);
                 }
             }
 
@@ -301,52 +326,17 @@
                 <div class="flow-grid">
                     <div class="flow-card">
                         <h3>Alur Pendaftaran Lomba</h3>
-                        <ol class="flow-steps">
-                            <li class="step-item" style="--accent: #f0294d;">
-                                <span class="step-number">1</span>
-                                <div class="step-content">
-                                    <h4 class="step-title">Pengumuman Lomba</h4>
-                                    <p class="step-period">Periode: 1 - 15 Mei 2023</p>
-                                    <p class="step-description">Detail teknis dan jadwal publikasi.</p>
-                                    <a class="step-link" href="https://example.com/pengumuman" target="_blank" rel="noopener">
-                                        Buka portal pengumuman
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="step-item" style="--accent: #fb7033;">
-                                <span class="step-number">2</span>
-                                <div class="step-content">
-                                    <h4 class="step-title">Registrasi Akun</h4>
-                                    <p class="step-period">Periode: 5 - 20 Mei 2023</p>
-                                    <p class="step-description">Buat akun sekolah dan lengkapi profil.</p>
-                                    <a class="step-link" href="https://example.com/registrasi" target="_blank" rel="noopener">
-                                        Daftar melalui portal registrasi
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="step-item" style="--accent: #f1bd29;">
-                                <span class="step-number">3</span>
-                                <div class="step-content">
-                                    <h4 class="step-title">Unggah Dokumen</h4>
-                                    <p class="step-period">Periode: 10 - 25 Mei 2023</p>
-                                    <p class="step-description">Upload berkas persyaratan lomba.</p>
-                                    <a class="step-link" href="https://example.com/dokumen" target="_blank" rel="noopener">
-                                        Unggah berkas sekarang
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="step-item" style="--accent: #28a6ff;">
-                                <span class="step-number">4</span>
-                                <div class="step-content">
-                                    <h4 class="step-title">Verifikasi &amp; Pengumuman</h4>
-                                    <p class="step-period">Periode: 26 Mei - 5 Juni 2023</p>
-                                    <p class="step-description">Validasi data dan hasil akhir.</p>
-                                    <a class="step-link" href="https://example.com/pengumuman-akhir" target="_blank" rel="noopener">
-                                        Lihat hasil verifikasi
-                                    </a>
-                                </div>
-                            </li>
-                        </ol>
+                        <div class="flow-visual" role="group" aria-label="Langkah kedua pendaftaran lomba">
+                            <div class="flow-circle" aria-hidden="true">2</div>
+                            <div class="flow-info">
+                                <p class="flow-subtitle">Lengkapi seluruh informasi sebelum mengirim pendaftaran.</p>
+                                <ul class="flow-info-list">
+                                    <li>Melengkapi NIK, program studi, Indeks Prestasi Semester, dan data yang diminta oleh sistem.</li>
+                                    <li>Upload pas foto format JPG/JPEG dengan ukuran kurang dari 300 KB.</li>
+                                    <li>Klik tombol <strong>Kirim</strong> untuk menyelesaikan proses pendaftaran.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </main>
