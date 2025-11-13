@@ -17,7 +17,7 @@ class AdminLecturerController extends Controller
      */
     public function create(): View
     {
-        return view('admin.create-lecturer', [
+        return view('modules.admin.create-lecturer', [
             'studyPrograms' => config('program_studi.options', []),
         ]);
     }

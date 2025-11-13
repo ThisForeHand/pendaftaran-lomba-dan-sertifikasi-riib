@@ -1,18 +1,10 @@
-<!DOCTYPE html>
-<html lang="id">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Masuk Akun - Pendaftaran Kompetisi & Sertifikasi</title>
+@extends('layouts.guest')
 
-        <link rel="preconnect" href="https://fonts.bunny.net" />
-        <link
-            href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700"
-            rel="stylesheet"
-        />
+@section('title', 'Masuk Akun - Pendaftaran Kompetisi & Sertifikasi')
 
-        <style>
-            :root {
+@push('styles')
+    <style>
+:root {
                 color-scheme: light;
             }
 
@@ -212,10 +204,11 @@
                     padding: 28px 22px;
                 }
             }
-        </style>
-    </head>
-    <body>
-        <main class="login-shell">
+    </style>
+@endpush
+
+@section('content')
+<main class="login-shell">
             <header class="login-header">
                 <div class="avatar" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="currentColor" role="img">
@@ -277,20 +270,22 @@
             </p>
         </main>
 
-        <script>
-            const passwordField = document.querySelector("#password");
-            const toggleButton = document.querySelector(".toggle-password");
+@endsection
 
-            function togglePasswordVisibility() {
-                const isHidden = passwordField.getAttribute("type") === "password";
-                passwordField.setAttribute("type", isHidden ? "text" : "password");
-                toggleButton.setAttribute(
-                    "aria-label",
-                    isHidden ? "Sembunyikan kata sandi" : "Tampilkan kata sandi"
-                );
-            }
+@push('scripts')
+    <script>
+        const passwordField = document.querySelector("#password");
+        const toggleButton = document.querySelector(".toggle-password");
 
-            toggleButton?.addEventListener("click", togglePasswordVisibility);
-        </script>
-    </body>
-</html>
+        function togglePasswordVisibility() {
+            const isHidden = passwordField.getAttribute("type") === "password";
+            passwordField.setAttribute("type", isHidden ? "text" : "password");
+            toggleButton.setAttribute(
+                "aria-label",
+                isHidden ? "Sembunyikan kata sandi" : "Tampilkan kata sandi"
+            );
+        }
+
+        toggleButton?.addEventListener("click", togglePasswordVisibility);
+    </script>
+@endpush

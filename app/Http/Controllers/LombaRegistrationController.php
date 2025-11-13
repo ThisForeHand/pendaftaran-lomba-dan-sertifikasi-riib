@@ -19,7 +19,7 @@ class LombaRegistrationController extends Controller
      */
     public function create(): View
     {
-        return view('User_lomba.pendaftaran-lomba');
+        return view('modules.lomba.pendaftaran-lomba');
     }
 
     public function downloadAdminRegistrations(): StreamedResponse
@@ -125,7 +125,7 @@ class LombaRegistrationController extends Controller
             ? LombaRegistration::latest()->get()
             : collect();
 
-        return view('admin.lomba', [
+        return view('modules.admin.lomba', [
             'activeTab' => 'lomba',
             'tableExists' => $lombaTableExists,
             'registrations' => $lombaRegistrations,
@@ -159,7 +159,7 @@ class LombaRegistrationController extends Controller
             ]
             : null;
 
-        return view('dosen.lomba-dashboard', [
+        return view('modules.dosen.lomba-dashboard', [
             'registrations' => $registrations,
             'tableExists' => $tableExists,
             'lecturerAccount' => $lecturerAccount,

@@ -24,7 +24,7 @@ class LoginController extends Controller
     {
         $this->prepareAuthenticationStorage();
 
-        return view('login');
+        return view('modules.auth.login');
     }
 
     /**
