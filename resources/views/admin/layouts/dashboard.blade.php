@@ -421,7 +421,8 @@
 
             input[type='text'],
             input[type='email'],
-            input[type='password'] {
+            input[type='password'],
+            select {
                 width: 100%;
                 border-radius: 14px;
                 border: 1px solid rgba(76, 98, 144, 0.22);
@@ -433,9 +434,21 @@
                 transition: border 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
             }
 
+            select {
+                appearance: none;
+                -webkit-appearance: none;
+                padding-right: 44px;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2324345a' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5'/%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+                background-position: right 16px center;
+                background-size: 12px 8px;
+                cursor: pointer;
+            }
+
             input[type='text']:focus,
             input[type='email']:focus,
-            input[type='password']:focus {
+            input[type='password']:focus,
+            select:focus {
                 outline: none;
                 border-color: rgba(30, 75, 169, 0.6);
                 box-shadow: 0 0 0 4px rgba(30, 75, 169, 0.15);
