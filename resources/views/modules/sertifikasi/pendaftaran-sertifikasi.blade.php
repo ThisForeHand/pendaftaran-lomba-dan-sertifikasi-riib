@@ -119,6 +119,87 @@
                 gap: clamp(28px, 5vw, 48px);
             }
 
+            .success-panel {
+                display: flex;
+                gap: 20px;
+                padding: clamp(20px, 3vw, 28px);
+                background: linear-gradient(135deg, rgba(76, 130, 253, 0.12), rgba(99, 156, 255, 0.08));
+                border: 1px solid rgba(65, 105, 225, 0.2);
+                border-radius: 22px;
+                box-shadow: 0 18px 45px rgba(33, 68, 147, 0.15);
+                align-items: flex-start;
+            }
+
+            .success-panel__icon {
+                width: 48px;
+                height: 48px;
+                border-radius: 16px;
+                background: #ffffff;
+                display: grid;
+                place-items: center;
+                color: #2e4eb8;
+                flex-shrink: 0;
+            }
+
+            .success-panel__content {
+                display: grid;
+                gap: 16px;
+            }
+
+            .success-panel__message {
+                margin: 0;
+                font-size: 1.02rem;
+                line-height: 1.6;
+                color: #1d2c57;
+            }
+
+            .community-cta {
+                border-radius: 18px;
+                background: #ffffff;
+                padding: clamp(16px, 2vw, 22px);
+                border: 1px solid rgba(19, 36, 82, 0.08);
+                display: flex;
+                flex-wrap: wrap;
+                gap: 18px;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .community-cta h2 {
+                margin: 0 0 6px;
+                font-size: 1.1rem;
+                color: #10204d;
+            }
+
+            .community-cta p {
+                margin: 0;
+                color: #4a5a87;
+                line-height: 1.5;
+            }
+
+            .community-cta .cta-button {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                padding: 14px 22px;
+                border-radius: 999px;
+                background: #2e4eb8;
+                color: #ffffff;
+                font-weight: 600;
+                text-decoration: none;
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                min-width: 220px;
+                text-align: center;
+            }
+
+            .community-cta .cta-button:hover,
+            .community-cta .cta-button:focus-visible {
+                transform: translateY(-1px);
+                box-shadow: 0 14px 30px rgba(46, 78, 184, 0.35);
+                outline: none;
+            }
+
             form {
                 display: grid;
                 gap: clamp(24px, 4vw, 36px);
@@ -288,7 +369,31 @@
 
             <main>
                 @if (session('status'))
-                    <div class="alert alert-success" role="status">{{ session('status') }}</div>
+                    <section class="success-panel" role="status" aria-live="polite">
+                        <div class="success-panel__icon" aria-hidden="true">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 11l3 3L22 4"></path>
+                                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                            </svg>
+                        </div>
+                        <div class="success-panel__content">
+                            <p class="success-panel__message">{{ session('status') }}</p>
+                            <div class="community-cta">
+                                <div>
+                                    <h2>Gabung {{ config('komunitas.sertifikasi.name') }}</h2>
+                                    <p>{{ config('komunitas.sertifikasi.description') }}</p>
+                                </div>
+                                <a
+                                    class="cta-button"
+                                    href="{{ config('komunitas.sertifikasi.whatsapp_link') }}"
+                                    target="_blank"
+                                    rel="noopener"
+                                >
+                                    Gabung Komunitas WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                    </section>
                 @endif
 
                 @if ($errors->any())

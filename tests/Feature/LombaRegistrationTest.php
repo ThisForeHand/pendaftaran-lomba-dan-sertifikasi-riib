@@ -31,9 +31,11 @@ class LombaRegistrationTest extends TestCase
 
         $response = $this->post(route('pendaftaran.lomba.store'), $payload);
 
+        $expectedStatus = 'Terima kasih! Data pendaftaran lomba Anda telah kami terima. Kami akan segera menghubungi Anda untuk informasi selanjutnya. Untuk koordinasi teknis dan info terbaru, segera gabung ke komunitas WhatsApp ' . config('komunitas.lomba.name') . '.';
+
         $response
             ->assertRedirect(route('pendaftaran.lomba'))
-            ->assertSessionHas('status', 'Terima kasih! Data pendaftaran lomba berhasil dikirim. Akan dihubungi untuk informasi lebih lanjutnya.');
+            ->assertSessionHas('status', $expectedStatus);
 
         $this->assertDatabaseHas('lomba_registrations', $payload);
     }

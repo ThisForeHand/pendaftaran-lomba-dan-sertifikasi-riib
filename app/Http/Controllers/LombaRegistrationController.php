@@ -109,9 +109,11 @@ class LombaRegistrationController extends Controller
 
         LombaRegistration::create($validated);
 
+        $communityName = config('komunitas.lomba.name');
+
         return redirect()
             ->route('pendaftaran.lomba')
-            ->with('status', 'Terima kasih! Data pendaftaran lomba Anda telah kami terima. Kami akan segera menghubungi Anda untuk informasi selanjutnya.');
+            ->with('status', "Terima kasih! Data pendaftaran lomba Anda telah kami terima. Kami akan segera menghubungi Anda untuk informasi selanjutnya. Untuk koordinasi teknis dan info terbaru, segera gabung ke komunitas WhatsApp {$communityName}.");
     }
 
     /**
