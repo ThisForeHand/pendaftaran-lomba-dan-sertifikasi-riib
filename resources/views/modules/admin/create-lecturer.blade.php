@@ -1,9 +1,9 @@
-@extends('admin.layouts.dashboard', [
+@extends('modules.admin.layouts.dashboard', [
     'activeTab' => 'dosen',
 ])
 
 @section('title', 'Buat Akun Dosen - Dashboard Admin')
 
 @section('content')
-    @include('admin.sections.buat-akun-dosen')
+    @include('modules.admin.sections.buat-akun-dosen')
 @endsection

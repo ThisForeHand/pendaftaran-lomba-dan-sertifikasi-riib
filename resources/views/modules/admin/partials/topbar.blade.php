@@ -23,15 +23,15 @@
             role="tablist"
             aria-label="Navigasi data pendaftaran"
         >
-            @include('admin.menus.lomba', [
+            @include('modules.admin.menus.lomba', [
                 'activeTab' => $currentTab,
                 'navigationMode' => $navigationMode,
             ])
-            @include('admin.menus.sertifikasi', [
+            @include('modules.admin.menus.sertifikasi', [
                 'activeTab' => $currentTab,
                 'navigationMode' => $navigationMode,
             ])
-            @include('admin.menus.dosen', ['activeTab' => $currentTab])
+            @include('modules.admin.menus.dosen', ['activeTab' => $currentTab])
         </nav>
     </div>
 </div>

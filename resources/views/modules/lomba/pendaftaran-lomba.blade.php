@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.guest')
 
-        <title>Pendaftaran Persiapan Lomba Mahasiswa</title>
+@section('title', 'Pendaftaran Persiapan Lomba Mahasiswa')
 
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
-
-        <style>
-            :root {
+@push('styles')
+    <style>
+:root {
                 color-scheme: light;
             }
 
@@ -246,10 +240,11 @@
                     width: 100%;
                 }
             }
-        </style>
-    </head>
-    <body>
-        <div class="page-container">
+    </style>
+@endpush
+
+@section('content')
+<div class="page-container">
             <header>
                 <a class="back-link" href="{{ url('/') }}">
                     <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
@@ -450,5 +445,4 @@
                 </form>
             </main>
         </div>
-    </body>
-</html>
+@endsection

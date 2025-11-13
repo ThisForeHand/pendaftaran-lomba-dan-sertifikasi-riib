@@ -18,7 +18,7 @@ class SertifikasiRegistrationController extends Controller
      */
     public function create(): View
     {
-        return view('user_sertifikasi.pendaftaran-sertifikasi');
+        return view('modules.sertifikasi.pendaftaran-sertifikasi');
     }
 
     /**
@@ -68,7 +68,7 @@ class SertifikasiRegistrationController extends Controller
             ? SertifikasiRegistration::latest()->get()
             : collect();
 
-        return view('admin.sertifikasi', [
+        return view('modules.admin.sertifikasi', [
             'activeTab' => 'sertifikasi',
             'tableExists' => $sertifikasiTableExists,
             'registrations' => $sertifikasiRegistrations,

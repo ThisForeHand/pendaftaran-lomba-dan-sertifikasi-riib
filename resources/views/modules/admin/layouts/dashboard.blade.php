@@ -576,7 +576,7 @@
         @endphp
 
         <div class="page">
-            @include('admin.partials.topbar', [
+            @include('modules.admin.partials.topbar', [
                 'adminName' => $adminName,
                 'adminInitial' => $adminInitial,
                 'activeTab' => $activeTab,
