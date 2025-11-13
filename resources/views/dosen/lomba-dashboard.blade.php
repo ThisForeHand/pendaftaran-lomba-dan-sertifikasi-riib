@@ -632,7 +632,15 @@
                         </label>
                         <label>
                             Nomor WhatsApp
-                            <input type="tel" name="phone" value="{{ $account['phone'] }}" placeholder="08xxxxxxxxxx" />
+                            <input
+                                type="tel"
+                                name="phone"
+                                value="{{ $account['phone'] }}"
+                                inputmode="tel"
+                                pattern="^(?:\+?62|0)[0-9\s\-()]{8,20}$"
+                                placeholder="Contoh: 0812xxxx atau +62812xxxx"
+                                title="Masukkan nomor WhatsApp yang diawali 0 atau +62"
+                            />
                         </label>
                         <label>
                             Kata Sandi Baru
