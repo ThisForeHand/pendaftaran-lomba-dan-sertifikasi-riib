@@ -38,6 +38,45 @@ class LombaRegistrationTest extends TestCase
         $this->assertDatabaseHas('lomba_registrations', $payload);
     }
 
+    public function test_user_can_submit_registration_data_with_international_format_number(): void
+    {
+        $payload = [
+            'nama' => 'Ayu Mentari',
+            'nim' => '239988776',
+            'program_studi' => 'Teknik Informatika',
+            'whatsapp' => '+6281234567890',
+            'pilihan_peran' => 'Hacker',
+            'motivasi' => 'Siap membantu teknis tim.',
+            'status_tim' => 'Sudah',
+        ];
+
+        $response = $this->post(route('pendaftaran.lomba.store'), $payload);
+
+        $response
+            ->assertRedirect(route('pendaftaran.lomba'))
+            ->assertSessionHas('status');
+
+        $this->assertDatabaseHas('lomba_registrations', $payload);
+    }
+
+    public function test_registration_rejects_invalid_whatsapp_number(): void
+    {
+        $payload = [
+            'nama' => 'Joko Ananda',
+            'nim' => '23001122',
+            'program_studi' => 'Teknik Elektro',
+            'whatsapp' => '12345',
+            'pilihan_peran' => 'Hipster',
+            'motivasi' => 'Siap membawa visual terbaik.',
+            'status_tim' => 'Belum',
+        ];
+
+        $this->post(route('pendaftaran.lomba.store'), $payload)
+            ->assertSessionHasErrors('whatsapp');
+
+        $this->assertDatabaseCount('lomba_registrations', 0);
+    }
+
     public function test_admin_dashboard_displays_registration_records(): void
     {
         $registration = LombaRegistration::factory()->create([

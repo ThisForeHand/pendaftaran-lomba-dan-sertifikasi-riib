@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\SertifikasiRegistration;
+use App\Rules\IndonesianPhoneNumber;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -43,7 +44,7 @@ class SertifikasiRegistrationController extends Controller
             'nama' => ['required', 'string', 'max:255'],
             'nim' => ['required', 'string', 'max:255'],
             'program_studi' => ['required', 'string', 'max:255'],
-            'whatsapp' => ['required', 'string', 'max:255'],
+            'whatsapp' => ['required', 'string', 'max:255', new IndonesianPhoneNumber()],
             'program_sertifikasi' => ['required', 'string', 'max:255'],
             'motivasi' => ['nullable', 'string'],
             'status_sertifikasi' => ['required', 'string', 'max:255'],

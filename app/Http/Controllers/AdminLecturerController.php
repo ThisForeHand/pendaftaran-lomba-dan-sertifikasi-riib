@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dosen;
+use App\Rules\IndonesianPhoneNumber;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -30,7 +31,7 @@ class AdminLecturerController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255', 'unique:dosens,username'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:dosens,email'],
-            'phone' => ['nullable', 'string', 'max:30'],
+            'phone' => ['nullable', 'string', 'max:30', new IndonesianPhoneNumber()],
             'program_studi' => ['nullable', 'string', 'max:255'],
             'password' => ['required', 'confirmed', Password::defaults()],
         ]);

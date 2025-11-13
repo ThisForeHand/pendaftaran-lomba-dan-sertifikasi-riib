@@ -69,7 +69,10 @@
                         id="phone"
                         name="phone"
                         value="{{ old('phone') }}"
-                        placeholder="Opsional"
+                        inputmode="tel"
+                        pattern="^(?:\+?62|0)[0-9\s\-()]{8,20}$"
+                        placeholder="Opsional (0812xxxx atau +62812xxxx)"
+                        title="Masukkan nomor telepon yang diawali 0 atau +62"
                         autocomplete="tel"
                     />
                 </div>

@@ -38,6 +38,45 @@ class SertifikasiRegistrationTest extends TestCase
         $this->assertDatabaseHas('sertifikasi_registrations', $payload);
     }
 
+    public function test_user_can_submit_certification_registration_with_plus_62_number(): void
+    {
+        $payload = [
+            'nama' => 'Gilang Raharja',
+            'nim' => '237770001',
+            'program_studi' => 'Teknik Industri',
+            'whatsapp' => '+628229991111',
+            'program_sertifikasi' => 'AI Fundamentals',
+            'motivasi' => 'Ingin menambah kompetensi baru.',
+            'status_sertifikasi' => 'Belum pernah',
+        ];
+
+        $response = $this->post(route('pendaftaran.sertifikasi.store'), $payload);
+
+        $response
+            ->assertRedirect(route('pendaftaran.sertifikasi'))
+            ->assertSessionHas('status');
+
+        $this->assertDatabaseHas('sertifikasi_registrations', $payload);
+    }
+
+    public function test_certification_registration_rejects_invalid_whatsapp_number(): void
+    {
+        $payload = [
+            'nama' => 'Hani Putri',
+            'nim' => '230000999',
+            'program_studi' => 'Teknik Elektro',
+            'whatsapp' => '98765',
+            'program_sertifikasi' => 'Cloud Computing',
+            'motivasi' => 'Menyelesaikan sertifikasi wajib.',
+            'status_sertifikasi' => 'Belum pernah',
+        ];
+
+        $this->post(route('pendaftaran.sertifikasi.store'), $payload)
+            ->assertSessionHasErrors('whatsapp');
+
+        $this->assertDatabaseCount('sertifikasi_registrations', 0);
+    }
+
     public function test_admin_dashboard_displays_registration_records(): void
     {
         $registration = SertifikasiRegistration::factory()->create([
