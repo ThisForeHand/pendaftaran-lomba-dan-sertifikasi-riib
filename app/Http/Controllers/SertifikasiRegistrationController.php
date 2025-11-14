@@ -56,7 +56,7 @@ class SertifikasiRegistrationController extends Controller
 
         return redirect()
             ->route('pendaftaran.sertifikasi')
-            ->with('status', "Terima kasih! Data pendaftaran sertifikasi Anda telah kami terima. Kami akan segera menghubungi Anda untuk informasi selanjutnya. Untuk briefing jadwal belajar dan pengumpulan berkas, segera gabung ke komunitas WhatsApp {$communityName}.");
+            ->with('status', "Terima kasih! Data pendaftaran sertifikasi Anda telah kami terima. Kami akan segera menghubungi Anda untuk informasi selanjutnya. Untuk briefing jadwal belajar dan pengumpulan berkas, segera gabung ke channel WhatsApp {$communityName}.");
     }
 
     /**

@@ -368,7 +368,7 @@
                                     target="_blank"
                                     rel="noopener"
                                 >
-                                    Gabung Komunitas WhatsApp
+                                    Gabung Channel WhatsApp
                                 </a>
                             </div>
                         </div>
