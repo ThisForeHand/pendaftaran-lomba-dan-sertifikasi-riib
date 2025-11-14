@@ -113,7 +113,7 @@ class LombaRegistrationController extends Controller
 
         return redirect()
             ->route('pendaftaran.lomba')
-            ->with('status', "Terima kasih! Data pendaftaran lomba Anda telah kami terima. Kami akan segera menghubungi Anda untuk informasi selanjutnya. Untuk koordinasi teknis dan info terbaru, segera gabung ke komunitas WhatsApp {$communityName}.");
+            ->with('status', "Terima kasih! Data pendaftaran lomba Anda telah kami terima. Kami akan segera menghubungi Anda untuk informasi selanjutnya. Untuk koordinasi teknis dan info terbaru, segera gabung ke channel WhatsApp {$communityName}.");
     }
 
     /**
