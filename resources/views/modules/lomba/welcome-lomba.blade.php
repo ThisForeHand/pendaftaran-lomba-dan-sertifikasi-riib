@@ -138,37 +138,149 @@
             }
 
             .flow-diagram {
-                margin: 0;
-                padding: clamp(12px, 2vw, 18px);
-                background: rgba(10, 87, 108, 0.06);
-                border-radius: clamp(24px, 4vw, 32px);
-                border: 1px solid rgba(9, 122, 149, 0.18);
+                padding: clamp(18px, 3vw, 28px);
+                border-radius: clamp(22px, 3vw, 30px);
+                border: 1px solid rgba(22, 78, 99, 0.18);
+                background: linear-gradient(135deg, rgba(14, 165, 233, 0.08) 0%, rgba(59, 130, 246, 0.06) 100%);
                 box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
                 display: grid;
-                gap: clamp(12px, 2vw, 18px);
+                gap: clamp(18px, 3vw, 28px);
             }
 
-            .flow-diagram a {
+            .timeline {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: grid;
+                gap: clamp(14px, 2.5vw, 22px);
+            }
+
+            .timeline-step {
+                display: grid;
+                grid-template-columns: min-content 1fr;
+                gap: clamp(12px, 2vw, 18px);
+                padding: clamp(16px, 2.8vw, 22px);
+                border-radius: clamp(18px, 3vw, 24px);
+                background: #ffffff;
+                border: 1px solid rgba(30, 64, 175, 0.08);
+                box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
                 position: relative;
-                display: inline-block;
-                border-radius: clamp(20px, 4vw, 28px);
                 overflow: hidden;
+            }
+
+            .timeline-step::after {
+                content: "";
+                position: absolute;
+                inset: -12% 65% auto -12%;
+                background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.08), transparent 65%);
+                z-index: 0;
+            }
+
+            .step-badge {
+                width: clamp(44px, 5vw, 52px);
+                height: clamp(44px, 5vw, 52px);
+                border-radius: 50%;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 700;
+                font-size: 1rem;
+                color: #ffffff;
+                background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%);
+                box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.25), 0 16px 32px rgba(37, 99, 235, 0.35);
+                position: relative;
+                z-index: 1;
+            }
+
+            .timeline li:nth-child(2) .step-badge {
+                background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 48%, #0369a1 100%);
+            }
+
+            .timeline li:nth-child(3) .step-badge {
+                background: linear-gradient(135deg, #14b8a6 0%, #0d9488 50%, #0f766e 100%);
+            }
+
+            .step-content {
+                display: grid;
+                gap: clamp(6px, 1.6vw, 12px);
+                position: relative;
+                z-index: 1;
+            }
+
+            .step-heading {
+                margin: 0;
+                font-size: clamp(1.05rem, 2.2vw, 1.22rem);
+                font-weight: 600;
+                color: #0f172a;
+            }
+
+            .step-subtitle {
+                margin: 0;
+                font-size: clamp(0.95rem, 1.8vw, 1.02rem);
+                color: rgba(15, 23, 42, 0.72);
+                font-weight: 500;
+            }
+
+            .step-list {
+                margin: 0;
+                padding-left: 1.2em;
+                display: grid;
+                gap: 6px;
+                font-size: clamp(0.9rem, 1.6vw, 0.98rem);
+                color: rgba(15, 23, 42, 0.82);
+            }
+
+            .step-list li::marker {
+                color: rgba(37, 99, 235, 0.8);
+            }
+
+            .step-meta {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                margin-top: clamp(6px, 1.4vw, 10px);
+                font-size: clamp(0.82rem, 1.6vw, 0.92rem);
+                font-weight: 600;
+                color: rgba(37, 99, 235, 0.96);
+            }
+
+            .step-link {
+                color: inherit;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: baseline;
+                gap: 6px;
+                cursor: pointer;
+            }
+
+            .step-link:hover,
+            .step-link:focus-visible {
+                text-decoration: underline;
+            }
+
+            .step-link:focus-visible {
                 outline: none;
             }
 
-            .flow-diagram a:focus-visible {
-                box-shadow: 0 0 0 4px rgba(32, 79, 255, 0.35);
+            .support-box {
+                padding: clamp(18px, 3vw, 24px);
+                border-radius: clamp(18px, 3vw, 24px);
+                background: rgba(59, 130, 246, 0.06);
+                border: 1px solid rgba(59, 130, 246, 0.28);
+                display: grid;
+                gap: 6px;
             }
 
-            .flow-diagram img {
-                display: block;
-                width: 100%;
-                height: auto;
+            .support-box strong {
+                font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+                font-weight: 600;
+                color: #0f172a;
             }
 
-            .flow-diagram figcaption {
-                font-size: clamp(0.9rem, 1.8vw, 1rem);
-                color: rgba(0, 0, 0, 0.78);
+            .support-box p {
+                margin: 0;
+                font-size: clamp(0.88rem, 1.6vw, 0.96rem);
+                color: rgba(15, 23, 42, 0.78);
             }
 
             .visually-hidden {
@@ -248,17 +360,103 @@
                 <div class="flow-grid">
                     <div class="flow-card">
                         <h3>Alur Pendaftaran Lomba</h3>
-                        <figure class="flow-diagram">
-                            <a href="https://www.youtube.com/" target="_blank" rel="noopener" title="Buka panduan alur pendaftaran">
-                                <img
-                                    src="{{ asset('images/alur-pendaftaran-lomba.svg') }}"
-                                    alt="Diagram alur pendaftaran lomba"
-                                    loading="lazy"
-                                />
-                                <span class="visually-hidden">Klik bagian tautan pada gambar untuk membuka panduan video</span>
-                            </a>
-                            <figcaption>Klik bagian tautan pada gambar untuk membuka panduan (sementara diarahkan ke YouTube).</figcaption>
-                        </figure>
+                        <div class="flow-diagram">
+                            <ol class="timeline" role="list">
+                                <li>
+                                    <div class="timeline-step">
+                                        <span class="step-badge">1</span>
+                                        <div class="step-content">
+                                            <a
+                                                class="step-heading step-link"
+                                                href="https://www.youtube.com/"
+                                                target="_blank"
+                                                rel="noopener"
+                                                title="Buka panduan resmi dan pilih jenis lomba"
+                                            >
+                                                Pahami Panduan &amp; Pilih Lomba
+                                            </a>
+                                            <span class="step-subtitle">Awali dengan memahami ketentuan kompetisi.</span>
+                                            <ul class="step-list">
+                                                <li>Baca panduan terbaru agar mengetahui jadwal dan syarat pesertanya.</li>
+                                                <li>Pilih kategori lomba yang sesuai dengan jurusan dan portofolio.</li>
+                                                <li>Catat batas waktu registrasi dan berkas yang wajib diunggah.</li>
+                                            </ul>
+                                            <a
+                                                class="step-meta step-link"
+                                                href="https://www.youtube.com/"
+                                                target="_blank"
+                                                rel="noopener"
+                                                title="Buka panduan resmi dan pilih jenis lomba"
+                                            >
+                                                ➡️ Panduan singkat peserta
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="timeline-step">
+                                        <span class="step-badge">2</span>
+                                        <div class="step-content">
+                                            <a
+                                                class="step-heading step-link"
+                                                href="{{ route('pendaftaran.lomba') }}"
+                                                title="Masuk ke formulir pendaftaran lomba"
+                                            >
+                                                Lengkapi Formulir Peserta
+                                            </a>
+                                            <span class="step-subtitle">Isi data akademik dan unggah dokumen wajib.</span>
+                                            <ul class="step-list">
+                                                <li>Masukkan identitas diri, prodi, serta pengalaman lomba terdahulu.</li>
+                                                <li>Unggah KRS atau transkrip sementara dalam format PDF &lt; 1 MB.</li>
+                                                <li>Klik <strong>Kirim</strong> dan pastikan status pendaftaran menjadi "Terkirim".</li>
+                                            </ul>
+                                            <a
+                                                class="step-meta step-link"
+                                                href="{{ route('pendaftaran.lomba') }}"
+                                                title="Masuk ke formulir pendaftaran lomba"
+                                            >
+                                                ➡️ Formulir digital lomba
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="timeline-step">
+                                        <span class="step-badge">3</span>
+                                        <div class="step-content">
+                                            <a
+                                                class="step-heading step-link"
+                                                href="mailto:kompetisi@poltekkes-smg.ac.id"
+                                                title="Kirim bukti atau tanya konfirmasi lomba"
+                                            >
+                                                Konfirmasi &amp; Finalisasi
+                                            </a>
+                                            <span class="step-subtitle">Pastikan seleksi internal berjalan tuntas.</span>
+                                            <ul class="step-list">
+                                                <li>Serahkan portofolio pendukung kepada dosen pembina.</li>
+                                                <li>Unggah bukti kesiapan tim (surat tugas/izin) di portal lomba.</li>
+                                                <li>Konfirmasi melalui email panitia jika membutuhkan verifikasi.</li>
+                                            </ul>
+                                            <a
+                                                class="step-meta step-link"
+                                                href="mailto:kompetisi@poltekkes-smg.ac.id"
+                                                title="Kirim bukti atau tanya konfirmasi lomba"
+                                            >
+                                                ➡️ Kontak panitia kompetisi
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ol>
+
+                            <div class="support-box">
+                                <strong>Butuh bantuan?</strong>
+                                <p>
+                                    Silakan koordinasi dengan dosen pembina atau hubungi helpdesk lomba untuk memastikan
+                                    seluruh berkas sudah lengkap sebelum batas waktu.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </main>
