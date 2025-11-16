@@ -534,12 +534,8 @@
             .flow-management-grid {
                 display: grid;
                 gap: clamp(18px, 3vw, 28px);
-            }
-
-            @media (min-width: 992px) {
-                .flow-management-grid {
-                    grid-template-columns: repeat(2, minmax(0, 1fr));
-                }
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                align-items: start;
             }
 
             .flow-column {
@@ -563,13 +559,16 @@
 
             .flow-item-actions {
                 display: flex;
-                gap: 12px;
+                gap: 10px;
                 flex-wrap: wrap;
+                justify-content: flex-end;
             }
 
             .flow-item-actions button[type='submit'] {
-                flex: 1 1 auto;
-                min-width: 180px;
+                flex: 0 0 auto;
+                min-width: 140px;
+                padding-inline: 18px;
+                padding-block: 12px;
             }
 
             .button-danger {
