@@ -31,6 +31,10 @@
                 'activeTab' => $currentTab,
                 'navigationMode' => $navigationMode,
             ])
+            @include('modules.admin.menus.alur', [
+                'activeTab' => $currentTab,
+                'navigationMode' => $navigationMode,
+            ])
             @include('modules.admin.menus.dosen', ['activeTab' => $currentTab])
         </nav>
     </div>

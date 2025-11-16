@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\LombaRegistrationController;
+use App\Http\Controllers\PortalLandingController;
 use App\Http\Controllers\SertifikasiRegistrationController;
 use Illuminate\Support\Facades\Route;
 
@@ -9,8 +10,8 @@ use Illuminate\Support\Facades\Route;
 // Public portal landing pages
 // -----------------------------------------------------------------------------
 Route::redirect('/', '/portal-lomba');
-Route::view('/portal-lomba', 'modules.lomba.welcome-lomba')->name('portal.lomba');
-Route::view('/portal-sertifikasi', 'modules.sertifikasi.welcome-sertifikasi')->name('portal.sertifikasi');
+Route::get('/portal-lomba', [PortalLandingController::class, 'lomba'])->name('portal.lomba');
+Route::get('/portal-sertifikasi', [PortalLandingController::class, 'sertifikasi'])->name('portal.sertifikasi');
 
 // -----------------------------------------------------------------------------
 // Registration flows for students and pembina
