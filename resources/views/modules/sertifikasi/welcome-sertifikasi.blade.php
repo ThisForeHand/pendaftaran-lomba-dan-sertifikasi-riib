@@ -2,6 +2,10 @@
 
 @section('title', 'Portal Pendaftaran Sertifikasi')
 
+@php
+    $flowSteps = collect($flowSteps ?? []);
+@endphp
+
 @push('styles')
     <style>
 :root {
@@ -227,24 +231,11 @@
                 color: #0f172a;
             }
 
-            .step-subtitle {
+            .step-description {
                 margin: 0;
                 font-size: clamp(0.92rem, 1.8vw, 1rem);
-                font-weight: 500;
-                color: rgba(15, 23, 42, 0.74);
-            }
-
-            .step-list {
-                margin: 0;
-                padding-left: 1.2em;
-                display: grid;
-                gap: 6px;
-                font-size: clamp(0.9rem, 1.8vw, 0.98rem);
+                line-height: 1.6;
                 color: rgba(15, 23, 42, 0.78);
-            }
-
-            .step-list li::marker {
-                color: rgba(124, 63, 253, 0.85);
             }
 
             .step-meta {
@@ -303,6 +294,17 @@
                 margin: 0;
                 font-size: clamp(0.88rem, 1.6vw, 0.96rem);
                 color: rgba(15, 23, 42, 0.78);
+            }
+
+            .empty-flow-message {
+                margin: 0;
+                padding: clamp(18px, 3vw, 26px);
+                border-radius: clamp(18px, 3vw, 24px);
+                border: 1px dashed rgba(124, 63, 253, 0.4);
+                background: rgba(255, 255, 255, 0.9);
+                font-weight: 500;
+                color: rgba(15, 23, 42, 0.74);
+                text-align: center;
             }
 
             .visually-hidden {
@@ -368,93 +370,39 @@
                     <div class="flow-card">
                         <h3>Alur Pendaftaran Sertifikasi</h3>
                         <div class="flow-diagram">
-                            <ol class="timeline" role="list">
-                                <li>
-                                    <div class="timeline-step">
-                                        <span class="step-badge">1</span>
-                                        <div class="step-content">
-                                            <a
-                                                class="step-heading step-link"
-                                                href="https://simampu.poltekkes-smg.ac.id/"
-                                                target="_blank"
-                                                rel="noopener"
-                                                title="Buka portal resmi untuk membaca panduan"
-                                            >
-                                                Persiapkan Akun &amp; Panduan
-                                            </a>
-                                            <span class="step-subtitle">Mulai dengan memahami ketentuan pendaftaran.</span>
-                                            <ul class="step-list">
-                                                <li>Unduh dan baca panduan peserta terbaru dari portal resmi.</li>
-                                                <li>Kunjungi <strong>simampu.poltekkes-smg.ac.id</strong> untuk memastikan jadwal.</li>
-                                                <li>Klik tombol <strong>Pendaftaran</strong> untuk masuk ke layanan.</li>
-                                            </ul>
-                                            <a
-                                                class="step-meta step-link"
-                                                href="https://simampu.poltekkes-smg.ac.id/"
-                                                target="_blank"
-                                                rel="noopener"
-                                                title="Buka portal resmi untuk membaca panduan"
-                                            >
-                                                ➡️ Panduan &amp; Portal SIMAMPU
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="timeline-step">
-                                        <span class="step-badge">2</span>
-                                        <div class="step-content">
-                                            <a
-                                                class="step-heading step-link"
-                                                href="{{ route('pendaftaran.sertifikasi') }}"
-                                                title="Masuk ke formulir pendaftaran sertifikasi"
-                                            >
-                                                Lengkapi Formulir Online
-                                            </a>
-                                            <span class="step-subtitle">Isi data dan unggah berkas sesuai ketentuan.</span>
-                                            <ul class="step-list">
-                                                <li>Masukkan NIK, program studi, dan IPK semester terakhir.</li>
-                                                <li>Unggah pas foto formal (JPG/JPEG) maksimal 300 KB.</li>
-                                                <li>Pastikan seluruh isian tersimpan, lalu tekan <strong>Kirim</strong>.</li>
-                                            </ul>
-                                            <a
-                                                class="step-meta step-link"
-                                                href="{{ route('pendaftaran.sertifikasi') }}"
-                                                title="Masuk ke formulir pendaftaran sertifikasi"
-                                            >
-                                                ➡️ Formulir Digital Sertifikasi
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="timeline-step">
-                                        <span class="step-badge">3</span>
-                                        <div class="step-content">
-                                            <a
-                                                class="step-heading step-link"
-                                                href="mailto:sertifikasi@poltekkes-smg.ac.id"
-                                                title="Kirim bukti pembayaran atau tanya konfirmasi"
-                                            >
-                                                Konfirmasi &amp; Pembayaran
-                                            </a>
-                                            <span class="step-subtitle">Finalisasi pendaftaran sesuai tagihan.</span>
-                                            <ul class="step-list">
-                                                <li>Catat nomor booking dan virtual account yang tampil.</li>
-                                                <li>Lakukan pembayaran biaya sertifikasi sesuai batas waktu.</li>
-                                                <li>Kirim bukti bayar untuk diverifikasi oleh panitia.</li>
-                                            </ul>
-                                            <a
-                                                class="step-meta step-link"
-                                                href="mailto:sertifikasi@poltekkes-smg.ac.id"
-                                                title="Kirim bukti pembayaran atau tanya konfirmasi"
-                                            >
-                                                ➡️ Kirim konfirmasi ke panitia
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ol>
+                            @if ($flowSteps->isNotEmpty())
+                                <ol class="timeline" role="list">
+                                    @foreach ($flowSteps as $step)
+                                        @php
+                                            $stepNumber = str_pad((string) ($step->sequence ?? $loop->iteration), 2, '0', STR_PAD_LEFT);
+                                            $link = $step->link;
+                                            $openInNewTab = $link && (str_starts_with($link, 'http://') || str_starts_with($link, 'https://'));
+                                        @endphp
+                                        <li>
+                                            <div class="timeline-step">
+                                                <span class="step-badge">{{ $stepNumber }}</span>
+                                                <div class="step-content">
+                                                    <h4 class="step-heading">{{ $step->title }}</h4>
+                                                    <p class="step-description">{!! nl2br(e($step->description)) !!}</p>
+                                                    @if ($link)
+                                                        <a
+                                                            class="step-meta step-link"
+                                                            href="{{ $link }}"
+                                                            @if ($openInNewTab) target="_blank" rel="noopener" @endif
+                                                        >
+                                                            ➡️ Buka tautan pendukung
+                                                        </a>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ol>
+                            @else
+                                <p class="empty-flow-message">
+                                    Konten alur sertifikasi akan segera diumumkan. Silakan cek kembali secara berkala.
+                                </p>
+                            @endif
 
                             <div class="support-box">
                                 <strong>Hanya bila diperlukan</strong>
