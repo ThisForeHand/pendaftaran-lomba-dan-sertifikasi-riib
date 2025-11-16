@@ -2,6 +2,10 @@
 
 @section('title', 'Portal Persiapan Lomba Mahasiswa')
 
+@php
+    $flowSteps = collect($flowSteps ?? []);
+@endphp
+
 @push('styles')
     <style>
 :root {
@@ -214,24 +218,11 @@
                 color: #0f172a;
             }
 
-            .step-subtitle {
+            .step-description {
                 margin: 0;
-                font-size: clamp(0.95rem, 1.8vw, 1.02rem);
-                color: rgba(15, 23, 42, 0.72);
-                font-weight: 500;
-            }
-
-            .step-list {
-                margin: 0;
-                padding-left: 1.2em;
-                display: grid;
-                gap: 6px;
-                font-size: clamp(0.9rem, 1.6vw, 0.98rem);
-                color: rgba(15, 23, 42, 0.82);
-            }
-
-            .step-list li::marker {
-                color: rgba(37, 99, 235, 0.8);
+                font-size: clamp(0.9rem, 1.8vw, 1rem);
+                line-height: 1.6;
+                color: rgba(15, 23, 42, 0.78);
             }
 
             .step-meta {
@@ -269,6 +260,17 @@
                 border: 1px solid rgba(59, 130, 246, 0.28);
                 display: grid;
                 gap: 6px;
+            }
+
+            .empty-flow-message {
+                margin: 0;
+                padding: clamp(18px, 3vw, 24px);
+                border-radius: clamp(18px, 3vw, 24px);
+                border: 1px dashed rgba(59, 130, 246, 0.4);
+                background: rgba(255, 255, 255, 0.8);
+                color: rgba(15, 23, 42, 0.75);
+                font-weight: 500;
+                text-align: center;
             }
 
             .support-box strong {
@@ -361,93 +363,39 @@
                     <div class="flow-card">
                         <h3>Alur Pendaftaran Lomba</h3>
                         <div class="flow-diagram">
-                            <ol class="timeline" role="list">
-                                <li>
-                                    <div class="timeline-step">
-                                        <span class="step-badge">1</span>
-                                        <div class="step-content">
-                                            <a
-                                                class="step-heading step-link"
-                                                href="https://www.youtube.com/"
-                                                target="_blank"
-                                                rel="noopener"
-                                                title="Buka panduan resmi dan pilih jenis lomba"
-                                            >
-                                                Pahami Panduan &amp; Pilih Lomba
-                                            </a>
-                                            <span class="step-subtitle">Awali dengan memahami ketentuan kompetisi.</span>
-                                            <ul class="step-list">
-                                                <li>Baca panduan terbaru agar mengetahui jadwal dan syarat pesertanya.</li>
-                                                <li>Pilih kategori lomba yang sesuai dengan jurusan dan portofolio.</li>
-                                                <li>Catat batas waktu registrasi dan berkas yang wajib diunggah.</li>
-                                            </ul>
-                                            <a
-                                                class="step-meta step-link"
-                                                href="https://www.youtube.com/"
-                                                target="_blank"
-                                                rel="noopener"
-                                                title="Buka panduan resmi dan pilih jenis lomba"
-                                            >
-                                                ➡️ Panduan singkat peserta
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="timeline-step">
-                                        <span class="step-badge">2</span>
-                                        <div class="step-content">
-                                            <a
-                                                class="step-heading step-link"
-                                                href="{{ route('pendaftaran.lomba') }}"
-                                                title="Masuk ke formulir pendaftaran lomba"
-                                            >
-                                                Lengkapi Formulir Peserta
-                                            </a>
-                                            <span class="step-subtitle">Isi data akademik dan unggah dokumen wajib.</span>
-                                            <ul class="step-list">
-                                                <li>Masukkan identitas diri, prodi, serta pengalaman lomba terdahulu.</li>
-                                                <li>Unggah KRS atau transkrip sementara dalam format PDF &lt; 1 MB.</li>
-                                                <li>Klik <strong>Kirim</strong> dan pastikan status pendaftaran menjadi "Terkirim".</li>
-                                            </ul>
-                                            <a
-                                                class="step-meta step-link"
-                                                href="{{ route('pendaftaran.lomba') }}"
-                                                title="Masuk ke formulir pendaftaran lomba"
-                                            >
-                                                ➡️ Formulir digital lomba
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="timeline-step">
-                                        <span class="step-badge">3</span>
-                                        <div class="step-content">
-                                            <a
-                                                class="step-heading step-link"
-                                                href="mailto:kompetisi@poltekkes-smg.ac.id"
-                                                title="Kirim bukti atau tanya konfirmasi lomba"
-                                            >
-                                                Konfirmasi &amp; Finalisasi
-                                            </a>
-                                            <span class="step-subtitle">Pastikan seleksi internal berjalan tuntas.</span>
-                                            <ul class="step-list">
-                                                <li>Serahkan portofolio pendukung kepada dosen pembina.</li>
-                                                <li>Unggah bukti kesiapan tim (surat tugas/izin) di portal lomba.</li>
-                                                <li>Konfirmasi melalui email panitia jika membutuhkan verifikasi.</li>
-                                            </ul>
-                                            <a
-                                                class="step-meta step-link"
-                                                href="mailto:kompetisi@poltekkes-smg.ac.id"
-                                                title="Kirim bukti atau tanya konfirmasi lomba"
-                                            >
-                                                ➡️ Kontak panitia kompetisi
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ol>
+                            @if ($flowSteps->isNotEmpty())
+                                <ol class="timeline" role="list">
+                                    @foreach ($flowSteps as $step)
+                                        @php
+                                            $stepNumber = str_pad((string) ($step->sequence ?? $loop->iteration), 2, '0', STR_PAD_LEFT);
+                                            $link = $step->link;
+                                            $openInNewTab = $link && (str_starts_with($link, 'http://') || str_starts_with($link, 'https://'));
+                                        @endphp
+                                        <li>
+                                            <div class="timeline-step">
+                                                <span class="step-badge">{{ $stepNumber }}</span>
+                                                <div class="step-content">
+                                                    <h4 class="step-heading">{{ $step->title }}</h4>
+                                                    <p class="step-description">{!! nl2br(e($step->description)) !!}</p>
+                                                    @if ($link)
+                                                        <a
+                                                            class="step-meta step-link"
+                                                            href="{{ $link }}"
+                                                            @if ($openInNewTab) target="_blank" rel="noopener" @endif
+                                                        >
+                                                            ➡️ Buka tautan pendukung
+                                                        </a>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ol>
+                            @else
+                                <p class="empty-flow-message">
+                                    Konten alur pendaftaran akan segera tersedia. Silakan cek kembali atau hubungi admin.
+                                </p>
+                            @endif
 
                             <div class="support-box">
                                 <strong>Butuh bantuan?</strong>

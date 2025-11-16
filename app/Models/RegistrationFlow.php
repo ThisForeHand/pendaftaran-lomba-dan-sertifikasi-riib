@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class RegistrationFlow extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'type',
+        'sequence',
+        'title',
+        'description',
+        'link',
+    ];
+
+    protected $casts = [
+        'sequence' => 'integer',
+    ];
+}

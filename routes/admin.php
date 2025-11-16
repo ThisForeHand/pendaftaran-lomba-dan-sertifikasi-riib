@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminLecturerController;
+use App\Http\Controllers\AdminRegistrationFlowController;
 use App\Http\Controllers\LombaRegistrationController;
 use App\Http\Controllers\SertifikasiRegistrationController;
 use Illuminate\Support\Facades\Route;
@@ -17,4 +18,9 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::get('/admin/dosen/create', [AdminLecturerController::class, 'create'])->name('admin.dosen.create');
     Route::post('/admin/dosen', [AdminLecturerController::class, 'store'])->name('admin.dosen.store');
+
+    Route::get('/admin/alur', [AdminRegistrationFlowController::class, 'index'])->name('admin.alur');
+    Route::post('/admin/alur', [AdminRegistrationFlowController::class, 'store'])->name('admin.alur.store');
+    Route::put('/admin/alur/{registrationFlow}', [AdminRegistrationFlowController::class, 'update'])->name('admin.alur.update');
+    Route::delete('/admin/alur/{registrationFlow}', [AdminRegistrationFlowController::class, 'destroy'])->name('admin.alur.destroy');
 });

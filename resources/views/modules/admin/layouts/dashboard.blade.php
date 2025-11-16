@@ -422,7 +422,10 @@
             input[type='text'],
             input[type='email'],
             input[type='password'],
-            select {
+            input[type='number'],
+            input[type='url'],
+            select,
+            textarea {
                 width: 100%;
                 border-radius: 14px;
                 border: 1px solid rgba(76, 98, 144, 0.22);
@@ -432,6 +435,11 @@
                 color: #1f2a44;
                 background: #f7f8fb;
                 transition: border 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+            }
+
+            textarea {
+                min-height: 120px;
+                resize: vertical;
             }
 
             select {
@@ -448,7 +456,10 @@
             input[type='text']:focus,
             input[type='email']:focus,
             input[type='password']:focus,
-            select:focus {
+            input[type='number']:focus,
+            input[type='url']:focus,
+            select:focus,
+            textarea:focus {
                 outline: none;
                 border-color: rgba(30, 75, 169, 0.6);
                 box-shadow: 0 0 0 4px rgba(30, 75, 169, 0.15);
@@ -518,6 +529,66 @@
 
             button[type='submit']:active {
                 transform: translateY(0);
+            }
+
+            .flow-management-grid {
+                display: grid;
+                gap: clamp(18px, 3vw, 28px);
+            }
+
+            @media (min-width: 992px) {
+                .flow-management-grid {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+            }
+
+            .flow-column {
+                display: grid;
+                gap: 16px;
+            }
+
+            .flow-column h3 {
+                margin: 0;
+                font-size: 1.05rem;
+            }
+
+            .flow-entry {
+                border: 1px solid rgba(76, 98, 144, 0.18);
+                border-radius: 20px;
+                padding: clamp(16px, 3vw, 22px);
+                background: rgba(247, 248, 251, 0.8);
+                display: grid;
+                gap: 16px;
+            }
+
+            .flow-item-actions {
+                display: flex;
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+
+            .flow-item-actions button[type='submit'] {
+                flex: 1 1 auto;
+                min-width: 180px;
+            }
+
+            .button-danger {
+                background: linear-gradient(135deg, #dc2626, #b91c1c);
+                box-shadow: 0 18px 40px rgba(220, 38, 38, 0.25);
+            }
+
+            .button-danger:hover {
+                box-shadow: 0 20px 46px rgba(220, 38, 38, 0.3);
+            }
+
+            .empty-flow-state {
+                margin: 0;
+                padding: 18px;
+                border-radius: 16px;
+                background: rgba(248, 250, 252, 0.9);
+                border: 1px dashed rgba(76, 98, 144, 0.4);
+                color: #4b5a86;
+                font-size: 0.95rem;
             }
 
             @media (max-width: 768px) {
