@@ -69,17 +69,12 @@
                 border: none;
             }
 
-            .sidebar-logo-mark {
-                width: 56px;
-                height: 56px;
-                border-radius: 16px;
-                background: linear-gradient(150deg, #1f4db1 0%, #315ed8 100%);
-                color: #ffffff;
-                display: grid;
-                place-items: center;
-                font-weight: 800;
-                letter-spacing: 0.04em;
-                box-shadow: 0 14px 34px rgba(31, 77, 177, 0.18);
+            .sidebar-logo-image {
+                width: 100%;
+                max-width: 140px;
+                display: block;
+                object-fit: contain;
+                filter: drop-shadow(0 12px 26px rgba(31, 77, 177, 0.25));
             }
 
             .sidebar-divider {
