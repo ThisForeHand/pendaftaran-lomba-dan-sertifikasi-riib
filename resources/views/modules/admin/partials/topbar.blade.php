@@ -1,8 +1,6 @@
 @php
     $displayName = $adminName ?? 'Admin';
     $displayInitial = $adminInitial ?? (strtoupper(substr($displayName, 0, 1) ?: 'A'));
-    $currentTab = $activeTab ?? 'lomba';
-    $navigationMode = $navigationMode ?? 'tabs';
 @endphp
 
 <div class="dashboard-header-card">
@@ -16,26 +14,4 @@
             <span class="admin-name">{{ $displayName }}</span>
         </div>
     </header>
-
-    <div class="card-navigation">
-        <nav
-            class="dashboard-tabs"
-            role="tablist"
-            aria-label="Navigasi data pendaftaran"
-        >
-            @include('modules.admin.menus.lomba', [
-                'activeTab' => $currentTab,
-                'navigationMode' => $navigationMode,
-            ])
-            @include('modules.admin.menus.sertifikasi', [
-                'activeTab' => $currentTab,
-                'navigationMode' => $navigationMode,
-            ])
-            @include('modules.admin.menus.alur', [
-                'activeTab' => $currentTab,
-                'navigationMode' => $navigationMode,
-            ])
-            @include('modules.admin.menus.dosen', ['activeTab' => $currentTab])
-        </nav>
-    </div>
 </div>
