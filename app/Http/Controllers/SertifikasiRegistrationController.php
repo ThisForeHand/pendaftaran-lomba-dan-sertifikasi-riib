@@ -132,4 +132,35 @@ class SertifikasiRegistrationController extends Controller
             'Content-Type' => 'application/vnd.ms-excel; charset=UTF-8',
         ]);
     }
+
+    public function destroy(Request $request): RedirectResponse
+    {
+        if (! Schema::hasTable('sertifikasi_registrations')) {
+            return back()->with('status', 'Tabel pendaftaran sertifikasi belum tersedia.');
+        }
+
+        $validated = $request->validate([
+            'ids' => ['array'],
+            'ids.*' => ['integer'],
+            'clear_all' => ['nullable', 'boolean'],
+        ]);
+
+        $clearAll = (bool) ($validated['clear_all'] ?? false);
+
+        if ($clearAll) {
+            SertifikasiRegistration::query()->delete();
+
+            return back()->with('status', 'Semua data pendaftaran sertifikasi berhasil dihapus.');
+        }
+
+        $ids = $validated['ids'] ?? [];
+
+        if (! empty($ids)) {
+            SertifikasiRegistration::query()->whereIn('id', $ids)->delete();
+
+            return back()->with('status', 'Data pendaftaran sertifikasi terpilih berhasil dihapus.');
+        }
+
+        return back()->with('status', 'Tidak ada data yang dipilih untuk dihapus.');
+    }
 }

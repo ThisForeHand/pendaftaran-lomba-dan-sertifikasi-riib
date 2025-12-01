@@ -232,4 +232,35 @@ class LombaRegistrationController extends Controller
             'Content-Type' => 'application/vnd.ms-excel; charset=UTF-8',
         ]);
     }
+
+    public function destroy(Request $request): RedirectResponse
+    {
+        if (! Schema::hasTable('lomba_registrations')) {
+            return back()->with('status', 'Tabel pendaftaran lomba belum tersedia.');
+        }
+
+        $validated = $request->validate([
+            'ids' => ['array'],
+            'ids.*' => ['integer'],
+            'clear_all' => ['nullable', 'boolean'],
+        ]);
+
+        $clearAll = (bool) ($validated['clear_all'] ?? false);
+
+        if ($clearAll) {
+            LombaRegistration::query()->delete();
+
+            return back()->with('status', 'Semua data pendaftaran lomba berhasil dihapus.');
+        }
+
+        $ids = $validated['ids'] ?? [];
+
+        if (! empty($ids)) {
+            LombaRegistration::query()->whereIn('id', $ids)->delete();
+
+            return back()->with('status', 'Data pendaftaran lomba terpilih berhasil dihapus.');
+        }
+
+        return back()->with('status', 'Tidak ada data yang dipilih untuk dihapus.');
+    }
 }
