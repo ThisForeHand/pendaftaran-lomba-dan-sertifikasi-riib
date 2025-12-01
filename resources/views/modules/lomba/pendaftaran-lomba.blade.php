@@ -455,7 +455,7 @@
                             type="tel"
                             inputmode="tel"
                             pattern="^(?:\+?62|0)[0-9\s\-()]{8,20}$"
-                            placeholder="Contoh: 0812-3456-7890 atau +62812-3456-7890"
+                            placeholder="Contoh: 081234567890 atau +6281234567890"
                             title="Masukkan nomor WhatsApp yang diawali 0 atau +62"
                             value="{{ old('whatsapp') }}"
                             required
