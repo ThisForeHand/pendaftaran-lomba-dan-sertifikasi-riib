@@ -15,9 +15,11 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::get('/admin/lomba', [LombaRegistrationController::class, 'index'])->name('admin.lomba');
     Route::get('/admin/lomba/download', [LombaRegistrationController::class, 'downloadAdminRegistrations'])->name('admin.lomba.download');
+    Route::delete('/admin/lomba', [LombaRegistrationController::class, 'destroy'])->name('admin.lomba.destroy');
 
     Route::get('/admin/sertifikasi', [SertifikasiRegistrationController::class, 'index'])->name('admin.sertifikasi');
     Route::get('/admin/sertifikasi/download', [SertifikasiRegistrationController::class, 'downloadAdminRegistrations'])->name('admin.sertifikasi.download');
+    Route::delete('/admin/sertifikasi', [SertifikasiRegistrationController::class, 'destroy'])->name('admin.sertifikasi.destroy');
 
     Route::get('/admin/dosen/create', [AdminLecturerController::class, 'create'])->name('admin.dosen.create');
     Route::post('/admin/dosen', [AdminLecturerController::class, 'store'])->name('admin.dosen.store');

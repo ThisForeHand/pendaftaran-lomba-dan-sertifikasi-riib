@@ -12,54 +12,63 @@
         </div>
     </div>
 
-    <div class="table-container">
-        <table data-empty-text="Belum ada data pendaftaran sertifikasi.">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>NIM</th>
-                    <th>Prodi</th>
-                    <th>No Wa</th>
-                    <th>Program Sertifikasi</th>
-                    <th>Status Sertifikasi</th>
-                    <th class="select-column" aria-label="Pilih">
-                        <button type="button" class="clear-all-button">Clear All</button>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (! $tableExists)
+    <form method="POST" action="{{ route('admin.sertifikasi.destroy') }}" class="data-form" id="{{ $panelId }}-form">
+        @csrf
+        @method('DELETE')
+
+        <input type="hidden" name="clear_all" value="0" class="clear-all-input">
+
+        <div class="table-container">
+            <table data-empty-text="Belum ada data pendaftaran sertifikasi.">
+                <thead>
                     <tr>
-                        <td colspan="8">
-                            Tabel pendaftaran sertifikasi belum tersedia. Jalankan migrasi database terlebih dahulu.
-                        </td>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>NIM</th>
+                        <th>Prodi</th>
+                        <th>No Wa</th>
+                        <th>Program Sertifikasi</th>
+                        <th>Status Sertifikasi</th>
+                        <th class="select-column" aria-label="Pilih">
+                            <button type="button" class="clear-all-button">Clear All</button>
+                        </th>
                     </tr>
-                @else
-                    @forelse ($registrations as $registration)
+                </thead>
+                <tbody>
+                    @if (! $tableExists)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $registration->nama }}</td>
-                            <td>{{ $registration->nim }}</td>
-                            <td>{{ $registration->program_studi }}</td>
-                            <td>
-                                <x-contact-link :value="$registration->whatsapp" />
+                            <td colspan="8">
+                                Tabel pendaftaran sertifikasi belum tersedia. Jalankan migrasi database terlebih dahulu.
                             </td>
-                            <td>{{ $registration->program_sertifikasi }}</td>
-                            <td>
-                                <span class="badge">{{ $registration->status_sertifikasi }}</span>
-                            </td>
-                            <td class="select-cell"><input type="checkbox" class="row-checkbox" /></td>
                         </tr>
-                    @empty
-                        <tr class="empty-state">
-                            <td colspan="8">Belum ada data pendaftaran sertifikasi.</td>
-                        </tr>
-                    @endforelse
-                @endif
-            </tbody>
-        </table>
-    </div>
+                    @else
+                        @forelse ($registrations as $registration)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $registration->nama }}</td>
+                                <td>{{ $registration->nim }}</td>
+                                <td>{{ $registration->program_studi }}</td>
+                                <td>
+                                    <x-contact-link :value="$registration->whatsapp" />
+                                </td>
+                                <td>{{ $registration->program_sertifikasi }}</td>
+                                <td>
+                                    <span class="badge">{{ $registration->status_sertifikasi }}</span>
+                                </td>
+                                <td class="select-cell">
+                                    <input type="checkbox" name="ids[]" value="{{ $registration->id }}" class="row-checkbox" />
+                                </td>
+                            </tr>
+                        @empty
+                            <tr class="empty-state">
+                                <td colspan="8">Belum ada data pendaftaran sertifikasi.</td>
+                            </tr>
+                        @endforelse
+                    @endif
+                </tbody>
+            </table>
+        </div>
+    </form>
 
     <div class="footer-actions">
         <div class="footer-actions-left">
@@ -70,7 +79,7 @@
         </div>
         <div class="footer-actions-right">
             <a href="{{ route('admin.sertifikasi.download') }}" class="action-button download">Unduh</a>
-            <a href="#" class="action-button delete">Hapus</a>
+            <button type="button" class="action-button delete" form="{{ $panelId }}-form">Hapus</button>
         </div>
     </div>
 </section>

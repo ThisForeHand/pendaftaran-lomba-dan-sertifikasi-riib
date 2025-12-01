@@ -875,10 +875,12 @@
                 document.querySelectorAll('.data-panel').forEach((panel) => {
                     const deleteButton = panel.querySelector('.action-button.delete');
                     const clearAllButton = panel.querySelector('.clear-all-button');
+                    const form = panel.querySelector('.data-form');
                     const tableBody = panel.querySelector('tbody');
                     const tableElement = panel.querySelector('table');
+                    const clearAllInput = form?.querySelector('.clear-all-input');
 
-                    if (!tableBody || !tableElement) {
+                    if (!tableBody || !tableElement || !form) {
                         return;
                     }
 
@@ -953,16 +955,11 @@
                                 return;
                             }
 
-                            selectedCheckboxes.forEach((checkbox) => {
-                                const row = checkbox.closest('tr');
-                                if (row) {
-                                    row.remove();
-                                }
-                            });
+                            if (clearAllInput) {
+                                clearAllInput.value = '0';
+                            }
 
-                            exitSelectionMode();
-                            ensureEmptyState();
-                            updateRowNumbers();
+                            form.submit();
                         });
                     }
 
@@ -980,15 +977,11 @@
                                 return;
                             }
 
-                            checkboxes.forEach((checkbox) => {
-                                const row = checkbox.closest('tr');
-                                if (row) {
-                                    row.remove();
-                                }
-                            });
+                            if (clearAllInput) {
+                                clearAllInput.value = '1';
+                            }
 
-                            exitSelectionMode();
-                            ensureEmptyState();
+                            form.submit();
                         });
                     }
 
