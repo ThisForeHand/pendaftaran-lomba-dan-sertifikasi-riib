@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminLecturerController;
 use App\Http\Controllers\AdminRegistrationFlowController;
 use App\Http\Controllers\LombaRegistrationController;
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 // Admin dashboard routes (guard: auth:admin)
 // -----------------------------------------------------------------------------
 Route::middleware('auth:admin')->group(function () {
+    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
     Route::get('/admin/lomba', [LombaRegistrationController::class, 'index'])->name('admin.lomba');
     Route::get('/admin/lomba/download', [LombaRegistrationController::class, 'downloadAdminRegistrations'])->name('admin.lomba.download');
 
