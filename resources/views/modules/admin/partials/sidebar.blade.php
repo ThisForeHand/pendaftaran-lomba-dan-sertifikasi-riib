@@ -1,40 +1,53 @@
-@php
-    $displayName = $adminName ?? 'Admin';
-    $displayInitial = $adminInitial ?? (strtoupper(substr($displayName, 0, 1) ?: 'A'));
-    $currentTab = $activeTab ?? 'lomba';
-@endphp
-
-<aside class="sidebar">
-    <div class="sidebar-brand">
-        <div class="brand-mark">RIIB</div>
-        <div class="brand-text">
-            <span>Dashboard Admin</span>
-            <strong>Pendaftaran</strong>
-        </div>
-    </div>
-
-    <div class="sidebar-user">
-        <div class="sidebar-avatar">{{ $displayInitial }}</div>
-        <div class="sidebar-user-info">
-            <span>Halo,</span>
-            <strong>{{ $displayName }}</strong>
-        </div>
+<aside class="sidebar" aria-label="Navigasi Admin">
+    <div class="sidebar-logo">
+        <img src="{{ asset('images/RMDOO_logo.png') }}" alt="RMDOO Logo" width="120" height="60">
     </div>
 
     <nav class="sidebar-nav" aria-label="Menu Dashboard">
-        <span class="nav-section-title">Menu</span>
-        @include('modules.admin.menus.lomba', [
-            'activeTab' => $currentTab,
-            'navigationMode' => 'links',
-        ])
-        @include('modules.admin.menus.sertifikasi', [
-            'activeTab' => $currentTab,
-            'navigationMode' => 'links',
-        ])
-        @include('modules.admin.menus.alur', [
-            'activeTab' => $currentTab,
-            'navigationMode' => 'links',
-        ])
-        @include('modules.admin.menus.dosen', ['activeTab' => $currentTab])
+        <div class="sidebar-nav-group">
+            <p class="sidebar-section-title">Menu</p>
+            <a class="sidebar-nav-item {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
+                <img src="{{ asset('images/dashboard-icon.png') }}" alt="Dashboard Icon">
+                Dashboard
+            </a>
+        </div>
+
+        <div class="sidebar-nav-group">
+            <p class="sidebar-section-title">Users Management</p>
+            <a class="sidebar-nav-item {{ request()->routeIs('manage-users.*') ? 'active' : '' }}" href="{{ route('manage-users.index') }}">
+                <img src="{{ asset('images/manage-user-icon.png') }}" alt="Manage User Icon">
+                Manage User
+            </a>
+            <a class="sidebar-nav-item {{ request()->routeIs('departments.*') ? 'active' : '' }}" href="{{ route('departments.index') }}">
+                <img src="{{ asset('images/manage-user-icon.png') }}" alt="Department Icon">
+                Departemen
+            </a>
+        </div>
+
+        <div class="sidebar-nav-group">
+            <p class="sidebar-section-title">Attendance</p>
+            <a class="sidebar-nav-item {{ request()->routeIs('schedule.*') ? 'active' : '' }}" href="{{ route('schedule.index') }}">
+                <img src="{{ asset('images/schedule-icon.png') }}" alt="Schedule Icon">
+                Schedule
+            </a>
+            <a class="sidebar-nav-item {{ request()->routeIs('attendance.*') ? 'active' : '' }}" href="{{ route('attendance.index') }}">
+                <img src="{{ asset('images/daily-attendance-icon.png') }}" alt="Daily Attendance Icon">
+                Daily Attendance
+            </a>
+            <a class="sidebar-nav-item {{ request()->routeIs('reports.sheet') ? 'active' : '' }}" href="{{ route('reports.sheet') }}">
+                <img src="{{ asset('images/sheet-report-icon.png') }}" alt="Sheet Report Icon">
+                Sheet Report
+            </a>
+        </div>
     </nav>
+
+    <div class="sidebar-footer">
+        <a href="#" class="logout-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <img src="{{ asset('images/logout-box-icon.png') }}" alt="Logout Icon">
+            Keluar
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+            @csrf
+        </form>
+    </div>
 </aside>

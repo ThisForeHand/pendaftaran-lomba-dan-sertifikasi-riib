@@ -49,132 +49,114 @@
 
             .sidebar {
                 background: #ffffff;
-                border-radius: 28px;
-                padding: clamp(20px, 3vw, 28px);
-                box-shadow: 0 20px 60px rgba(33, 62, 157, 0.12);
-                border: 1px solid rgba(51, 86, 189, 0.14);
+                border-radius: 16px;
+                padding: 20px 18px;
+                box-shadow: 0 18px 48px rgba(33, 62, 157, 0.12);
+                border: 1px solid #e2e8f5;
                 display: grid;
-                gap: clamp(18px, 3vw, 26px);
+                gap: 18px;
                 position: sticky;
                 top: clamp(16px, 3vw, 32px);
                 height: fit-content;
                 align-self: start;
             }
 
-            .sidebar-brand {
+            .sidebar-logo {
                 display: flex;
                 align-items: center;
-                gap: 12px;
-            }
-
-            .brand-mark {
-                width: 42px;
-                height: 42px;
+                justify-content: center;
+                padding: 12px;
                 border-radius: 12px;
-                background: linear-gradient(150deg, #1f4db1 0%, #315ed8 100%);
-                color: #ffffff;
-                display: grid;
-                place-items: center;
-                font-weight: 700;
-                letter-spacing: 0.02em;
-                box-shadow: 0 14px 34px rgba(31, 77, 177, 0.18);
-            }
-
-            .brand-text {
-                display: grid;
-                gap: 4px;
-                color: #1e2a52;
-            }
-
-            .brand-text span {
-                font-size: 0.92rem;
-                color: #4b5a86;
-            }
-
-            .brand-text strong {
-                font-size: 1.05rem;
-                letter-spacing: 0.01em;
-            }
-
-            .sidebar-user {
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                padding: 12px 14px;
-                border-radius: 18px;
-                background: #f6f7fe;
-                border: 1px solid rgba(51, 86, 189, 0.14);
-            }
-
-            .sidebar-avatar {
-                width: 46px;
-                height: 46px;
-                border-radius: 50%;
-                background: linear-gradient(160deg, rgba(30, 75, 169, 0.16) 0%, rgba(79, 116, 208, 0.08) 100%);
-                border: 1px solid rgba(30, 75, 169, 0.18);
-                display: grid;
-                place-items: center;
-                font-size: 1.2rem;
-                color: #1e2a52;
-                font-weight: 700;
-            }
-
-            .sidebar-user-info {
-                display: grid;
-                gap: 4px;
-                color: #1e2a52;
-            }
-
-            .sidebar-user-info span {
-                color: #53628f;
-                font-size: 0.9rem;
-            }
-
-            .sidebar-user-info strong {
-                font-size: 1.02rem;
+                background: #f4f6fc;
+                border: 1px solid #e5eaf7;
             }
 
             .sidebar-nav {
                 display: grid;
+                gap: 18px;
+            }
+
+            .sidebar-nav-group {
+                display: grid;
                 gap: 10px;
             }
 
-            .nav-section-title {
-                font-size: 0.9rem;
-                color: #53628f;
+            .sidebar-section-title {
+                font-size: 0.82rem;
+                color: #8a93a8;
                 font-weight: 700;
-                letter-spacing: 0.02em;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+                margin: 0;
             }
 
-            .sidebar-nav .nav-link {
+            .sidebar-nav-item {
                 width: 100%;
                 display: inline-flex;
                 align-items: center;
-                justify-content: space-between;
-                gap: 10px;
+                gap: 12px;
                 padding: 12px 14px;
-                border-radius: 14px;
+                border-radius: 12px;
                 text-decoration: none;
-                color: #1f2a44;
-                background: #f6f7fe;
-                border: 1px solid rgba(76, 98, 144, 0.14);
+                color: #3c4559;
+                background: #f8f9fd;
+                border: 1px solid #eef1fb;
                 font-weight: 600;
                 font-size: 0.98rem;
-                transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+                transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
             }
 
-            .sidebar-nav .nav-link:hover {
-                background: #eef3ff;
+            .sidebar-nav-item img {
+                width: 22px;
+                height: 22px;
+            }
+
+            .sidebar-nav-item:hover {
+                background: #f0f3fc;
                 color: #1f4db1;
-                transform: translateX(2px);
-                box-shadow: 0 12px 26px rgba(31, 77, 177, 0.12);
+                border-color: #e4e9f7;
             }
 
-            .sidebar-nav .nav-link.active {
-                background: linear-gradient(135deg, #1f4db1, #355ed8);
-                color: #ffffff;
-                border-color: transparent;
-                box-shadow: 0 14px 34px rgba(31, 77, 177, 0.18);
+            .sidebar-nav-item.active {
+                background: #e8edfb;
+                color: #1f2e55;
+                border-color: #d6def7;
+                box-shadow: 0 10px 24px rgba(31, 77, 177, 0.12);
+            }
+
+            .sidebar-footer {
+                margin-top: auto;
+                display: grid;
+                gap: 10px;
+            }
+
+            .logout-link {
+                display: inline-flex;
+                align-items: center;
+                gap: 12px;
+                padding: 12px 14px;
+                border-radius: 12px;
+                text-decoration: none;
+                color: #b12727;
+                background: #fff5f5;
+                border: 1px solid #f2c5c5;
+                font-weight: 700;
+                transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+            }
+
+            .logout-link img {
+                width: 22px;
+                height: 22px;
+            }
+
+            .logout-link:hover {
+                background: #ffe8e8;
+                color: #9d1d1d;
+                border-color: #e8a8a8;
+            }
+
+            .hidden {
+                display: none;
             }
 
             .dashboard-header-card {
