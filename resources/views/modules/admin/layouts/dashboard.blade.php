@@ -27,15 +27,154 @@
                 font-family: "Instrument Sans", system-ui, -apple-system, BlinkMacSystemFont,
                     "Segoe UI", sans-serif;
                 color: #16203b;
+                display: block;
+            }
+
+            .app-shell {
+                min-height: 100vh;
                 display: grid;
+                grid-template-columns: minmax(250px, 300px) minmax(0, 1fr);
+                gap: clamp(20px, 3vw, 32px);
+                padding: clamp(24px, 4vw, 48px);
+                align-items: start;
             }
 
             .page {
-                width: min(1200px, 100%);
+                width: min(1100px, 100%);
                 margin: 0 auto;
-                padding: clamp(24px, 4vw, 48px) clamp(16px, 4vw, 32px) 56px;
+                padding: 0;
                 display: grid;
                 gap: clamp(24px, 4vw, 32px);
+            }
+
+            .sidebar {
+                background: #ffffff;
+                border-radius: 28px;
+                padding: clamp(20px, 3vw, 28px);
+                box-shadow: 0 20px 60px rgba(33, 62, 157, 0.12);
+                border: 1px solid rgba(51, 86, 189, 0.14);
+                display: grid;
+                gap: clamp(18px, 3vw, 26px);
+                position: sticky;
+                top: clamp(16px, 3vw, 32px);
+                height: fit-content;
+                align-self: start;
+            }
+
+            .sidebar-brand {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .brand-mark {
+                width: 42px;
+                height: 42px;
+                border-radius: 12px;
+                background: linear-gradient(150deg, #1f4db1 0%, #315ed8 100%);
+                color: #ffffff;
+                display: grid;
+                place-items: center;
+                font-weight: 700;
+                letter-spacing: 0.02em;
+                box-shadow: 0 14px 34px rgba(31, 77, 177, 0.18);
+            }
+
+            .brand-text {
+                display: grid;
+                gap: 4px;
+                color: #1e2a52;
+            }
+
+            .brand-text span {
+                font-size: 0.92rem;
+                color: #4b5a86;
+            }
+
+            .brand-text strong {
+                font-size: 1.05rem;
+                letter-spacing: 0.01em;
+            }
+
+            .sidebar-user {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 12px 14px;
+                border-radius: 18px;
+                background: #f6f7fe;
+                border: 1px solid rgba(51, 86, 189, 0.14);
+            }
+
+            .sidebar-avatar {
+                width: 46px;
+                height: 46px;
+                border-radius: 50%;
+                background: linear-gradient(160deg, rgba(30, 75, 169, 0.16) 0%, rgba(79, 116, 208, 0.08) 100%);
+                border: 1px solid rgba(30, 75, 169, 0.18);
+                display: grid;
+                place-items: center;
+                font-size: 1.2rem;
+                color: #1e2a52;
+                font-weight: 700;
+            }
+
+            .sidebar-user-info {
+                display: grid;
+                gap: 4px;
+                color: #1e2a52;
+            }
+
+            .sidebar-user-info span {
+                color: #53628f;
+                font-size: 0.9rem;
+            }
+
+            .sidebar-user-info strong {
+                font-size: 1.02rem;
+            }
+
+            .sidebar-nav {
+                display: grid;
+                gap: 10px;
+            }
+
+            .nav-section-title {
+                font-size: 0.9rem;
+                color: #53628f;
+                font-weight: 700;
+                letter-spacing: 0.02em;
+            }
+
+            .sidebar-nav .nav-link {
+                width: 100%;
+                display: inline-flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+                padding: 12px 14px;
+                border-radius: 14px;
+                text-decoration: none;
+                color: #1f2a44;
+                background: #f6f7fe;
+                border: 1px solid rgba(76, 98, 144, 0.14);
+                font-weight: 600;
+                font-size: 0.98rem;
+                transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+            }
+
+            .sidebar-nav .nav-link:hover {
+                background: #eef3ff;
+                color: #1f4db1;
+                transform: translateX(2px);
+                box-shadow: 0 12px 26px rgba(31, 77, 177, 0.12);
+            }
+
+            .sidebar-nav .nav-link.active {
+                background: linear-gradient(135deg, #1f4db1, #355ed8);
+                color: #ffffff;
+                border-color: transparent;
+                box-shadow: 0 14px 34px rgba(31, 77, 177, 0.18);
             }
 
             .dashboard-header-card {
@@ -590,6 +729,21 @@
                 font-size: 0.95rem;
             }
 
+            @media (max-width: 1024px) {
+                .app-shell {
+                    grid-template-columns: 1fr;
+                }
+
+                .sidebar {
+                    position: static;
+                    width: 100%;
+                }
+
+                .page {
+                    width: 100%;
+                }
+            }
+
             @media (max-width: 768px) {
                 .card-navigation {
                     justify-content: center;
@@ -645,15 +799,22 @@
             $activeTab = $activeTab ?? 'lomba';
         @endphp
 
-        <div class="page">
-            @include('modules.admin.partials.topbar', [
+        <div class="app-shell">
+            @include('modules.admin.partials.sidebar', [
                 'adminName' => $adminName,
                 'adminInitial' => $adminInitial,
                 'activeTab' => $activeTab,
-                'navigationMode' => $navigationMode ?? 'links',
             ])
 
-            @yield('content')
+            <div class="page">
+                @include('modules.admin.partials.topbar', [
+                    'adminName' => $adminName,
+                    'adminInitial' => $adminInitial,
+                    'activeTab' => $activeTab,
+                ])
+
+                @yield('content')
+            </div>
         </div>
 
         <script>
