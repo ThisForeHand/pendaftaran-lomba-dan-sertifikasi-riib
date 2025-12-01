@@ -44,19 +44,24 @@
                 gap: 18px;
             }
 
-            .avatar {
-                width: 72px;
-                height: 72px;
-                border-radius: 50%;
+            .logo-frame {
+                width: 96px;
+                height: 96px;
+                border-radius: 22px;
+                background: linear-gradient(145deg, rgba(42, 99, 221, 0.08), rgba(42, 99, 221, 0.18));
                 display: grid;
                 place-items: center;
-                background: linear-gradient(145deg, rgba(42, 99, 221, 0.12), rgba(42, 99, 221, 0.36));
-                color: #1e4ba9;
+                box-shadow: 0 16px 40px rgba(31, 42, 68, 0.12);
+                padding: 12px;
             }
 
-            .avatar svg {
-                width: 36px;
-                height: 36px;
+            .login-logo {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                border-radius: 14px;
+                background: #fff;
+                padding: 10px;
             }
 
             h1 {
@@ -210,12 +215,13 @@
 @section('content')
 <main class="login-shell">
             <header class="login-header">
-                <div class="avatar" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="currentColor" role="img">
-                        <path
-                            d="M12 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 12c4.42 0 8 2.24 8 5v1c0 .55-.45 1-1 1H5a1 1 0 0 1-1-1v-1c0-2.76 3.58-5 8-5z"
-                        />
-                    </svg>
+                <div class="logo-frame" aria-hidden="true">
+                    <img
+                        src="{{ asset('images/TelU_Sby-removebg-preview.png') }}"
+                        alt="Logo Telkom University Surabaya"
+                        class="login-logo"
+                        loading="lazy"
+                    />
                 </div>
                 <div>
                     <h1>Masuk Akun</h1>
