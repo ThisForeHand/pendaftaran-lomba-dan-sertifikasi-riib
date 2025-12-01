@@ -22,7 +22,7 @@ class SertifikasiRegistrationTest extends TestCase
         $payload = [
             'nama' => 'Satria Purnama',
             'nim' => '239876543',
-            'program_studi' => 'Teknik Informatika',
+            'program_studi' => 'Teknik Logistik',
             'whatsapp' => '089876543210',
             'program_sertifikasi' => 'Data Analytics Fundamentals',
             'motivasi' => 'Meningkatkan kemampuan analisis data.',
@@ -45,7 +45,7 @@ class SertifikasiRegistrationTest extends TestCase
         $payload = [
             'nama' => 'Gilang Raharja',
             'nim' => '237770001',
-            'program_studi' => 'Teknik Industri',
+            'program_studi' => 'Bisnis Digital',
             'whatsapp' => '+628229991111',
             'program_sertifikasi' => 'AI Fundamentals',
             'motivasi' => 'Ingin menambah kompetensi baru.',
@@ -66,7 +66,7 @@ class SertifikasiRegistrationTest extends TestCase
         $payload = [
             'nama' => 'Hani Putri',
             'nim' => '230000999',
-            'program_studi' => 'Teknik Elektro',
+            'program_studi' => 'Sistem Informasi',
             'whatsapp' => '98765',
             'program_sertifikasi' => 'Cloud Computing',
             'motivasi' => 'Menyelesaikan sertifikasi wajib.',
@@ -84,7 +84,7 @@ class SertifikasiRegistrationTest extends TestCase
         $registration = SertifikasiRegistration::factory()->create([
             'nama' => 'Nadya Kusuma',
             'nim' => '231112223',
-            'program_studi' => 'Teknik Elektro',
+            'program_studi' => 'RPL',
             'whatsapp' => '082233445566',
             'program_sertifikasi' => 'Project Management Associate',
             'status_sertifikasi' => 'Perpanjangan',

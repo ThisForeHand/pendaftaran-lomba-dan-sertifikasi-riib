@@ -22,7 +22,7 @@ class LombaRegistrationTest extends TestCase
         $payload = [
             'nama' => 'Dewi Lestari',
             'nim' => '231234567',
-            'program_studi' => 'Teknik Industri',
+            'program_studi' => 'Teknik Logistik',
             'whatsapp' => '081234567890',
             'pilihan_peran' => 'Ketua',
             'motivasi' => 'Ingin mengembangkan ide sosial.',
@@ -45,7 +45,7 @@ class LombaRegistrationTest extends TestCase
         $payload = [
             'nama' => 'Ayu Mentari',
             'nim' => '239988776',
-            'program_studi' => 'Teknik Informatika',
+            'program_studi' => 'Bisnis Digital',
             'whatsapp' => '+6281234567890',
             'pilihan_peran' => 'Hacker',
             'motivasi' => 'Siap membantu teknis tim.',
@@ -66,7 +66,7 @@ class LombaRegistrationTest extends TestCase
         $payload = [
             'nama' => 'Joko Ananda',
             'nim' => '23001122',
-            'program_studi' => 'Teknik Elektro',
+            'program_studi' => 'Sistem Informasi',
             'whatsapp' => '12345',
             'pilihan_peran' => 'Hipster',
             'motivasi' => 'Siap membawa visual terbaik.',
@@ -84,7 +84,7 @@ class LombaRegistrationTest extends TestCase
         $registration = LombaRegistration::factory()->create([
             'nama' => 'Raka Pradipta',
             'nim' => '239998877',
-            'program_studi' => 'Desain Produk',
+            'program_studi' => 'RPL',
             'whatsapp' => '081111222233',
             'pilihan_peran' => 'Hipster',
             'status_tim' => 'Sudah',
