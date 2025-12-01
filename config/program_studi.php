@@ -2,9 +2,10 @@
 
 return [
     'options' => [
+        'Teknik Logistik',
+        'Bisnis Digital',
+        'Sistem Informasi',
         'Teknik Industri',
-        'Teknik Informatika',
-        'Teknik Elektro',
-        'Desain Produk',
+        'RPL',
     ],
 ];

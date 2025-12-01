@@ -26,10 +26,11 @@ class SertifikasiRegistrationFactory extends Factory
             'nama' => $this->faker->name(),
             'nim' => '23'.$this->faker->unique()->numerify('#######'),
             'program_studi' => $this->faker->randomElement([
+                'Teknik Logistik',
+                'Bisnis Digital',
+                'Sistem Informasi',
                 'Teknik Industri',
-                'Teknik Informatika',
-                'Teknik Elektro',
-                'Lainnya',
+                'RPL',
             ]),
             'whatsapp' => '08'.$this->faker->numerify('##########'),
             'program_sertifikasi' => $this->faker->randomElement([

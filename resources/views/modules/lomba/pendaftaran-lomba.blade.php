@@ -420,9 +420,36 @@
                                 <input
                                     type="radio"
                                     name="program_studi"
+                                    value="Teknik Logistik"
+                                    @checked(old('program_studi') === 'Teknik Logistik')
+                                    required
+                                >
+                                <span>Teknik Logistik</span>
+                            </label>
+                            <label class="option-item">
+                                <input
+                                    type="radio"
+                                    name="program_studi"
+                                    value="Bisnis Digital"
+                                    @checked(old('program_studi') === 'Bisnis Digital')
+                                >
+                                <span>Bisnis Digital</span>
+                            </label>
+                            <label class="option-item">
+                                <input
+                                    type="radio"
+                                    name="program_studi"
+                                    value="Sistem Informasi"
+                                    @checked(old('program_studi') === 'Sistem Informasi')
+                                >
+                                <span>Sistem Informasi</span>
+                            </label>
+                            <label class="option-item">
+                                <input
+                                    type="radio"
+                                    name="program_studi"
                                     value="Teknik Industri"
                                     @checked(old('program_studi') === 'Teknik Industri')
-                                    required
                                 >
                                 <span>Teknik Industri</span>
                             </label>
@@ -430,19 +457,10 @@
                                 <input
                                     type="radio"
                                     name="program_studi"
-                                    value="Teknik Informatika"
-                                    @checked(old('program_studi') === 'Teknik Informatika')
+                                    value="RPL"
+                                    @checked(old('program_studi') === 'RPL')
                                 >
-                                <span>Teknik Informatika</span>
-                            </label>
-                            <label class="option-item">
-                                <input
-                                    type="radio"
-                                    name="program_studi"
-                                    value="Teknik Elektro"
-                                    @checked(old('program_studi') === 'Teknik Elektro')
-                                >
-                                <span>Teknik Elektro</span>
+                                <span>RPL</span>
                             </label>
                         </div>
                     </fieldset>
