@@ -6,11 +6,10 @@
 
 <aside class="sidebar" aria-label="Navigasi Admin">
     <div class="sidebar-logo" aria-label="Beranda Admin">
-        <div class="sidebar-logo-mark">RIIB</div>
+        <div class="sidebar-logo-mark">mnd</div>
         <div class="sidebar-logo-text">
-            <span>Dashboard Admin</span>
-            <strong>Halo Selamat Datang</strong>
-            <p class="sidebar-logo-highlight">{{ $displayName }}</p>
+            <span>produktif</span>
+            <strong>indonesia</strong>
         </div>
     </div>
 
