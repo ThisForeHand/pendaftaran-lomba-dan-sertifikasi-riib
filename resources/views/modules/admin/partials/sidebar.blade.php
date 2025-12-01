@@ -6,7 +6,7 @@
 
 <aside class="sidebar" aria-label="Navigasi Admin">
     <div class="sidebar-logo" aria-label="Beranda Admin">
-        <div class="sidebar-logo-mark">RIIB</div>
+        <img src="{{ asset('images/TelU_Sby-removebg-preview.png') }}" alt="Logo Telkom University Surabaya" class="sidebar-logo-image">
     </div>
 
     <nav class="sidebar-nav" aria-label="Menu Dashboard">
