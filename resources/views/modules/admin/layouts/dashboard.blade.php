@@ -36,7 +36,7 @@
                 grid-template-columns: minmax(250px, 300px) minmax(0, 1fr);
                 gap: clamp(20px, 3vw, 32px);
                 padding: clamp(24px, 4vw, 48px);
-                align-items: start;
+                align-items: stretch;
             }
 
             .page {
@@ -55,26 +55,24 @@
                 border: 1px solid #e2e8f5;
                 display: grid;
                 gap: 14px;
-                position: sticky;
-                top: clamp(16px, 3vw, 32px);
-                height: fit-content;
-                align-self: start;
+                position: static;
+                min-height: 100%;
+                align-self: stretch;
             }
 
             .sidebar-logo {
                 display: flex;
                 align-items: center;
-                gap: 12px;
+                justify-content: center;
                 padding: 12px 14px;
-                background: #ffffff;
-                border: 1px solid #e3e9f7;
-                border-radius: 16px;
+                background: transparent;
+                border: none;
             }
 
             .sidebar-logo-mark {
-                width: 48px;
-                height: 48px;
-                border-radius: 12px;
+                width: 56px;
+                height: 56px;
+                border-radius: 16px;
                 background: linear-gradient(150deg, #1f4db1 0%, #315ed8 100%);
                 color: #ffffff;
                 display: grid;
@@ -82,70 +80,6 @@
                 font-weight: 800;
                 letter-spacing: 0.04em;
                 box-shadow: 0 14px 34px rgba(31, 77, 177, 0.18);
-            }
-
-            .sidebar-logo-text {
-                display: grid;
-                gap: 3px;
-                color: #1e2a52;
-            }
-
-            .sidebar-logo-text span {
-                font-size: 0.95rem;
-                color: #3c4559;
-                font-weight: 700;
-            }
-
-            .sidebar-logo-text strong {
-                font-size: 0.8rem;
-                text-transform: uppercase;
-                letter-spacing: 0.08em;
-                color: #7c859b;
-            }
-
-            .sidebar-logo-highlight {
-                margin: 0;
-                font-size: 1.05rem;
-                color: #1f2e55;
-                font-weight: 800;
-            }
-
-            .sidebar-user {
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                padding: 12px 14px;
-                border-radius: 16px;
-                background: #ffffff;
-                border: 1px solid #e3e9f7;
-            }
-
-            .sidebar-avatar {
-                width: 46px;
-                height: 46px;
-                border-radius: 12px;
-                background: linear-gradient(160deg, rgba(30, 75, 169, 0.12) 0%, rgba(79, 116, 208, 0.08) 100%);
-                border: 1px solid rgba(30, 75, 169, 0.18);
-                display: grid;
-                place-items: center;
-                font-size: 1.1rem;
-                color: #1e2a52;
-                font-weight: 700;
-            }
-
-            .sidebar-user-info {
-                display: grid;
-                gap: 4px;
-                color: #1e2a52;
-            }
-
-            .sidebar-user-info span {
-                color: #7c859b;
-                font-size: 0.85rem;
-            }
-
-            .sidebar-user-info strong {
-                font-size: 1rem;
             }
 
             .sidebar-divider {

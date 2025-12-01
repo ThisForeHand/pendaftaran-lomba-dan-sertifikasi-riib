@@ -7,19 +7,6 @@
 <aside class="sidebar" aria-label="Navigasi Admin">
     <div class="sidebar-logo" aria-label="Beranda Admin">
         <div class="sidebar-logo-mark">RIIB</div>
-        <div class="sidebar-logo-text">
-            <span>Dashboard Admin</span>
-            <strong>Halo Selamat Datang</strong>
-            <p class="sidebar-logo-highlight">{{ $displayName }}</p>
-        </div>
-    </div>
-
-    <div class="sidebar-user">
-        <div class="sidebar-avatar" aria-hidden="true">{{ $displayInitial }}</div>
-        <div class="sidebar-user-info">
-            <span>Administrator</span>
-            <strong>{{ $displayName }}</strong>
-        </div>
     </div>
 
     <nav class="sidebar-nav" aria-label="Menu Dashboard">
