@@ -11,10 +11,12 @@
         @if ($isActive) aria-current="page" @endif
     >
         <span class="nav-icon" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 3 3 9l9 6 9-6-9-6Z" />
-                <path d="M3 15l9 6 9-6" />
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h6v6H4z" />
+                <path d="M14 4h6v6h-6z" />
+                <path d="M4 14h6v6H4z" />
+                <path d="M14 14h6v6h-6z" />
             </svg>
         </span>
         <span class="nav-label">Data Lomba</span>
