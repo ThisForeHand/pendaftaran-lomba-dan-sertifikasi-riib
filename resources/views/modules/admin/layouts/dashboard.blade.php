@@ -61,7 +61,7 @@
                 align-self: start;
             }
 
-            .sidebar-brand {
+            .sidebar-logo {
                 display: flex;
                 align-items: center;
                 gap: 12px;
@@ -71,7 +71,7 @@
                 border-radius: 16px;
             }
 
-            .brand-mark {
+            .sidebar-logo-mark {
                 width: 48px;
                 height: 48px;
                 border-radius: 12px;
@@ -84,26 +84,26 @@
                 box-shadow: 0 14px 34px rgba(31, 77, 177, 0.18);
             }
 
-            .brand-text {
+            .sidebar-logo-text {
                 display: grid;
                 gap: 3px;
                 color: #1e2a52;
             }
 
-            .brand-text span {
+            .sidebar-logo-text span {
                 font-size: 0.95rem;
                 color: #3c4559;
                 font-weight: 700;
             }
 
-            .brand-text strong {
+            .sidebar-logo-text strong {
                 font-size: 0.8rem;
                 text-transform: uppercase;
                 letter-spacing: 0.08em;
                 color: #7c859b;
             }
 
-            .brand-highlight {
+            .sidebar-logo-highlight {
                 margin: 0;
                 font-size: 1.05rem;
                 color: #1f2e55;
@@ -160,12 +160,12 @@
                 gap: 18px;
             }
 
-            .nav-section {
+            .sidebar-nav-group {
                 display: grid;
                 gap: 8px;
             }
 
-            .nav-section-title {
+            .sidebar-section-title {
                 font-size: 0.82rem;
                 color: #8a93a8;
                 font-weight: 700;
@@ -173,7 +173,7 @@
                 text-transform: uppercase;
             }
 
-            .nav-list {
+            .sidebar-nav-list {
                 display: grid;
                 gap: 6px;
             }
@@ -182,8 +182,8 @@
                 width: 100%;
                 display: inline-flex;
                 align-items: center;
-                gap: 10px;
-                padding: 12px 12px 12px 18px;
+                gap: 12px;
+                padding: 12px 14px;
                 border-radius: 14px;
                 text-decoration: none;
                 color: #3c4559;
@@ -198,19 +198,47 @@
             .sidebar-nav .nav-link::before {
                 content: "";
                 position: absolute;
-                left: 8px;
-                top: 10px;
-                bottom: 10px;
+                left: 10px;
+                top: 12px;
+                bottom: 12px;
                 width: 3px;
                 border-radius: 999px;
                 background: transparent;
                 transition: background 0.2s ease;
             }
 
+            .sidebar-nav .nav-icon {
+                width: 32px;
+                height: 32px;
+                display: inline-grid;
+                place-items: center;
+                border-radius: 10px;
+                background: linear-gradient(150deg, rgba(31, 77, 177, 0.12), rgba(49, 94, 216, 0.08));
+                color: #1f2e55;
+                border: 1px solid rgba(31, 77, 177, 0.08);
+            }
+
+            .sidebar-nav .nav-icon svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .sidebar-nav .nav-label {
+                flex: 1;
+                font-weight: 600;
+                font-size: 0.98rem;
+            }
+
             .sidebar-nav .nav-link:hover {
                 background: #f0f3fc;
                 color: #1f4db1;
                 border-color: #e4e9f7;
+            }
+
+            .sidebar-nav .nav-link:hover .nav-icon {
+                background: linear-gradient(160deg, rgba(31, 77, 177, 0.16), rgba(49, 94, 216, 0.12));
+                color: #1f4db1;
+                border-color: rgba(31, 77, 177, 0.14);
             }
 
             .sidebar-nav .nav-link.active {
@@ -224,11 +252,22 @@
                 background: #1f4db1;
             }
 
+            .sidebar-nav .nav-link.active .nav-icon {
+                background: linear-gradient(160deg, rgba(31, 77, 177, 0.22), rgba(49, 94, 216, 0.16));
+                color: #1f2e55;
+                border-color: rgba(31, 77, 177, 0.2);
+            }
+
             .sidebar-logout {
                 margin-top: auto;
             }
 
-            .sidebar-logout button {
+            .sidebar-footer {
+                margin-top: auto;
+                padding-top: 4px;
+            }
+
+            .logout-link {
                 width: 100%;
                 padding: 12px 14px;
                 border-radius: 14px;
@@ -237,10 +276,26 @@
                 color: #b12727;
                 font-weight: 700;
                 cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                justify-content: center;
                 transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
             }
 
-            .sidebar-logout button:hover {
+            .logout-link .logout-icon {
+                width: 20px;
+                height: 20px;
+                display: inline-grid;
+                place-items: center;
+            }
+
+            .logout-link svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .logout-link:hover {
                 background: #fff0f0;
                 border-color: #f2c5c5;
                 color: #9d1d1d;
