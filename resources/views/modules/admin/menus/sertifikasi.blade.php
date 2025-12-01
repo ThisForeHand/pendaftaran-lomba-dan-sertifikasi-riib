@@ -11,12 +11,11 @@
         @if ($isActive) aria-current="page" @endif
     >
         <span class="nav-icon" aria-hidden="true">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 4.5h12a1.5 1.5 0 0 1 1.5 1.5v12a1.5 1.5 0 0 1-1.5 1.5H6A1.5 1.5 0 0 1 4.5 18V6A1.5 1.5 0 0 1 6 4.5Z" />
-                <path d="M9 9h6" />
-                <path d="M9 12h6" />
-                <path d="m9.5 16 2.5-2 2.5 2" />
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="m12 3 2.5 3.5 4.5 1L16 11.5 16.5 16l-4.5-1.5L7.5 16 8 11.5 5 7.5l4.5-1L12 3Z" />
+                <path d="M12 17v4" />
+                <path d="m9 21 3-1 3 1" />
             </svg>
         </span>
         <span class="nav-label">Data Sertifikasi</span>
