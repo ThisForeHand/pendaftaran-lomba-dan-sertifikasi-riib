@@ -13,6 +13,10 @@
         <div class="sidebar-nav-group">
             <p class="sidebar-section-title">Menu</p>
             <div class="sidebar-nav-list">
+                @include('modules.admin.menus.dashboard', [
+                    'activeTab' => $currentTab,
+                    'navigationMode' => 'links',
+                ])
                 @include('modules.admin.menus.lomba', [
                     'activeTab' => $currentTab,
                     'navigationMode' => 'links',
