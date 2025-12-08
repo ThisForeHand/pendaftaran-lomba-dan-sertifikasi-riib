@@ -42,4 +42,12 @@ Jalankan seluruh pengujian feature/unit dengan:
 php artisan test
 ```
 
+## API
+
+Endpoint API dapat diakses melalui prefix `/api/v1` tanpa memerlukan session browser. Gunakan header `Accept: application/json` ketika mengirimkan request.
+
+- **Alur pendaftaran** – `GET /api/v1/flows/{type}` dengan nilai `{type}` `lomba` atau `sertifikasi` untuk mendapatkan langkah-langkah yang diatur admin.
+- **Pendaftaran lomba** – `GET /api/v1/registrations/lomba` untuk daftar pendaftar, `POST /api/v1/registrations/lomba` dengan payload `nama`, `nim`, `program_studi`, `whatsapp`, `pilihan_peran`, `motivasi`, `status_tim` untuk membuat data baru.
+- **Pendaftaran sertifikasi** – `GET /api/v1/registrations/sertifikasi` untuk daftar pendaftar, `POST /api/v1/registrations/sertifikasi` dengan payload `nama`, `nim`, `program_studi`, `whatsapp`, `program_sertifikasi`, `motivasi`, `status_sertifikasi` untuk membuat data baru.
+
 Kontribusi dan perbaikan dipersilakan melalui pull request.
