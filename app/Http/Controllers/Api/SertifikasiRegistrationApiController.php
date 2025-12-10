@@ -8,6 +8,7 @@ use App\Rules\IndonesianPhoneNumber;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Schema;
 
 class SertifikasiRegistrationApiController extends Controller
@@ -35,15 +36,23 @@ class SertifikasiRegistrationApiController extends Controller
 
         $validated = $request->validate([
             'nama' => ['required', 'string', 'max:255'],
-            'nim' => ['required', 'string', 'max:255'],
-            'program_studi' => ['required', 'string', 'max:255'],
+            'nip' => ['required', 'string', 'max:255'],
+            'prodi' => ['required', 'string', 'max:255'],
             'whatsapp' => ['required', 'string', 'max:255', new IndonesianPhoneNumber()],
-            'program_sertifikasi' => ['required', 'string', 'max:255'],
-            'motivasi' => ['nullable', 'string'],
-            'status_sertifikasi' => ['required', 'string', 'max:255'],
+            'tanggal_pelaksanaan' => ['required', 'date'],
+            'poster_sertifikasi' => ['required', 'image', 'max:2048'],
         ]);
 
-        $registration = SertifikasiRegistration::create($validated);
+        $posterPath = $validated['poster_sertifikasi']->store('poster-sertifikasi', 'public');
+
+        $registration = SertifikasiRegistration::create([
+            'nama' => $validated['nama'],
+            'nip' => $validated['nip'],
+            'prodi' => $validated['prodi'],
+            'whatsapp' => $validated['whatsapp'],
+            'tanggal_pelaksanaan' => $validated['tanggal_pelaksanaan'],
+            'poster_path' => $posterPath,
+        ]);
 
         return response()->json([
             'message' => 'Pendaftaran sertifikasi berhasil disimpan.',
@@ -60,12 +69,11 @@ class SertifikasiRegistrationApiController extends Controller
         Schema::create('sertifikasi_registrations', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('nim');
-            $table->string('program_studi');
+            $table->string('nip');
+            $table->string('prodi');
             $table->string('whatsapp');
-            $table->string('program_sertifikasi');
-            $table->text('motivasi')->nullable();
-            $table->string('status_sertifikasi');
+            $table->date('tanggal_pelaksanaan');
+            $table->string('poster_path');
             $table->timestamps();
         });
     }

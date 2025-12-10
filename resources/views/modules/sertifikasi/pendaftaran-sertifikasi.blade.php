@@ -408,7 +408,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('pendaftaran.sertifikasi.store') }}" method="post">
+                <form action="{{ route('pendaftaran.sertifikasi.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="field-group">
                         <label for="nama">1. Nama Lengkap</label>
@@ -423,68 +423,28 @@
                     </div>
 
                     <div class="field-group">
-                        <label for="nim">2. NIM</label>
+                        <label for="nip">2. NIP</label>
                         <input
-                            id="nim"
-                            name="nim"
+                            id="nip"
+                            name="nip"
                             type="text"
-                            placeholder="Masukkan NIM aktif"
-                            value="{{ old('nim') }}"
+                            placeholder="Masukkan NIP aktif"
+                            value="{{ old('nip') }}"
                             required
                         >
                     </div>
 
-                    <fieldset class="field-group">
-                        <legend>3. Program Studi</legend>
-                        <div class="options">
-                            <label class="option-item">
-                                <input
-                                    type="radio"
-                                    name="program_studi"
-                                    value="Teknik Logistik"
-                                    @checked(old('program_studi') === 'Teknik Logistik')
-                                    required
-                                >
-                                <span>Teknik Logistik</span>
-                            </label>
-                            <label class="option-item">
-                                <input
-                                    type="radio"
-                                    name="program_studi"
-                                    value="Bisnis Digital"
-                                    @checked(old('program_studi') === 'Bisnis Digital')
-                                >
-                                <span>Bisnis Digital</span>
-                            </label>
-                            <label class="option-item">
-                                <input
-                                    type="radio"
-                                    name="program_studi"
-                                    value="Sistem Informasi"
-                                    @checked(old('program_studi') === 'Sistem Informasi')
-                                >
-                                <span>Sistem Informasi</span>
-                            </label>
-                            <label class="option-item">
-                                <input
-                                    type="radio"
-                                    name="program_studi"
-                                    value="Teknik Industri"
-                                    @checked(old('program_studi') === 'Teknik Industri')
-                                >
-                                <span>Teknik Industri</span>
-                            </label>
-                            <label class="option-item">
-                                <input
-                                    type="radio"
-                                    name="program_studi"
-                                    value="RPL"
-                                    @checked(old('program_studi') === 'RPL')
-                                >
-                                <span>RPL</span>
-                            </label>
-                        </div>
-                    </fieldset>
+                    <div class="field-group">
+                        <label for="prodi">3. Program Studi</label>
+                        <input
+                            id="prodi"
+                            name="prodi"
+                            type="text"
+                            placeholder="Tuliskan program studi Anda"
+                            value="{{ old('prodi') }}"
+                            required
+                        >
+                    </div>
 
                     <div class="field-group">
                         <label for="whatsapp">4. Nomor WhatsApp</label>
@@ -501,91 +461,28 @@
                         >
                     </div>
 
-                    <fieldset class="field-group">
-                        <legend>5. Program Sertifikasi yang Dipilih</legend>
-                        <div class="options">
-                            <label class="option-item">
-                                <input
-                                    type="radio"
-                                    name="program_sertifikasi"
-                                    value="Digital Marketing Strategy"
-                                    @checked(old('program_sertifikasi') === 'Digital Marketing Strategy')
-                                    required
-                                >
-                                <span>
-                                    Digital Marketing Strategy &mdash; fokus pada penyusunan kampanye digital lintas kanal
-                                    serta optimasi konten.
-                                </span>
-                            </label>
-                            <label class="option-item">
-                                <input
-                                    type="radio"
-                                    name="program_sertifikasi"
-                                    value="Data Analytics Fundamentals"
-                                    @checked(old('program_sertifikasi') === 'Data Analytics Fundamentals')
-                                >
-                                <span>
-                                    Data Analytics Fundamentals &mdash; penekanan pada pengolahan, analisis, dan
-                                    visualisasi data bisnis.
-                                </span>
-                            </label>
-                            <label class="option-item">
-                                <input
-                                    type="radio"
-                                    name="program_sertifikasi"
-                                    value="Project Management Associate"
-                                    @checked(old('program_sertifikasi') === 'Project Management Associate')
-                                >
-                                <span>
-                                    Project Management Associate &mdash; menekankan penerapan metodologi manajemen proyek
-                                    adaptif dan kolaboratif.
-                                </span>
-                            </label>
-                        </div>
-                    </fieldset>
-
                     <div class="field-group">
-                        <label for="motivasi">6. Motivasi Mengikuti Sertifikasi</label>
-                        <textarea
-                            id="motivasi"
-                            name="motivasi"
-                            placeholder="Ceritakan motivasi dan harapan Anda mengikuti sertifikasi ini"
-                        >{{ old('motivasi') }}</textarea>
+                        <label for="tanggal_pelaksanaan">5. Tanggal Pelaksanaan Sertifikasi</label>
+                        <input
+                            id="tanggal_pelaksanaan"
+                            name="tanggal_pelaksanaan"
+                            type="date"
+                            value="{{ old('tanggal_pelaksanaan') }}"
+                            required
+                        >
                     </div>
 
-                    <fieldset class="field-group">
-                        <legend>7. Status Kepemilikan Sertifikasi Sebelumnya</legend>
-                        <div class="options">
-                            <label class="option-item">
-                                <input
-                                    type="radio"
-                                    name="status_sertifikasi"
-                                    value="Belum pernah"
-                                    @checked(old('status_sertifikasi') === 'Belum pernah')
-                                    required
-                                >
-                                <span>Belum pernah memiliki sertifikasi profesional sebelumnya</span>
-                            </label>
-                            <label class="option-item">
-                                <input
-                                    type="radio"
-                                    name="status_sertifikasi"
-                                    value="Upgrade level"
-                                    @checked(old('status_sertifikasi') === 'Upgrade level')
-                                >
-                                <span>Sudah memiliki sertifikasi dasar dan ingin meningkatkan level</span>
-                            </label>
-                            <label class="option-item">
-                                <input
-                                    type="radio"
-                                    name="status_sertifikasi"
-                                    value="Perpanjangan"
-                                    @checked(old('status_sertifikasi') === 'Perpanjangan')
-                                >
-                                <span>Sedang proses perpanjangan atau re-sertifikasi program serupa</span>
-                            </label>
-                        </div>
-                    </fieldset>
+                    <div class="field-group">
+                        <label for="poster_sertifikasi">6. Unggah Poster Sertifikasi (gambar)</label>
+                        <input
+                            id="poster_sertifikasi"
+                            name="poster_sertifikasi"
+                            type="file"
+                            accept="image/*"
+                            required
+                        >
+                        <p class="field-helper">Unggah poster sertifikasi sebagai bukti (maksimal 2MB).</p>
+                    </div>
 
                     <div class="submit-row">
                         <button type="submit">Kirim</button>

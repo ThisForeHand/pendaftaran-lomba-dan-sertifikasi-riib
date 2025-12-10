@@ -14,12 +14,11 @@ return new class extends Migration
         Schema::create('sertifikasi_registrations', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('nim');
-            $table->string('program_studi');
+            $table->string('nip');
+            $table->string('prodi');
             $table->string('whatsapp');
-            $table->string('program_sertifikasi');
-            $table->text('motivasi')->nullable();
-            $table->string('status_sertifikasi');
+            $table->date('tanggal_pelaksanaan');
+            $table->string('poster_path');
             $table->timestamps();
         });
     }

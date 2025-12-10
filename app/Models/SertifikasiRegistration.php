@@ -16,11 +16,10 @@ class SertifikasiRegistration extends Model
      */
     protected $fillable = [
         'nama',
-        'nim',
-        'program_studi',
+        'nip',
+        'prodi',
         'whatsapp',
-        'program_sertifikasi',
-        'motivasi',
-        'status_sertifikasi',
+        'tanggal_pelaksanaan',
+        'poster_path',
     ];
 }
