@@ -220,6 +220,8 @@
             input[type="text"],
             input[type="email"],
             input[type="tel"],
+            input[type="date"],
+            select,
             textarea {
                 width: 100%;
                 font: inherit;
@@ -230,12 +232,40 @@
                 transition: border-color 0.2s ease, box-shadow 0.2s ease;
             }
 
+            select {
+                appearance: none;
+                -webkit-appearance: none;
+                padding-right: 52px;
+                background-image: linear-gradient(45deg, transparent 50%, #2e4eb8 50%),
+                    linear-gradient(135deg, #2e4eb8 50%, transparent 50%),
+                    linear-gradient(0deg, #d5defa, #d5defa);
+                background-position: calc(100% - 26px) calc(50% - 6px), calc(100% - 16px) calc(50% - 6px),
+                    calc(100% - 36px) 50%;
+                background-size: 10px 10px, 10px 10px, 1px 60%;
+                background-repeat: no-repeat;
+            }
+
+            input[type="date"] {
+                appearance: none;
+                -webkit-appearance: none;
+                padding-right: 52px;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23345be3' stroke-width='1.8'%3E%3Crect x='4.5' y='6.75' width='15' height='12' rx='2'/ %3E%3Cpath d='M9 4.5v3M15 4.5v3M5.25 10.5h13.5'/ %3E%3C/svg%3E");
+                background-repeat: no-repeat;
+                background-position: calc(100% - 18px) center;
+                background-size: 22px 22px;
+            }
+
+            input[type="date"]::-webkit-calendar-picker-indicator {
+                opacity: 0;
+            }
+
             textarea {
                 min-height: 120px;
                 resize: vertical;
             }
 
             input:focus,
+            select:focus,
             textarea:focus {
                 outline: none;
                 border-color: #3d63f5;
