@@ -1,4 +1,6 @@
 @php
+    use Illuminate\Support\Facades\Storage;
+
     $tableExists = $tableExists ?? true;
     $registrations = $registrations ?? collect();
     $panelId = $panelId ?? 'panel-sertifikasi';
@@ -24,11 +26,11 @@
                     <tr>
                         <th>No</th>
                         <th>Nama</th>
-                        <th>NIM</th>
+                        <th>NIP</th>
                         <th>Prodi</th>
                         <th>No Wa</th>
-                        <th>Program Sertifikasi</th>
-                        <th>Status Sertifikasi</th>
+                        <th>Tanggal Pelaksanaan</th>
+                        <th>Poster Sertifikasi</th>
                         <th class="select-column" aria-label="Pilih">
                             <button type="button" class="clear-all-button">Clear All</button>
                         </th>
@@ -46,14 +48,18 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $registration->nama }}</td>
-                                <td>{{ $registration->nim }}</td>
-                                <td>{{ $registration->program_studi }}</td>
+                                <td>{{ $registration->nip }}</td>
+                                <td>{{ $registration->prodi }}</td>
                                 <td>
                                     <x-contact-link :value="$registration->whatsapp" />
                                 </td>
-                                <td>{{ $registration->program_sertifikasi }}</td>
+                                <td>{{ $registration->tanggal_pelaksanaan }}</td>
                                 <td>
-                                    <span class="badge">{{ $registration->status_sertifikasi }}</span>
+                                    @if ($registration->poster_path)
+                                        <a href="{{ Storage::disk('public')->url($registration->poster_path) }}" target="_blank" rel="noopener">Poster</a>
+                                    @else
+                                        -
+                                    @endif
                                 </td>
                                 <td class="select-cell">
                                     <input type="checkbox" name="ids[]" value="{{ $registration->id }}" class="row-checkbox" />

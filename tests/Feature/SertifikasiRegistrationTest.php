@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 use App\Models\SertifikasiRegistration;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class SertifikasiRegistrationTest extends TestCase
@@ -19,14 +21,15 @@ class SertifikasiRegistrationTest extends TestCase
 
     public function test_user_can_submit_registration_data(): void
     {
+        Storage::fake('public');
+
         $payload = [
             'nama' => 'Satria Purnama',
-            'nim' => '239876543',
-            'program_studi' => 'Teknik Logistik',
+            'nip' => '198900123',
+            'prodi' => 'Teknik Logistik',
             'whatsapp' => '089876543210',
-            'program_sertifikasi' => 'Data Analytics Fundamentals',
-            'motivasi' => 'Meningkatkan kemampuan analisis data.',
-            'status_sertifikasi' => 'Upgrade level',
+            'tanggal_pelaksanaan' => '2025-05-20',
+            'poster_sertifikasi' => UploadedFile::fake()->image('poster.jpg'),
         ];
 
         $response = $this->post(route('pendaftaran.sertifikasi.store'), $payload);
@@ -37,19 +40,28 @@ class SertifikasiRegistrationTest extends TestCase
             ->assertRedirect(route('pendaftaran.sertifikasi'))
             ->assertSessionHas('status', $expectedStatus);
 
-        $this->assertDatabaseHas('sertifikasi_registrations', $payload);
+        $registration = SertifikasiRegistration::first();
+
+        $this->assertNotNull($registration);
+        $this->assertEquals('Satria Purnama', $registration->nama);
+        $this->assertEquals('198900123', $registration->nip);
+        $this->assertEquals('Teknik Logistik', $registration->prodi);
+        $this->assertEquals('089876543210', $registration->whatsapp);
+        $this->assertEquals('2025-05-20', $registration->tanggal_pelaksanaan);
+        Storage::disk('public')->assertExists($registration->poster_path);
     }
 
     public function test_user_can_submit_certification_registration_with_plus_62_number(): void
     {
+        Storage::fake('public');
+
         $payload = [
             'nama' => 'Gilang Raharja',
-            'nim' => '237770001',
-            'program_studi' => 'Bisnis Digital',
+            'nip' => '199900001',
+            'prodi' => 'Bisnis Digital',
             'whatsapp' => '+628229991111',
-            'program_sertifikasi' => 'AI Fundamentals',
-            'motivasi' => 'Ingin menambah kompetensi baru.',
-            'status_sertifikasi' => 'Belum pernah',
+            'tanggal_pelaksanaan' => '2025-06-15',
+            'poster_sertifikasi' => UploadedFile::fake()->image('poster-plus.jpg'),
         ];
 
         $response = $this->post(route('pendaftaran.sertifikasi.store'), $payload);
@@ -58,19 +70,28 @@ class SertifikasiRegistrationTest extends TestCase
             ->assertRedirect(route('pendaftaran.sertifikasi'))
             ->assertSessionHas('status');
 
-        $this->assertDatabaseHas('sertifikasi_registrations', $payload);
+        $registration = SertifikasiRegistration::first();
+
+        $this->assertNotNull($registration);
+        $this->assertEquals('Gilang Raharja', $registration->nama);
+        $this->assertEquals('199900001', $registration->nip);
+        $this->assertEquals('Bisnis Digital', $registration->prodi);
+        $this->assertEquals('+628229991111', $registration->whatsapp);
+        $this->assertEquals('2025-06-15', $registration->tanggal_pelaksanaan);
+        Storage::disk('public')->assertExists($registration->poster_path);
     }
 
     public function test_certification_registration_rejects_invalid_whatsapp_number(): void
     {
+        Storage::fake('public');
+
         $payload = [
             'nama' => 'Hani Putri',
-            'nim' => '230000999',
-            'program_studi' => 'Sistem Informasi',
+            'nip' => '199900999',
+            'prodi' => 'Sistem Informasi',
             'whatsapp' => '98765',
-            'program_sertifikasi' => 'Cloud Computing',
-            'motivasi' => 'Menyelesaikan sertifikasi wajib.',
-            'status_sertifikasi' => 'Belum pernah',
+            'tanggal_pelaksanaan' => '2025-06-20',
+            'poster_sertifikasi' => UploadedFile::fake()->image('invalid-wa.jpg'),
         ];
 
         $this->post(route('pendaftaran.sertifikasi.store'), $payload)
@@ -83,18 +104,17 @@ class SertifikasiRegistrationTest extends TestCase
     {
         $registration = SertifikasiRegistration::factory()->create([
             'nama' => 'Nadya Kusuma',
-            'nim' => '231112223',
-            'program_studi' => 'RPL',
+            'nip' => '19981112223',
+            'prodi' => 'RPL',
             'whatsapp' => '082233445566',
-            'program_sertifikasi' => 'Project Management Associate',
-            'status_sertifikasi' => 'Perpanjangan',
+            'tanggal_pelaksanaan' => '2025-07-10',
         ]);
 
         $this->get(route('admin.sertifikasi'))
             ->assertOk()
             ->assertSeeText($registration->nama)
-            ->assertSeeText($registration->nim)
-            ->assertSeeText($registration->program_sertifikasi);
+            ->assertSeeText($registration->nip)
+            ->assertSeeText($registration->tanggal_pelaksanaan);
     }
 }
 

@@ -59,11 +59,11 @@ class ApiRegistrationTest extends TestCase
     {
         $registration = SertifikasiRegistration::factory()->create([
             'nama' => 'Rian Maulana',
-            'nim' => '238887766',
-            'program_studi' => 'Bisnis Digital',
+            'nip' => '1988007766',
+            'prodi' => 'Bisnis Digital',
             'whatsapp' => '081122334455',
-            'program_sertifikasi' => 'Junior Cloud',
-            'status_sertifikasi' => 'Belum',
+            'tanggal_pelaksanaan' => '2025-07-01',
+            'poster_path' => 'poster-sertifikasi/sample.jpg',
         ]);
 
         $response = $this->getJson('/api/v1/registrations/sertifikasi');
@@ -73,7 +73,7 @@ class ApiRegistrationTest extends TestCase
             ->assertJsonPath('meta.total', 1)
             ->assertJsonFragment([
                 'nama' => $registration->nama,
-                'program_sertifikasi' => 'Junior Cloud',
+                'prodi' => 'Bisnis Digital',
             ]);
     }
 }

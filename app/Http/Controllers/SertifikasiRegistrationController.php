@@ -7,6 +7,7 @@ use App\Rules\IndonesianPhoneNumber;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -30,27 +31,36 @@ class SertifikasiRegistrationController extends Controller
             Schema::create('sertifikasi_registrations', function (Blueprint $table) {
                 $table->id();
                 $table->string('nama');
-                $table->string('nim');
-                $table->string('program_studi');
+                $table->string('nip');
+                $table->string('prodi');
                 $table->string('whatsapp');
-                $table->string('program_sertifikasi');
-                $table->text('motivasi')->nullable();
-                $table->string('status_sertifikasi');
+                $table->date('tanggal_pelaksanaan');
+                $table->string('poster_path');
                 $table->timestamps();
             });
         }
 
         $validated = $request->validate([
             'nama' => ['required', 'string', 'max:255'],
-            'nim' => ['required', 'string', 'max:255'],
-            'program_studi' => ['required', 'string', 'max:255'],
+            'nip' => ['required', 'string', 'max:255'],
+            'prodi' => ['required', 'string', 'max:255'],
             'whatsapp' => ['required', 'string', 'max:255', new IndonesianPhoneNumber()],
-            'program_sertifikasi' => ['required', 'string', 'max:255'],
-            'motivasi' => ['nullable', 'string'],
-            'status_sertifikasi' => ['required', 'string', 'max:255'],
+            'tanggal_pelaksanaan' => ['required', 'date'],
+            'poster_sertifikasi' => ['required', 'image', 'max:2048'],
         ]);
 
-        SertifikasiRegistration::create($validated);
+        $posterPath = $validated['poster_sertifikasi']->store('poster-sertifikasi', 'public');
+
+        $payload = [
+            'nama' => $validated['nama'],
+            'nip' => $validated['nip'],
+            'prodi' => $validated['prodi'],
+            'whatsapp' => $validated['whatsapp'],
+            'tanggal_pelaksanaan' => $validated['tanggal_pelaksanaan'],
+            'poster_path' => $posterPath,
+        ];
+
+        SertifikasiRegistration::create($payload);
 
         $communityName = config('komunitas.sertifikasi.name');
 
@@ -88,11 +98,11 @@ class SertifikasiRegistrationController extends Controller
         $headers = [
             'No',
             'Nama',
-            'NIM',
-            'Program Studi',
+            'NIP',
+            'Prodi',
             'No. WhatsApp',
-            'Program Sertifikasi',
-            'Status Sertifikasi',
+            'Tanggal Pelaksanaan',
+            'Poster Sertifikasi',
             'Tanggal Pendaftaran',
         ];
 
@@ -117,11 +127,16 @@ class SertifikasiRegistrationController extends Controller
                 echo '<tr>';
                 echo '<td>' . $escape($index + 1) . '</td>';
                 echo '<td>' . $escape($registration->nama) . '</td>';
-                echo '<td>' . $escape($registration->nim) . '</td>';
-                echo '<td>' . $escape($registration->program_studi) . '</td>';
+                echo '<td>' . $escape($registration->nip) . '</td>';
+                echo '<td>' . $escape($registration->prodi) . '</td>';
                 echo '<td>' . $escape($registration->whatsapp) . '</td>';
-                echo '<td>' . $escape($registration->program_sertifikasi) . '</td>';
-                echo '<td>' . $escape($registration->status_sertifikasi) . '</td>';
+                echo '<td>' . $escape($registration->tanggal_pelaksanaan) . '</td>';
+
+                $posterUrl = $registration->poster_path
+                    ? Storage::disk('public')->url($registration->poster_path)
+                    : '';
+
+                echo '<td>' . ($posterUrl ? '<a href="' . $escape($posterUrl) . '">Lihat Poster</a>' : '-') . '</td>';
                 echo '<td>' . $escape($formattedDate) . '</td>';
                 echo '</tr>';
             }

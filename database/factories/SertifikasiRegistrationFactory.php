@@ -24,8 +24,8 @@ class SertifikasiRegistrationFactory extends Factory
     {
         return [
             'nama' => $this->faker->name(),
-            'nim' => '23'.$this->faker->unique()->numerify('#######'),
-            'program_studi' => $this->faker->randomElement([
+            'nip' => '1989'.$this->faker->unique()->numerify('#######'),
+            'prodi' => $this->faker->randomElement([
                 'Teknik Logistik',
                 'Bisnis Digital',
                 'Sistem Informasi',
@@ -33,17 +33,8 @@ class SertifikasiRegistrationFactory extends Factory
                 'RPL',
             ]),
             'whatsapp' => '08'.$this->faker->numerify('##########'),
-            'program_sertifikasi' => $this->faker->randomElement([
-                'Digital Marketing Strategy',
-                'Data Analytics Fundamentals',
-                'Project Management Associate',
-            ]),
-            'motivasi' => $this->faker->optional()->sentence(10),
-            'status_sertifikasi' => $this->faker->randomElement([
-                'Belum pernah',
-                'Upgrade level',
-                'Perpanjangan',
-            ]),
+            'tanggal_pelaksanaan' => $this->faker->date(),
+            'poster_path' => 'poster-sertifikasi/'.$this->faker->unique()->lexify('poster_????.jpg'),
         ];
     }
 }
