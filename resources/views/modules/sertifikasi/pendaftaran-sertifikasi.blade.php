@@ -436,14 +436,14 @@
 
                     <div class="field-group">
                         <label for="prodi">3. Program Studi</label>
-                        <input
-                            id="prodi"
-                            name="prodi"
-                            type="text"
-                            placeholder="Tuliskan program studi Anda"
-                            value="{{ old('prodi') }}"
-                            required
-                        >
+                        <select id="prodi" name="prodi" required>
+                            <option value="" disabled @selected(old('prodi') === null)>Pilih program studi</option>
+                            @foreach (config('program_studi.options', []) as $option)
+                                <option value="{{ $option }}" @selected(old('prodi') === $option)>
+                                    {{ $option }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="field-group">
