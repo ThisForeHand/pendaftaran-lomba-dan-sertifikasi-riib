@@ -32,7 +32,7 @@ class SertifikasiRegistrationController extends Controller
         $validated = $request->validate([
             'nama' => ['required', 'string', 'max:255'],
             'nip' => ['required', 'string', 'max:255'],
-            'prodi' => ['required', 'string', 'max:255'],
+            'program_studi' => ['required', 'string', 'max:255'],
             'whatsapp' => ['required', 'string', 'max:255', new IndonesianPhoneNumber()],
             'tanggal_pelaksanaan' => ['required', 'date'],
             'poster_sertifikasi' => ['required', 'image', 'max:2048'],
@@ -43,7 +43,7 @@ class SertifikasiRegistrationController extends Controller
         $payload = [
             'nama' => $validated['nama'],
             'nip' => $validated['nip'],
-            'prodi' => $validated['prodi'],
+            'program_studi' => $validated['program_studi'],
             'whatsapp' => $validated['whatsapp'],
             'tanggal_pelaksanaan' => $validated['tanggal_pelaksanaan'],
             'poster_path' => $posterPath,
@@ -65,7 +65,7 @@ class SertifikasiRegistrationController extends Controller
                 $table->id();
                 $table->string('nama');
                 $table->string('nip');
-                $table->string('prodi');
+                $table->string('program_studi');
                 $table->string('whatsapp');
                 $table->date('tanggal_pelaksanaan');
                 $table->string('poster_path');
@@ -80,12 +80,12 @@ class SertifikasiRegistrationController extends Controller
                 $table->string('nip')->after('nama');
             }
 
-            if (! Schema::hasColumn('sertifikasi_registrations', 'prodi')) {
-                $table->string('prodi')->after('nip')->nullable();
+            if (! Schema::hasColumn('sertifikasi_registrations', 'program_studi')) {
+                $table->string('program_studi')->after('nip')->nullable();
             }
 
             if (! Schema::hasColumn('sertifikasi_registrations', 'whatsapp')) {
-                $table->string('whatsapp')->after('prodi')->nullable();
+                $table->string('whatsapp')->after('program_studi')->nullable();
             }
 
             if (! Schema::hasColumn('sertifikasi_registrations', 'tanggal_pelaksanaan')) {
@@ -157,7 +157,7 @@ class SertifikasiRegistrationController extends Controller
                 echo '<td>' . $escape($index + 1) . '</td>';
                 echo '<td>' . $escape($registration->nama) . '</td>';
                 echo '<td>' . $escape($registration->nip) . '</td>';
-                echo '<td>' . $escape($registration->prodi) . '</td>';
+                echo '<td>' . $escape($registration->program_studi) . '</td>';
                 echo '<td>' . $escape($registration->whatsapp) . '</td>';
                 echo '<td>' . $escape($registration->tanggal_pelaksanaan) . '</td>';
 

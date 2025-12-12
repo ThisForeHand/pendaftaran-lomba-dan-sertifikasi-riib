@@ -49,7 +49,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $registration->nama }}</td>
                                 <td>{{ $registration->nip }}</td>
-                                <td>{{ $registration->prodi }}</td>
+                                <td>{{ $registration->program_studi }}</td>
                                 <td>
                                     <x-contact-link :value="$registration->whatsapp" />
                                 </td>
