@@ -77,12 +77,7 @@
     </form>
 
     <div class="footer-actions">
-        <div class="footer-actions-left">
-            <form method="POST" action="{{ route('logout') }}" class="logout-form">
-                @csrf
-                <button type="submit" class="logout-button">Keluar</button>
-            </form>
-        </div>
+        <div class="footer-actions-left"></div>
         <div class="footer-actions-right">
             <a href="{{ route('admin.sertifikasi.download') }}" class="action-button download">Unduh</a>
             <button type="button" class="action-button delete" form="{{ $panelId }}-form">Hapus</button>
