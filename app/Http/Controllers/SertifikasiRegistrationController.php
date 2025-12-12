@@ -75,11 +75,27 @@ class SertifikasiRegistrationController extends Controller
             return;
         }
 
-        if (! Schema::hasColumn('sertifikasi_registrations', 'nip')) {
-            Schema::table('sertifikasi_registrations', function (Blueprint $table) {
+        Schema::table('sertifikasi_registrations', function (Blueprint $table) {
+            if (! Schema::hasColumn('sertifikasi_registrations', 'nip')) {
                 $table->string('nip')->after('nama');
-            });
-        }
+            }
+
+            if (! Schema::hasColumn('sertifikasi_registrations', 'prodi')) {
+                $table->string('prodi')->after('nip')->nullable();
+            }
+
+            if (! Schema::hasColumn('sertifikasi_registrations', 'whatsapp')) {
+                $table->string('whatsapp')->after('prodi')->nullable();
+            }
+
+            if (! Schema::hasColumn('sertifikasi_registrations', 'tanggal_pelaksanaan')) {
+                $table->date('tanggal_pelaksanaan')->after('whatsapp')->nullable();
+            }
+
+            if (! Schema::hasColumn('sertifikasi_registrations', 'poster_path')) {
+                $table->string('poster_path')->after('tanggal_pelaksanaan')->nullable();
+            }
+        });
     }
 
     /**
