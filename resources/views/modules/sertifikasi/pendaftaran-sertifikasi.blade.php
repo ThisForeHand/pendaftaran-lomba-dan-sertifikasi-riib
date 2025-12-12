@@ -463,11 +463,11 @@
                     </div>
 
                     <div class="field-group">
-                        <label for="prodi">3. Program Studi</label>
-                        <select id="prodi" name="prodi" required>
-                            <option value="" disabled @selected(old('prodi') === null)>Pilih program studi</option>
+                        <label for="program_studi">3. Program Studi</label>
+                        <select id="program_studi" name="program_studi" required>
+                            <option value="" disabled @selected(old('program_studi') === null)>Pilih program studi</option>
                             @foreach (config('program_studi.options', []) as $option)
-                                <option value="{{ $option }}" @selected(old('prodi') === $option)>
+                                <option value="{{ $option }}" @selected(old('program_studi') === $option)>
                                     {{ $option }}
                                 </option>
                             @endforeach

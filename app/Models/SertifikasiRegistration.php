@@ -17,7 +17,7 @@ class SertifikasiRegistration extends Model
     protected $fillable = [
         'nama',
         'nip',
-        'prodi',
+        'program_studi',
         'whatsapp',
         'tanggal_pelaksanaan',
         'poster_path',
