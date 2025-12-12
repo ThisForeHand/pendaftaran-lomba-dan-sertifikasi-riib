@@ -8,6 +8,7 @@ use App\Rules\IndonesianPhoneNumber;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Schema;
 
@@ -98,5 +99,18 @@ class SertifikasiRegistrationApiController extends Controller
                 $table->string('poster_path')->after('tanggal_pelaksanaan')->nullable();
             }
         });
+
+        if (
+            Schema::hasColumn('sertifikasi_registrations', 'prodi')
+            && Schema::hasColumn('sertifikasi_registrations', 'program_studi')
+        ) {
+            DB::table('sertifikasi_registrations')
+                ->whereNull('program_studi')
+                ->update(['program_studi' => DB::raw('prodi')]);
+
+            Schema::table('sertifikasi_registrations', function (Blueprint $table) {
+                $table->dropColumn('prodi');
+            });
+        }
     }
 }

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('nip');
-            $table->string('prodi');
+            $table->string('program_studi');
             $table->string('whatsapp');
             $table->date('tanggal_pelaksanaan');
             $table->string('poster_path');
