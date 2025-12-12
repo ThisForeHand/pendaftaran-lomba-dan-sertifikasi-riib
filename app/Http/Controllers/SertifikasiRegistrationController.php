@@ -27,18 +27,7 @@ class SertifikasiRegistrationController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        if (! Schema::hasTable('sertifikasi_registrations')) {
-            Schema::create('sertifikasi_registrations', function (Blueprint $table) {
-                $table->id();
-                $table->string('nama');
-                $table->string('nip');
-                $table->string('prodi');
-                $table->string('whatsapp');
-                $table->date('tanggal_pelaksanaan');
-                $table->string('poster_path');
-                $table->timestamps();
-            });
-        }
+        $this->ensureTableSchema();
 
         $validated = $request->validate([
             'nama' => ['required', 'string', 'max:255'],
@@ -67,6 +56,30 @@ class SertifikasiRegistrationController extends Controller
         return redirect()
             ->route('pendaftaran.sertifikasi')
             ->with('status', "Terima kasih! Data pendaftaran sertifikasi Anda telah kami terima. Kami akan segera menghubungi Anda untuk informasi selanjutnya. Untuk briefing jadwal belajar dan pengumpulan berkas, segera gabung ke channel WhatsApp {$communityName}.");
+    }
+
+    protected function ensureTableSchema(): void
+    {
+        if (! Schema::hasTable('sertifikasi_registrations')) {
+            Schema::create('sertifikasi_registrations', function (Blueprint $table) {
+                $table->id();
+                $table->string('nama');
+                $table->string('nip');
+                $table->string('prodi');
+                $table->string('whatsapp');
+                $table->date('tanggal_pelaksanaan');
+                $table->string('poster_path');
+                $table->timestamps();
+            });
+
+            return;
+        }
+
+        if (! Schema::hasColumn('sertifikasi_registrations', 'nip')) {
+            Schema::table('sertifikasi_registrations', function (Blueprint $table) {
+                $table->string('nip')->after('nama');
+            });
+        }
     }
 
     /**

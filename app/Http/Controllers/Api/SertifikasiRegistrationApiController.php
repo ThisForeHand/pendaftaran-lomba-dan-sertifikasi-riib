@@ -32,7 +32,7 @@ class SertifikasiRegistrationApiController extends Controller
 
     public function store(Request $request): JsonResponse
     {
-        $this->ensureTableExists();
+        $this->ensureTableSchema();
 
         $validated = $request->validate([
             'nama' => ['required', 'string', 'max:255'],
@@ -60,21 +60,27 @@ class SertifikasiRegistrationApiController extends Controller
         ], 201);
     }
 
-    protected function ensureTableExists(): void
+    protected function ensureTableSchema(): void
     {
-        if (Schema::hasTable('sertifikasi_registrations')) {
+        if (! Schema::hasTable('sertifikasi_registrations')) {
+            Schema::create('sertifikasi_registrations', function (Blueprint $table) {
+                $table->id();
+                $table->string('nama');
+                $table->string('nip');
+                $table->string('prodi');
+                $table->string('whatsapp');
+                $table->date('tanggal_pelaksanaan');
+                $table->string('poster_path');
+                $table->timestamps();
+            });
+
             return;
         }
 
-        Schema::create('sertifikasi_registrations', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama');
-            $table->string('nip');
-            $table->string('prodi');
-            $table->string('whatsapp');
-            $table->date('tanggal_pelaksanaan');
-            $table->string('poster_path');
-            $table->timestamps();
-        });
+        if (! Schema::hasColumn('sertifikasi_registrations', 'nip')) {
+            Schema::table('sertifikasi_registrations', function (Blueprint $table) {
+                $table->string('nip')->after('nama');
+            });
+        }
     }
 }
