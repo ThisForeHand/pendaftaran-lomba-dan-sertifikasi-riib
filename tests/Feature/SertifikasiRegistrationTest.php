@@ -26,7 +26,7 @@ class SertifikasiRegistrationTest extends TestCase
         $payload = [
             'nama' => 'Satria Purnama',
             'nip' => '198900123',
-            'prodi' => 'Teknik Logistik',
+            'program_studi' => 'Teknik Logistik',
             'whatsapp' => '089876543210',
             'tanggal_pelaksanaan' => '2025-05-20',
             'poster_sertifikasi' => UploadedFile::fake()->image('poster.jpg'),
@@ -45,7 +45,7 @@ class SertifikasiRegistrationTest extends TestCase
         $this->assertNotNull($registration);
         $this->assertEquals('Satria Purnama', $registration->nama);
         $this->assertEquals('198900123', $registration->nip);
-        $this->assertEquals('Teknik Logistik', $registration->prodi);
+        $this->assertEquals('Teknik Logistik', $registration->program_studi);
         $this->assertEquals('089876543210', $registration->whatsapp);
         $this->assertEquals('2025-05-20', $registration->tanggal_pelaksanaan);
         Storage::disk('public')->assertExists($registration->poster_path);
@@ -58,7 +58,7 @@ class SertifikasiRegistrationTest extends TestCase
         $payload = [
             'nama' => 'Gilang Raharja',
             'nip' => '199900001',
-            'prodi' => 'Bisnis Digital',
+            'program_studi' => 'Bisnis Digital',
             'whatsapp' => '+628229991111',
             'tanggal_pelaksanaan' => '2025-06-15',
             'poster_sertifikasi' => UploadedFile::fake()->image('poster-plus.jpg'),
@@ -75,7 +75,7 @@ class SertifikasiRegistrationTest extends TestCase
         $this->assertNotNull($registration);
         $this->assertEquals('Gilang Raharja', $registration->nama);
         $this->assertEquals('199900001', $registration->nip);
-        $this->assertEquals('Bisnis Digital', $registration->prodi);
+        $this->assertEquals('Bisnis Digital', $registration->program_studi);
         $this->assertEquals('+628229991111', $registration->whatsapp);
         $this->assertEquals('2025-06-15', $registration->tanggal_pelaksanaan);
         Storage::disk('public')->assertExists($registration->poster_path);
@@ -88,7 +88,7 @@ class SertifikasiRegistrationTest extends TestCase
         $payload = [
             'nama' => 'Hani Putri',
             'nip' => '199900999',
-            'prodi' => 'Sistem Informasi',
+            'program_studi' => 'Sistem Informasi',
             'whatsapp' => '98765',
             'tanggal_pelaksanaan' => '2025-06-20',
             'poster_sertifikasi' => UploadedFile::fake()->image('invalid-wa.jpg'),
@@ -105,7 +105,7 @@ class SertifikasiRegistrationTest extends TestCase
         $registration = SertifikasiRegistration::factory()->create([
             'nama' => 'Nadya Kusuma',
             'nip' => '19981112223',
-            'prodi' => 'RPL',
+            'program_studi' => 'RPL',
             'whatsapp' => '082233445566',
             'tanggal_pelaksanaan' => '2025-07-10',
         ]);

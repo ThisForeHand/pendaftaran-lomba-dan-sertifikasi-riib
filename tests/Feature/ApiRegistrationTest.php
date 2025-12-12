@@ -60,7 +60,7 @@ class ApiRegistrationTest extends TestCase
         $registration = SertifikasiRegistration::factory()->create([
             'nama' => 'Rian Maulana',
             'nip' => '1988007766',
-            'prodi' => 'Bisnis Digital',
+            'program_studi' => 'Bisnis Digital',
             'whatsapp' => '081122334455',
             'tanggal_pelaksanaan' => '2025-07-01',
             'poster_path' => 'poster-sertifikasi/sample.jpg',
@@ -73,7 +73,7 @@ class ApiRegistrationTest extends TestCase
             ->assertJsonPath('meta.total', 1)
             ->assertJsonFragment([
                 'nama' => $registration->nama,
-                'prodi' => 'Bisnis Digital',
+                'program_studi' => 'Bisnis Digital',
             ]);
     }
 }
