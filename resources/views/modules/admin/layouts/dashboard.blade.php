@@ -58,9 +58,15 @@
                 gap: 14px;
                 position: static;
                 height: fit-content;
-                max-height: calc(100vh - clamp(48px, 8vw, 96px));
+                max-height: calc(100vh - 64px);
                 overflow-y: auto;
                 align-self: start;
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+
+            .sidebar::-webkit-scrollbar {
+                display: none;
             }
 
             .sidebar-logo {
