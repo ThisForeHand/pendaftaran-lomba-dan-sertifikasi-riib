@@ -53,10 +53,13 @@
                 padding: clamp(18px, 3vw, 26px);
                 box-shadow: 0 18px 48px rgba(33, 62, 157, 0.12);
                 border: 1px solid #e2e8f5;
-                display: grid;
+                display: flex;
+                flex-direction: column;
                 gap: 14px;
                 position: static;
                 min-height: 100%;
+                max-height: calc(100vh - clamp(48px, 8vw, 96px));
+                overflow-y: auto;
                 align-self: stretch;
             }
 
