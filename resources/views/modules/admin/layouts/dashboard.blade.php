@@ -57,10 +57,10 @@
                 flex-direction: column;
                 gap: 14px;
                 position: static;
-                min-height: 100%;
+                height: fit-content;
                 max-height: calc(100vh - clamp(48px, 8vw, 96px));
                 overflow-y: auto;
-                align-self: stretch;
+                align-self: start;
             }
 
             .sidebar-logo {
