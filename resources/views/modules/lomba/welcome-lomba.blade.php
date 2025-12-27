@@ -253,6 +253,13 @@
                 outline: none;
             }
 
+            .step-actions {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: clamp(10px, 2vw, 14px);
+            }
+
             .support-box {
                 padding: clamp(18px, 3vw, 24px);
                 border-radius: clamp(18px, 3vw, 24px);
@@ -349,16 +356,6 @@
             </header>
 
             <main class="main-card">
-                <div class="link-block">
-                    <div class="card-title">Pendaftaran Lomba</div>
-                    <p>
-                        Daftarkan diri Anda untuk ikut kompetisi. Terbuka untuk mahasiswa aktif dari seluruh perguruan tinggi.
-                    </p>
-                    <a class="card-button" href="{{ route('pendaftaran.lomba') }}">
-                        Daftar Lomba
-                    </a>
-                </div>
-
                 <div class="flow-grid">
                     <div class="flow-card">
                         <h3>Alur Pendaftaran Lomba</h3>
@@ -367,7 +364,8 @@
                                 <ol class="timeline" role="list">
                                     @foreach ($flowSteps as $step)
                                         @php
-                                            $stepNumber = str_pad((string) ($step->sequence ?? $loop->iteration), 2, '0', STR_PAD_LEFT);
+                                            $stepSequence = (int) ($step->sequence ?? $loop->iteration);
+                                            $stepNumber = str_pad((string) $stepSequence, 2, '0', STR_PAD_LEFT);
                                             $link = $step->link;
                                             $openInNewTab = $link && (str_starts_with($link, 'http://') || str_starts_with($link, 'https://'));
                                         @endphp
@@ -385,6 +383,13 @@
                                                         >
                                                             ➡️ Buka tautan pendukung
                                                         </a>
+                                                    @endif
+                                                    @if ($stepSequence === 3)
+                                                        <div class="step-actions">
+                                                            <a class="card-button" href="{{ route('pendaftaran.lomba') }}">
+                                                                Daftar Lomba
+                                                            </a>
+                                                        </div>
                                                     @endif
                                                 </div>
                                             </div>
