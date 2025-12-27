@@ -21,12 +21,6 @@
                     'activeTab' => $currentTab,
                     'navigationMode' => 'links',
                 ])
-            </div>
-        </div>
-
-        <div class="sidebar-nav-group">
-            <p class="sidebar-section-title">Pengelolaan</p>
-            <div class="sidebar-nav-list">
                 @include('modules.admin.menus.sertifikasi', [
                     'activeTab' => $currentTab,
                     'navigationMode' => 'links',
