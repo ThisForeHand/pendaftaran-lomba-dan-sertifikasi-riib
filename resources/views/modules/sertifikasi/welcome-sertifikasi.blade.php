@@ -23,7 +23,7 @@
                 justify-content: center;
                 align-items: flex-start;
                 font-family: "Instrument Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-                background: linear-gradient(180deg, #f6f2ff 0%, #fbf9ff 48%, #ffffff 100%);
+                background: linear-gradient(180deg, #f3f7ff 0%, #f9fbff 48%, #ffffff 100%);
                 color: #000000;
                 padding: clamp(40px, 6vw, 72px) clamp(16px, 6vw, 40px);
             }
@@ -32,16 +32,16 @@
                 width: min(960px, 100%);
                 background: #ffffff;
                 border-radius: 28px;
-                border: 1px solid rgba(139, 112, 214, 0.18);
-                box-shadow: 0 30px 70px rgba(38, 30, 74, 0.08);
+                border: 1px solid rgba(93, 123, 214, 0.18);
+                box-shadow: 0 30px 70px rgba(28, 42, 74, 0.08);
                 overflow: hidden;
             }
 
             header {
                 padding: clamp(40px, 6vw, 56px) clamp(32px, 6vw, 80px) clamp(24px, 4vw, 32px);
                 text-align: center;
-                background: linear-gradient(180deg, rgba(234, 226, 255, 0.65) 0%, rgba(255, 255, 255, 0) 100%);
-                border-bottom: 1px solid rgba(139, 112, 214, 0.12);
+                background: linear-gradient(180deg, rgba(226, 233, 255, 0.65) 0%, rgba(255, 255, 255, 0) 100%);
+                border-bottom: 1px solid rgba(93, 123, 214, 0.12);
             }
 
             header h1 {
@@ -86,14 +86,14 @@
                 justify-content: center;
                 gap: 8px;
                 border: none;
-                background: linear-gradient(135deg, #7c3ffd 0%, #5a28e0 100%);
+                background: linear-gradient(135deg, #3068ff 0%, #1f49e0 100%);
                 color: #ffffff;
                 font-weight: 600;
                 font-size: 0.95rem;
                 padding: 12px 26px;
                 border-radius: 999px;
                 text-decoration: none;
-                box-shadow: 0 12px 24px rgba(123, 61, 246, 0.22);
+                box-shadow: 0 12px 24px rgba(41, 104, 246, 0.22);
                 transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
                 width: fit-content;
             }
@@ -101,8 +101,8 @@
             .card-button:hover,
             .card-button:focus {
                 transform: translateY(-2px);
-                box-shadow: 0 14px 28px rgba(90, 40, 224, 0.26);
-                background: linear-gradient(135deg, #6d32eb 0%, #4a20c4 100%);
+                box-shadow: 0 14px 28px rgba(31, 73, 224, 0.26);
+                background: linear-gradient(135deg, #2a5cea 0%, #1a3fba 100%);
             }
 
             .secondary-link {
@@ -144,9 +144,9 @@
             .flow-diagram {
                 margin: 0;
                 padding: clamp(18px, 3vw, 28px);
-                background: rgba(124, 63, 253, 0.08);
+                background: linear-gradient(135deg, rgba(14, 165, 233, 0.08) 0%, rgba(59, 130, 246, 0.06) 100%);
                 border-radius: clamp(24px, 4vw, 32px);
-                border: 1px solid rgba(124, 63, 253, 0.18);
+                border: 1px solid rgba(22, 78, 99, 0.18);
                 box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
                 display: grid;
                 gap: clamp(18px, 3vw, 28px);
@@ -167,22 +167,22 @@
                 gap: clamp(16px, 3vw, 28px);
                 padding: clamp(18px, 3vw, 26px);
                 border-radius: clamp(20px, 3vw, 28px);
-                background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.9) 100%);
-                border: 1px solid rgba(124, 63, 253, 0.18);
-                box-shadow: 0 18px 38px rgba(67, 44, 117, 0.12);
+                background: #ffffff;
+                border: 1px solid rgba(30, 64, 175, 0.08);
+                box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
                 transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
             }
 
             .timeline-step:hover,
             .timeline-step:focus-within {
                 transform: translateY(-3px);
-                box-shadow: 0 22px 44px rgba(58, 32, 115, 0.16);
-                border-color: rgba(124, 63, 253, 0.32);
+                box-shadow: 0 22px 44px rgba(31, 73, 224, 0.16);
+                border-color: rgba(59, 130, 246, 0.22);
             }
 
             .timeline-step:focus-within {
                 outline: none;
-                box-shadow: 0 0 0 4px rgba(124, 63, 253, 0.24), 0 22px 44px rgba(58, 32, 115, 0.16);
+                box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.16), 0 22px 44px rgba(31, 73, 224, 0.16);
             }
 
             .step-badge {
@@ -196,8 +196,8 @@
                 font-size: clamp(1.35rem, 3.2vw, 1.6rem);
                 font-weight: 700;
                 position: relative;
-                background: linear-gradient(135deg, #ef4444 0%, #f97316 38%, #facc15 100%);
-                box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.35), 0 16px 32px rgba(249, 115, 22, 0.24);
+                background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%);
+                box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.25), 0 16px 32px rgba(37, 99, 235, 0.26);
             }
 
             .step-badge::after {
@@ -205,18 +205,18 @@
                 position: absolute;
                 inset: -12%;
                 border-radius: 50%;
-                background: linear-gradient(135deg, rgba(239, 68, 68, 0.16) 0%, rgba(124, 58, 237, 0.14) 52%, rgba(14, 165, 233, 0.16) 100%);
+                background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.12), transparent 65%);
                 z-index: -1;
             }
 
             .timeline li:nth-child(2) .step-badge {
-                background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 48%, #4338ca 100%);
-                box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.35), 0 16px 32px rgba(37, 99, 235, 0.26);
+                background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 48%, #0369a1 100%);
+                box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.25), 0 16px 32px rgba(14, 165, 233, 0.22);
             }
 
             .timeline li:nth-child(3) .step-badge {
-                background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 50%, #312e81 100%);
-                box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.32), 0 16px 32px rgba(91, 33, 182, 0.26);
+                background: linear-gradient(135deg, #14b8a6 0%, #0d9488 50%, #0f766e 100%);
+                box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.25), 0 16px 32px rgba(20, 184, 166, 0.22);
             }
 
             .step-content {
@@ -245,7 +245,7 @@
                 margin-top: clamp(6px, 1.4vw, 10px);
                 font-size: clamp(0.82rem, 1.6vw, 0.92rem);
                 font-weight: 600;
-                color: rgba(124, 58, 237, 0.9);
+                color: rgba(37, 99, 235, 0.96);
             }
 
             .step-link {
@@ -278,8 +278,8 @@
             .support-box {
                 padding: clamp(18px, 3vw, 24px);
                 border-radius: clamp(18px, 3vw, 24px);
-                background: rgba(14, 165, 233, 0.08);
-                border: 1px solid rgba(14, 165, 233, 0.28);
+                background: rgba(59, 130, 246, 0.06);
+                border: 1px solid rgba(59, 130, 246, 0.28);
                 display: grid;
                 gap: 6px;
             }
@@ -300,8 +300,8 @@
                 margin: 0;
                 padding: clamp(18px, 3vw, 26px);
                 border-radius: clamp(18px, 3vw, 24px);
-                border: 1px dashed rgba(124, 63, 253, 0.4);
-                background: rgba(255, 255, 255, 0.9);
+                border: 1px dashed rgba(59, 130, 246, 0.4);
+                background: rgba(255, 255, 255, 0.8);
                 font-weight: 500;
                 color: rgba(15, 23, 42, 0.74);
                 text-align: center;
