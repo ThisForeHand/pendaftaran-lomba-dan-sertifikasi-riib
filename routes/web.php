@@ -29,6 +29,9 @@ Route::get('/login', [LoginController::class, 'show'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.attempt');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> a2440792956389689ba49d7963bf890a67970b0b
 require __DIR__.'/admin.php';
 require __DIR__.'/lecturer.php';
