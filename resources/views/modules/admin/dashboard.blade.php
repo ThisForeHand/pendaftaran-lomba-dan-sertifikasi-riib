@@ -2,23 +2,23 @@
     'activeTab' => 'dashboard',
 ])
 
-@section('title', 'Dashboard - Pendaftaran Lomba per Prodi')
+@section('title', 'Dashboard - Pendaftaran Sertifikasi per Prodi')
 
 @section('content')
     <section class="card" id="panel-dashboard">
         <div class="card-header">
             <div class="card-title">
                 <h2>Dashboard</h2>
-                <span>Ringkasan peserta pendaftaran lomba per program studi</span>
+                <span>Ringkasan peserta pendaftaran sertifikasi per program studi</span>
             </div>
         </div>
 
         @if (! $tableExists)
             <p>
-                Tabel pendaftaran lomba belum tersedia. Jalankan migrasi database terlebih dahulu untuk melihat ringkasan data.
+                Tabel pendaftaran sertifikasi belum tersedia. Jalankan migrasi database terlebih dahulu untuk melihat ringkasan data.
             </p>
         @elseif ($chartLabels->isEmpty())
-            <p>Belum ada data pendaftaran lomba yang dapat ditampilkan.</p>
+            <p>Belum ada data pendaftaran sertifikasi yang dapat ditampilkan.</p>
         @else
             <div style="padding: 12px 6px 6px;">
                 <canvas id="prodiRegistrationChart" aria-label="Diagram batang jumlah peserta per prodi" role="img"></canvas>
