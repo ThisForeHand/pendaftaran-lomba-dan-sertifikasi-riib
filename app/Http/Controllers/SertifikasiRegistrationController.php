@@ -77,6 +77,10 @@ class SertifikasiRegistrationController extends Controller
         }
 
         Schema::table('sertifikasi_registrations', function (Blueprint $table) {
+            if (! Schema::hasColumn('sertifikasi_registrations', 'nama')) {
+                $table->string('nama')->after('id');
+            }
+
             if (! Schema::hasColumn('sertifikasi_registrations', 'nip')) {
                 $table->string('nip')->after('nama');
             }
