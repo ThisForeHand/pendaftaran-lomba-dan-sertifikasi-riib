@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LombaRegistration;
+use App\Models\SertifikasiRegistration;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\View\View;
@@ -10,14 +10,14 @@ use Illuminate\View\View;
 class AdminDashboardController extends Controller
 {
     /**
-     * Display the admin dashboard with competition registration overview.
+     * Display the admin dashboard with certification registration overview.
      */
     public function index(): View
     {
-        $tableExists = Schema::hasTable('lomba_registrations');
+        $tableExists = Schema::hasTable('sertifikasi_registrations');
 
         $perProgramStudy = $tableExists
-            ? LombaRegistration::query()
+            ? SertifikasiRegistration::query()
                 ->select('program_studi', DB::raw('count(*) as total'))
                 ->groupBy('program_studi')
                 ->orderBy('program_studi')
