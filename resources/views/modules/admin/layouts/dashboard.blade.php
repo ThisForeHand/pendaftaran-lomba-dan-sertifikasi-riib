@@ -56,10 +56,9 @@
                 display: flex;
                 flex-direction: column;
                 gap: 14px;
-                position: static;
-                height: fit-content;
-                max-height: calc(100vh - clamp(48px, 8vw, 96px));
-                overflow-y: auto;
+                position: sticky;
+                top: clamp(24px, 4vw, 40px);
+                height: auto;
                 align-self: start;
             }
 
