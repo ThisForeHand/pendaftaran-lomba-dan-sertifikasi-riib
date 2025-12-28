@@ -28,6 +28,3 @@ Route::post('/pendaftaran-sertifikasi', [SertifikasiRegistrationController::clas
 Route::get('/login', [LoginController::class, 'show'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.attempt');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
-require __DIR__.'/admin.php';
-require __DIR__.'/lecturer.php';
