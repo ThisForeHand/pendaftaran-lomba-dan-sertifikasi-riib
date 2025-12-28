@@ -37,6 +37,11 @@
                 const chartLabels = @json($chartLabels->values());
                 const chartValues = @json($chartValues->values());
 
+                const maxParticipants = chartValues.length
+                    ? Math.max(...chartValues)
+                    : 0;
+                const suggestedMax = Math.max(10, maxParticipants + 1);
+
                 new Chart(ctx, {
                     type: 'bar',
                     data: {
@@ -67,6 +72,7 @@
                             },
                             y: {
                                 beginAtZero: true,
+                                max: suggestedMax,
                                 ticks: {
                                     stepSize: 1,
                                     color: '#24345a',
@@ -84,6 +90,13 @@
                                 callbacks: {
                                     label: (context) => `${context.parsed.y} peserta`,
                                 },
+                            },
+                        },
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        layout: {
+                            padding: {
+                                top: 16,
                             },
                         },
                     },
