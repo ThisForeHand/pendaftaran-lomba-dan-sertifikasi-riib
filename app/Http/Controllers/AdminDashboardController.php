@@ -16,19 +16,23 @@ class AdminDashboardController extends Controller
     {
         $tableExists = Schema::hasTable('sertifikasi_registrations');
 
+        $studyPrograms = collect(config('program_studi.options', []));
+
         $perProgramStudy = $tableExists
             ? SertifikasiRegistration::query()
                 ->select('program_studi', DB::raw('count(*) as total'))
                 ->groupBy('program_studi')
-                ->orderBy('program_studi')
                 ->get()
+                ->pluck('total', 'program_studi')
             : collect();
 
         return view('modules.admin.dashboard', [
             'activeTab' => 'dashboard',
             'tableExists' => $tableExists,
-            'chartLabels' => $perProgramStudy->pluck('program_studi'),
-            'chartValues' => $perProgramStudy->pluck('total'),
+            'chartLabels' => $studyPrograms,
+            'chartValues' => $studyPrograms->map(
+                fn (string $programStudy): int => (int) ($perProgramStudy[$programStudy] ?? 0)
+            ),
         ]);
     }
 }
