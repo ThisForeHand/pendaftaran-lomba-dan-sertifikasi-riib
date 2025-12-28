@@ -96,6 +96,23 @@ class SertifikasiRegistrationController extends Controller
             if (! Schema::hasColumn('sertifikasi_registrations', 'poster_path')) {
                 $table->string('poster_path')->after('tanggal_pelaksanaan')->nullable();
             }
+
+            if (
+                ! Schema::hasColumn('sertifikasi_registrations', 'created_at')
+                && ! Schema::hasColumn('sertifikasi_registrations', 'updated_at')
+            ) {
+                $table->timestamps();
+
+                return;
+            }
+
+            if (! Schema::hasColumn('sertifikasi_registrations', 'created_at')) {
+                $table->timestamp('created_at')->nullable()->after('poster_path');
+            }
+
+            if (! Schema::hasColumn('sertifikasi_registrations', 'updated_at')) {
+                $table->timestamp('updated_at')->nullable()->after('created_at');
+            }
         });
 
         if (
@@ -117,6 +134,8 @@ class SertifikasiRegistrationController extends Controller
      */
     public function index(): View
     {
+        $this->ensureTableSchema();
+
         $sertifikasiTableExists = Schema::hasTable('sertifikasi_registrations');
 
         $sertifikasiRegistrations = $sertifikasiTableExists
@@ -132,6 +151,8 @@ class SertifikasiRegistrationController extends Controller
 
     public function downloadAdminRegistrations(): StreamedResponse
     {
+        $this->ensureTableSchema();
+
         $tableExists = Schema::hasTable('sertifikasi_registrations');
 
         $registrations = $tableExists
