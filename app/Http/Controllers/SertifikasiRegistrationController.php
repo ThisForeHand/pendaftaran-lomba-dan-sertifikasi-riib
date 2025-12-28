@@ -96,6 +96,17 @@ class SertifikasiRegistrationController extends Controller
             if (! Schema::hasColumn('sertifikasi_registrations', 'poster_path')) {
                 $table->string('poster_path')->after('tanggal_pelaksanaan')->nullable();
             }
+
+            $createdAtMissing = ! Schema::hasColumn('sertifikasi_registrations', 'created_at');
+            $updatedAtMissing = ! Schema::hasColumn('sertifikasi_registrations', 'updated_at');
+
+            if ($createdAtMissing && $updatedAtMissing) {
+                $table->timestamps();
+            } elseif ($createdAtMissing) {
+                $table->timestamp('created_at')->nullable()->after('poster_path');
+            } elseif ($updatedAtMissing) {
+                $table->timestamp('updated_at')->nullable()->after('created_at');
+            }
         });
 
         if (
@@ -117,6 +128,8 @@ class SertifikasiRegistrationController extends Controller
      */
     public function index(): View
     {
+        $this->ensureTableSchema();
+
         $sertifikasiTableExists = Schema::hasTable('sertifikasi_registrations');
 
         $sertifikasiRegistrations = $sertifikasiTableExists
@@ -132,6 +145,8 @@ class SertifikasiRegistrationController extends Controller
 
     public function downloadAdminRegistrations(): StreamedResponse
     {
+        $this->ensureTableSchema();
+
         $tableExists = Schema::hasTable('sertifikasi_registrations');
 
         $registrations = $tableExists
@@ -193,6 +208,8 @@ class SertifikasiRegistrationController extends Controller
 
     public function destroy(Request $request): RedirectResponse
     {
+        $this->ensureTableSchema();
+
         if (! Schema::hasTable('sertifikasi_registrations')) {
             return back()->with('status', 'Tabel pendaftaran sertifikasi belum tersedia.');
         }
