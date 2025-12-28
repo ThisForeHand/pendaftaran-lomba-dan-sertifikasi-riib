@@ -406,21 +406,10 @@
                             </svg>
                         </div>
                         <div class="success-panel__content">
-                            <p class="success-panel__message">{{ session('status') }}</p>
-                            <div class="community-cta">
-                                <div>
-                                    <h2>Gabung {{ config('komunitas.sertifikasi.name') }}</h2>
-                                    <p>{{ config('komunitas.sertifikasi.description') }}</p>
-                                </div>
-                                <a
-                                    class="cta-button"
-                                    href="{{ config('komunitas.sertifikasi.whatsapp_link') }}"
-                                    target="_blank"
-                                    rel="noopener"
-                                >
-                                    Gabung Channel WhatsApp
-                                </a>
-                            </div>
+                            <p class="success-panel__message">
+                                Terima kasih! Data pendaftaran sertifikasi Anda telah kami terima. Kami akan
+                                menghubungi Anda melalui WhatsApp untuk informasi lebih lanjut.
+                            </p>
                         </div>
                     </section>
                 @endif
