@@ -451,17 +451,23 @@
                         >
                     </div>
 
-                    <div class="field-group">
-                        <label for="program_studi">3. Program Studi</label>
-                        <select id="program_studi" name="program_studi" required>
-                            <option value="" disabled @selected(old('program_studi') === null)>Pilih program studi</option>
+                    <fieldset class="field-group">
+                        <legend>3. Program Studi</legend>
+                        <div class="options">
                             @foreach (config('program_studi.options', []) as $option)
-                                <option value="{{ $option }}" @selected(old('program_studi') === $option)>
-                                    {{ $option }}
-                                </option>
+                                <label class="option-item">
+                                    <input
+                                        type="radio"
+                                        name="program_studi"
+                                        value="{{ $option }}"
+                                        @checked(old('program_studi') === $option)
+                                        @if ($loop->first) required @endif
+                                    >
+                                    <span>{{ $option }}</span>
+                                </label>
                             @endforeach
-                        </select>
-                    </div>
+                        </div>
+                    </fieldset>
 
                     <div class="field-group">
                         <label for="whatsapp">4. Nomor WhatsApp</label>
