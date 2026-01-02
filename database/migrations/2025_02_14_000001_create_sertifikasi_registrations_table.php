@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('nip');
+            $table->string('email');
             $table->string('program_studi');
             $table->string('whatsapp');
             $table->date('tanggal_pelaksanaan');

@@ -33,6 +33,7 @@ class SertifikasiRegistrationController extends Controller
         $validated = $request->validate([
             'nama' => ['required', 'string', 'max:255'],
             'nip' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
             'program_studi' => ['required', 'string', 'max:255'],
             'whatsapp' => ['required', 'string', 'max:255', new IndonesianPhoneNumber()],
             'tanggal_pelaksanaan' => ['required', 'date'],
@@ -44,6 +45,7 @@ class SertifikasiRegistrationController extends Controller
         $payload = [
             'nama' => $validated['nama'],
             'nip' => $validated['nip'],
+            'email' => $validated['email'],
             'program_studi' => $validated['program_studi'],
             'whatsapp' => $validated['whatsapp'],
             'tanggal_pelaksanaan' => $validated['tanggal_pelaksanaan'],
@@ -66,6 +68,7 @@ class SertifikasiRegistrationController extends Controller
                 $table->id();
                 $table->string('nama');
                 $table->string('nip');
+                $table->string('email');
                 $table->string('program_studi');
                 $table->string('whatsapp');
                 $table->date('tanggal_pelaksanaan');
@@ -85,8 +88,12 @@ class SertifikasiRegistrationController extends Controller
                 $table->string('nip')->after('nama');
             }
 
+            if (! Schema::hasColumn('sertifikasi_registrations', 'email')) {
+                $table->string('email')->after('nip')->nullable();
+            }
+
             if (! Schema::hasColumn('sertifikasi_registrations', 'program_studi')) {
-                $table->string('program_studi')->after('nip')->nullable();
+                $table->string('program_studi')->after('email')->nullable();
             }
 
             if (! Schema::hasColumn('sertifikasi_registrations', 'whatsapp')) {
@@ -161,6 +168,7 @@ class SertifikasiRegistrationController extends Controller
             'No',
             'Nama',
             'NIP',
+            'Email',
             'Prodi',
             'No. WhatsApp',
             'Tanggal Pelaksanaan',
@@ -190,6 +198,7 @@ class SertifikasiRegistrationController extends Controller
                 echo '<td>' . $escape($index + 1) . '</td>';
                 echo '<td>' . $escape($registration->nama) . '</td>';
                 echo '<td>' . $escape($registration->nip) . '</td>';
+                echo '<td>' . $escape($registration->email) . '</td>';
                 echo '<td>' . $escape($registration->program_studi) . '</td>';
                 echo '<td>' . $escape($registration->whatsapp) . '</td>';
                 echo '<td>' . $escape($registration->tanggal_pelaksanaan) . '</td>';

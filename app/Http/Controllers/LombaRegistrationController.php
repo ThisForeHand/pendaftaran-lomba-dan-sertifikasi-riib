@@ -24,6 +24,8 @@ class LombaRegistrationController extends Controller
 
     public function downloadAdminRegistrations(): StreamedResponse
     {
+        $this->ensureTableSchema();
+
         $tableExists = Schema::hasTable('lomba_registrations');
 
         $registrations = $tableExists
@@ -34,6 +36,7 @@ class LombaRegistrationController extends Controller
             'No',
             'Nama',
             'NIM',
+            'Email',
             'Program Studi',
             'No. WhatsApp',
             'Peran Tim',
@@ -63,6 +66,7 @@ class LombaRegistrationController extends Controller
                 echo '<td>' . $escape($index + 1) . '</td>';
                 echo '<td>' . $escape($registration->nama) . '</td>';
                 echo '<td>' . $escape($registration->nim) . '</td>';
+                echo '<td>' . $escape($registration->email) . '</td>';
                 echo '<td>' . $escape($registration->program_studi) . '</td>';
                 echo '<td>' . $escape($registration->whatsapp) . '</td>';
                 echo '<td>' . $escape($registration->pilihan_peran) . '</td>';
@@ -83,23 +87,12 @@ class LombaRegistrationController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        if (! Schema::hasTable('lomba_registrations')) {
-            Schema::create('lomba_registrations', function (Blueprint $table) {
-                $table->id();
-                $table->string('nama');
-                $table->string('nim');
-                $table->string('program_studi');
-                $table->string('whatsapp');
-                $table->string('pilihan_peran');
-                $table->text('motivasi')->nullable();
-                $table->string('status_tim');
-                $table->timestamps();
-            });
-        }
+        $this->ensureTableSchema();
 
         $validated = $request->validate([
             'nama' => ['required', 'string', 'max:255'],
             'nim' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
             'program_studi' => ['required', 'string', 'max:255'],
             'whatsapp' => ['required', 'string', 'max:255', new IndonesianPhoneNumber()],
             'pilihan_peran' => ['required', 'string', 'max:255'],
@@ -121,6 +114,8 @@ class LombaRegistrationController extends Controller
      */
     public function index(): View
     {
+        $this->ensureTableSchema();
+
         $lombaTableExists = Schema::hasTable('lomba_registrations');
 
         $lombaRegistrations = $lombaTableExists
@@ -140,6 +135,8 @@ class LombaRegistrationController extends Controller
     public function lecturerDashboard(): View
     {
         $lecturer = Auth::guard('lecturer')->user();
+
+        $this->ensureTableSchema();
 
         $tableExists = Schema::hasTable('lomba_registrations');
 
@@ -176,6 +173,8 @@ class LombaRegistrationController extends Controller
             abort(403, 'Akun dosen belum memiliki informasi program studi.');
         }
 
+        $this->ensureTableSchema();
+
         $tableExists = Schema::hasTable('lomba_registrations');
 
         $registrations = $tableExists
@@ -189,6 +188,7 @@ class LombaRegistrationController extends Controller
             'No',
             'Nama',
             'NIM',
+            'Email',
             'Program Studi',
             'No. WhatsApp',
             'Peran Tim',
@@ -218,6 +218,7 @@ class LombaRegistrationController extends Controller
                 echo '<td>' . $escape($index + 1) . '</td>';
                 echo '<td>' . $escape($registration->nama) . '</td>';
                 echo '<td>' . $escape($registration->nim) . '</td>';
+                echo '<td>' . $escape($registration->email) . '</td>';
                 echo '<td>' . $escape($registration->program_studi) . '</td>';
                 echo '<td>' . $escape($registration->whatsapp) . '</td>';
                 echo '<td>' . $escape($registration->pilihan_peran) . '</td>';
@@ -262,5 +263,39 @@ class LombaRegistrationController extends Controller
         }
 
         return back()->with('status', 'Tidak ada data yang dipilih untuk dihapus.');
+    }
+
+    protected function ensureTableSchema(): void
+    {
+        if (! Schema::hasTable('lomba_registrations')) {
+            Schema::create('lomba_registrations', function (Blueprint $table) {
+                $table->id();
+                $table->string('nama');
+                $table->string('nim');
+                $table->string('email');
+                $table->string('program_studi');
+                $table->string('whatsapp');
+                $table->string('pilihan_peran');
+                $table->text('motivasi')->nullable();
+                $table->string('status_tim');
+                $table->timestamps();
+            });
+
+            return;
+        }
+
+        Schema::table('lomba_registrations', function (Blueprint $table) {
+            if (! Schema::hasColumn('lomba_registrations', 'email')) {
+                $table->string('email')->after('nim')->nullable();
+            }
+
+            if (! Schema::hasColumn('lomba_registrations', 'created_at')) {
+                $table->timestamp('created_at')->nullable()->after('status_tim');
+            }
+
+            if (! Schema::hasColumn('lomba_registrations', 'updated_at')) {
+                $table->timestamp('updated_at')->nullable()->after('created_at');
+            }
+        });
     }
 }
