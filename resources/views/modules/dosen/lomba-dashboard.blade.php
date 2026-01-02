@@ -554,6 +554,7 @@
                                 <th>Nama Lengkap</th>
                                 <th>NIM</th>
                                 <th>Program Studi</th>
+                                <th>Email Aktif</th>
                                 <th>Kontak WhatsApp</th>
                                 <th>Peran yang Dipilih</th>
                                 <th>Status Tim</th>
@@ -567,6 +568,7 @@
                                     <td>{{ $registration->nama }}</td>
                                     <td>{{ $registration->nim }}</td>
                                     <td>{{ $registration->program_studi }}</td>
+                                    <td>{{ $registration->email }}</td>
                                     <td>
                                         <x-contact-link :value="$registration->whatsapp" />
                                     </td>
@@ -580,7 +582,7 @@
                                 </tr>
                             @empty
                                 <tr class="empty-state">
-                                    <td colspan="8">
+                                    <td colspan="9">
                                         @if (! $tableExists)
                                             Tabel pendaftaran lomba belum tersedia. Silakan hubungi admin untuk menjalankan
                                             migrasi database terlebih dahulu.

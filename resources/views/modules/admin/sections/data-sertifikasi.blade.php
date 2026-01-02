@@ -27,6 +27,7 @@
                         <th>No</th>
                         <th>Nama</th>
                         <th>NIP</th>
+                        <th>Email</th>
                         <th>Prodi</th>
                         <th>No Wa</th>
                         <th>Tanggal Pelaksanaan</th>
@@ -39,7 +40,7 @@
                 <tbody>
                     @if (! $tableExists)
                         <tr>
-                            <td colspan="8">
+                            <td colspan="9">
                                 Tabel pendaftaran sertifikasi belum tersedia. Jalankan migrasi database terlebih dahulu.
                             </td>
                         </tr>
@@ -49,6 +50,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $registration->nama }}</td>
                                 <td>{{ $registration->nip }}</td>
+                                <td>{{ $registration->email }}</td>
                                 <td>{{ $registration->program_studi }}</td>
                                 <td>
                                     <x-contact-link :value="$registration->whatsapp" />
@@ -67,7 +69,7 @@
                             </tr>
                         @empty
                             <tr class="empty-state">
-                                <td colspan="8">Belum ada data pendaftaran sertifikasi.</td>
+                                <td colspan="9">Belum ada data pendaftaran sertifikasi.</td>
                             </tr>
                         @endforelse
                     @endif

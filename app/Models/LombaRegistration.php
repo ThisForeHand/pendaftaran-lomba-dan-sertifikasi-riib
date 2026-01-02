@@ -17,6 +17,7 @@ class LombaRegistration extends Model
     protected $fillable = [
         'nama',
         'nim',
+        'email',
         'program_studi',
         'whatsapp',
         'pilihan_peran',
