@@ -25,6 +25,7 @@ class SertifikasiRegistrationFactory extends Factory
         return [
             'nama' => $this->faker->name(),
             'nip' => '1989'.$this->faker->unique()->numerify('#######'),
+            'email' => $this->faker->unique()->safeEmail(),
             'program_studi' => $this->faker->randomElement([
                 'Teknik Logistik',
                 'Bisnis Digital',

@@ -553,6 +553,7 @@
                                 <th style="width: 64px">No</th>
                                 <th>Nama Lengkap</th>
                                 <th>NIM</th>
+                                <th>Email</th>
                                 <th>Program Studi</th>
                                 <th>Kontak WhatsApp</th>
                                 <th>Peran yang Dipilih</th>
@@ -566,6 +567,7 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $registration->nama }}</td>
                                     <td>{{ $registration->nim }}</td>
+                                    <td>{{ $registration->email }}</td>
                                     <td>{{ $registration->program_studi }}</td>
                                     <td>
                                         <x-contact-link :value="$registration->whatsapp" />

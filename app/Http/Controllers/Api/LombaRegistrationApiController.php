@@ -36,6 +36,7 @@ class LombaRegistrationApiController extends Controller
         $validated = $request->validate([
             'nama' => ['required', 'string', 'max:255'],
             'nim' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
             'program_studi' => ['required', 'string', 'max:255'],
             'whatsapp' => ['required', 'string', 'max:255', new IndonesianPhoneNumber()],
             'pilihan_peran' => ['required', 'string', 'max:255'],
@@ -61,6 +62,7 @@ class LombaRegistrationApiController extends Controller
             $table->id();
             $table->string('nama');
             $table->string('nim');
+            $table->string('email');
             $table->string('program_studi');
             $table->string('whatsapp');
             $table->string('pilihan_peran');

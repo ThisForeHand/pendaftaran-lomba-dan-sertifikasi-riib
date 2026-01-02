@@ -452,7 +452,22 @@
                     </div>
 
                     <fieldset class="field-group">
-                        <legend>3. Program Studi</legend>
+                        <legend>3. Email Aktif</legend>
+                        <div class="options">
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                class="text-input"
+                                placeholder="Masukkan email kampus atau pribadi yang aktif"
+                                value="{{ old('email') }}"
+                                required
+                            >
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="field-group">
+                        <legend>4. Program Studi</legend>
                         <div class="options">
                             @foreach (config('program_studi.options', []) as $option)
                                 <label class="option-item">
@@ -470,7 +485,7 @@
                     </fieldset>
 
                     <div class="field-group">
-                        <label for="whatsapp">4. Nomor WhatsApp</label>
+                        <label for="whatsapp">5. Nomor WhatsApp</label>
                         <input
                             id="whatsapp"
                             name="whatsapp"
@@ -485,7 +500,7 @@
                     </div>
 
                     <div class="field-group">
-                        <label for="tanggal_pelaksanaan">5. Tanggal Pelaksanaan Sertifikasi</label>
+                        <label for="tanggal_pelaksanaan">6. Tanggal Pelaksanaan Sertifikasi</label>
                         <input
                             id="tanggal_pelaksanaan"
                             name="tanggal_pelaksanaan"
@@ -496,7 +511,7 @@
                     </div>
 
                     <div class="field-group">
-                        <label for="poster_sertifikasi">6. Unggah Poster Sertifikasi (gambar)</label>
+                        <label for="poster_sertifikasi">7. Unggah Poster Sertifikasi (gambar)</label>
                         <input
                             id="poster_sertifikasi"
                             name="poster_sertifikasi"

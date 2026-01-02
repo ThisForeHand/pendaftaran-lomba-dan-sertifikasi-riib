@@ -25,6 +25,7 @@ class LombaRegistrationFactory extends Factory
         return [
             'nama' => $this->faker->name(),
             'nim' => '23'.$this->faker->unique()->numerify('#######'),
+            'email' => $this->faker->unique()->safeEmail(),
             'program_studi' => $this->faker->randomElement([
                 'Teknik Logistik',
                 'Bisnis Digital',

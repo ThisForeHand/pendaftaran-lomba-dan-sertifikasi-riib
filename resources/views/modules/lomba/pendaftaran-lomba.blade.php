@@ -413,8 +413,20 @@
                         >
                     </div>
 
+                    <div class="field-group">
+                        <label for="email">3. Email Aktif</label>
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="Masukkan email kampus atau pribadi yang aktif"
+                            value="{{ old('email') }}"
+                            required
+                        >
+                    </div>
+
                     <fieldset class="field-group">
-                        <legend>3. Program Studi</legend>
+                        <legend>4. Program Studi</legend>
                         <div class="options">
                             <label class="option-item">
                                 <input
@@ -466,7 +478,7 @@
                     </fieldset>
 
                     <div class="field-group">
-                        <label for="whatsapp">4. Nomor WhatsApp</label>
+                        <label for="whatsapp">5. Nomor WhatsApp</label>
                         <input
                             id="whatsapp"
                             name="whatsapp"
@@ -481,7 +493,7 @@
                     </div>
 
                     <fieldset class="field-group">
-                        <legend>5. Pilihan Peran</legend>
+                        <legend>6. Pilihan Peran</legend>
                         <div class="options">
                             <label class="option-item">
                                 <input
@@ -521,7 +533,7 @@
                     </fieldset>
 
                     <div class="field-group">
-                        <label for="motivasi">6. Motivasi Partisipasi Lomba</label>
+                        <label for="motivasi">7. Motivasi Partisipasi Lomba</label>
                         <textarea
                             id="motivasi"
                             name="motivasi"
@@ -530,7 +542,7 @@
                     </div>
 
                     <fieldset class="field-group">
-                        <legend>7. Apakah sudah mempunyai tim?</legend>
+                        <legend>8. Apakah sudah mempunyai tim?</legend>
                         <div class="options">
                             <label class="option-item">
                                 <input

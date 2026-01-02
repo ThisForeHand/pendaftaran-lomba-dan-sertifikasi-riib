@@ -34,6 +34,7 @@ class LombaRegistrationController extends Controller
             'No',
             'Nama',
             'NIM',
+            'Email',
             'Program Studi',
             'No. WhatsApp',
             'Peran Tim',
@@ -63,6 +64,7 @@ class LombaRegistrationController extends Controller
                 echo '<td>' . $escape($index + 1) . '</td>';
                 echo '<td>' . $escape($registration->nama) . '</td>';
                 echo '<td>' . $escape($registration->nim) . '</td>';
+                echo '<td>' . $escape($registration->email) . '</td>';
                 echo '<td>' . $escape($registration->program_studi) . '</td>';
                 echo '<td>' . $escape($registration->whatsapp) . '</td>';
                 echo '<td>' . $escape($registration->pilihan_peran) . '</td>';
@@ -88,6 +90,7 @@ class LombaRegistrationController extends Controller
                 $table->id();
                 $table->string('nama');
                 $table->string('nim');
+                $table->string('email');
                 $table->string('program_studi');
                 $table->string('whatsapp');
                 $table->string('pilihan_peran');
@@ -95,11 +98,18 @@ class LombaRegistrationController extends Controller
                 $table->string('status_tim');
                 $table->timestamps();
             });
+        } else {
+            Schema::table('lomba_registrations', function (Blueprint $table) {
+                if (! Schema::hasColumn('lomba_registrations', 'email')) {
+                    $table->string('email')->after('nim')->nullable();
+                }
+            });
         }
 
         $validated = $request->validate([
             'nama' => ['required', 'string', 'max:255'],
             'nim' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
             'program_studi' => ['required', 'string', 'max:255'],
             'whatsapp' => ['required', 'string', 'max:255', new IndonesianPhoneNumber()],
             'pilihan_peran' => ['required', 'string', 'max:255'],
@@ -189,6 +199,7 @@ class LombaRegistrationController extends Controller
             'No',
             'Nama',
             'NIM',
+            'Email',
             'Program Studi',
             'No. WhatsApp',
             'Peran Tim',
@@ -218,6 +229,7 @@ class LombaRegistrationController extends Controller
                 echo '<td>' . $escape($index + 1) . '</td>';
                 echo '<td>' . $escape($registration->nama) . '</td>';
                 echo '<td>' . $escape($registration->nim) . '</td>';
+                echo '<td>' . $escape($registration->email) . '</td>';
                 echo '<td>' . $escape($registration->program_studi) . '</td>';
                 echo '<td>' . $escape($registration->whatsapp) . '</td>';
                 echo '<td>' . $escape($registration->pilihan_peran) . '</td>';
