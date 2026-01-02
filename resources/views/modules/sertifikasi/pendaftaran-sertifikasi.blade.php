@@ -380,15 +380,15 @@
                 <p class="eyebrow">Formulir Pendaftaran</p>
                 <h1>Pendaftaran Sertifikasi</h1>
                 <p class="lead">
-                    Formulir ini digunakan untuk pendataan peserta yang akan mengikuti jadwal sertifikasi dalam
-                    lingkup Kawasan Kampus RIIB. Mohon isi informasi berikut dengan lengkap agar tim dapat
-                    memverifikasi data Anda.
+                    Formulir ini digunakan untuk pendataan dosen yang akan mengikuti jadwal sertifikasi di
+                    Kawasan Kampus RIIB. Mohon isi informasi berikut dengan lengkap sesuai identitas dan
+                    kebutuhan sertifikasi Anda agar tim dapat memverifikasi data dengan akurat.
                 </p>
                 <strong>Harap diperhatikan sebelum mengisi formulir:</strong>
                 <ul>
-                    <li>Pastikan seluruh data identitas sesuai dengan kartu identitas resmi.</li>
-                    <li>Gunakan email kampus aktif untuk mempermudah validasi status mahasiswa.</li>
-                    <li>Siapkan bukti pembayaran jika program sertifikasi memerlukan biaya administrasi.</li>
+                    <li>Pastikan nama dan NIP sesuai dengan data resmi institusi.</li>
+                    <li>Gunakan email dan nomor WhatsApp aktif agar mudah dihubungi oleh tim sertifikasi.</li>
+                    <li>Siapkan poster sertifikasi yang relevan untuk dilampirkan pada formulir.</li>
                 </ul>
                 <p class="note">
                     Setelah formulir dikirim, tim sertifikasi akan menghubungi melalui email dan WhatsApp untuk
