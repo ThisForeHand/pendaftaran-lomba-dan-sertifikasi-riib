@@ -391,13 +391,6 @@
                                                             ➡️ Buka tautan pendukung
                                                         </a>
                                                     @endif
-                                                    @if ($stepSequence === 3)
-                                                        <div class="step-actions">
-                                                            <a class="card-button" href="{{ route('pendaftaran.sertifikasi') }}">
-                                                                Daftar Sertifikasi
-                                                            </a>
-                                                        </div>
-                                                    @endif
                                                 </div>
                                             </div>
                                         </li>
