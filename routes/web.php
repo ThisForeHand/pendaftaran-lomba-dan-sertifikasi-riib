@@ -9,15 +9,17 @@ use Illuminate\Support\Facades\Route;
 // -----------------------------------------------------------------------------
 // Public portal landing pages
 // -----------------------------------------------------------------------------
-Route::redirect('/', '/portal-lomba');
-Route::get('/portal-lomba', [PortalLandingController::class, 'lomba'])->name('portal.lomba');
+Route::get('/', [PortalLandingController::class, 'lomba'])->name('portal.lomba');
+Route::redirect('/portal-lomba', '/');
 Route::get('/portal-sertifikasi', [PortalLandingController::class, 'sertifikasi'])->name('portal.sertifikasi');
 
 // -----------------------------------------------------------------------------
 // Registration flows for students and pembina
 // -----------------------------------------------------------------------------
-Route::get('/pendaftaran-lomba', [LombaRegistrationController::class, 'create'])->name('pendaftaran.lomba');
-Route::post('/pendaftaran-lomba', [LombaRegistrationController::class, 'store'])->name('pendaftaran.lomba.store');
+Route::get('/form-pendaftaran-lomba', [LombaRegistrationController::class, 'create'])->name('pendaftaran.lomba');
+Route::post('/form-pendaftaran-lomba', [LombaRegistrationController::class, 'store'])->name('pendaftaran.lomba.store');
+Route::redirect('/pendaftaran-lomba', '/form-pendaftaran-lomba');
+Route::post('/pendaftaran-lomba', [LombaRegistrationController::class, 'store']);
 
 Route::get('/pendaftaran-sertifikasi', [SertifikasiRegistrationController::class, 'create'])->name('pendaftaran.sertifikasi');
 Route::post('/pendaftaran-sertifikasi', [SertifikasiRegistrationController::class, 'store'])->name('pendaftaran.sertifikasi.store');
