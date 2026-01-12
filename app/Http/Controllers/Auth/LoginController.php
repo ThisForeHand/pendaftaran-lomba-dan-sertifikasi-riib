@@ -163,7 +163,7 @@ class LoginController extends Controller
         $adminConfig = config('accounts.admin');
 
         if (! empty($adminConfig)) {
-            Admin::query()->firstOrCreate(
+            $admin = Admin::query()->firstOrCreate(
                 ['username' => $adminConfig['username']],
                 [
                     'name' => $adminConfig['name'],
@@ -171,6 +171,24 @@ class LoginController extends Controller
                     'password' => Hash::make($adminConfig['password']),
                 ],
             );
+
+            $adminUpdates = [];
+
+            if ($admin->name !== $adminConfig['name']) {
+                $adminUpdates['name'] = $adminConfig['name'];
+            }
+
+            if ($admin->email !== $adminConfig['email']) {
+                $adminUpdates['email'] = $adminConfig['email'];
+            }
+
+            if (! Hash::check($adminConfig['password'], $admin->password)) {
+                $adminUpdates['password'] = Hash::make($adminConfig['password']);
+            }
+
+            if (! empty($adminUpdates)) {
+                $admin->forceFill($adminUpdates)->save();
+            }
         }
 
         $lecturerConfig = config('accounts.lecturer');
