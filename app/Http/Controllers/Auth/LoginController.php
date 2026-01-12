@@ -20,8 +20,16 @@ class LoginController extends Controller
     /**
      * Display the login view.
      */
-    public function show(): View
+    public function show(): View|RedirectResponse
     {
+        if (Auth::guard('admin')->check()) {
+            return redirect()->route('admin.lomba');
+        }
+
+        if (Auth::guard('lecturer')->check()) {
+            return redirect()->route('dosen.lomba');
+        }
+
         $this->prepareAuthenticationStorage();
 
         return view('modules.auth.login');
