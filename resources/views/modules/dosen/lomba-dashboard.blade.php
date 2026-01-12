@@ -10,7 +10,7 @@
             href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700"
             rel="stylesheet"
         />
-        <link rel="icon" type="image/png" href="{{ asset('iebi_logo_crop.png') }}" />
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('iebi_logo_crop.png') }}">
 
         <style>
             :root {
