@@ -40,12 +40,13 @@ class LoginController extends Controller
         ]);
 
         $guardCandidates = [];
+        $identifier = $validated['username'];
 
-        if (Admin::query()->where('username', $validated['username'])->exists()) {
+        if (Admin::query()->where('username', $identifier)->orWhere('email', $identifier)->exists()) {
             $guardCandidates['admin'] = route('admin.lomba');
         }
 
-        if (Dosen::query()->where('username', $validated['username'])->exists()) {
+        if (Dosen::query()->where('username', $identifier)->orWhere('email', $identifier)->exists()) {
             $guardCandidates['lecturer'] = route('dosen.lomba');
         }
 
@@ -66,17 +67,25 @@ class LoginController extends Controller
             ])->status(429);
         }
 
-        $credentials = [
-            'username' => $validated['username'],
-            'password' => $validated['password'],
+        $credentialSets = [
+            [
+                'username' => $identifier,
+                'password' => $validated['password'],
+            ],
+            [
+                'email' => $identifier,
+                'password' => $validated['password'],
+            ],
         ];
 
         foreach ($guardCandidates as $guard => $redirectRoute) {
-            if (Auth::guard($guard)->attempt($credentials, $request->boolean('remember'))) {
-                $request->session()->regenerate();
-                RateLimiter::clear($throttleKey);
+            foreach ($credentialSets as $credentials) {
+                if (Auth::guard($guard)->attempt($credentials, $request->boolean('remember'))) {
+                    $request->session()->regenerate();
+                    RateLimiter::clear($throttleKey);
 
-                return redirect()->intended($redirectRoute);
+                    return redirect()->intended($redirectRoute);
+                }
             }
         }
 
