@@ -40,13 +40,12 @@ class LoginController extends Controller
         ]);
 
         $guardCandidates = [];
-        $identifier = $validated['username'];
 
-        if (Admin::query()->where('username', $identifier)->orWhere('email', $identifier)->exists()) {
+        if (Admin::query()->where('username', $validated['username'])->exists()) {
             $guardCandidates['admin'] = route('admin.lomba');
         }
 
-        if (Dosen::query()->where('username', $identifier)->orWhere('email', $identifier)->exists()) {
+        if (Dosen::query()->where('username', $validated['username'])->exists()) {
             $guardCandidates['lecturer'] = route('dosen.lomba');
         }
 
@@ -67,25 +66,17 @@ class LoginController extends Controller
             ])->status(429);
         }
 
-        $credentialSets = [
-            [
-                'username' => $identifier,
-                'password' => $validated['password'],
-            ],
-            [
-                'email' => $identifier,
-                'password' => $validated['password'],
-            ],
+        $credentials = [
+            'username' => $validated['username'],
+            'password' => $validated['password'],
         ];
 
         foreach ($guardCandidates as $guard => $redirectRoute) {
-            foreach ($credentialSets as $credentials) {
-                if (Auth::guard($guard)->attempt($credentials, $request->boolean('remember'))) {
-                    $request->session()->regenerate();
-                    RateLimiter::clear($throttleKey);
+            if (Auth::guard($guard)->attempt($credentials, $request->boolean('remember'))) {
+                $request->session()->regenerate();
+                RateLimiter::clear($throttleKey);
 
-                    return redirect()->intended($redirectRoute);
-                }
+                return redirect()->intended($redirectRoute);
             }
         }
 
@@ -172,7 +163,7 @@ class LoginController extends Controller
         $adminConfig = config('accounts.admin');
 
         if (! empty($adminConfig)) {
-            $admin = Admin::query()->firstOrCreate(
+            Admin::query()->firstOrCreate(
                 ['username' => $adminConfig['username']],
                 [
                     'name' => $adminConfig['name'],
@@ -180,24 +171,6 @@ class LoginController extends Controller
                     'password' => Hash::make($adminConfig['password']),
                 ],
             );
-
-            $adminUpdates = [];
-
-            if ($admin->name !== $adminConfig['name']) {
-                $adminUpdates['name'] = $adminConfig['name'];
-            }
-
-            if ($admin->email !== $adminConfig['email']) {
-                $adminUpdates['email'] = $adminConfig['email'];
-            }
-
-            if (! Hash::check($adminConfig['password'], $admin->password)) {
-                $adminUpdates['password'] = Hash::make($adminConfig['password']);
-            }
-
-            if (! empty($adminUpdates)) {
-                $admin->forceFill($adminUpdates)->save();
-            }
         }
 
         $lecturerConfig = config('accounts.lecturer');
