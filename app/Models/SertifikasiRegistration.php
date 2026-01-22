@@ -21,6 +21,7 @@ class SertifikasiRegistration extends Model
         'program_studi',
         'whatsapp',
         'status_pegawai',
+        'kategori',
         'judul_sertifikasi',
         'waktu_pelaksanaan',
         'tempat',

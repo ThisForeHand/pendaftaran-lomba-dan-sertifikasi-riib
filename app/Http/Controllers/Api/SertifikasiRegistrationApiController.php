@@ -38,6 +38,7 @@ class SertifikasiRegistrationApiController extends Controller
         $validated = $request->validate([
             'nama' => ['required', 'string', 'max:255'],
             'nip' => ['required', 'string', 'max:255'],
+            'kategori' => ['nullable', 'string', 'max:255'],
             'program_studi' => ['required', 'string', 'max:255'],
             'whatsapp' => ['required', 'string', 'max:255', new IndonesianPhoneNumber()],
             'tanggal_pelaksanaan' => ['required', 'date'],
@@ -49,6 +50,7 @@ class SertifikasiRegistrationApiController extends Controller
         $registration = SertifikasiRegistration::create([
             'nama' => $validated['nama'],
             'nip' => $validated['nip'],
+            'kategori' => $validated['kategori'] ?? null,
             'program_studi' => $validated['program_studi'],
             'whatsapp' => $validated['whatsapp'],
             'tanggal_pelaksanaan' => $validated['tanggal_pelaksanaan'],
@@ -68,6 +70,7 @@ class SertifikasiRegistrationApiController extends Controller
                 $table->id();
                 $table->string('nama');
                 $table->string('nip');
+                $table->string('kategori')->nullable();
                 $table->string('program_studi');
                 $table->string('whatsapp');
                 $table->date('tanggal_pelaksanaan');
@@ -83,8 +86,12 @@ class SertifikasiRegistrationApiController extends Controller
                 $table->string('nip')->after('nama');
             }
 
+            if (! Schema::hasColumn('sertifikasi_registrations', 'kategori')) {
+                $table->string('kategori')->after('nip')->nullable();
+            }
+
             if (! Schema::hasColumn('sertifikasi_registrations', 'program_studi')) {
-                $table->string('program_studi')->after('nip')->nullable();
+                $table->string('program_studi')->after('kategori')->nullable();
             }
 
             if (! Schema::hasColumn('sertifikasi_registrations', 'whatsapp')) {
