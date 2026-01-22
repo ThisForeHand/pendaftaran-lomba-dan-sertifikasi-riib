@@ -558,6 +558,7 @@
                                 <th>Kontak WhatsApp</th>
                                 <th>Peran yang Dipilih</th>
                                 <th>Status Tim</th>
+                                <th>Komitmen</th>
                                 <th>Tanggal Daftar</th>
                             </tr>
                         </thead>
@@ -578,11 +579,12 @@
                                             {{ $registration->status_tim }}
                                         </span>
                                     </td>
+                                    <td>{{ $registration->pernyataan_komitmen ? 'Ya' : 'Tidak' }}</td>
                                     <td>{{ $registration->created_at?->translatedFormat('d F Y') ?? '-' }}</td>
                                 </tr>
                             @empty
                                 <tr class="empty-state">
-                                    <td colspan="9">
+                                    <td colspan="10">
                                         @if (! $tableExists)
                                             Tabel pendaftaran lomba belum tersedia. Silakan hubungi admin untuk menjalankan
                                             migrasi database terlebih dahulu.

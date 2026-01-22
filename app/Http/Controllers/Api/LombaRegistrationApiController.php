@@ -41,7 +41,10 @@ class LombaRegistrationApiController extends Controller
             'pilihan_peran' => ['required', 'string', 'max:255'],
             'motivasi' => ['nullable', 'string'],
             'status_tim' => ['required', 'string', 'max:255'],
+            'pernyataan_komitmen' => ['required', 'accepted'],
         ]);
+
+        $validated['pernyataan_komitmen'] = (bool) $validated['pernyataan_komitmen'];
 
         $registration = LombaRegistration::create($validated);
 
@@ -66,6 +69,7 @@ class LombaRegistrationApiController extends Controller
             $table->string('pilihan_peran');
             $table->text('motivasi')->nullable();
             $table->string('status_tim');
+            $table->boolean('pernyataan_komitmen')->default(false);
             $table->timestamps();
         });
     }

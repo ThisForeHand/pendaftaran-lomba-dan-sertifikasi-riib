@@ -23,5 +23,10 @@ class LombaRegistration extends Model
         'pilihan_peran',
         'motivasi',
         'status_tim',
+        'pernyataan_komitmen',
+    ];
+
+    protected $casts = [
+        'pernyataan_komitmen' => 'boolean',
     ];
 }

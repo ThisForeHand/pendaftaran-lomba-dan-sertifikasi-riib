@@ -34,7 +34,7 @@ class LombaRegistrationFactory extends Factory
             ]),
             'whatsapp' => '08'.$this->faker->numerify('##########'),
             'pilihan_peran' => $this->faker->randomElement([
-                'Ketua',
+                'Koordinator',
                 'Hacker',
                 'Hipster',
             ]),
@@ -44,7 +44,7 @@ class LombaRegistrationFactory extends Factory
                 'Belum',
                 'Belum namun siap mencari anggota',
             ]),
+            'pernyataan_komitmen' => true,
         ];
     }
 }
-
