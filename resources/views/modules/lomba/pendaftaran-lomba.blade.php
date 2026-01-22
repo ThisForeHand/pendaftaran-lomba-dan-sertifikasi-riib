@@ -499,12 +499,12 @@
                                 <input
                                     type="radio"
                                     name="pilihan_peran"
-                                    value="Ketua"
-                                    @checked(old('pilihan_peran') === 'Ketua')
+                                    value="Koordinator"
+                                    @checked(old('pilihan_peran') === 'Koordinator')
                                     required
                                 >
                                 <span>
-                                    Ketua &mdash; memimpin koordinasi, membawa ide utama, serta menjaga orisinalitas konsep.
+                                    Koordinator &mdash; memimpin koordinasi, membawa ide utama, serta menjaga orisinalitas konsep.
                                 </span>
                             </label>
                             <label class="option-item">
@@ -571,6 +571,25 @@
                                     @checked(old('status_tim') === 'Belum namun siap mencari anggota')
                                 >
                                 <span>Belum, tetapi siap mencari 2 teman tim</span>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="field-group">
+                        <legend>9. Pernyataan Komitmen</legend>
+                        <div class="options">
+                            <label class="option-item">
+                                <input
+                                    type="checkbox"
+                                    name="pernyataan_komitmen"
+                                    value="1"
+                                    @checked(old('pernyataan_komitmen'))
+                                    required
+                                >
+                                <span>
+                                    Saya berkomitmen untuk bersungguh-sungguh mengikuti lomba, aktif berkoordinasi,
+                                    serta menyelesaikan setiap tahapan yang ditetapkan panitia.
+                                </span>
                             </label>
                         </div>
                     </fieldset>

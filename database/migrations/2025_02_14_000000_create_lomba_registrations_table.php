@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('pilihan_peran');
             $table->text('motivasi')->nullable();
             $table->string('status_tim');
+            $table->boolean('pernyataan_komitmen')->default(false);
             $table->timestamps();
         });
     }

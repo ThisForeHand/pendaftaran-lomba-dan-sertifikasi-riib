@@ -30,6 +30,7 @@
                         <th>No Wa</th>
                         <th>Peran</th>
                         <th>Status Tim</th>
+                        <th>Komitmen</th>
                         <th class="select-column" aria-label="Pilih">
                             <button type="button" class="clear-all-button">Clear All</button>
                         </th>
@@ -38,7 +39,7 @@
                 <tbody>
                     @if (! $tableExists)
                         <tr>
-                            <td colspan="9">
+                            <td colspan="10">
                                 Tabel pendaftaran lomba belum tersedia. Jalankan migrasi database terlebih dahulu.
                             </td>
                         </tr>
@@ -57,13 +58,14 @@
                                 <td>
                                     <span class="badge">{{ $registration->status_tim }}</span>
                                 </td>
+                                <td>{{ $registration->pernyataan_komitmen ? 'Ya' : 'Tidak' }}</td>
                                 <td class="select-cell">
                                     <input type="checkbox" name="ids[]" value="{{ $registration->id }}" class="row-checkbox" />
                                 </td>
                             </tr>
                         @empty
                             <tr class="empty-state">
-                                <td colspan="9">Belum ada data pendaftaran lomba.</td>
+                                <td colspan="10">Belum ada data pendaftaran lomba.</td>
                             </tr>
                         @endforelse
                     @endif

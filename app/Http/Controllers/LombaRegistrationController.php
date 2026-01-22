@@ -41,6 +41,7 @@ class LombaRegistrationController extends Controller
             'No. WhatsApp',
             'Peran Tim',
             'Status Tim',
+            'Pernyataan Komitmen',
             'Tanggal Pendaftaran',
         ];
 
@@ -71,6 +72,7 @@ class LombaRegistrationController extends Controller
                 echo '<td>' . $escape($registration->whatsapp) . '</td>';
                 echo '<td>' . $escape($registration->pilihan_peran) . '</td>';
                 echo '<td>' . $escape($registration->status_tim) . '</td>';
+                echo '<td>' . $escape($registration->pernyataan_komitmen ? 'Ya' : 'Tidak') . '</td>';
                 echo '<td>' . $escape($formattedDate) . '</td>';
                 echo '</tr>';
             }
@@ -98,7 +100,10 @@ class LombaRegistrationController extends Controller
             'pilihan_peran' => ['required', 'string', 'max:255'],
             'motivasi' => ['nullable', 'string'],
             'status_tim' => ['required', 'string', 'max:255'],
+            'pernyataan_komitmen' => ['required', 'accepted'],
         ]);
+
+        $validated['pernyataan_komitmen'] = (bool) $validated['pernyataan_komitmen'];
 
         LombaRegistration::create($validated);
 
@@ -193,6 +198,7 @@ class LombaRegistrationController extends Controller
             'No. WhatsApp',
             'Peran Tim',
             'Status Tim',
+            'Pernyataan Komitmen',
             'Tanggal Pendaftaran',
         ];
 
@@ -223,6 +229,7 @@ class LombaRegistrationController extends Controller
                 echo '<td>' . $escape($registration->whatsapp) . '</td>';
                 echo '<td>' . $escape($registration->pilihan_peran) . '</td>';
                 echo '<td>' . $escape($registration->status_tim) . '</td>';
+                echo '<td>' . $escape($registration->pernyataan_komitmen ? 'Ya' : 'Tidak') . '</td>';
                 echo '<td>' . $escape($formattedDate) . '</td>';
                 echo '</tr>';
             }
@@ -278,6 +285,7 @@ class LombaRegistrationController extends Controller
                 $table->string('pilihan_peran');
                 $table->text('motivasi')->nullable();
                 $table->string('status_tim');
+                $table->boolean('pernyataan_komitmen')->default(false);
                 $table->timestamps();
             });
 
@@ -295,6 +303,10 @@ class LombaRegistrationController extends Controller
 
             if (! Schema::hasColumn('lomba_registrations', 'updated_at')) {
                 $table->timestamp('updated_at')->nullable()->after('created_at');
+            }
+
+            if (! Schema::hasColumn('lomba_registrations', 'pernyataan_komitmen')) {
+                $table->boolean('pernyataan_komitmen')->default(false)->after('status_tim');
             }
         });
     }
