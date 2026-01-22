@@ -497,7 +497,114 @@
                     </div>
 
                     <div class="field-group">
-                        <label for="tanggal_pelaksanaan">6. Tanggal Pelaksanaan Sertifikasi</label>
+                        <label for="status_pegawai">6. Status Pegawai</label>
+                        <input
+                            id="status_pegawai"
+                            name="status_pegawai"
+                            type="text"
+                            placeholder="Contoh: Tetap, Kontrak, atau lainnya"
+                            value="{{ old('status_pegawai') }}"
+                            required
+                        >
+                    </div>
+
+                    <div class="field-group">
+                        <label for="judul_sertifikasi">7. Judul Sertifikasi</label>
+                        <input
+                            id="judul_sertifikasi"
+                            name="judul_sertifikasi"
+                            type="text"
+                            placeholder="Tuliskan judul sertifikasi yang dipilih"
+                            value="{{ old('judul_sertifikasi') }}"
+                            required
+                        >
+                    </div>
+
+                    <div class="field-group">
+                        <label for="waktu_pelaksanaan">8. Waktu Pelaksanaan (Jam)</label>
+                        <input
+                            id="waktu_pelaksanaan"
+                            name="waktu_pelaksanaan"
+                            type="time"
+                            value="{{ old('waktu_pelaksanaan') }}"
+                            required
+                        >
+                    </div>
+
+                    <div class="field-group">
+                        <label for="tempat">9. Tempat</label>
+                        <input
+                            id="tempat"
+                            name="tempat"
+                            type="text"
+                            placeholder="Contoh: Online via Zoom atau Gedung A"
+                            value="{{ old('tempat') }}"
+                            required
+                        >
+                    </div>
+
+                    <div class="field-group">
+                        <label for="penyelenggara">10. Penyelenggara</label>
+                        <input
+                            id="penyelenggara"
+                            name="penyelenggara"
+                            type="text"
+                            placeholder="Nama institusi penyelenggara"
+                            value="{{ old('penyelenggara') }}"
+                            required
+                        >
+                    </div>
+
+                    <div class="field-group">
+                        <label for="cp_penyelenggara">11. CP Penyelenggara</label>
+                        <input
+                            id="cp_penyelenggara"
+                            name="cp_penyelenggara"
+                            type="tel"
+                            inputmode="tel"
+                            placeholder="Contoh: 0812-3456-7890"
+                            value="{{ old('cp_penyelenggara') }}"
+                            required
+                        >
+                    </div>
+
+                    <div class="field-group">
+                        <label for="web_penyelenggara">12. WEB Penyelenggara</label>
+                        <input
+                            id="web_penyelenggara"
+                            name="web_penyelenggara"
+                            type="text"
+                            placeholder="Contoh: https://penyelenggara.com"
+                            value="{{ old('web_penyelenggara') }}"
+                            required
+                        >
+                    </div>
+
+                    <div class="field-group">
+                        <label for="biaya">13. Biaya</label>
+                        <input
+                            id="biaya"
+                            name="biaya"
+                            type="text"
+                            placeholder="Contoh: Rp1.500.000"
+                            value="{{ old('biaya') }}"
+                            required
+                        >
+                    </div>
+
+                    <div class="field-group">
+                        <label for="justifikasi_pemilihan_judul">14. Justifikasi Pemilihan Judul</label>
+                        <textarea
+                            id="justifikasi_pemilihan_judul"
+                            name="justifikasi_pemilihan_judul"
+                            rows="4"
+                            placeholder="Jelaskan alasan memilih judul sertifikasi tersebut"
+                            required
+                        >{{ old('justifikasi_pemilihan_judul') }}</textarea>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="tanggal_pelaksanaan">15. Tanggal Pelaksanaan Sertifikasi</label>
                         <input
                             id="tanggal_pelaksanaan"
                             name="tanggal_pelaksanaan"
@@ -508,7 +615,7 @@
                     </div>
 
                     <div class="field-group">
-                        <label for="poster_sertifikasi">7. Unggah Poster Sertifikasi (gambar)</label>
+                        <label for="poster_sertifikasi">16. Unggah Poster Sertifikasi (gambar)</label>
                         <input
                             id="poster_sertifikasi"
                             name="poster_sertifikasi"

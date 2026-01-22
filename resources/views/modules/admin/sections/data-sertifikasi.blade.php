@@ -30,6 +30,15 @@
                         <th>Email</th>
                         <th>Prodi</th>
                         <th>No Wa</th>
+                        <th>Status Pegawai</th>
+                        <th>Judul Sertifikasi</th>
+                        <th>Waktu Pelaksanaan</th>
+                        <th>Tempat</th>
+                        <th>Penyelenggara</th>
+                        <th>CP Penyelenggara</th>
+                        <th>Web Penyelenggara</th>
+                        <th>Biaya</th>
+                        <th>Justifikasi</th>
                         <th>Tanggal Pelaksanaan</th>
                         <th>Poster Sertifikasi</th>
                         <th class="select-column" aria-label="Pilih">
@@ -40,7 +49,7 @@
                 <tbody>
                     @if (! $tableExists)
                         <tr>
-                            <td colspan="9">
+                            <td colspan="18">
                                 Tabel pendaftaran sertifikasi belum tersedia. Jalankan migrasi database terlebih dahulu.
                             </td>
                         </tr>
@@ -55,6 +64,15 @@
                                 <td>
                                     <x-contact-link :value="$registration->whatsapp" />
                                 </td>
+                                <td>{{ $registration->status_pegawai }}</td>
+                                <td>{{ $registration->judul_sertifikasi }}</td>
+                                <td>{{ $registration->waktu_pelaksanaan }}</td>
+                                <td>{{ $registration->tempat }}</td>
+                                <td>{{ $registration->penyelenggara }}</td>
+                                <td>{{ $registration->cp_penyelenggara }}</td>
+                                <td>{{ $registration->web_penyelenggara }}</td>
+                                <td>{{ $registration->biaya }}</td>
+                                <td>{{ $registration->justifikasi_pemilihan_judul }}</td>
                                 <td>{{ $registration->tanggal_pelaksanaan }}</td>
                                 <td>
                                     @if ($registration->poster_path)
@@ -69,7 +87,7 @@
                             </tr>
                         @empty
                             <tr class="empty-state">
-                                <td colspan="9">Belum ada data pendaftaran sertifikasi.</td>
+                                <td colspan="18">Belum ada data pendaftaran sertifikasi.</td>
                             </tr>
                         @endforelse
                     @endif

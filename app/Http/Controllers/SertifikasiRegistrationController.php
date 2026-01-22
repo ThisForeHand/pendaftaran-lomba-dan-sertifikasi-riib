@@ -36,6 +36,15 @@ class SertifikasiRegistrationController extends Controller
             'email' => ['required', 'email', 'max:255'],
             'program_studi' => ['required', 'string', 'max:255'],
             'whatsapp' => ['required', 'string', 'max:255', new IndonesianPhoneNumber()],
+            'status_pegawai' => ['required', 'string', 'max:255'],
+            'judul_sertifikasi' => ['required', 'string', 'max:255'],
+            'waktu_pelaksanaan' => ['required', 'string', 'max:255'],
+            'tempat' => ['required', 'string', 'max:255'],
+            'penyelenggara' => ['required', 'string', 'max:255'],
+            'cp_penyelenggara' => ['required', 'string', 'max:255'],
+            'web_penyelenggara' => ['required', 'string', 'max:255'],
+            'biaya' => ['required', 'string', 'max:255'],
+            'justifikasi_pemilihan_judul' => ['required', 'string', 'max:1000'],
             'tanggal_pelaksanaan' => ['required', 'date'],
             'poster_sertifikasi' => ['required', 'image', 'max:2048'],
         ]);
@@ -48,6 +57,15 @@ class SertifikasiRegistrationController extends Controller
             'email' => $validated['email'],
             'program_studi' => $validated['program_studi'],
             'whatsapp' => $validated['whatsapp'],
+            'status_pegawai' => $validated['status_pegawai'],
+            'judul_sertifikasi' => $validated['judul_sertifikasi'],
+            'waktu_pelaksanaan' => $validated['waktu_pelaksanaan'],
+            'tempat' => $validated['tempat'],
+            'penyelenggara' => $validated['penyelenggara'],
+            'cp_penyelenggara' => $validated['cp_penyelenggara'],
+            'web_penyelenggara' => $validated['web_penyelenggara'],
+            'biaya' => $validated['biaya'],
+            'justifikasi_pemilihan_judul' => $validated['justifikasi_pemilihan_judul'],
             'tanggal_pelaksanaan' => $validated['tanggal_pelaksanaan'],
             'poster_path' => $posterPath,
         ];
@@ -71,6 +89,15 @@ class SertifikasiRegistrationController extends Controller
                 $table->string('email');
                 $table->string('program_studi');
                 $table->string('whatsapp');
+                $table->string('status_pegawai');
+                $table->string('judul_sertifikasi');
+                $table->string('waktu_pelaksanaan');
+                $table->string('tempat');
+                $table->string('penyelenggara');
+                $table->string('cp_penyelenggara');
+                $table->string('web_penyelenggara');
+                $table->string('biaya');
+                $table->text('justifikasi_pemilihan_judul');
                 $table->date('tanggal_pelaksanaan');
                 $table->string('poster_path');
                 $table->timestamps();
@@ -100,8 +127,44 @@ class SertifikasiRegistrationController extends Controller
                 $table->string('whatsapp')->after('program_studi')->nullable();
             }
 
+            if (! Schema::hasColumn('sertifikasi_registrations', 'status_pegawai')) {
+                $table->string('status_pegawai')->after('whatsapp')->nullable();
+            }
+
+            if (! Schema::hasColumn('sertifikasi_registrations', 'judul_sertifikasi')) {
+                $table->string('judul_sertifikasi')->after('status_pegawai')->nullable();
+            }
+
+            if (! Schema::hasColumn('sertifikasi_registrations', 'waktu_pelaksanaan')) {
+                $table->string('waktu_pelaksanaan')->after('judul_sertifikasi')->nullable();
+            }
+
+            if (! Schema::hasColumn('sertifikasi_registrations', 'tempat')) {
+                $table->string('tempat')->after('waktu_pelaksanaan')->nullable();
+            }
+
+            if (! Schema::hasColumn('sertifikasi_registrations', 'penyelenggara')) {
+                $table->string('penyelenggara')->after('tempat')->nullable();
+            }
+
+            if (! Schema::hasColumn('sertifikasi_registrations', 'cp_penyelenggara')) {
+                $table->string('cp_penyelenggara')->after('penyelenggara')->nullable();
+            }
+
+            if (! Schema::hasColumn('sertifikasi_registrations', 'web_penyelenggara')) {
+                $table->string('web_penyelenggara')->after('cp_penyelenggara')->nullable();
+            }
+
+            if (! Schema::hasColumn('sertifikasi_registrations', 'biaya')) {
+                $table->string('biaya')->after('web_penyelenggara')->nullable();
+            }
+
+            if (! Schema::hasColumn('sertifikasi_registrations', 'justifikasi_pemilihan_judul')) {
+                $table->text('justifikasi_pemilihan_judul')->after('biaya')->nullable();
+            }
+
             if (! Schema::hasColumn('sertifikasi_registrations', 'tanggal_pelaksanaan')) {
-                $table->date('tanggal_pelaksanaan')->after('whatsapp')->nullable();
+                $table->date('tanggal_pelaksanaan')->after('justifikasi_pemilihan_judul')->nullable();
             }
 
             if (! Schema::hasColumn('sertifikasi_registrations', 'poster_path')) {
@@ -171,6 +234,15 @@ class SertifikasiRegistrationController extends Controller
             'Email',
             'Prodi',
             'No. WhatsApp',
+            'Status Pegawai',
+            'Judul Sertifikasi',
+            'Waktu Pelaksanaan',
+            'Tempat',
+            'Penyelenggara',
+            'CP Penyelenggara',
+            'Web Penyelenggara',
+            'Biaya',
+            'Justifikasi Pemilihan Judul',
             'Tanggal Pelaksanaan',
             'Poster Sertifikasi',
             'Tanggal Pendaftaran',
@@ -201,6 +273,15 @@ class SertifikasiRegistrationController extends Controller
                 echo '<td>' . $escape($registration->email) . '</td>';
                 echo '<td>' . $escape($registration->program_studi) . '</td>';
                 echo '<td>' . $escape($registration->whatsapp) . '</td>';
+                echo '<td>' . $escape($registration->status_pegawai) . '</td>';
+                echo '<td>' . $escape($registration->judul_sertifikasi) . '</td>';
+                echo '<td>' . $escape($registration->waktu_pelaksanaan) . '</td>';
+                echo '<td>' . $escape($registration->tempat) . '</td>';
+                echo '<td>' . $escape($registration->penyelenggara) . '</td>';
+                echo '<td>' . $escape($registration->cp_penyelenggara) . '</td>';
+                echo '<td>' . $escape($registration->web_penyelenggara) . '</td>';
+                echo '<td>' . $escape($registration->biaya) . '</td>';
+                echo '<td>' . $escape($registration->justifikasi_pemilihan_judul) . '</td>';
                 echo '<td>' . $escape($registration->tanggal_pelaksanaan) . '</td>';
 
                 $posterUrl = $registration->poster_path
