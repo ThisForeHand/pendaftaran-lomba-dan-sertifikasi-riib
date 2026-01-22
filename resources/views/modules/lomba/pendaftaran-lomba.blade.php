@@ -499,12 +499,12 @@
                                 <input
                                     type="radio"
                                     name="pilihan_peran"
-                                    value="Koordinator"
-                                    @checked(old('pilihan_peran') === 'Koordinator')
+                                    value="Hustler"
+                                    @checked(old('pilihan_peran') === 'Hustler')
                                     required
                                 >
                                 <span>
-                                    Koordinator &mdash; memimpin koordinasi, membawa ide utama, serta menjaga orisinalitas konsep.
+                                    Hustler &mdash; mengelola koordinasi tim, validasi ide, serta memastikan konsep berjalan relevan di lapangan.
                                 </span>
                             </label>
                             <label class="option-item">
