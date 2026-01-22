@@ -465,15 +465,6 @@
                                 >
                                 <span>Teknik Industri</span>
                             </label>
-                            <label class="option-item">
-                                <input
-                                    type="radio"
-                                    name="program_studi"
-                                    value="RPL"
-                                    @checked(old('program_studi') === 'RPL')
-                                >
-                                <span>RPL</span>
-                            </label>
                         </div>
                     </fieldset>
 
@@ -562,15 +553,6 @@
                                     @checked(old('status_tim') === 'Belum')
                                 >
                                 <span>Belum</span>
-                            </label>
-                            <label class="option-item">
-                                <input
-                                    type="radio"
-                                    name="status_tim"
-                                    value="Belum namun siap mencari anggota"
-                                    @checked(old('status_tim') === 'Belum namun siap mencari anggota')
-                                >
-                                <span>Belum, tetapi siap mencari 2 teman tim</span>
                             </label>
                         </div>
                     </fieldset>
