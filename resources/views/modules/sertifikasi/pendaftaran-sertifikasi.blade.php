@@ -452,19 +452,19 @@
                     </div>
 
                     <div class="field-group">
-                        <label for="email">3. Email Aktif</label>
+                        <label for="status_pegawai">3. Status Pegawai</label>
                         <input
-                            id="email"
-                            name="email"
-                            type="email"
-                            placeholder="nama@kampus.ac.id"
-                            value="{{ old('email') }}"
+                            id="status_pegawai"
+                            name="status_pegawai"
+                            type="text"
+                            placeholder="Contoh: Tetap, Kontrak, atau lainnya"
+                            value="{{ old('status_pegawai') }}"
                             required
                         >
                     </div>
 
                     <fieldset class="field-group">
-                        <legend>4. Program Studi</legend>
+                        <legend>4. Lokasi Kerja / Homebase Prodi</legend>
                         <div class="options">
                             @foreach (config('program_studi.options', []) as $option)
                                 <label class="option-item">
@@ -482,40 +482,36 @@
                     </fieldset>
 
                     <div class="field-group">
-                        <label for="whatsapp">5. Nomor WhatsApp</label>
+                        <label for="kategori">5. Kategori</label>
                         <input
-                            id="whatsapp"
-                            name="whatsapp"
-                            type="tel"
-                            inputmode="tel"
-                            pattern="^(?:\+?62|0)[0-9\s\-()]{8,20}$"
-                            placeholder="Contoh: 0812-3456-7890 atau +62812-3456-7890"
-                            title="Masukkan nomor WhatsApp yang diawali 0 atau +62"
-                            value="{{ old('whatsapp') }}"
-                            required
-                        >
-                    </div>
-
-                    <div class="field-group">
-                        <label for="status_pegawai">6. Status Pegawai</label>
-                        <input
-                            id="status_pegawai"
-                            name="status_pegawai"
+                            id="kategori"
+                            name="kategori"
                             type="text"
-                            placeholder="Contoh: Tetap, Kontrak, atau lainnya"
-                            value="{{ old('status_pegawai') }}"
+                            placeholder="Contoh: Pelatihan dan Sertifikasi"
+                            value="{{ old('kategori') }}"
                             required
                         >
                     </div>
 
                     <div class="field-group">
-                        <label for="judul_sertifikasi">7. Judul Sertifikasi</label>
+                        <label for="judul_sertifikasi">6. Judul Sertifikasi</label>
                         <input
                             id="judul_sertifikasi"
                             name="judul_sertifikasi"
                             type="text"
                             placeholder="Tuliskan judul sertifikasi yang dipilih"
                             value="{{ old('judul_sertifikasi') }}"
+                            required
+                        >
+                    </div>
+
+                    <div class="field-group">
+                        <label for="tanggal_pelaksanaan">7. Hari, Tanggal Pelaksanaan</label>
+                        <input
+                            id="tanggal_pelaksanaan"
+                            name="tanggal_pelaksanaan"
+                            type="date"
+                            value="{{ old('tanggal_pelaksanaan') }}"
                             required
                         >
                     </div>
@@ -604,18 +600,34 @@
                     </div>
 
                     <div class="field-group">
-                        <label for="tanggal_pelaksanaan">15. Tanggal Pelaksanaan Sertifikasi</label>
+                        <label for="email">15. Email Aktif</label>
                         <input
-                            id="tanggal_pelaksanaan"
-                            name="tanggal_pelaksanaan"
-                            type="date"
-                            value="{{ old('tanggal_pelaksanaan') }}"
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="nama@kampus.ac.id"
+                            value="{{ old('email') }}"
                             required
                         >
                     </div>
 
                     <div class="field-group">
-                        <label for="poster_sertifikasi">16. Unggah Poster Sertifikasi (gambar)</label>
+                        <label for="whatsapp">16. Nomor WhatsApp</label>
+                        <input
+                            id="whatsapp"
+                            name="whatsapp"
+                            type="tel"
+                            inputmode="tel"
+                            pattern="^(?:\+?62|0)[0-9\s\-()]{8,20}$"
+                            placeholder="Contoh: 0812-3456-7890 atau +62812-3456-7890"
+                            title="Masukkan nomor WhatsApp yang diawali 0 atau +62"
+                            value="{{ old('whatsapp') }}"
+                            required
+                        >
+                    </div>
+
+                    <div class="field-group">
+                        <label for="poster_sertifikasi">17. Unggah Poster Sertifikasi (gambar)</label>
                         <input
                             id="poster_sertifikasi"
                             name="poster_sertifikasi"

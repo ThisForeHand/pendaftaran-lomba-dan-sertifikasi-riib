@@ -37,6 +37,7 @@ class SertifikasiRegistrationController extends Controller
             'program_studi' => ['required', 'string', 'max:255'],
             'whatsapp' => ['required', 'string', 'max:255', new IndonesianPhoneNumber()],
             'status_pegawai' => ['required', 'string', 'max:255'],
+            'kategori' => ['required', 'string', 'max:255'],
             'judul_sertifikasi' => ['required', 'string', 'max:255'],
             'waktu_pelaksanaan' => ['required', 'string', 'max:255'],
             'tempat' => ['required', 'string', 'max:255'],
@@ -58,6 +59,7 @@ class SertifikasiRegistrationController extends Controller
             'program_studi' => $validated['program_studi'],
             'whatsapp' => $validated['whatsapp'],
             'status_pegawai' => $validated['status_pegawai'],
+            'kategori' => $validated['kategori'],
             'judul_sertifikasi' => $validated['judul_sertifikasi'],
             'waktu_pelaksanaan' => $validated['waktu_pelaksanaan'],
             'tempat' => $validated['tempat'],
@@ -90,6 +92,7 @@ class SertifikasiRegistrationController extends Controller
                 $table->string('program_studi');
                 $table->string('whatsapp');
                 $table->string('status_pegawai');
+                $table->string('kategori');
                 $table->string('judul_sertifikasi');
                 $table->string('waktu_pelaksanaan');
                 $table->string('tempat');
@@ -131,8 +134,12 @@ class SertifikasiRegistrationController extends Controller
                 $table->string('status_pegawai')->after('whatsapp')->nullable();
             }
 
+            if (! Schema::hasColumn('sertifikasi_registrations', 'kategori')) {
+                $table->string('kategori')->after('status_pegawai')->nullable();
+            }
+
             if (! Schema::hasColumn('sertifikasi_registrations', 'judul_sertifikasi')) {
-                $table->string('judul_sertifikasi')->after('status_pegawai')->nullable();
+                $table->string('judul_sertifikasi')->after('kategori')->nullable();
             }
 
             if (! Schema::hasColumn('sertifikasi_registrations', 'waktu_pelaksanaan')) {
@@ -232,9 +239,10 @@ class SertifikasiRegistrationController extends Controller
             'Nama',
             'NIP',
             'Email',
-            'Prodi',
+            'Lokasi Kerja / Homebase Prodi',
             'No. WhatsApp',
             'Status Pegawai',
+            'Kategori',
             'Judul Sertifikasi',
             'Waktu Pelaksanaan',
             'Tempat',
@@ -274,6 +282,7 @@ class SertifikasiRegistrationController extends Controller
                 echo '<td>' . $escape($registration->program_studi) . '</td>';
                 echo '<td>' . $escape($registration->whatsapp) . '</td>';
                 echo '<td>' . $escape($registration->status_pegawai) . '</td>';
+                echo '<td>' . $escape($registration->kategori) . '</td>';
                 echo '<td>' . $escape($registration->judul_sertifikasi) . '</td>';
                 echo '<td>' . $escape($registration->waktu_pelaksanaan) . '</td>';
                 echo '<td>' . $escape($registration->tempat) . '</td>';

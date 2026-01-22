@@ -28,9 +28,10 @@
                         <th>Nama</th>
                         <th>NIP</th>
                         <th>Email</th>
-                        <th>Prodi</th>
+                        <th>Lokasi Kerja / Homebase Prodi</th>
                         <th>No Wa</th>
                         <th>Status Pegawai</th>
+                        <th>Kategori</th>
                         <th>Judul Sertifikasi</th>
                         <th>Waktu Pelaksanaan</th>
                         <th>Tempat</th>
@@ -49,7 +50,7 @@
                 <tbody>
                     @if (! $tableExists)
                         <tr>
-                            <td colspan="18">
+                            <td colspan="19">
                                 Tabel pendaftaran sertifikasi belum tersedia. Jalankan migrasi database terlebih dahulu.
                             </td>
                         </tr>
@@ -65,6 +66,7 @@
                                     <x-contact-link :value="$registration->whatsapp" />
                                 </td>
                                 <td>{{ $registration->status_pegawai }}</td>
+                                <td>{{ $registration->kategori }}</td>
                                 <td>{{ $registration->judul_sertifikasi }}</td>
                                 <td>{{ $registration->waktu_pelaksanaan }}</td>
                                 <td>{{ $registration->tempat }}</td>
@@ -87,7 +89,7 @@
                             </tr>
                         @empty
                             <tr class="empty-state">
-                                <td colspan="18">Belum ada data pendaftaran sertifikasi.</td>
+                                <td colspan="19">Belum ada data pendaftaran sertifikasi.</td>
                             </tr>
                         @endforelse
                     @endif
