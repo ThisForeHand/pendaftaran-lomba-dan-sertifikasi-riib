@@ -1,6 +1,6 @@
 @extends('layouts.guest')
 
-@section('title', 'Portal Paper Reading Club')
+@section('title', 'Papper Reading Club')
 
 @php
     $flowSteps = collect($flowSteps ?? []);
@@ -348,7 +348,7 @@
 @section('content')
 <div class="page-wrapper">
             <header>
-                <h1>Portal Paper Reading Club</h1>
+                <h1>Papper Reading Club</h1>
                 <p>
                     Jelajahi informasi kegiatan Paper Reading Club yang sedang dibuka dan lengkapi seluruh persyaratan
                     agar proses pendaftaran berjalan lancar.

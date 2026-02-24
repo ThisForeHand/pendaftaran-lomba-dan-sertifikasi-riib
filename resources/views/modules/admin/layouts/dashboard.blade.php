@@ -11,6 +11,9 @@
             rel="stylesheet"
         />
 
+        <link rel="icon" type="image/png" href="{{ asset('images/iebi logo_crop.png') }}" />
+        <link rel="apple-touch-icon" href="{{ asset('images/iebi logo_crop.png') }}" />
+
         <style>
             :root {
                 color-scheme: light;
