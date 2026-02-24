@@ -13,7 +13,7 @@ Route::get('/', function () {
     return redirect()->route('portal.lomba');
 });
 
-Route::get('/portal-lomba', [PortalLandingController::class, 'lomba'])->name('portal.lomba');
+Route::get('/papper-reading-club', [PortalLandingController::class, 'lomba'])->name('portal.lomba');
 Route::get('/portal-sertifikasi', [PortalLandingController::class, 'sertifikasi'])->name('portal.sertifikasi');
 
 // -----------------------------------------------------------------------------
