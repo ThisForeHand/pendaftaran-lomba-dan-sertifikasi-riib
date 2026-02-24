@@ -1,6 +1,6 @@
 @extends('layouts.guest')
 
-@section('title', 'Portal Persiapan Lomba Mahasiswa')
+@section('title', 'Portal Paper Reading Club')
 
 @php
     $flowSteps = collect($flowSteps ?? []);
@@ -348,17 +348,17 @@
 @section('content')
 <div class="page-wrapper">
             <header>
-                <h1>Portal Pendaftaran Kompetisi</h1>
+                <h1>Portal Paper Reading Club</h1>
                 <p>
-                    Jelajahi informasi pendaftaran lomba yang sedang dibuka dan lengkapi seluruh persyaratan agar proses
-                    seleksi berjalan lancar.
+                    Jelajahi informasi kegiatan Paper Reading Club yang sedang dibuka dan lengkapi seluruh persyaratan
+                    agar proses pendaftaran berjalan lancar.
                 </p>
             </header>
 
             <main class="main-card">
                 <div class="flow-grid">
                     <div class="flow-card">
-                        <h3>Alur Pendaftaran Lomba</h3>
+                        <h3>Alur Paper Reading Club</h3>
                         <div class="flow-diagram">
                             @if ($flowSteps->isNotEmpty())
                                 <ol class="timeline" role="list">
@@ -398,7 +398,7 @@
                             <div class="support-box">
                                 <strong>Butuh bantuan?</strong>
                                 <p>
-                                    Silakan koordinasi dengan dosen pembina atau hubungi helpdesk lomba untuk memastikan
+                                    Silakan koordinasi dengan dosen pembina atau hubungi helpdesk Paper Reading Club untuk memastikan
                                     seluruh berkas sudah lengkap sebelum batas waktu.
                                 </p>
                             </div>
