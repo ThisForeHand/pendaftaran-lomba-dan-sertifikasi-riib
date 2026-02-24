@@ -395,14 +395,20 @@
 
             .table-container {
                 border-radius: 20px;
-                overflow: hidden;
+                overflow-x: auto;
+                overflow-y: hidden;
                 border: 1px solid rgba(47, 76, 178, 0.15);
             }
 
             table {
-                width: 100%;
+                width: max-content;
+                min-width: 100%;
                 border-collapse: collapse;
-                min-width: 640px;
+            }
+
+            th,
+            td {
+                white-space: nowrap;
             }
 
             thead {
